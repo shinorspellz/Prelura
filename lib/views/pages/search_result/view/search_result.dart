@@ -26,6 +26,7 @@ import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/card.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
 import '../../../widgets/error_placeholder.dart';
+import '../../../widgets/user_card.dart';
 import '../provider/search_provider.dart';
 
 final dialogFilterStateProvider =
@@ -91,52 +92,52 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
       child: Column(
         children: [
           16.verticalSpacing,
-          Row(
-            children: ["Products", "Members"]
-                .asMap()
-                .entries
-                .map(
-                  (entry) => Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        _tabController.animateTo(entry.key,
-                            duration: Duration(milliseconds: 0),
-                            curve: Curves.linear);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                          top: 12,
-                          bottom: 18,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: _tabController.index == entry.key
-                                  ? PreluraColors.activeColor
-                                  : PreluraColors.greyColor.withOpacity(0.5),
-                              width:
-                                  _tabController.index == entry.key ? 2.0 : 1.0,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          entry.value,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: getDefaultSize(),
-                            color: _tabController.index == entry.key
-                                ? Theme.of(context).textTheme.bodyMedium?.color
-                                : PreluraColors.greyLightColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
+          // Row(
+          //   children: ["Products", "Members"]
+          //       .asMap()
+          //       .entries
+          //       .map(
+          //         (entry) => Expanded(
+          //           child: GestureDetector(
+          //             onTap: () {
+          //               _tabController.animateTo(entry.key,
+          //                   duration: Duration(milliseconds: 0),
+          //                   curve: Curves.linear);
+          //             },
+          //             child: Container(
+          //               padding: const EdgeInsets.only(
+          //                 left: 10,
+          //                 right: 10,
+          //                 top: 12,
+          //                 bottom: 18,
+          //               ),
+          //               decoration: BoxDecoration(
+          //                 border: Border(
+          //                   bottom: BorderSide(
+          //                     color: _tabController.index == entry.key
+          //                         ? PreluraColors.activeColor
+          //                         : PreluraColors.greyColor.withOpacity(0.5),
+          //                     width:
+          //                         _tabController.index == entry.key ? 2.0 : 1.0,
+          //                   ),
+          //                 ),
+          //               ),
+          //               child: Text(
+          //                 entry.value,
+          //                 textAlign: TextAlign.center,
+          //                 style: TextStyle(
+          //                   fontSize: getDefaultSize(),
+          //                   color: _tabController.index == entry.key
+          //                       ? Theme.of(context).textTheme.bodyMedium?.color
+          //                       : PreluraColors.greyLightColor,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       )
+          //       .toList(),
+          // ),
           10.verticalSpacing,
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 1.58,
@@ -166,102 +167,105 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                         },
                         orElse: () => LoadingWidget())
               else
-                userAsyncValue.when(
-                    skipLoadingOnRefresh: false,
-                    data: (data) => Container(
-                          child: data.isEmpty
-                              ? SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.7,
-                                  child: NoProductWidget(),
-                                )
-                              : GridView.builder(
-                                  // shrinkWrap: true,
-                                  // physics: scrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
-                                  padding: const EdgeInsets.all(8.0),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10,
-                                    childAspectRatio: 0.50,
-                                  ),
-                                  itemCount: data.length,
-                                  itemBuilder: (context, index) {
-                                    return AnimatedGridItem(
-                                      child: ProductCard(
-                                        product: data[index],
-                                      ),
-                                    );
-                                  },
-                                ),
-                        ),
-                    loading: () => GridShimmer(),
-                    error: (error, stack) {
-                      log(error.toString(), stackTrace: stack);
-                      return Center(
-                        child: ErrorPlaceholder(
-                          error: "Error fetching items",
-                          onTap: () {
-                            ref.invalidate(searchProductProvider(query.text));
-                          },
-                        ),
-                      );
-                    }),
+                // userAsyncValue.when(
+                //     skipLoadingOnRefresh: false,
+                //     data: (data) => Container(
+                //           child: data.isEmpty
+                //               ? SizedBox(
+                //                   height:
+                //                       MediaQuery.of(context).size.height * 0.7,
+                //                   child: NoProductWidget(),
+                //                 )
+                //               : GridView.builder(
+                //                   // shrinkWrap: true,
+                //                   // physics: scrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+                //                   padding: const EdgeInsets.all(8.0),
+                //                   gridDelegate:
+                //                       SliverGridDelegateWithFixedCrossAxisCount(
+                //                     crossAxisCount: 2,
+                //                     crossAxisSpacing: 10,
+                //                     mainAxisSpacing: 10,
+                //                     childAspectRatio: 0.50,
+                //                   ),
+                //                   itemCount: data.length,
+                //                   itemBuilder: (context, index) {
+                //                     return AnimatedGridItem(
+                //                       child: ProductCard(
+                //                         product: data[index],
+                //                       ),
+                //                     );
+                //                   },
+                //                 ),
+                //         ),
+                //     loading: () => GridShimmer(),
+                //     error: (error, stack) {
+                //       log(error.toString(), stackTrace: stack);
+                //       return Center(
+                //         child: ErrorPlaceholder(
+                //           error: "Error fetching items",
+                //           onTap: () {
+                //             ref.invalidate(searchProductProvider(query.text));
+                //           },
+                //         ),
+                //       );
+                //     }),
 
-              ///Member search
+                ///Member search
 
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ref.watch(searchUserProvider(query.text)).maybeWhen(
-                      orElse: () => ListView.separated(
-                            itemCount: 20,
-                            separatorBuilder: (_, index) => 8.verticalSpacing,
-                            itemBuilder: (_, index) => UsersShimmer(),
-                          ),
-                      data: (users) => users.isEmpty
-                          ? SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.7,
-                              child: const Center(
-                                child: EmptyScreenPlaceholder(
-                                    text: "No User found"),
-                              ),
-                            )
-                          : ListView.separated(
-                              itemCount: users.length,
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ref.watch(searchUserProvider(query.text)).maybeWhen(
+                        orElse: () => ListView.separated(
+                              itemCount: 20,
                               separatorBuilder: (_, index) => 8.verticalSpacing,
-                              itemBuilder: (_, index) => GestureDetector(
-                                onTap: () {
-                                  log("here");
-                                  if (user?.username == users[index].username) {
-                                    final tabRouter =
-                                        AutoTabsRouter.of(context);
-                                    tabRouter.setActiveIndex(3);
-                                    // context.router
-                                    //     .push(ProfileNavigationRoute());
-                                  } else {
-                                    context.router.push(ProfileDetailsRoute(
-                                        username: users[index].username));
-                                  }
-                                },
-                                child: AnimatedGridItem(
-                                  child: ProfileCardWidget(
-                                    user: users[index],
+                              itemBuilder: (_, index) => UsersShimmer(),
+                            ),
+                        data: (users) => users.isEmpty
+                            ? SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.7,
+                                child: const Center(
+                                  child: EmptyScreenPlaceholder(
+                                      text: "No User found"),
+                                ),
+                              )
+                            : ListView.separated(
+                                itemCount: users.length,
+                                separatorBuilder: (_, index) =>
+                                    8.verticalSpacing,
+                                itemBuilder: (_, index) => GestureDetector(
+                                  onTap: () {
+                                    log("here");
+                                    if (user?.username ==
+                                        users[index].username) {
+                                      final tabRouter =
+                                          AutoTabsRouter.of(context);
+                                      tabRouter.setActiveIndex(3);
+                                      // context.router
+                                      //     .push(ProfileNavigationRoute());
+                                    } else {
+                                      context.router.push(ProfileDetailsRoute(
+                                          username: users[index].username));
+                                    }
+                                  },
+                                  child: AnimatedGridItem(
+                                    child: UserCard(
+                                      user: users[index],
+                                    ),
                                   ),
                                 ),
                               ),
+                        error: (error, stack) {
+                          log(error.toString(), stackTrace: stack);
+                          return Center(
+                            child: ErrorPlaceholder(
+                              error: "Error fetching items",
+                              onTap: () {
+                                ref.invalidate(searchUserProvider(query.text));
+                              },
                             ),
-                      error: (error, stack) {
-                        log(error.toString(), stackTrace: stack);
-                        return Center(
-                          child: ErrorPlaceholder(
-                            error: "Error fetching items",
-                            onTap: () {
-                              ref.invalidate(searchUserProvider(query.text));
-                            },
-                          ),
-                        );
-                      }))
+                          );
+                        }))
             ]),
           )
         ],

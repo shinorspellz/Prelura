@@ -88,7 +88,7 @@ class _MultiBuyDiscountScreenState
           .read(userMultiBuyerDiscountNotifierProvider.notifier)
           .deactivateMultiBuyDiscounts();
       HelperFunction.context = context;
-      HelperFunction.showToast(message: "Multi-buy discount off");
+      context.alert("Multi-buy discount off");
     }
     ref.refresh(userProvider);
     setState(() => isEditing = isEnabled);
@@ -127,7 +127,7 @@ class _MultiBuyDiscountScreenState
       ref.read(userMultiBuyerDiscountNotifierProvider).when(
           data: (result) {
             HelperFunction.context = context;
-            HelperFunction.showToast(message: "Saved");
+            context.alert("Saved");
             ref.refresh(userProvider.future);
 
             setState(() {
@@ -147,7 +147,7 @@ class _MultiBuyDiscountScreenState
       ref.read(userMultiBuyerDiscountNotifierProvider).when(
           data: (result) {
             HelperFunction.context = context;
-            HelperFunction.showToast(message: "Updated multi-buy discounts");
+            HelperFunction.showToast(message: "Saved");
             ref.refresh(userProvider.future);
             ref.refresh(userMultiBuyDiscountProvider.future);
 
@@ -178,7 +178,7 @@ class _MultiBuyDiscountScreenState
     ref.read(userMultiBuyerDiscountNotifierProvider).when(
         data: (result) {
           HelperFunction.context = context;
-          HelperFunction.showToast(message: "Multi-buy discount off");
+          context.alert("Multi-buy discount off");
           ref.refresh(userProvider.future);
           ref.read(isSelectedProvider.notifier).state = false;
           setState(() {

@@ -11,6 +11,7 @@ class ProfilePictureWidget extends StatelessWidget {
       this.updating = false,
       this.height,
       this.width,
+      this.onTap,
       this.allowBorder = true,
       this.borderColor});
 
@@ -21,62 +22,69 @@ class ProfilePictureWidget extends StatelessWidget {
   final double? height;
   final Color? borderColor;
   final bool allowBorder;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     if (profilePicture == null || (profilePicture == "null")) {
-      return Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: allowBorder
-              ? Border.all(color: borderColor ?? Colors.transparent, width: 2)
-              : null,
-        ),
-        child: CircleAvatar(
-          radius: height != null ? height! / 2 : 25,
-          backgroundColor: Colors.grey[600],
-          child: updating
-              ? SizedBox(
-                  height: height != null ? height! / 2 : 25,
-                  width: width != null ? height! / 2 : 25,
-                  child: LoadingWidget(),
-                )
-              : Text(
-                  username?.split('').first.toUpperCase() ?? '--',
-                  style: context.textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: allowBorder
+                ? Border.all(color: borderColor ?? Colors.transparent, width: 2)
+                : null,
+          ),
+          child: CircleAvatar(
+            radius: height != null ? height! / 2 : 25,
+            backgroundColor: Colors.grey[600],
+            child: updating
+                ? SizedBox(
+                    height: height != null ? height! / 2 : 25,
+                    width: width != null ? height! / 2 : 25,
+                    child: LoadingWidget(),
+                  )
+                : Text(
+                    username?.split('').first.toUpperCase() ?? '--',
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
+          ),
         ),
       );
     }
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          height: width ?? 50,
-          width: height ?? 50,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border:
-                Border.all(color: borderColor ?? Colors.transparent, width: 2),
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(profilePicture!),
-              fit: BoxFit.cover,
-              colorFilter: updating
-                  ? const ColorFilter.mode(Colors.black45, BlendMode.srcOver)
-                  : null,
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: width ?? 50,
+            width: height ?? 50,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                  color: borderColor ?? Colors.transparent, width: 2),
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(profilePicture!),
+                fit: BoxFit.cover,
+                colorFilter: updating
+                    ? const ColorFilter.mode(Colors.black45, BlendMode.srcOver)
+                    : null,
+              ),
             ),
           ),
-        ),
-        if (updating)
-          SizedBox(
-            height: height != null ? height! / 2 : 25,
-            width: width != null ? width! / 2 : 25,
-            child: LoadingWidget(),
-          )
-      ],
+          if (updating)
+            SizedBox(
+              height: height != null ? height! / 2 : 25,
+              width: width != null ? width! / 2 : 25,
+              child: LoadingWidget(),
+            )
+        ],
+      ),
     );
   }
 }

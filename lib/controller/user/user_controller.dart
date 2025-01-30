@@ -106,22 +106,21 @@ class _UserController extends AsyncNotifier<void> {
       () async {
         await _repo.updateProfile(
           Variables$Mutation$UpdateProfile(
-            bio: bio,
-            country: country,
-            displayName: displayName,
-            dob: dob,
-            firstName: firstName,
-            gender: gender,
-            lastName: lastName,
-            otp: otp,
-            phoneNumber: phoneNumber,
-            postCode: postCode,
-            username: username,
-            location: location,
-            fcmToken: fcmToken,
-            isVacationMode: isVacationMode,
-            shippingAddress: shippingAddress
-          ),
+              bio: bio,
+              country: country,
+              displayName: displayName,
+              dob: dob,
+              firstName: firstName,
+              gender: gender,
+              lastName: lastName,
+              otp: otp,
+              phoneNumber: phoneNumber,
+              postCode: postCode,
+              username: username,
+              location: location,
+              fcmToken: fcmToken,
+              isVacationMode: isVacationMode,
+              shippingAddress: shippingAddress),
         );
 
         await ref.refresh(userProvider.future);
@@ -168,9 +167,12 @@ final followersProvider =
   final repo = ref.watch(networkRepo);
 
   // Validate input params
-  final query = params.query;
+  final query = params.query ?? "";
   final latestFirst = params.latestFirst ?? false;
   final username = params.username;
+  log('query: $query');
+  log('latestFirst: $latestFirst');
+  log('username: $username');
 
   // Fetch followers based on parameters
   final result = await repo.getFollowers(
@@ -187,7 +189,7 @@ final followingProvider =
   final repo = ref.watch(networkRepo);
 
   // Validate input params
-  final query = params.query;
+  final query = params.query ?? "";
   final latestFirst = params.latestFirst ?? false;
   final username = params.username;
 

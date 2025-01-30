@@ -13,6 +13,7 @@ class Ratings extends StatelessWidget {
       initialRating: 4.5,
       minRating: 1,
       direction: Axis.horizontal,
+      ignoreGestures: true,
       allowHalfRating: true,
       itemCount: count,
       itemSize: size,
