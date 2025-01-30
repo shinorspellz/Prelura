@@ -55,7 +55,7 @@ class MessageCard extends ConsumerWidget {
             )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          // crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // User Avatar
             GestureDetector(
@@ -72,15 +72,23 @@ class MessageCard extends ConsumerWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    model.recipient.username,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
-                  ),
+                  Row(children: [
+                    Expanded(
+                      child: Text(
+                        model.recipient.username,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Text(
+                      formatChatTime(model.lastModified),
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    ),
+                  ]),
                   if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
                     if (isLastMessageAnOffer) ...[
@@ -115,16 +123,8 @@ class MessageCard extends ConsumerWidget {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  formatChatTime(model.lastModified),
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-                const SizedBox(height: 5),
-              ],
-            ),
+
+            const SizedBox(height: 5),
           ],
         ),
       ),
@@ -150,8 +150,8 @@ class BuildOfferRow extends ConsumerWidget {
       ClipRRect(
         borderRadius: BorderRadius.circular(2),
         child: SizedBox(
-          height: 20,
-          width: 18,
+          height: 26,
+          width: 23,
           child: CachedNetworkImage(
             errorWidget: (context, url, error) => Container(
               color: PreluraColors.grey,
@@ -160,8 +160,8 @@ class BuildOfferRow extends ConsumerWidget {
             fit: BoxFit.cover,
             placeholder: (context, url) {
               return ShimmerBox(
-                height: 20,
-                width: 18,
+                height: 26,
+                width: 23,
               );
             },
             fadeInDuration: Duration.zero,
