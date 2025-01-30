@@ -9,13 +9,10 @@ import 'package:prelura_app/core/router/router.gr.dart';
 // import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/categories/new_categories.dart';
 import 'package:prelura_app/res/context_entension.dart';
-import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
-// import 'package:prelura_app/views/widgets/gap.dart';
-
-import '../../../model/product/categories/category_model.dart';
 import '../../../res/colors.dart';
 import '../../../res/images.dart';
 // import '../../shimmers/category_shimmer.dart';
@@ -134,8 +131,7 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
           //     onChanged: (val) => onSearch(val, actualList),
           //   ),
           // ),
-          if (categoryState.isLoading)
-            const Center(child: CircularProgressIndicator.adaptive()),
+          if (categoryState.isLoading) const Center(child: LoadingWidget()),
           if (isSearching && filter.isNotEmpty) ...[
             buildCategoryList(filter),
           ] else if (!isSearching && actualList.isNotEmpty) ...[

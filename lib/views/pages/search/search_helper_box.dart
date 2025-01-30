@@ -8,6 +8,7 @@ import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 class SearchHelperBox extends HookConsumerWidget {
   final Function? onItemSelected;
@@ -92,9 +93,10 @@ class SearchHelperBox extends HookConsumerWidget {
               return SizedBox.shrink();
             },
             loading: () => Center(
-              child: CircularProgressIndicator.adaptive(
-                backgroundColor: PreluraColors.greyColor,
-              ),
+              child: LoadingWidget(),
+              // CircularProgressIndicator.adaptive(
+              //   backgroundColor: PreluraColors.greyColor,
+              // ),
             ),
           )
         else
@@ -118,9 +120,10 @@ class SearchHelperBox extends HookConsumerWidget {
               return SizedBox.shrink();
             },
             loading: () => Center(
-              child: CircularProgressIndicator.adaptive(
-                backgroundColor: PreluraColors.greyColor,
-              ),
+              child: LoadingWidget(),
+              // CircularProgressIndicator.adaptive(
+              //   backgroundColor: PreluraColors.greyColor,
+              // ),
             ),
           ),
       ]),

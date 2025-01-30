@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
@@ -6,6 +7,8 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/time_formatter.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
@@ -52,7 +55,7 @@ class MessageCard extends ConsumerWidget {
             )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          // crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // User Avatar
             GestureDetector(
@@ -69,15 +72,23 @@ class MessageCard extends ConsumerWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    model.recipient.username,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
-                  ),
+                  Row(children: [
+                    Expanded(
+                      child: Text(
+                        model.recipient.username,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Text(
+                      formatChatTime(model.lastModified),
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    ),
+                  ]),
                   if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
                     if (isLastMessageAnOffer) ...[
@@ -112,16 +123,8 @@ class MessageCard extends ConsumerWidget {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  formatChatTime(model.lastModified),
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-                const SizedBox(height: 5),
-              ],
-            ),
+
+            const SizedBox(height: 5),
           ],
         ),
       ),
@@ -143,15 +146,40 @@ class BuildOfferRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Text(
-      _buildOfferMessage(),
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context)
-          .textTheme
-          .bodySmall
-          ?.copyWith(fontWeight: FontWeight.w400),
-    );
+    return Row(children: [
+      ClipRRect(
+        borderRadius: BorderRadius.circular(2),
+        child: SizedBox(
+          height: 26,
+          width: 23,
+          child: CachedNetworkImage(
+            errorWidget: (context, url, error) => Container(
+              color: PreluraColors.grey,
+            ),
+            imageUrl: offerInfo.products!.first.imagesUrl!.first.url!,
+            fit: BoxFit.cover,
+            placeholder: (context, url) {
+              return ShimmerBox(
+                height: 26,
+                width: 23,
+              );
+            },
+            fadeInDuration: Duration.zero,
+            fadeOutDuration: Duration.zero,
+          ),
+        ),
+      ),
+      addHorizontalSpacing(5),
+      Text(
+        _buildOfferMessage(),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context)
+            .textTheme
+            .bodySmall
+            ?.copyWith(fontWeight: FontWeight.w400),
+      ),
+    ]);
   }
 
   String _buildOfferMessage() {
