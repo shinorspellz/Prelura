@@ -47,6 +47,7 @@ class _CustomLocationFieldState extends State<CustomLocationField> {
       buildAuthTextField(
         context,
         label: 'Location',
+        maxLines: 1,
         hintText: 'e.g. Exter, United Kingdom',
         controller: widget.locationController,
         onChanged: (value) {
