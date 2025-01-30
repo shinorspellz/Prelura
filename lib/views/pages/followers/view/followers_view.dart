@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
 import '../widget/follower_tile.dart';
@@ -145,7 +147,7 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
                     ),
                   );
                 },
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: LoadingWidget()),
                 error: (error, stackTrace) {
                   return Center(child: Text("Error: ${error.toString()}"));
                 },

@@ -229,7 +229,7 @@ class _MessageConversationBuilderState
             if (chatState.state == ChatRoomActivity.loadingMoreMessages)
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(child: CircularProgressIndicator.adaptive()),
+                child: Center(child: LoadingWidget()),
               ),
 
             // .paddingOnly(bottom: 15, top: 30),

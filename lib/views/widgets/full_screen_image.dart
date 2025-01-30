@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import '../../../res/colors.dart';
 
@@ -79,8 +80,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
                                 widget.imageUrl[index].url, // Network image URL
                             fit: BoxFit.cover,
                             placeholder: (context, url) => const Center(
-                              child:
-                                  CircularProgressIndicator(), // Loading indicator
+                              child: LoadingWidget(), // Loading indicator
                             ),
                             errorWidget: (context, url, error) => const Icon(
                               Icons.error, // Error icon for failed loading

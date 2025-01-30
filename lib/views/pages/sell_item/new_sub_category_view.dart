@@ -8,6 +8,7 @@ import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/categories/new_categories.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import '../../../res/images.dart';
 import '../../widgets/menu_card.dart';
@@ -160,7 +161,7 @@ class _SubCategoryScreenState extends ConsumerState<NewSubCategoryScreen> {
       body: Column(
         children: [
           if (categoryState.isLoading)
-            const Center(child: CircularProgressIndicator.adaptive())
+            const Center(child: LoadingWidget())
           else if (isSearching && filter.isNotEmpty)
             buildCategoryList(filter)
           else if (!isSearching && subCategories.isNotEmpty)

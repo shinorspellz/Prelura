@@ -10,6 +10,7 @@ import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import 'offer_card.dart';
 import 'offer_product_card.dart';
@@ -199,7 +200,7 @@ class OfferConversationBuilderState
       });
     }
     if (conversationInfo == null) {
-      return Center(child: CircularProgressIndicator.adaptive());
+      return Center(child: LoadingWidget());
     } else {
       final offerInfo = conversationInfo!.offer!;
 
