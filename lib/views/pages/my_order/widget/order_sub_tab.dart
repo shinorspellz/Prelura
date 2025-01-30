@@ -69,7 +69,16 @@ class _OrderSubTabsState extends ConsumerState<OrderSubTabs>
       ),
       Expanded(
         child: OrdersTabView(
-          orders: allOrders,
+          orders: activeIndex.value == 0
+              ? allOrders
+              : ref
+                  .read(
+                    orderProvider.notifier,
+                  )
+                  .getFilterOthers(
+                    type: widget.type,
+                    status: filters[activeIndex.value],
+                  ),
           type: widget.type,
           status: filters[activeIndex.value],
         ),

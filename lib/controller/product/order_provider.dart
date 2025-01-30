@@ -161,6 +161,48 @@ class OrderNotifier extends StateNotifier<OrderState> {
     });
   }
 
+  List<UserOrderInfo> getFilterOthers(
+      {required String type, required String status}) {
+    final List<UserOrderInfo> availableOrders = state.userOrders?[type] ?? [];
+    List<UserOrderInfo> filteredOrders = [];
+    if (availableOrders.isNotEmpty) {
+      switch (status) {
+        case "In Progress":
+          {
+            for (var orderInfo in availableOrders) {
+              if (orderInfo.status == "CONFIRMED" ||
+                  orderInfo.status == "PENDING" ||
+                  orderInfo.status == "SHIPPED") {
+                filteredOrders.add(orderInfo);
+              }
+            }
+            break;
+          }
+        case "Cancelled":
+          {
+            for (var orderInfo in availableOrders) {
+              if (orderInfo.status == "CANCELLED" ||
+                  orderInfo.status == "REFUNDED") {
+                filteredOrders.add(orderInfo);
+              }
+            }
+            break;
+          }
+        case "Completed":
+          {
+            for (var orderInfo in availableOrders) {
+              if (orderInfo.status == "DELIVERED") {
+                filteredOrders.add(orderInfo);
+              }
+            }
+            break;
+          }
+      }
+    }
+
+    return filteredOrders;
+  }
+
   // late final _repo = ref.read(productRepo);
   //
   // @override
