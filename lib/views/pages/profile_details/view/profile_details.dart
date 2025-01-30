@@ -114,6 +114,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
           10.horizontalSpacing,
         ],
       ),
+    
       bottomSheet: Container(
           constraints: BoxConstraints(maxHeight: 200),
           child: MultiDiscountBottomView()),

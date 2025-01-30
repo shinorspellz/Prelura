@@ -37,6 +37,8 @@ import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../../../widgets/custom_widget.dart';
 import '../../../widgets/error_placeholder.dart';
+import '../../../widgets/profile_picture.dart';
+import '../../../widgets/show_animated_dialog.dart';
 import '../../../widgets/switch_with_text.dart';
 import '../widgets/no_product_widget.dart';
 import '../widgets/user_popular_brand.dart';
@@ -244,9 +246,99 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 20),
                       child: ProfileCardWidget(
-                        user: user,
-                        fontWeight: FontWeight.w600,
-                      ),
+                          user: user,
+                          fontWeight: FontWeight.w600,
+                          onTap: () {
+                            if (widget.username != null) {
+                              showAnimatedDialog(
+                                  child: ProfilePictureWidget(
+                                    profilePicture: user != null
+                                        ? user?.profilePictureUrl
+                                        : ref
+                                            .watch(userProvider)
+                                            .valueOrNull
+                                            ?.profilePictureUrl,
+                                    username: user != null
+                                        ? user?.username ?? ''
+                                        : ref
+                                                .watch(userProvider)
+                                                .valueOrNull
+                                                ?.username ??
+                                            '',
+                                    height: 250,
+                                    width: 250,
+                                  ),
+                                  context: context);
+                              return;
+                            }
+                            VBottomSheetComponent.actionBottomSheet(
+                              context: context,
+                              actions: [
+                                VBottomSheetItem(
+                                    onTap: (context) {
+                                      Navigator.pop(context);
+                                      VBottomSheetComponent.actionBottomSheet(
+                                        context: context,
+                                        actions: [
+                                          VBottomSheetItem(
+                                              onTap: (context) async {
+                                                Navigator.pop(context);
+                                                final photo =
+                                                    await ImagePicker()
+                                                        .pickImage(
+                                                            source: ImageSource
+                                                                .gallery);
+
+                                                if (photo == null) return;
+                                                await ref
+                                                    .read(userNotfierProvider
+                                                        .notifier)
+                                                    .updateProfilePicture(
+                                                        File(photo.path));
+                                                ref
+                                                    .read(userNotfierProvider)
+                                                    .whenOrNull(
+                                                      error: (e, _) =>
+                                                          context.alert(
+                                                              'An error occured while uploading profile image'),
+                                                      data: (_) => context.alert(
+                                                          'Profile photo updated!'),
+                                                    );
+                                              },
+                                              title: 'Gallery'),
+                                          VBottomSheetItem(
+                                              onTap: (context) async {
+                                                Navigator.pop(context);
+                                                final photo =
+                                                    await ImagePicker()
+                                                        .pickImage(
+                                                            source: ImageSource
+                                                                .camera);
+
+                                                if (photo == null) return;
+                                                await ref
+                                                    .read(userNotfierProvider
+                                                        .notifier)
+                                                    .updateProfilePicture(
+                                                        File(photo.path));
+                                                ref
+                                                    .read(userNotfierProvider)
+                                                    .whenOrNull(
+                                                      error: (e, _) =>
+                                                          context.alert(
+                                                              'An error occured while uploading profile image'),
+                                                      data: (_) => context.alert(
+                                                          'Profile photo updated!'),
+                                                    );
+                                              },
+                                              title: 'Camera'),
+                                        ],
+                                      );
+                                    },
+                                    title: 'Update Picture'),
+                              ],
+                            );
+                          }),
                     ),
                     if (isCurrentUser) buildeditProfileBox(context, user),
                   ]),
@@ -457,7 +549,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
                                             controller.collapse();
                                           },
-                                          title: x.name),
+                                          title: x.name.capitalize()),
                                     )
                                     .toList()),
 
@@ -671,6 +763,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     return DisplaySection(
                                       products: products,
                                       isInProduct: false,
+                                      isSelectable:
+                                          !ref.watch(buyerMultiBuyDiscount),
                                       isMultiSelect:
                                           ref.watch(buyerMultiBuyDiscount),
                                     );

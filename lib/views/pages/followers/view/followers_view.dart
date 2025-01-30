@@ -10,6 +10,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
+import '../../../widgets/loading_widget.dart';
 import '../widget/follower_tile.dart';
 
 final followersqueryProvider = StateProvider<FollowerQuery>(
@@ -97,7 +98,7 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
     // Watch the followersProvider with current query parameters
     final followers = ref.watch(followersProvider(queryParams));
     final followersTotalNumber =
-        ref.watch(followersTotalProvider(queryParams.username));
+        ref.watch(followersTotalProvider(widget.username));
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -132,8 +133,10 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
               followers.when(
                 data: (followersList) {
                   if (followersList.isEmpty) {
-                    return const EmptyScreenPlaceholder(
-                        text: "No followers found.");
+                    return Expanded(
+                        child: Center(
+                            child: const EmptyScreenPlaceholder(
+                                text: "No followers.")));
                   }
                   return Expanded(
                     child: ListView.builder(
@@ -142,12 +145,15 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
                         final user = followersList[index];
                         return FollowerTile(
                           follower: user,
+                          username: widget.username,
+                          queryParams: queryParams,
                         );
                       },
                     ),
                   );
                 },
-                loading: () => const Center(child: LoadingWidget()),
+                loading: () =>
+                    Expanded(child: const Center(child: LoadingWidget())),
                 error: (error, stackTrace) {
                   return Center(child: Text("Error: ${error.toString()}"));
                 },

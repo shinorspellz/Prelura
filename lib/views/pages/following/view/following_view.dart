@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../controller/user/user_controller.dart';
@@ -41,6 +42,8 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
     _searchController.addListener(_onSearchChanged);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      log("username ${widget.username}");
+      ref.refresh(followingTotalProvider(widget.username));
       ref.read(followingqueryProvider.notifier).state = FollowerQuery(
         query: "",
         latestFirst: false,
@@ -71,8 +74,9 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
 
   Future<void> _onRefresh() async {
     try {
-      ref.invalidate(followingProvider(
-          ref.read(followingqueryProvider))); // Re-trigger the provider
+      ref.invalidate(followingProvider(ref.read(followingqueryProvider)));
+      ref.refresh(followingTotalProvider(widget.username));
+
       _refreshController.refreshCompleted(); // Notify SmartRefresher of success
     } catch (e) {
       _refreshController.refreshFailed(); // Notify SmartRefresher of failure
@@ -84,7 +88,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
       // Fetch more products from the repository
       ref.invalidate(followingProvider(
           ref.read(followingqueryProvider))); // Re-trigger the provider
-
+      ref.refresh(followingTotalProvider(widget.username));
       // await ref.read(productRepo).fetchMoreFavouriteProducts();
       _refreshController.loadComplete();
     } catch (e) {
@@ -95,11 +99,14 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
   @override
   Widget build(BuildContext context) {
     final queryParams = ref.watch(followingqueryProvider);
+    log("query : ${queryParams.query}");
+    log("username : ${queryParams.username}");
+    log("latestFirst : ${queryParams.latestFirst}");
 
     // Watch the followersProvider with current query parameters
     final following = ref.watch(followingProvider(queryParams));
     final followingTotalNumber =
-        ref.watch(followingTotalProvider(queryParams.username));
+        ref.watch(followingTotalProvider(widget.username));
     log(followingTotalNumber.valueOrNull.toString());
 
     return Scaffold(
@@ -136,7 +143,8 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
               following.when(
                 data: (followersList) {
                   if (followersList.isEmpty) {
-                    return EmptyScreenPlaceholder(text: "No followings");
+                    return Expanded(
+                        child: EmptyScreenPlaceholder(text: "No followings"));
                   }
                   return Expanded(
                     child: ListView.builder(
@@ -144,13 +152,15 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
                       itemBuilder: (context, index) {
                         final user = followersList[index];
                         return FollowerTile(
-                          follower: user,
-                        );
+                            follower: user,
+                            username: widget.username,
+                            queryParams: queryParams);
                       },
                     ),
                   );
                 },
-                loading: () => const Center(child: LoadingWidget()),
+                loading: () =>
+                    const Expanded(child: Center(child: LoadingWidget())),
                 error: (error, stackTrace) {
                   return ErrorPlaceholder(
                       error: "An error occured",
