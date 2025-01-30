@@ -8,6 +8,7 @@ import 'package:prelura_app/core/notification_service.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/home.dart';
+import 'package:prelura_app/views/pages/profile_details_copy/view/profile_details.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../controller/user/user_controller.dart';
@@ -108,6 +109,19 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           tabRouter.setActiveIndex(2);
                           break;
                         case 4:
+                          if (tabRouter.activeIndex == 3) {
+                            UserProfileDetailsScreen.profileScrollController
+                                .animateTo(
+                              0.0,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                            if (UserProfileDetailsScreen
+                                    .profileScrollController.offset ==
+                                0.0) {
+                              ref.refresh(userProvider);
+                            }
+                          }
                           tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(3);
                           break;

@@ -969,7 +969,7 @@ class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
 
 class Input$OrderFiltersInput {
   factory Input$OrderFiltersInput({
-    Enum$OrderStatusEnum? status,
+    Enum$ClientOrderStatusEnum? status,
     bool? isSeller,
   }) =>
       Input$OrderFiltersInput._({
@@ -985,7 +985,7 @@ class Input$OrderFiltersInput {
       final l$status = data['status'];
       result$data['status'] = l$status == null
           ? null
-          : fromJson$Enum$OrderStatusEnum((l$status as String));
+          : fromJson$Enum$ClientOrderStatusEnum((l$status as String));
     }
     if (data.containsKey('isSeller')) {
       final l$isSeller = data['isSeller'];
@@ -996,8 +996,8 @@ class Input$OrderFiltersInput {
 
   Map<String, dynamic> _$data;
 
-  Enum$OrderStatusEnum? get status =>
-      (_$data['status'] as Enum$OrderStatusEnum?);
+  Enum$ClientOrderStatusEnum? get status =>
+      (_$data['status'] as Enum$ClientOrderStatusEnum?);
 
   bool? get isSeller => (_$data['isSeller'] as bool?);
 
@@ -1006,7 +1006,7 @@ class Input$OrderFiltersInput {
     if (_$data.containsKey('status')) {
       final l$status = status;
       result$data['status'] =
-          l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
+          l$status == null ? null : toJson$Enum$ClientOrderStatusEnum(l$status);
     }
     if (_$data.containsKey('isSeller')) {
       final l$isSeller = isSeller;
@@ -1070,7 +1070,7 @@ abstract class CopyWith$Input$OrderFiltersInput<TRes> {
       _CopyWithStubImpl$Input$OrderFiltersInput;
 
   TRes call({
-    Enum$OrderStatusEnum? status,
+    Enum$ClientOrderStatusEnum? status,
     bool? isSeller,
   });
 }
@@ -1094,7 +1094,8 @@ class _CopyWithImpl$Input$OrderFiltersInput<TRes>
   }) =>
       _then(Input$OrderFiltersInput._({
         ..._instance._$data,
-        if (status != _undefined) 'status': (status as Enum$OrderStatusEnum?),
+        if (status != _undefined)
+          'status': (status as Enum$ClientOrderStatusEnum?),
         if (isSeller != _undefined) 'isSeller': (isSeller as bool?),
       }));
 }
@@ -1106,7 +1107,7 @@ class _CopyWithStubImpl$Input$OrderFiltersInput<TRes>
   TRes _res;
 
   call({
-    Enum$OrderStatusEnum? status,
+    Enum$ClientOrderStatusEnum? status,
     bool? isSeller,
   }) =>
       _res;
@@ -2248,6 +2249,44 @@ Enum$ChatsMessageAttachmentTypeChoices
       return Enum$ChatsMessageAttachmentTypeChoices.ZIP;
     default:
       return Enum$ChatsMessageAttachmentTypeChoices.$unknown;
+  }
+}
+
+enum Enum$ClientOrderStatusEnum {
+  IN_PROGRESS,
+  CANCELLED,
+  COMPLETED,
+  $unknown;
+
+  factory Enum$ClientOrderStatusEnum.fromJson(String value) =>
+      fromJson$Enum$ClientOrderStatusEnum(value);
+
+  String toJson() => toJson$Enum$ClientOrderStatusEnum(this);
+}
+
+String toJson$Enum$ClientOrderStatusEnum(Enum$ClientOrderStatusEnum e) {
+  switch (e) {
+    case Enum$ClientOrderStatusEnum.IN_PROGRESS:
+      return r'IN_PROGRESS';
+    case Enum$ClientOrderStatusEnum.CANCELLED:
+      return r'CANCELLED';
+    case Enum$ClientOrderStatusEnum.COMPLETED:
+      return r'COMPLETED';
+    case Enum$ClientOrderStatusEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ClientOrderStatusEnum fromJson$Enum$ClientOrderStatusEnum(String value) {
+  switch (value) {
+    case r'IN_PROGRESS':
+      return Enum$ClientOrderStatusEnum.IN_PROGRESS;
+    case r'CANCELLED':
+      return Enum$ClientOrderStatusEnum.CANCELLED;
+    case r'COMPLETED':
+      return Enum$ClientOrderStatusEnum.COMPLETED;
+    default:
+      return Enum$ClientOrderStatusEnum.$unknown;
   }
 }
 

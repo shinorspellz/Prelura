@@ -16,7 +16,7 @@ import '../widgets/multi_discount_bottom_view.dart';
 class ProfileDetailsScreen extends ConsumerStatefulWidget {
   const ProfileDetailsScreen({super.key, required this.username});
   final String username;
-
+  static final ScrollController proScrollController = ScrollController();
   @override
   ConsumerState<ProfileDetailsScreen> createState() =>
       _ProfileDetailsScreenState();
@@ -196,6 +196,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
 
       body: UserWardrobe(
         username: widget.username,
+        scrollController: ProfileDetailsScreen.proScrollController,
       ),
     );
   }

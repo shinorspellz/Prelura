@@ -59,8 +59,10 @@ class ProfilePictureWidget extends StatelessWidget {
           width: height ?? 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border:
-                Border.all(color: borderColor ?? Colors.transparent, width: 2),
+            border: Border.all(
+              color: borderColor ?? Colors.transparent,
+              width: borderColor == null ? 0 : 2,
+            ),
             image: DecorationImage(
               image: CachedNetworkImageProvider(profilePicture!),
               fit: BoxFit.cover,
