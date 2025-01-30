@@ -338,7 +338,6 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                                     .read(multiProducts.notifier)
                                     .addProduct(widget.product);
                               }
-                              ;
                             },
                             child: PreluraCheckBoxWithoutText(
                               title: "",
@@ -357,7 +356,6 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                                       .read(multiProducts.notifier)
                                       .addProduct(widget.product);
                                 }
-                                ;
                               },
                             ),
                           ),

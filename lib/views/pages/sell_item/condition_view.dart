@@ -1,14 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 
-import '../../../res/colors.dart';
-import '../../widgets/app_radio.dart';
-import '../../../controller/product/provider/condition_provider.dart';
 import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
@@ -40,7 +36,6 @@ class ConditionScreen extends ConsumerWidget {
             title: e.simpleName,
             isChecked: e.simpleName == selectedCondition?.simpleName,
             subtitle: e.subtitle,
-            subTitleColor: PreluraColors.grey,
             onChanged: (value) {
               // Update the selected condition in the provider
               ref.read(sellItemProvider.notifier).selectCondition(e);

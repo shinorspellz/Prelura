@@ -123,7 +123,6 @@ class _FileService {
     required String restToken,
     List<String>? files,
     OnUploadProgressCallback? onUploadProgress,
-    List<int>? dimension,
   }) async {
     // assert(filePath == null || files == null);
 

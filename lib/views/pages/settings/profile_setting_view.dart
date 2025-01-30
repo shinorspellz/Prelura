@@ -332,7 +332,7 @@ Widget buildAuthTextField(
     onChanged: onChanged,
     controller: controller,
     enabled: enabled,
-    minLines: minLines,
+    // minLines: minLines,
     maxLength: maxLength,
     maxLines: maxLines,
     textInputAction: textInputAction,

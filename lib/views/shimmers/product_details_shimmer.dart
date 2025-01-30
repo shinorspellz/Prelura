@@ -141,7 +141,7 @@ Widget ProductDetailsShimmer() {
                       8.horizontalSpacing
                     ],
                   );
-                }).toList(),
+                }),
               ]),
               16.verticalSpacing,
               Row(

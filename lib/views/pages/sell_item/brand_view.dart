@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +9,6 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:string_similarity/string_similarity.dart';
 
 import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../../res/utils.dart';
@@ -286,7 +283,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
         description.split(' ').where((word) => word.isNotEmpty).toList();
 
     // Function to search brands by word
-    Future<List<Brand>> _fetchAndFilterBrands() async {
+    Future<List<Brand>> fetchAndFilterBrands() async {
       final Set<Brand> filteredBrands = {};
 
       for (final word in words) {
@@ -310,7 +307,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     }
 
     return FutureBuilder<List<Brand>>(
-      future: _fetchAndFilterBrands(),
+      future: fetchAndFilterBrands(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const SizedBox.shrink();
@@ -325,22 +322,11 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 )
             : [];
 
-        List<Map<String, dynamic>> matches = searchKeyResults
-            .map((brand) => {
-                  'brand': brand,
-                  'similarity': StringSimilarity.compareTwoStrings(
-                      brand.name.toLowerCase(), title.toLowerCase())
-                })
-            .toList();
-
-        matches.sort((a, b) => b['similarity'].compareTo(a['similarity']));
-        final List<Brand> result =
-            matches.map((result) => result['brand'] as Brand).toList();
-
-        final combinedBrands = [
-          ...result.take(3),
-          ...suggestedBrands.take(2),
-        ].toSet().toList();
+        // Merge results and remove duplicates
+        final combinedBrands = <dynamic>{
+          ...searchKeyResults,
+          ...suggestedBrands,
+        }.toList();
 
         return combinedBrands.isNotEmpty
             ? Column(

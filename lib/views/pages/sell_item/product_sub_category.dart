@@ -5,7 +5,6 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 
 import '../../../res/colors.dart';
-import '../../widgets/gesture_navigator.dart';
 import '../../widgets/menu_card.dart';
 import '../../../controller/product/provider/product_list_provider.dart';
 import '../../../controller/product/provider/product_sub_category_provider.dart';
@@ -22,7 +21,8 @@ class SubCategoryProductScreen extends ConsumerWidget {
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -44,7 +44,9 @@ class SubCategoryProductScreen extends ConsumerWidget {
                         color: PreluraColors.activeColor,
                       ),
                       onTap: () {
-                        ref.read(selectedProductListNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
+                        ref
+                            .read(selectedProductListNotifierProvider.notifier)
+                            .updateData(sharedData.relatedStrings[index]);
                         context.router.push(const ProductListRoute());
                       });
                 }),

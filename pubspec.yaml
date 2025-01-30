@@ -118,7 +118,10 @@ flutter:
     - assets/animation/
     - assets/fonts/
     - assets/icons/
+    - assets/icons/copy-icon.svg
+    - assets/icons/mastercard.svg
     - assets/icons/offer.svg
+    - assets/icons/phone-book.svg
     - assets/images/
     - assets/images/logo.png
     - assets/images/splash.png

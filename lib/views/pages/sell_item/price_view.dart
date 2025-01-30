@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +5,6 @@ import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
-import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -15,7 +12,6 @@ import 'package:prelura_app/views/widgets/price_field.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../widgets/app_button.dart';
-import '../../widgets/gesture_navigator.dart';
 import '../../../controller/product/provider/price_provider.dart';
 import '../../../controller/product/provider/sell_item_provider.dart'; // Update this path
 

@@ -23,6 +23,7 @@ class UIConstants {
       String? hintText,
       String? labelText,
       String? prefixText,
+      String? suffixText,
       String? helperText,
       String? counterText = '',
       TextStyle? hintStyle,
@@ -38,7 +39,7 @@ class UIConstants {
       int? minLines}) {
     return InputDecoration(
       constraints: BoxConstraints(
-        minHeight: minLines != null ? minLines! * 24.0 : 48.0,
+        minHeight: minLines != null ? minLines * 24.0 : 48.0,
         maxHeight: minLines != null ? double.infinity : 48.0,
       ),
       label: labelText != null
@@ -62,6 +63,7 @@ class UIConstants {
       counterText: '',
       counter: showCounter ? null : const SizedBox.shrink(),
       prefixText: prefixIcon == null ? prefixText : null,
+      suffixText: suffixIcon == null ? suffixText : null,
       prefixStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
             color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.w700,

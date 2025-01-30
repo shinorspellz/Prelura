@@ -14,6 +14,8 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final String? hintText;
+  final String? prefixText;
+  final String? suffixText;
   final List<TextInputFormatter>? formatter;
   final TextCapitalization? textCapitalization;
   final Function(String)? onChanged;
@@ -55,6 +57,8 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.obscureText = false,
       this.showSuggestions = false,
       this.hintText,
+      this.prefixText,
+      this.suffixText,
       this.maxLength,
       this.controller,
       this.validator,
@@ -183,10 +187,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               obscuringCharacter: '*',
               inputFormatters: widget.isDescription
                   ? []
-                  :  widget.formatter ?? [
-                     
-                          FilteringTextInputFormatter.singleLineFormatter
-                    ],
+                  : widget.formatter ??
+                      [FilteringTextInputFormatter.singleLineFormatter],
               // onFieldSubmitted: (value) {
               //   if (widget.textInputAction != TextInputAction.newline) {
               //     widget.focusNode?.unfocus();
@@ -225,6 +227,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                       hasFocus: widget.focusNode?.hasFocus ??
                           focusNodeZZZ?.hasFocus ??
                           false,
+                      prefixText: widget.prefixText,
+                      suffixText: widget.suffixText,
                       hintText: widget.hintText,
                       showBorder: widget.showBorder,
                       showPrimaryBorder: widget.showPrimaryBorder,

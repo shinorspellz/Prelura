@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 
 final placeSearchQueryProvider = StateProvider<String?>((ref) {
   return null;
@@ -46,7 +45,7 @@ class SuggestedPlacesNotifier
   Future<dynamic> getPlacesDetail(String placeId) async {
     final String? apiKey = dotenv.env['LOCATION_API_KEY'];
     final url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/place/details/json?placeid=$placeId&key=${apiKey}');
+        'https://maps.googleapis.com/maps/api/place/details/json?placeid=$placeId&key=$apiKey');
 
     final timeout = const Duration(milliseconds: 3000);
 
@@ -86,12 +85,10 @@ class PlaceAutocompleteResponse {
   factory PlaceAutocompleteResponse.fromJson(Map<String, dynamic> json) {
     return PlaceAutocompleteResponse(
       status: json['status'] as String?,
-      predictions: json['predictions'] != null
-          ? json['predictions']
-              .map<AutocompletePrediction>(
-                  (json) => AutocompletePrediction.fromJson(json))
-              .toList()
-          : null,
+      predictions: json['predictions']
+          ?.map<AutocompletePrediction>(
+              (json) => AutocompletePrediction.fromJson(json))
+          .toList(),
     );
   }
 

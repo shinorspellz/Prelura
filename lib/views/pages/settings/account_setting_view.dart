@@ -53,6 +53,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
       TextEditingController(text: userInfo?.username);
   late TextEditingController email =
       TextEditingController(text: userInfo?.email);
+  late TextEditingController shippingAddress =
+      TextEditingController(text: userInfo?.shippingAddress?.address);
   late TextEditingController dob = TextEditingController();
   final bio = TextEditingController();
   final int MaxDescription = 500;
@@ -62,6 +64,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   bool isStyleExpanded = false;
   final ExpansionTileController controller = ExpansionTileController();
   final ExpansionTileController styleController = ExpansionTileController();
+  ShippingAddress? shippingAddressModel;
 
   @override
   void initState() {
@@ -77,6 +80,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
     if (selectedDate != null) {
       dob.text = DateFormat("dd-MM-y").format(selectedDate!);
     }
+    shippingAddressModel = userInfo?.shippingAddress;
     email.addListener(() => setState(() {}));
     super.initState();
   }
@@ -88,10 +92,11 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
     name.dispose();
     username.dispose();
     email.dispose();
+    shippingAddress.dispose();
     super.dispose();
   }
 
-  Future<Map<String, String>> getPlaceDetails(String placeId) async {
+  Future<ShippingAddress> getPlaceDetails(String placeId) async {
     final response = await http.get(Uri.parse(
         'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&key=$apiKey'));
 
@@ -105,17 +110,25 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
 
       for (var component in addressComponents) {
         log("component : $component");
-        if (component['types'].contains('locality') || component["types"].contains("administrative_area_level_3")) {
+        if (component['types'].contains('locality') ||
+            component["types"].contains("administrative_area_level_3")) {
           city = component['long_name'];
         } else if (component['types'].contains('country')) {
           country = component['long_name'];
-        } else if (component['types'].contains('postal_code')) {
+        } else if (component['types'].contains('postal_code') ||
+            component['types'].contains('zip_code')) {
           postcode = component['long_name'];
         }
       }
       log("${'city:  $city, country: $country, postcode: $postcode'}");
-
-      return {'city': city, 'country': country, 'postcode': postcode};
+      if (postcode.isEmpty) {
+        context.alert("No postal code found, please choose another address.");
+      }
+      return ShippingAddress(
+          city: city,
+          address: shippingAddress.text,
+          country: country,
+          postcode: postcode);
     } else {
       throw Exception('Failed to load place details');
     }
@@ -279,10 +292,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
 
             CustomLocationField(
               locationController: locationController,
-              onDescriptionSelected: (value) {
-                final places = getPlaceDetails(value!);
-                log(places.toString());
-              },
+              onDescriptionSelected: (value) {},
             ),
             addVerticalSpacing(16),
 
@@ -406,7 +416,21 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           title: x.replaceAll("_", " ")),
                     );
                   }).toList()),
-            )
+            ),
+            16.verticalSpacing,
+            CustomLocationField(
+              title: "Shipping Address",
+              locationController: shippingAddress,
+              onDescriptionSelected: (value) {
+                final places = getPlaceDetails(value!);
+                log(places.toString());
+                setState(() {
+                  places.then((value) {
+                    shippingAddressModel = value;
+                  });
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -416,6 +440,12 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
         child: PreluraButtonWithLoader(
           showLoadingIndicator: isLoading,
           onPressed: () async {
+            if (shippingAddressModel != null) {
+              if (shippingAddressModel!.postcode.isEmpty) {
+                context.alert("Please change your shipping address");
+                return;
+              }
+            }
             try {
               // email: (email.text!= user?.email)  ? email.text : null,
               setState(() {
@@ -441,6 +471,13 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                             : null,
                     username:
                         username.text != user?.username ? username.text : null,
+                    shippingAddress: shippingAddressModel != null
+                        ? Input$ShippingAddressInputType(
+                            address: shippingAddressModel!.address,
+                            city: shippingAddressModel!.city,
+                            country: shippingAddressModel!.country,
+                            postcode: shippingAddressModel!.postcode)
+                        : null,
                   );
               if (modifiedEmail) {
                 await ref

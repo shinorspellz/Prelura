@@ -38,11 +38,13 @@ class PreluraIcons {
   static const String bankIcon = "assets/icons/bank.png";
   static const String cashOnDeliveryIcon = "assets/icons/cash_delivery.png";
   static const String ussdIcon = "assets/icons/ussd.png";
-  static const String cardIcon = "assets/icons/card.png";
 
   static const String snackbarIconThick =
       "assets/icons/check-mark-circle-thick.svg";
   static const String removeIcon = "assets/svgs/remove.svg";
+  static const String mastercardIcon = "assets/icons/mastercard.svg";
+  static const String copyIcon = "assets/icons/copy-icon.svg";
+  static const String phoneBookIcon = "assets/icons/phone-book.svg";
 
   static const String Image = "assets/images/image2.jpeg";
   static const String van = "assets/svgs/delivery_van.svg";
@@ -392,7 +394,7 @@ class PreluraIcons {
 
     if (category == null) {
       final String? mainCategorySvg =
-          mainCategoryConstants[keyword?.toLowerCase() ?? ''];
+          mainCategoryConstants[keyword.toLowerCase() ?? ''];
 
       // If the category is found in the main categories, return that SVG
       if (mainCategorySvg != null) {
@@ -418,5 +420,6 @@ class PreluraIcons {
           )
           .value;
     }
+    return null;
   }
 }

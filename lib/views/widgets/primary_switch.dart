@@ -5,7 +5,8 @@ import '../../res/ui_constants.dart';
 class PreluraSwitch extends StatelessWidget {
   final bool swicthValue;
   final Function(bool)? onChanged;
-  const PreluraSwitch({super.key, required this.swicthValue, required this.onChanged});
+  const PreluraSwitch(
+      {super.key, required this.swicthValue, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

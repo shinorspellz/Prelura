@@ -13,10 +13,12 @@ class DiscountItem extends ConsumerStatefulWidget {
       {super.key,
       required this.title,
       required this.isEditing,
+      this.onChange,
       required this.percentageValue});
   final String title;
   final bool isEditing;
   StateProvider<String> percentageValue;
+  final Function()? onChange;
 
   @override
   _EditSaveExampleState createState() => _EditSaveExampleState();
@@ -96,7 +98,7 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                         },
                         onChanged: (newValue) {
                           log(" new value : ${newValue.toString()}");
-
+                          widget.onChange?.call();
                           setState(() {
                             String numericValue =
                                 newValue.replaceAll(RegExp(r'[^0-9]'), '');

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
@@ -33,8 +32,16 @@ class SettingScreen extends StatelessWidget {
           onTap: () {
             context.router.push(const AccountSettingRoute());
           }),
-      MenuCard(title: "Payments", onTap: () {}),
-      MenuCard(title: "Postage", onTap: () {}),
+      MenuCard(
+          title: "Payments",
+          onTap: () {
+            context.router.push(const AddPaymentCard());
+          }),
+      MenuCard(
+          title: "Postage",
+          onTap: () {
+            context.router.push(const PostageSettings());
+          }),
       // MenuCard(
       //     title: "Privacy Settings",
       //     onTap: () {
@@ -95,7 +102,9 @@ class SettingScreen extends StatelessWidget {
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
-              onTap: () {}),
+              onTap: () {
+                context.router.push(const InviteFriend());
+              }),
           Container(
             padding: const EdgeInsets.all(16),
             width: double.infinity,

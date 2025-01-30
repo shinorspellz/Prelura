@@ -11,8 +11,9 @@ class HighlightUserName extends StatelessWidget {
   final FontWeight? weight;
   final Color? highlightColor;
 
-  HighlightUserName(
-      {required this.username,
+  const HighlightUserName(
+      {super.key,
+      required this.username,
       required this.message,
       required this.isRead,
       this.textSize,

@@ -4,7 +4,6 @@ import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
-import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/user/earnings/earnings_model.dart';
 import 'package:prelura_app/model/user/multi_buy_discounts/multi_buy_discounts_model.dart';
@@ -105,7 +104,7 @@ class UserRepo {
         name: 'UserRepo',
         stackTrace: stackTrace,
       );
-      throw e;
+      rethrow;
     }
   }
 
@@ -280,7 +279,8 @@ class UserRepo {
   }
 
   Future<void> deactivateUserMultiBuyDiscounts() async {
-    final response = await _client.mutate$DeactivateMultibuyDiscounts();
+    final response = await _client.mutate$DeactivateMultibuyDiscounts(
+        Options$Mutation$DeactivateMultibuyDiscounts());
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
@@ -324,6 +324,44 @@ class UserRepo {
     }
 
     return response.parsedData!.createMultibuyDiscount!.success!;
+  }
+
+  Future<void> passwordChange({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    final response = await _client.mutate$PasswordChange(
+      Options$Mutation$PasswordChange(
+        variables: Variables$Mutation$PasswordChange(
+          password: currentPassword,
+          newPassword: newPassword,
+        ),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+  }
+
+  Future<void> deleteAccount({required String password}) async {
+    final response = await _client.mutate$DeleteAccount(
+      Options$Mutation$DeleteAccount(
+        variables: Variables$Mutation$DeleteAccount(password: password),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
   }
 }
 

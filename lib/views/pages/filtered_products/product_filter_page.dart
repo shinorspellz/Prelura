@@ -8,7 +8,6 @@ import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
-import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../widgets/error_placeholder.dart';
@@ -81,7 +80,7 @@ class _ProductPriceFilterPageState
           pinned: true, // Keeps it static
           delegate: BrandedProductStaticSliverDelegate(
               child: Container(
-            padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 10),
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

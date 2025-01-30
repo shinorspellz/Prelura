@@ -200,6 +200,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
     return user.maybeWhen(
         orElse: () => LoadingWidget(),
         error: (error, stackTrace) {
+          log("$error");
+          log("$stackTrace");
           return ErrorPlaceholder(
             error: "An error occured",
             onTap: () {
@@ -357,7 +359,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(left: 16.0),
+                                          const EdgeInsets.only(left: 15.0),
                                       child: Text(
                                         widget.username != null
                                             ? 'Categories from this seller'

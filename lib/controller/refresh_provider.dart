@@ -1,9 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/views/pages/home.dart';
 
-import '../core/graphql/__generated/schema.graphql.dart';
 import 'notification_provider.dart';
 
 final homeRefreshProvider = StateNotifierProvider<_HomeRefreshNotfier, bool>(

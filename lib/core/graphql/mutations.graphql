@@ -157,8 +157,8 @@ mutation UpdateProfile(
   $username: String
   $location: LocationInputType
   $fcmToken: String
-  $isVacationMode: Boolean,
-  $shippingAddress:ShippingAddressInputType
+  $isVacationMode: Boolean
+  $shippingAddress: ShippingAddressInputType
 ) {
   updateProfile(
     bio: $bio
@@ -250,8 +250,16 @@ mutation DeleteSearchHistory($searchId: ID, $clearAll: Boolean) {
   }
 }
 
-mutation createOffer($offerPrice: Float!, $productIds: [Int]!, $message: String) {
-  createOffer(offerPrice: $offerPrice, productIds: $productIds, message: $message) {
+mutation createOffer(
+  $offerPrice: Float!
+  $productIds: [Int]!
+  $message: String
+) {
+  createOffer(
+    offerPrice: $offerPrice
+    productIds: $productIds
+    message: $message
+  ) {
     data {
       conversationId
       offer {
@@ -320,7 +328,11 @@ mutation createOffer($offerPrice: Float!, $productIds: [Int]!, $message: String)
   }
 }
 
-mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: Float) {
+mutation RespondToOffer(
+  $action: OfferActionEnum!
+  $offerId: Int!
+  $offerPrice: Float
+) {
   respondToOffer(action: $action, offerId: $offerId, offerPrice: $offerPrice) {
     data {
       conversationId
@@ -390,7 +402,6 @@ mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: 
   }
 }
 
-
 mutation DeleteConversation($conversationId: Int!) {
   deleteConversation(conversationId: $conversationId) {
     message
@@ -455,8 +466,12 @@ mutation UpdateNotificationPreference(
   }
 }
 
-mutation CreateOrder($productId: Int, $productIds: [Int], $shippingFee: Float, ) {
-  createOrder(productId: $productId, productIds: $productIds, shippingFee: $shippingFee,) {
+mutation CreateOrder($productId: Int, $productIds: [Int], $shippingFee: Float) {
+  createOrder(
+    productId: $productId
+    productIds: $productIds
+    shippingFee: $shippingFee
+  ) {
     order {
       createdAt
       discountPrice
@@ -575,16 +590,32 @@ mutation CreateMultibuyDiscount($inputs: [MultibuyInputType]!) {
       minItems
       isActive
       discountValue
-      seller{
+      seller {
         username
         profilePictureUrl
       }
-    
     }
   }
 }
-mutation DeactivateMultibuyDiscounts{
-  deactivateMultibuyDiscounts{
+mutation DeactivateMultibuyDiscounts {
+  deactivateMultibuyDiscounts {
+    success
+  }
+}
+
+mutation PasswordChange($password: String!, $newPassword: String!) {
+  passwordChange(
+    oldPassword: $password
+    newPassword1: $newPassword
+    newPassword2: $newPassword
+  ) {
+    errors
+    success
+  }
+}
+mutation DeleteAccount($password: String!) {
+  deleteAccount(password: $password) {
+    errors
     success
   }
 }

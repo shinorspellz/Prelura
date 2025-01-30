@@ -1,18 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/controller/user/multi_buy_discount_provider.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
-import 'package:prelura_app/res/colors.dart';
 
 import '../../res/images.dart';
 import '../../res/render_svg.dart';
 import '../../res/utils.dart';
-import 'settings/multi_buy_discount.dart';
 
 @RoutePage()
 class MenuPage extends ConsumerWidget {
@@ -156,7 +154,7 @@ class MenuPage extends ConsumerWidget {
                   ),
                   rightArrow: false,
                   onTap: () {
-                    // context.router.push(const SellItemRoute());
+                    context.router.push(const InviteFriend());
                   }),
               // MenuCard(
               //     title: "Holiday mode",
@@ -166,13 +164,14 @@ class MenuPage extends ConsumerWidget {
               //     }),
 
               MenuCard(
-                  title: "Help Centre",
-                  icon: Icon(
-                    Icons.question_mark_rounded,
-                    color: PreluraColors.grey,
-                  ),
-                  rightArrow: false,
-                  onTap: () {}),
+                title: "Help Centre",
+                icon: Icon(
+                  Icons.question_mark_rounded,
+                  color: PreluraColors.grey,
+                ),
+                rightArrow: false,
+                onTap: () {},
+              ),
               MenuCard(
                   title: "About Prelura",
                   icon: Icon(

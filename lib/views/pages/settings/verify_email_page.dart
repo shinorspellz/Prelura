@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -55,7 +53,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     }
 
                     log('${controller.text} ${widget.email}');
-                    await ref.read(userNotfierProvider.notifier).verifyEmail(controller.text, widget.email);
+                    await ref
+                        .read(userNotfierProvider.notifier)
+                        .verifyEmail(controller.text, widget.email);
                     ref.read(userNotfierProvider).whenOrNull(
                         error: (e, _) => context.alert(e.toString()),
                         data: (_) {

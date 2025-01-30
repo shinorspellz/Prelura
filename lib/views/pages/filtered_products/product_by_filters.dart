@@ -18,7 +18,7 @@ import '../search_result/view/search_result.dart';
 
 @RoutePage()
 class FilterProductPage extends StatefulHookConsumerWidget {
-  FilterProductPage(
+  const FilterProductPage(
       {super.key,
       required this.title,
       required this.parentCategory,
@@ -108,29 +108,27 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Searchwidget(
-                          padding: EdgeInsets.zero,
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          hintText: "Search for items and members",
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: false,
-                          cancelButton: true,
-                          onChanged: (val) {
-                            searchQuery = val;
-                            log(ref
-                                .read(selectedFilteredProductProvider)
-                                .toJson()
-                                .toString());
-                            setState(() {});
-                          },
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, right: 15),
+                          child: Searchwidget(
+                            padding: EdgeInsets.zero,
+                            obscureText: false,
+                            shouldReadOnly: false,
+                            hintText: "Search for items",
+                            enabled: true,
+                            showInputBorder: true,
+                            autofocus: false,
+                            cancelButton: true,
+                            onChanged: (val) {
+                              searchQuery = val;
+                              setState(() {});
+                            },
+                          ),
                         ),
                         FiltersOptions(
                             excludedFilterTypes: [

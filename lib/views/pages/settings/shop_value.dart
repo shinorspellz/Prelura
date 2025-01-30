@@ -183,7 +183,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                           fontWeight: FontWeight.w500,
                           color: PreluraColors.primaryColor))),
               buildDivider(context),
-              Container(
+              SizedBox(
                 height: 30.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

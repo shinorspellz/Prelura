@@ -29,8 +29,16 @@ class SecurityMenuScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(ResetPasswordRoute());
               }),
-          MenuCard(title: "Delete Account", onTap: () {}),
-          MenuCard(title: "Pause Account", onTap: () {})
+          MenuCard(
+              title: "Delete Account",
+              onTap: () {
+                context.router.push(DeleteAccount());
+              }),
+          MenuCard(
+              title: "Pause Account",
+              onTap: () {
+                context.router.push(PauseAccount());
+              })
         ],
       ),
     );
