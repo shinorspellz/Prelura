@@ -175,7 +175,7 @@ class _MultiBuyDiscountScreenState
         await ref
             .read(userMultiBuyerDiscountNotifierProvider.notifier)
             .updateMultiBuyDiscounts(
-              id: int.parse(existing.id),
+              id: int.parse(existing.id.toString()),
               minItems: minItems,
               discountPercentage: percentage,
             );
