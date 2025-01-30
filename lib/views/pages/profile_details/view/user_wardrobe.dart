@@ -66,8 +66,13 @@ class MultiProductsNotifier extends StateNotifier<Set<ProductModel>> {
 }
 
 class UserWardrobe extends ConsumerStatefulWidget {
-  const UserWardrobe({super.key, this.username});
   final String? username;
+  final ScrollController scrollController;
+  const UserWardrobe({
+    super.key,
+    this.username,
+    required this.scrollController,
+  });
 
   @override
   _UserWardrobeScreenState createState() => _UserWardrobeScreenState();
@@ -224,6 +229,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           return SmartRefresher(
             controller: _refreshController,
             onRefresh: _onRefresh,
+            scrollController: widget.scrollController,
             onLoading: _onLoading,
             enablePullDown: true,
             enablePullUp: false,
