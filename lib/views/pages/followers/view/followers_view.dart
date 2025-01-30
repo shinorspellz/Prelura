@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
 import '../../../widgets/loading_widget.dart';
@@ -115,7 +117,6 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if ((followersTotalNumber.valueOrNull ?? 0) > 0)
                 Searchwidget(

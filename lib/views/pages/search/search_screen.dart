@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +21,6 @@ import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../core/router/router.gr.dart';
 import '../../../res/colors.dart';
 import '../../../res/utils.dart';
-import '../home_tabs/top_shop_widget.dart';
 
 final activeSearchProvider = StateProvider<bool>((ref) => false);
 
@@ -387,9 +384,9 @@ class SearchScreen extends ConsumerWidget {
                             value;
 
                         if (ref.read(showSearchProducts) == true) {
-                          // ref
-                          //     .read(searchFilterProvider.notifier)
-                          //     .updateFilter(FilterTypes.category, value);
+                          ref
+                              .read(searchFilterProvider.notifier)
+                              .updateFilter(FilterTypes.category, value);
                         }
                       },
                       onCancel: () {

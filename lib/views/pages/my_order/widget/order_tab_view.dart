@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/order_provider.dart';
 import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/views/pages/my_order/widget/order_card.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 class OrdersTabView extends ConsumerWidget {
   final List<UserOrderInfo> orders;
@@ -21,7 +22,7 @@ class OrdersTabView extends ConsumerWidget {
     // userOrderState.userOrders ?? [];
     if (isLoading) {
       return Center(
-        child: CircularProgressIndicator.adaptive(),
+        child: LoadingWidget(),
       );
     }
     return (orders.isNotEmpty)

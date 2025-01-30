@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 @RoutePage()
 class ListOfContacts extends StatefulWidget {
@@ -41,7 +42,7 @@ class _ListOfContactsState extends State<ListOfContacts> {
       appBar: _buildAppBar(colorScheme),
       body: SafeArea(
         child: isLoading
-            ? const Center(child: CircularProgressIndicator.adaptive())
+            ? const Center(child: LoadingWidget())
             : Scrollbar(
                 child: ListView.separated(
                   controller: scrollController,
@@ -54,8 +55,7 @@ class _ListOfContactsState extends State<ListOfContacts> {
                     if (index >= displayedContacts.length) {
                       return const Padding(
                         padding: EdgeInsets.all(8.0),
-                        child:
-                            Center(child: CircularProgressIndicator.adaptive()),
+                        child: Center(child: LoadingWidget()),
                       );
                     }
 
