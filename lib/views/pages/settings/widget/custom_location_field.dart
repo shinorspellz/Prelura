@@ -7,10 +7,13 @@ import 'package:prelura_app/views/pages/settings/profile_setting_view.dart';
 
 class CustomLocationField extends StatefulWidget {
   final TextEditingController locationController;
-  const CustomLocationField(
-      {super.key,
-      required this.locationController,
-      required this.onDescriptionSelected});
+  final String? title;
+  const CustomLocationField({
+    super.key,
+    required this.locationController,
+    required this.onDescriptionSelected,
+    this.title,
+  });
   final Function(String?) onDescriptionSelected;
 
   @override
@@ -46,7 +49,7 @@ class _CustomLocationFieldState extends State<CustomLocationField> {
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       buildAuthTextField(
         context,
-        label: 'Location',
+        label: widget.title ?? 'Location',
         maxLines: 1,
         hintText: 'e.g. Exter, United Kingdom',
         controller: widget.locationController,

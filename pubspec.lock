@@ -1695,14 +1695,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
-  text_typewriter:
-    dependency: "direct main"
-    description:
-      name: text_typewriter
-      sha256: "8676f676f5b90ab5b7bdfd42bc639a055342a2b3d76a97b6d035612ccbc50157"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.11"
   timezone:
     dependency: transitive
     description:
