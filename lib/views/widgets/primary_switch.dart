@@ -16,7 +16,7 @@ class PreluraSwitch extends StatelessWidget {
       child: CupertinoSwitch(
         value: swicthValue,
         // activeColor: Theme.of(context).colorScheme.primary,
-        activeTrackColor: UIConstants.switchActiveColor(context),
+        activeColor: UIConstants.switchActiveColor(context),
         // backgroundColor:
         //     Theme.of(context).buttonTheme.colorScheme?.secondary,
         onChanged: onChanged,

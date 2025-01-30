@@ -64,9 +64,6 @@ dependencies:
   video_player: ^2.9.2
   emoji_picker_flutter: ^4.2.0
   grouped_list: ^6.0.0
-  text_typewriter:
-  fast_contacts:
-  permission_handler:
 
 dev_dependencies:
   flutter_test:
@@ -121,7 +118,10 @@ flutter:
     - assets/animation/
     - assets/fonts/
     - assets/icons/
+    - assets/icons/copy-icon.svg
+    - assets/icons/mastercard.svg
     - assets/icons/offer.svg
+    - assets/icons/phone-book.svg
     - assets/images/
     - assets/images/logo.png
     - assets/images/splash.png
