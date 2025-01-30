@@ -18,7 +18,7 @@ import '../search_result/view/search_result.dart';
 
 @RoutePage()
 class FilterProductPage extends StatefulHookConsumerWidget {
-  FilterProductPage(
+  const FilterProductPage(
       {super.key,
       required this.title,
       required this.parentCategory,

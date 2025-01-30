@@ -121,7 +121,7 @@ class _ProductFilterPageState
                               .read(allProductProvider(searchQuery).notifier)
                               .fetchMoreData(context);
                           return SliverToBoxAdapter(
-                            child: Container(
+                            child: SizedBox(
                               height: MediaQuery.of(context).size.height * 0.7,
                               child: EmptyScreenPlaceholder(
                                   text: "No products found"),

@@ -165,7 +165,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                             email != null ||
                             password != null ||
                             confirmPassword != null,
-                        'All registration fields should not be null',
+                        'All registration feilds should not be null',
                       );
                       await ref.read(authProvider.notifier).register(
                             email!,

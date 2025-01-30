@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/colors.dart';
 
 class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PreluraAppBar({
@@ -41,11 +39,16 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
           elevation: elevation ?? 0,
           shadowColor: Colors.white,
           toolbarHeight: appBarHeight ?? 56,
-          backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor:
+              backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
           title: titleWidget ??
               Text(
                 appbarTitle!,
-                style: style ?? Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600),
+                style: style ??
+                    Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(fontWeight: FontWeight.w600),
               ),
           actions: [...?trailingIcon],
           shape: Border(

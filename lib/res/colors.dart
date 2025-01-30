@@ -16,6 +16,7 @@ class PreluraColors {
   static Color blackUpdated = '0C0F12'.fromHex;
   static Color blackButtonColorUpdated = '1A4577'.fromHex;
   static const Color activeColor = Colors.purple;
+  static const faceBookColor = Color(0xFF2050b0);
 
   static const Color darkSecondaryButtonColor = Color(0xFF82909D);
   static const Color appBarShadowColor = Color(0xFFEEEEEE);

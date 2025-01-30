@@ -123,7 +123,7 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
               onChanged: (isChecked) => _handleColorToggle(
                   notifier, colorName, isChecked, isSelected),
             );
-          }).toList(),
+          }),
           const SizedBox(height: 16),
         ],
       ),
@@ -154,7 +154,7 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
               onChanged: (isChecked) => _handleColorToggle(
                   notifier, colorName, isChecked, isSelected),
             );
-          }).toList(),
+          }),
         ],
       ),
     );

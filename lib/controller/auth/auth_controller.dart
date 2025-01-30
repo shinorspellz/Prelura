@@ -89,6 +89,7 @@ class ForgotPasswordNotifier extends AsyncNotifier<String?> {
 
     state = await AsyncValue.guard(() async {
       await _repo.requestEmailOtp(email);
+      return null;
     });
 
     // Optional: Log or handle additional actions on success/failure.
@@ -100,8 +101,7 @@ class ForgotPasswordNotifier extends AsyncNotifier<String?> {
       required email}) async {
     state = const AsyncLoading();
 
-    state =
-        await AsyncData(await _repo.resetPassword(newPassword, token, email));
+    state = AsyncData(await _repo.resetPassword(newPassword, token, email));
     return state.value!;
   }
 }

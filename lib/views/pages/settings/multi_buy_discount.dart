@@ -33,7 +33,8 @@ class MultiBuyDiscountScreen extends ConsumerStatefulWidget {
   const MultiBuyDiscountScreen({super.key});
 
   @override
-  _MultiBuyDiscountScreenState createState() => _MultiBuyDiscountScreenState();
+  ConsumerState<MultiBuyDiscountScreen> createState() =>
+      _MultiBuyDiscountScreenState();
 }
 
 class _MultiBuyDiscountScreenState

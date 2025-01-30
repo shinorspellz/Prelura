@@ -10,8 +10,6 @@ import 'package:sizer/sizer.dart';
 import '../../controller/user/user_controller.dart';
 import '../../model/user/user_model.dart';
 import '../../res/colors.dart';
-import '../../res/images.dart';
-import '../../res/render_svg.dart';
 import '../../res/utils.dart';
 import '../shimmers/grid_shimmer.dart';
 import 'rating.dart';
@@ -23,7 +21,6 @@ class SellerProfileCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loggedUser = ref.watch(userProvider).valueOrNull;
-    ;
     return GestureDetector(
       onTap: () {
         if (loggedUser?.username == user.username) {
@@ -32,7 +29,7 @@ class SellerProfileCard extends ConsumerWidget {
           context.router.push(ProfileDetailsRoute(username: user.username));
         }
       },
-      child: Container(
+      child: SizedBox(
         width: 140,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +48,7 @@ class SellerProfileCard extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(6),
                       child: Center(
                         child: Text(
-                          user.username?.split('').first.toUpperCase() ?? '--',
+                          user.username.split('').first.toUpperCase() ?? '--',
                           style: context.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -81,7 +78,7 @@ class SellerProfileCard extends ConsumerWidget {
                           color: PreluraColors.grey,
                           child: Center(
                             child: Text(
-                              user.username?.split('').first.toUpperCase() ??
+                              user.username.split('').first.toUpperCase() ??
                                   '--',
                               style: context.textTheme.titleLarge?.copyWith(
                                   fontWeight: FontWeight.w600,
@@ -127,7 +124,7 @@ class SellerProfileCard extends ConsumerWidget {
             ),
             3.verticalSpacing,
             Text(
-              "${user.noOfFollowers} ${(user?.noOfFollowers != null && (user.noOfFollowers!.toInt() > 1 || user?.noOfFollowers?.toInt() == 0)) ? " followers" : " follower"}",
+              "${user.noOfFollowers} ${(user.noOfFollowers != null && (user.noOfFollowers!.toInt() > 1 || user.noOfFollowers?.toInt() == 0)) ? " followers" : " follower"}",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: PreluraColors.grey,

@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
-import 'package:prelura_app/controller/product/provider/sub_category_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/categories/new_categories.dart';
-import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 
-import '../../../res/colors.dart';
 import '../../../res/images.dart';
 import '../../widgets/menu_card.dart';
 import 'new_category_view.dart';

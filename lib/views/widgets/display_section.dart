@@ -7,7 +7,6 @@ import 'package:prelura_app/views/widgets/card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../pages/profile_details/view/user_wardrobe.dart';
-import '../pages/profile_details/widgets/multi_discount_bottom_view.dart';
 
 typedef RefreshCallback = Future<void> Function();
 
