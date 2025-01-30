@@ -181,7 +181,6 @@ final followersProvider =
   return result.followers!
       .map((userJson) => UserModel.fromJson(userJson!.toJson()))
       .toList();
-  ;
 });
 
 final followingProvider =
@@ -200,7 +199,6 @@ final followingProvider =
   return result.following!
       .map((userJson) => UserModel.fromJson(userJson!.toJson()))
       .toList();
-  ;
 });
 
 class FollowerUserNotifier extends AsyncNotifier<bool> {
@@ -310,7 +308,7 @@ class _RecommendedSellersController
     } else {
       state = AsyncData([...currentState, ...newState]);
     }
-    _currentPage = pageNumber!;
+    _currentPage = pageNumber;
   }
 
   Future<void> fetchMoreData() async {

@@ -1,23 +1,14 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/views/pages/profile_details/view/about_profile.dart';
-import 'package:prelura_app/views/pages/profile_details/view/review_tab.dart';
 import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/views/widgets/gesture_navigator.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../res/colors.dart';
-import '../../../widgets/profile_picture.dart';
 import '../provider/tab_controller.dart';
 import '../widgets/multi_discount_bottom_view.dart';
 
@@ -25,7 +16,7 @@ import '../widgets/multi_discount_bottom_view.dart';
 class ProfileDetailsScreen extends ConsumerStatefulWidget {
   const ProfileDetailsScreen({super.key, required this.username});
   final String username;
-
+  static final ScrollController proScrollController = ScrollController();
   @override
   ConsumerState<ProfileDetailsScreen> createState() =>
       _ProfileDetailsScreenState();
@@ -205,6 +196,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
 
       body: UserWardrobe(
         username: widget.username,
+        scrollController: ProfileDetailsScreen.proScrollController,
       ),
     );
   }

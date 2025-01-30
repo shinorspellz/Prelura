@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
@@ -23,6 +22,22 @@ class AboutPreluraMenuScreen extends StatelessWidget {
       // MenuCard(title: "Terms & Conditions", onTap: () {}),
     ];
 
+    List menuItem2 = [
+      MenuCard(
+          title: "Push notifications",
+          icon: const Icon(Icons.settings),
+          onTap: () {}),
+      MenuCard(
+          title: "Email notifications",
+          icon: const Icon(Icons.lock),
+          onTap: () {}),
+    ];
+    List menuItem3 = [
+      MenuCard(
+          title: "About Prelura",
+          icon: const Icon(Icons.info_outlined),
+          onTap: () {}),
+    ];
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(

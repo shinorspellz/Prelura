@@ -68,8 +68,13 @@ class MultiProductsNotifier extends StateNotifier<Set<ProductModel>> {
 }
 
 class UserWardrobe extends ConsumerStatefulWidget {
-  const UserWardrobe({super.key, this.username});
   final String? username;
+  final ScrollController scrollController;
+  const UserWardrobe({
+    super.key,
+    this.username,
+    required this.scrollController,
+  });
 
   @override
   _UserWardrobeScreenState createState() => _UserWardrobeScreenState();
@@ -228,6 +233,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           return SmartRefresher(
             controller: _refreshController,
             onRefresh: _onRefresh,
+            scrollController: widget.scrollController,
             onLoading: _onLoading,
             enablePullDown: true,
             enablePullUp: false,
@@ -445,7 +451,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(left: 16.0),
+                                          const EdgeInsets.only(left: 15.0),
                                       child: Text(
                                         widget.username != null
                                             ? 'Categories from this seller'

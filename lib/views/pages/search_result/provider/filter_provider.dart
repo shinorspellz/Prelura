@@ -1,9 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../shared/card_model.dart';
-import '../../../../shared/mock_data.dart';
-import 'search_provider.dart';
-
 // Provider to store the current search query
 final searchQueryProvider = StateProvider<String>((ref) => '');
 

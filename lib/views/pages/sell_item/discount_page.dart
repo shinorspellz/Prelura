@@ -30,9 +30,9 @@ class DiscountPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _controller = ref.watch(discountController);
+    final controller = ref.watch(discountController);
 
-    void _updateTextController(String value) {
+    void updateTextController(String value) {
       // Ensure only numeric values are allowed
       final numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
       numericValue.replaceFirst(RegExp(r'^0+'), '');
@@ -40,13 +40,13 @@ class DiscountPage extends ConsumerWidget {
       log("discount : $discount%");
 
       if (discount > 95) {
-        _controller.value = TextEditingValue(
+        controller.value = TextEditingValue(
           text: "95%",
           selection: TextSelection.collapsed(offset: "95".length),
         );
         ref.read(sellItemProvider.notifier).updateDiscount('95');
       } else {
-        _controller.value = TextEditingValue(
+        controller.value = TextEditingValue(
           text: "$discount%",
           selection: TextSelection.collapsed(offset: "$discount".length),
         );
@@ -54,14 +54,14 @@ class DiscountPage extends ConsumerWidget {
       }
     }
 
-    _controller.addListener(() {
-      final text = _controller.text;
+    controller.addListener(() {
+      final text = controller.text;
       if (!text.endsWith("%")) {
-        _updateTextController(text);
+        updateTextController(text);
       }
 
-      final cursorPosition = _controller.text.length - 1;
-      _controller.selection = TextSelection.collapsed(offset: cursorPosition);
+      final cursorPosition = controller.text.length - 1;
+      controller.selection = TextSelection.collapsed(offset: cursorPosition);
     });
 
     int calculateCursorPosition(String text) {
@@ -111,12 +111,12 @@ class DiscountPage extends ConsumerWidget {
               hintText: "Enter discount",
               formatter: [LengthLimitingTextInputFormatter(3)],
               maxLength: 3,
-              controller: _controller,
-              onChanged: _updateTextController,
+              controller: controller,
+              onChanged: updateTextController,
               onFieldTap: () {
-                int cursorPosition = calculateCursorPosition(_controller.text);
+                int cursorPosition = calculateCursorPosition(controller.text);
 
-                _controller.selection = TextSelection.fromPosition(
+                controller.selection = TextSelection.fromPosition(
                   TextPosition(offset: cursorPosition),
                 );
               },

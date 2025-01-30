@@ -4,10 +4,10 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../../../widgets/empty_screen_placeholder.dart';

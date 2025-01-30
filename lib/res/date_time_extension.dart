@@ -31,9 +31,9 @@ extension DateTimeExtension on DateTime {
   String get getChatHeader {
     final now = DateTime.now();
     final difference = now.difference(this);
-    if (difference.inHours < 24 && (now.day == this.day)) {
+    if (difference.inHours < 24 && (now.day == day)) {
       return 'Today';
-    } else if (difference.inHours < 30 && (now.day > this.day)) {
+    } else if (difference.inHours < 30 && (now.day > day)) {
       return 'Yesterday';
     } else if (difference.inDays < 365) {
       return DateFormat("EEE, MMM dd")

@@ -56,7 +56,7 @@ class AppStartupPage extends ConsumerWidget {
 }
 
 class _StartUpErrorWidget extends StatelessWidget {
-  const _StartUpErrorWidget({super.key, this.onRetry, required this.message});
+  const _StartUpErrorWidget({this.onRetry, required this.message});
 
   final String message;
   final VoidCallback? onRetry;
@@ -84,7 +84,7 @@ class _StartUpErrorWidget extends StatelessWidget {
 }
 
 class _StartUpLoadingWidget extends StatelessWidget {
-  const _StartUpLoadingWidget({super.key});
+  const _StartUpLoadingWidget();
 
   @override
   Widget build(BuildContext context) {

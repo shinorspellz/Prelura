@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:prelura_app/controller/product/order_provider.dart';
+import 'package:prelura_app/model/product/order/user_order.dart';
 
 import '../../../../res/colors.dart';
 import 'order_tab_view.dart'; // Replace with your actual colors.dart path
@@ -18,6 +20,7 @@ class _OrderSubTabsState extends ConsumerState<OrderSubTabs>
 // with SingleTickerProviderStateMixin
 {
   // late TabController _tabController;
+  final filters = ['All', 'In Progress', 'Cancelled', 'Completed'];
 
   @override
   void initState() {
@@ -33,54 +36,54 @@ class _OrderSubTabsState extends ConsumerState<OrderSubTabs>
   @override
   Widget build(BuildContext context) {
     final ValueNotifier<int> activeIndex = useState(0);
-    return Column(
-      children: [
-        Container(
-          height: 70,
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(4, (index) {
-              final filters = ['All', 'In Progress', 'Cancelled', 'Completed'];
-              return GestureDetector(
-                onTap: () {
-                  activeIndex.value = index;
-                  // _tabController.animateTo(index);
-                  // ref.read(activeFilterProvider.notifier).state =
-                  //     filters[index];
-                },
-                child: _buildTab(
-                  label: filters[index],
-                  isSelected: activeIndex.value == index,
-                ),
-              );
-            }),
-          ),
+    final OrderState orderState = ref.watch(orderProvider);
+    final List<UserOrderInfo> allOrders =
+        orderState.userOrders?[widget.type] ?? [];
+    return Column(children: [
+      Container(
+        height: 70,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(12),
         ),
-        Expanded(
-          //   child: TabBarView(
-          //     controller: _tabController,
-          //     children: [
-          //       OrdersTabView(type: widget.type, status: 'All'),
-          //       OrdersTabView(type: widget.type, status: 'In Progress'),
-          //       OrdersTabView(type: widget.type, status: 'Cancelled'),
-          child: OrdersTabView(),
-          //     ],
-          //   ),
-          //   child: ListView.separated(itemBuilder: (cxt, index){
-          //     return
-          //   }, separatorBuilder:  (_, __){
-          //     return addVerticalSpacing(10);
-          //   }, itemCount: 10,),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(4, (index) {
+            return GestureDetector(
+              onTap: () {
+                activeIndex.value = index;
+                // _tabController.animateTo(index);
+                // ref.read(activeFilterProvider.notifier).state =
+                //     filters[index];
+              },
+              child: _buildTab(
+                label: filters[index],
+                isSelected: activeIndex.value == index,
+              ),
+            );
+          }),
         ),
-      ],
-    );
+      ),
+      Expanded(
+        child: OrdersTabView(
+          orders: activeIndex.value == 0
+              ? allOrders
+              : ref
+                  .read(
+                    orderProvider.notifier,
+                  )
+                  .getFilterOthers(
+                    type: widget.type,
+                    status: filters[activeIndex.value],
+                  ),
+          type: widget.type,
+          status: filters[activeIndex.value],
+        ),
+      ),
+    ]);
   }
 
   Widget _buildTab({required bool isSelected, required String label}) {

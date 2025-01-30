@@ -465,14 +465,10 @@ class SearchScreen extends ConsumerWidget {
     final category = Enum$ParentCategoryEnum.values.firstWhere((category) =>
         category.name.toLowerCase() == categoryName.toLowerCase());
 
-    if (category != null) {
-      ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(parentCategory: category);
-      context.router.push(
-          FilterProductRoute(title: categoryName, parentCategory: category));
-    } else {
-      log('Category not found or id is invalid.');
-    }
+    ref.read(selectedFilteredProductProvider.notifier).state =
+        Input$ProductFiltersInput(parentCategory: category);
+    context.router.push(
+        FilterProductRoute(title: categoryName, parentCategory: category));
   }
 
   // Widget _brandButtons(String title, context) {

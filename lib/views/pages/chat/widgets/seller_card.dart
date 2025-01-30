@@ -3,10 +3,10 @@ import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 import 'package:prelura_app/views/widgets/rating.dart';
-import 'package:prelura_app/res/images.dart';
 
 class SellerCard extends StatelessWidget {
-  const SellerCard({super.key, required this.name, required this.profilePicture});
+  const SellerCard(
+      {super.key, required this.name, required this.profilePicture});
   final String name;
   final String? profilePicture;
   @override
@@ -40,7 +40,10 @@ class SellerCard extends StatelessWidget {
                     children: [
                       Text(
                         "Hi, I'm $name",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w800),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w800),
                       ),
                       addVerticalSpacing(4),
                       Row(
@@ -63,7 +66,8 @@ class SellerCard extends StatelessWidget {
                             size: 14,
                           ),
                           const SizedBox(width: 8),
-                          Text("Exeter, United Kingdom", style: Theme.of(context).textTheme.bodyMedium),
+                          Text("Exeter, United Kingdom",
+                              style: Theme.of(context).textTheme.bodyMedium),
                         ],
                       ),
                       addVerticalSpacing(4),
@@ -75,7 +79,8 @@ class SellerCard extends StatelessWidget {
                             size: 14,
                           ),
                           const SizedBox(width: 8),
-                          Text("Last Seen, 2 hours ago", style: Theme.of(context).textTheme.bodySmall),
+                          Text("Last Seen, 2 hours ago",
+                              style: Theme.of(context).textTheme.bodySmall),
                         ],
                       ),
                     ],
@@ -102,7 +107,11 @@ class SellerCard extends StatelessWidget {
                           addHorizontalSpacing(10),
                           Text(
                             '£ 25.00',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(decoration: TextDecoration.lineThrough),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    decoration: TextDecoration.lineThrough),
                           ),
                         ],
                       ),

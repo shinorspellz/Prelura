@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
-import '../../../res/colors.dart';
+
 import '../../../controller/product/provider/parcel_provider.dart';
 import '../../../controller/product/provider/sell_item_provider.dart';
 

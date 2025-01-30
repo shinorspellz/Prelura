@@ -33,7 +33,8 @@ class MultiBuyDiscountScreen extends ConsumerStatefulWidget {
   const MultiBuyDiscountScreen({super.key});
 
   @override
-  _MultiBuyDiscountScreenState createState() => _MultiBuyDiscountScreenState();
+  ConsumerState<MultiBuyDiscountScreen> createState() =>
+      _MultiBuyDiscountScreenState();
 }
 
 class _MultiBuyDiscountScreenState
@@ -222,7 +223,7 @@ class _MultiBuyDiscountScreenState
         await ref
             .read(userMultiBuyerDiscountNotifierProvider.notifier)
             .updateMultiBuyDiscounts(
-              id: int.parse(existing.id),
+              id: int.parse(existing.id.toString()),
               minItems: minItems,
               discountPercentage: percentage,
             );

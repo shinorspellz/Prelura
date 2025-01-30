@@ -28,7 +28,8 @@ class OrderNotifier extends StateNotifier<OrderState> {
           processingTypes: {},
         ));
 
-  updateOrderState(Map<String, dynamic> data) {
+  void updateOrderState(Map<String, dynamic> data) {
+    /// Helper function to update a set based on a new value.
     Set<String> updateList(Set<String>? currentList, dynamic newValue) {
       if (newValue == null) return currentList ?? {};
       final updatedList = Set<String>.from(currentList ?? {});
@@ -38,19 +39,34 @@ class OrderNotifier extends StateNotifier<OrderState> {
       return updatedList;
     }
 
-    log("::::The available keys ::: ${data.keys}");
-    log("::::The available keys ::: ${data["processingType"]}");
+    /// Clone current state user orders to update them safely.
+    Map<String, List<UserOrderInfo>> updatedUserOrders =
+        Map.from(state.userOrders ?? {});
 
+    /// Update userOrders if data contains the key.
+    if (data.containsKey('userOrders')) {
+      final userOrdersData =
+          data['userOrders'] as Map<String, List<UserOrderInfo>?>;
+      userOrdersData.forEach((key, value) {
+        updatedUserOrders[key] = value ?? [];
+      });
+    }
+
+    log(":::: The available keys ::: ${data.keys}");
+    log(":::: The processing type ::: ${data["processingType"]}");
+
+    /// Update processing types set.
     final updatedProcessingType = data.containsKey('processingType')
         ? updateList(state.processingTypes, data['processingType'])
         : state.processingTypes;
 
+    /// Update state with new values.
     state = state.copyWith(
       isLoading: data["isLoading"] ?? state.isLoading,
       processingTypes: updatedProcessingType,
       totalOrders: data['totalOrders'] ?? state.totalOrders,
       filterType: data['filterType'] ?? state.filterType,
-      userOrders: data['userOrders'] ?? state.userOrders,
+      userOrders: updatedUserOrders,
     );
   }
 
@@ -130,10 +146,61 @@ class OrderNotifier extends StateNotifier<OrderState> {
         filterType: Input$OrderFiltersInput(
       isSeller: true,
     ));
-    // updateOrderState({
-    //   "totalOrders": response.userOrdersTotalNumber ?? 0,
-    //   "userOrders": response.userOrders,
-    // });
+    updateOrderState({
+      "totalOrders": soldItems?.userOrdersTotalNumber ?? 0,
+      "userOrders": {"Sold": soldItems?.userOrders},
+    });
+
+    UserOrderResponse? boughtItems = await getOrders(
+        filterType: Input$OrderFiltersInput(
+      isSeller: false,
+    ));
+    updateOrderState({
+      "totalOrders": boughtItems?.userOrdersTotalNumber ?? 0,
+      "userOrders": {"Bought": boughtItems?.userOrders},
+    });
+  }
+
+  List<UserOrderInfo> getFilterOthers(
+      {required String type, required String status}) {
+    final List<UserOrderInfo> availableOrders = state.userOrders?[type] ?? [];
+    List<UserOrderInfo> filteredOrders = [];
+    if (availableOrders.isNotEmpty) {
+      switch (status) {
+        case "In Progress":
+          {
+            for (var orderInfo in availableOrders) {
+              if (orderInfo.status == "CONFIRMED" ||
+                  orderInfo.status == "PENDING" ||
+                  orderInfo.status == "SHIPPED") {
+                filteredOrders.add(orderInfo);
+              }
+            }
+            break;
+          }
+        case "Cancelled":
+          {
+            for (var orderInfo in availableOrders) {
+              if (orderInfo.status == "CANCELLED" ||
+                  orderInfo.status == "REFUNDED") {
+                filteredOrders.add(orderInfo);
+              }
+            }
+            break;
+          }
+        case "Completed":
+          {
+            for (var orderInfo in availableOrders) {
+              if (orderInfo.status == "DELIVERED") {
+                filteredOrders.add(orderInfo);
+              }
+            }
+            break;
+          }
+      }
+    }
+
+    return filteredOrders;
   }
 
   // late final _repo = ref.read(productRepo);

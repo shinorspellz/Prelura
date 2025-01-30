@@ -22,6 +22,24 @@ String capitalizeEachWord(String text) {
       .join(' ');
 }
 
+extension SizedBoxExtension on int {
+  Widget get toHeight {
+    return SizedBox(
+      height: toDouble(),
+    );
+  }
+
+  Widget get toWidth {
+    return SizedBox(
+      width: toDouble(),
+    );
+  }
+}
+
+class RegexPatterns {
+  static const String poundSign = '\u00A3';
+}
+
 class NetworkUtility {
   static Future<String?> fetchUrl(Uri uri,
       {Map<String, String>? headers}) async {

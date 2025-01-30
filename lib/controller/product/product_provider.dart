@@ -177,7 +177,7 @@ final userProduct =
   final color = ref
       .watch(colorsProvider)
       .entries
-      ?.where((e) => e.key == colorFilter)
+      .where((e) => e.key == colorFilter)
       .firstOrNull
       ?.key;
 
@@ -967,7 +967,7 @@ class DiscountProductsController
 
   void updateFilter(Input$ProductFiltersInput updatedFilter) async {
     _filter = updatedFilter;
-    log(_filter!.toJson().toString(),
+    log(_filter.toJson().toString(),
         name: ' filteredProducts filter in update ');
     log(updatedFilter.toJson().toString(),
         name: ' filteredProducts updated filter');

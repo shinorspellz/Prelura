@@ -20,7 +20,7 @@ class NotificationCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    log(":::The notification info::: ${notification}");
+    log(":::The notification info::: $notification");
     return GestureDetector(
       onTap: () async {
         if (!notification.isRead!) {

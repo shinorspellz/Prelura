@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/main.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';

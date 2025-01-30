@@ -20,7 +20,7 @@ class UserProfileDetailsScreen extends ConsumerStatefulWidget {
     @PathParam('username') this.username,
   });
   final String? username;
-
+  static final ScrollController profileScrollController = ScrollController();
   @override
   ConsumerState<UserProfileDetailsScreen> createState() =>
       _ProfileDetailsScreenState();
@@ -176,6 +176,7 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
           //       )
           //     :
           UserWardrobe(
+        scrollController: UserProfileDetailsScreen.profileScrollController,
         username:
             widget.username?.trim() == ":username" ? null : widget.username,
       ),
