@@ -55,7 +55,7 @@ class _MultiBuyDiscountScreenState
     log("Fetching discount values...");
 
     final multiBuyDiscounts =
-        ref.read(userMultiBuyDiscountProvider).valueOrNull;
+        await ref.read(userMultiBuyDiscountProvider.future);
     if (multiBuyDiscounts == null) return;
 
     log("Fetched discounts: $multiBuyDiscounts");
