@@ -8,7 +8,6 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
@@ -71,7 +70,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
         message: message,
       );
       if (res != null && res.success!) {
-        context.alert('Offer created successfully');
+        // context.alert('Offer created successfully');
         //Navigating to the chat room
         OfferInfo theOffer =
             OfferInfo.fromJson(res.data!.offer!.first!.toJson());
@@ -99,7 +98,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
           "activeOffer": conversationModel,
         });
       } else {
-        context.alert(res?.message ?? "Failed to create offer.");
+        // context.alert(res?.message ?? "Failed to create offer.");
       }
       updateOfferState({
         "processingType": "createOffer",
@@ -109,7 +108,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
       updateOfferState({
         "processingType": "createOffer",
       });
-      context.alert(e.message);
+      // context.alert(e.message);
     } on Exception catch (e) {
       print('Error creating offer: $e');
       updateOfferState({
@@ -147,7 +146,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
           "activeOffer": newConversation,
         });
       } else {
-        context.alert(res?.message ?? "Failed to create offer.");
+        // context.alert(res?.message ?? "Failed to create offer.");
       }
       updateOfferState({
         "processingType": "respondToOffer",
