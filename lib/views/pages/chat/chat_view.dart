@@ -70,7 +70,6 @@ class ChatScreen extends ConsumerStatefulWidget {
 class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   void initState() {
-    HelperFunction.genRef = ref;
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       ref.read(inChatRoom.notifier).state = true;
     });

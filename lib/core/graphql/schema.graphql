@@ -159,6 +159,12 @@ enum ChatsMessageAttachmentTypeChoices {
   ZIP
 }
 
+enum ClientOrderStatusEnum {
+  IN_PROGRESS
+  CANCELLED
+  COMPLETED
+}
+
 enum ConditionEnum {
   BRAND_NEW_WITH_TAGS
   BRAND_NEW_WITHOUT_TAGS
@@ -796,7 +802,7 @@ type OfferType {
 }
 
 input OrderFiltersInput {
-  status: OrderStatusEnum
+  status: ClientOrderStatusEnum
   isSeller: Boolean
 }
 
