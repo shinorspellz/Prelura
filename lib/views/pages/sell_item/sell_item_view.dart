@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
@@ -618,9 +619,20 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       title: 'Price',
                       subtitle: "£ ${formatDynamicString(state.price) ?? 0}",
                       subtitleColor: PreluraColors.greyColor,
-                      onTap: () {
+                      onTap: () async {
                         dismissKeyboard();
+                        if (state.category != null) {
+                          ref
+                              .read(selectedFilteredProductProvider.notifier)
+                              .state = Input$ProductFiltersInput(
+                            category: int.parse(state.category!.id.toString()),
+                            brand: state.brand != null
+                                ? int.parse(state.brand!.id.toString())
+                                : null,
+                          );
 
+                          await ref.refresh(filteredProductProvider("").future);
+                        }
                         context.router.push(const PriceRoute());
                       },
                     ),

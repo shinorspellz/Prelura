@@ -91,7 +91,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   void dispose() {
     Future.microtask(() {
-      ref.read(multiProducts.notifier).clearProducts();
+      HelperFunction.genRef!.read(multiProducts.notifier).clearProducts();
     });
     super.dispose();
   }
