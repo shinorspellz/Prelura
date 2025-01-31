@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/core/di.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:uuid/uuid.dart';
@@ -35,6 +38,10 @@ final showSendButtonProvider = StateProvider<bool>(
 final chatRoomStateProvider = StateProvider<ChatRoomActivity>((ref) {
   return ChatRoomActivity.idle; // Initial state is idle
 });
+
+final messageImageProvider = StateProvider<XFile?>(
+  (_) => null,
+);
 
 final messagesProvider = StreamNotifierProvider.family
     .autoDispose<_MessagesNotifier, List<MessageModel>, String>(
@@ -151,6 +158,52 @@ class _MessagesNotifier
 
       return newState;
     });
+  }
+
+  pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedImage =
+        await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      ref
+          .read(
+            messageImageProvider.notifier,
+          )
+          .state = pickedImage;
+      log('Image: ${pickedImage.path}');
+    }
+  }
+
+  sendImage() async {
+    final pickedImage = ref.read(messageImageProvider.notifier).state;
+    if (pickedImage != null) {
+      final file = File(pickedImage.path);
+      final List<File> files = [file];
+      final uploadedFiles = await _uploadMedia(files);
+
+      final messageUUID = Uuid().v4();
+      _channel?.sendMessage(jsonEncode({
+        'image_urls': uploadedFiles,
+        'message_uuid': messageUUID,
+        'message': "",
+      }));
+
+      ref.read(messageImageProvider.notifier).state = null;
+    }
+  }
+
+  Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
+    final _fileUploadRepo = ref.read(fileUploadRepo);
+    final upload = await _fileUploadRepo.uploadFiles(
+      files,
+      Enum$FileTypeEnum.BANNER,
+      onUploadProgress: (sent, total) =>
+          log('${sent / total}%', name: 'FileUpload'),
+    );
+
+    if (upload == null) throw 'Failed to upload images.';
+
+    return upload;
   }
 }
 

@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'emoji_handler_box.dart';
 
@@ -21,7 +25,7 @@ class MessageTextField extends ConsumerStatefulWidget {
 }
 
 class _MessageTextFieldState extends ConsumerState<MessageTextField> {
-  bool rotateIcon = false;
+  bool isUploading = false;
   FocusNode? chatFocusNode;
   double bottomSpacing = 20;
   bool showSend = false;
@@ -59,9 +63,74 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final showEmoji = ref.watch(
-          showEmojiProvider,
-        );
+        final showEmoji = ref.watch(showEmojiProvider);
+
+        final imageState = ref.watch(messageImageProvider);
+
+        if (imageState != null) {
+          return Stack(children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 12,
+                right: 12,
+                bottom: 20,
+              ),
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.file(
+                    File(imageState.path),
+                    height: 250,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                addVerticalSpacing(5),
+                AppButton(
+                  text: "Send",
+                  width: double.infinity,
+                  loading: isUploading,
+                  onTap: () async {
+                    if (isUploading) return;
+                    isUploading = true;
+                    setState(() {});
+                    await ref
+                        .read(messagesProvider(widget.id).notifier)
+                        .sendImage();
+                    isUploading = true;
+                    setState(() {});
+                  },
+                ),
+              ]),
+            ),
+            Positioned(
+                top: 10,
+                right: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    ref
+                        .read(
+                          messageImageProvider.notifier,
+                        )
+                        .state = null;
+                  },
+                  child: CircleAvatar(
+                    radius: 15,
+                    backgroundColor: PreluraColors.primaryColor.withOpacity(
+                      0.4,
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/icons/CloseIcon.svg",
+                      height: 18,
+                      colorFilter: ColorFilter.mode(
+                        PreluraColors.white,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                )),
+          ]);
+        }
         return Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           padding: EdgeInsets.only(
@@ -213,7 +282,29 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                 )),
                           )
                         else
-                          SizedBox.shrink(),
+                          GestureDetector(
+                            onTap: () async {
+                              ref
+                                  .read(messagesProvider(widget.id).notifier)
+                                  .pickImage();
+                            },
+                            child: CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Theme.of(context)
+                                    .scaffoldBackgroundColor
+                                    .withAlpha(
+                                      200,
+                                    ),
+                                child: SvgPicture.asset(
+                                  "assets/icons/addIcon.svg",
+                                  height: 20,
+                                  width: 20,
+                                  colorFilter: ColorFilter.mode(
+                                    PreluraColors.primaryColor,
+                                    BlendMode.srcIn,
+                                  ),
+                                )),
+                          ),
                       ]),
                 ),
                 EmojiHandlerBox(
