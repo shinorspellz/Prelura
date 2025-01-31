@@ -29602,6 +29602,13 @@ const documentNodeQueryConversation = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'imageUrls'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'replyTo'),
             alias: null,
             arguments: [],
@@ -29919,6 +29926,7 @@ class Query$Conversation$conversation {
     this.itemId,
     this.itemType,
     required this.createdAt,
+    this.imageUrls,
     this.replyTo,
     this.sender,
     this.$__typename = 'MessageType',
@@ -29934,6 +29942,7 @@ class Query$Conversation$conversation {
     final l$itemId = json['itemId'];
     final l$itemType = json['itemType'];
     final l$createdAt = json['createdAt'];
+    final l$imageUrls = json['imageUrls'];
     final l$replyTo = json['replyTo'];
     final l$sender = json['sender'];
     final l$$__typename = json['__typename'];
@@ -29950,6 +29959,7 @@ class Query$Conversation$conversation {
       itemId: (l$itemId as int?),
       itemType: (l$itemType as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
+      imageUrls: (l$imageUrls as String?),
       replyTo: l$replyTo == null
           ? null
           : Query$Conversation$conversation$replyTo.fromJson(
@@ -29980,6 +29990,8 @@ class Query$Conversation$conversation {
 
   final DateTime createdAt;
 
+  final String? imageUrls;
+
   final Query$Conversation$conversation$replyTo? replyTo;
 
   final Query$Conversation$conversation$sender? sender;
@@ -30008,6 +30020,8 @@ class Query$Conversation$conversation {
     _resultData['itemType'] = l$itemType;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$imageUrls = imageUrls;
+    _resultData['imageUrls'] = l$imageUrls;
     final l$replyTo = replyTo;
     _resultData['replyTo'] = l$replyTo?.toJson();
     final l$sender = sender;
@@ -30028,6 +30042,7 @@ class Query$Conversation$conversation {
     final l$itemId = itemId;
     final l$itemType = itemType;
     final l$createdAt = createdAt;
+    final l$imageUrls = imageUrls;
     final l$replyTo = replyTo;
     final l$sender = sender;
     final l$$__typename = $__typename;
@@ -30041,6 +30056,7 @@ class Query$Conversation$conversation {
       l$itemId,
       l$itemType,
       l$createdAt,
+      l$imageUrls,
       l$replyTo,
       l$sender,
       l$$__typename,
@@ -30101,6 +30117,11 @@ class Query$Conversation$conversation {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$imageUrls = imageUrls;
+    final lOther$imageUrls = other.imageUrls;
+    if (l$imageUrls != lOther$imageUrls) {
+      return false;
+    }
     final l$replyTo = replyTo;
     final lOther$replyTo = other.replyTo;
     if (l$replyTo != lOther$replyTo) {
@@ -30148,6 +30169,7 @@ abstract class CopyWith$Query$Conversation$conversation<TRes> {
     int? itemId,
     String? itemType,
     DateTime? createdAt,
+    String? imageUrls,
     Query$Conversation$conversation$replyTo? replyTo,
     Query$Conversation$conversation$sender? sender,
     String? $__typename,
@@ -30179,6 +30201,7 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
     Object? itemId = _undefined,
     Object? itemType = _undefined,
     Object? createdAt = _undefined,
+    Object? imageUrls = _undefined,
     Object? replyTo = _undefined,
     Object? sender = _undefined,
     Object? $__typename = _undefined,
@@ -30206,6 +30229,9 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
+        imageUrls: imageUrls == _undefined
+            ? _instance.imageUrls
+            : (imageUrls as String?),
         replyTo: replyTo == _undefined
             ? _instance.replyTo
             : (replyTo as Query$Conversation$conversation$replyTo?),
@@ -30251,6 +30277,7 @@ class _CopyWithStubImpl$Query$Conversation$conversation<TRes>
     int? itemId,
     String? itemType,
     DateTime? createdAt,
+    String? imageUrls,
     Query$Conversation$conversation$replyTo? replyTo,
     Query$Conversation$conversation$sender? sender,
     String? $__typename,

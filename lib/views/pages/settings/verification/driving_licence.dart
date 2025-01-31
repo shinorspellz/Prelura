@@ -5,7 +5,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
-List<CameraDescription> cameras = [];
+List<CameraDescription> cameras = []; //1 service
 
 @RoutePage()
 class UploadIdentityDocument extends StatefulWidget {
@@ -20,11 +20,12 @@ class UploadIdentityDocument extends StatefulWidget {
 }
 
 class _UploadIdentityDocumentState extends State<UploadIdentityDocument> {
-  CameraController? controller;
+  CameraController? controller; //2 service
 
   XFile? pictureFile;
 
   getAvailableCamera() async {
+    //3 service
     cameras = await availableCameras();
     setState(() {});
     controller = CameraController(
@@ -43,13 +44,13 @@ class _UploadIdentityDocumentState extends State<UploadIdentityDocument> {
   void initState() {
     super.initState();
     if (mounted) {
-      getAvailableCamera();
+      getAvailableCamera(); //4 service
     }
   }
 
   @override
   void dispose() {
-    controller!.dispose();
+    controller!.dispose(); //service
     super.dispose();
   }
 
@@ -65,7 +66,7 @@ class _UploadIdentityDocumentState extends State<UploadIdentityDocument> {
         ),
       ),
       body: controller?.value != null
-          ? !controller!.value.isInitialized
+          ? !controller!.value.isInitialized //5 controller state
               ? Container()
               : SingleChildScrollView(
                   child: Padding(
@@ -73,76 +74,81 @@ class _UploadIdentityDocumentState extends State<UploadIdentityDocument> {
                       horizontal: 20,
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        addVerticalSpacing(30),
-                        Text(
-                          "Make sure the front of your driving licence is in the frame.",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                // color: VmodelColors.primaryColor,
-                              ),
-                          textAlign: TextAlign.center,
-                        ),
-                        addVerticalSpacing(60),
-                        Center(
-                          child: Center(
-                            child: Container(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          addVerticalSpacing(30),
+                          Text(
+                            "Make sure the front of your driving licence is in the frame.",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  // color: VmodelColors.primaryColor,
+                                ),
+                            textAlign: TextAlign.center,
+                          ),
+                          addVerticalSpacing(60),
+                          Center(
+                            child: Center(
+                              child: Container(
                                 height: 400,
                                 width: 400,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
                                 child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: CameraPreview(controller!))),
-                          ),
-                        ),
-                        addVerticalSpacing(40),
-                        GestureDetector(
-                          onTap: () async {
-                            pictureFile = await controller!.takePicture();
-                            setState(() {});
-                            // ignore: use_build_context_synchronously
-                            // navigateTo
-                            context.router.push(
-                              DisplayCapturedDocument(
-                                image: pictureFile!,
-                                pageTitle: widget.pageTitle,
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 60,
-                            width: 60,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                              border: Border.all(
-                                width: 2.5,
-                                // color: VmodelColors.primaryColor,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  // color: VmodelColors.primaryColor,
-                                  color: Theme.of(context).colorScheme.primary,
+                                  borderRadius: BorderRadius.circular(20),
+                                  child:
+                                      CameraPreview(controller!), //6 major UI
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                          addVerticalSpacing(40),
+                          GestureDetector(
+                            onTap: () async {
+                              pictureFile =
+                                  await controller!.takePicture(); //7 action
+                              setState(() {});
+                              // ignore: use_build_context_synchronously
+                              // navigateTo
+                              context.router.push(
+                                DisplayCapturedDocument(
+                                  image: pictureFile!,
+                                  pageTitle: widget.pageTitle,
+                                ),
+                              );
+                            },
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                                border: Border.all(
+                                  width: 2.5,
+                                  // color: VmodelColors.primaryColor,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Container(
+                                  height: 60,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    // color: VmodelColors.primaryColor,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
                   ),
                 )
           : Container(),

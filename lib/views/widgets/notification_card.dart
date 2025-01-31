@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +18,7 @@ class NotificationCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    log(":::The notification info::: $notification");
+    // log(":::The notification info::: $notification");
     return GestureDetector(
       onTap: () async {
         if (!notification.isRead!) {
