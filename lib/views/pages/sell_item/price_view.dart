@@ -31,7 +31,7 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
   @override
   void initState() {
     final state = ref.read(sellItemProvider);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final state = ref.read(sellItemProvider);
       if (state.category != null) {
         ref.read(selectedFilteredProductProvider.notifier).state =
@@ -41,6 +41,8 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
               ? int.parse(state.brand!.id.toString())
               : null,
         );
+
+        await ref.refresh(filteredProductProvider("").future);
       }
     });
     super.initState();

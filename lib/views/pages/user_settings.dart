@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +11,8 @@ import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
+
+import '../../res/helper_function.dart';
 
 @RoutePage()
 class SettingScreen extends StatelessWidget {
@@ -152,16 +156,27 @@ class SettingScreen extends StatelessWidget {
                             else
                               TextButton(
                                   onPressed: () async {
-                                    await ref
+                                    await HelperFunction.genRef!
                                         .read(authProvider.notifier)
                                         .logout();
-                                    ref
+                                    HelperFunction.genRef!
                                         .read(categoryNotifierProvider.notifier)
                                         .clearCache();
-                                    ref.read(authProvider).whenOrNull(
-                                          error: (e, _) => context
-                                              .alert("An error occurred"),
-                                        );
+                                    HelperFunction.genRef!
+                                        .read(authProvider)
+                                        .whenOrNull(
+                                      data: (data) {
+                                        context.router.pushAndPopUntil(
+                                            LoginRoute(),
+                                            predicate: (route) => false);
+                                      },
+                                      error: (e, _) {
+                                        log("${e.toString()}");
+                                        log("stack trace : ${_.toString()}",
+                                            name: "logout");
+                                        context.alert("An error occurred");
+                                      },
+                                    );
                                   },
                                   child: const Text('Logout')),
                             TextButton(

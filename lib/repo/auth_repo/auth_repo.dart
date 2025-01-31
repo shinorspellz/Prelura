@@ -10,6 +10,8 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../controller/auth/auth_controller.dart';
+
 /// Authentication Repository for all auth operation like [login], [register] & [login]
 /// and depends on the [GraphQLClient] via dependency injection.
 ///
@@ -94,6 +96,7 @@ class AuthRepo {
 
     await _remove();
     _ref.invalidateSelf();
+  
     log('${response.logout?.message}', name: 'AuthMutation');
   }
 
@@ -102,9 +105,18 @@ class AuthRepo {
 
   Future<void> _remove() async {
     try {
-      await _cacheBox.delete('AUTH_TOKEN');
-      await _cacheBox.delete('REST_TOKEN');
-      await _cacheBox.delete('USERNAME');
+      await _cacheBox.delete('AUTH_TOKEN').then((onValue) {
+        log('Auth token removed');
+      });
+      await _cacheBox.delete('REST_TOKEN').then((onValue) {
+        log('Rest token removed');
+      });
+      await _cacheBox.delete('USERNAME').then((value) {
+        log('Username removed');
+      });
+
+      // _ref.invalidate(authStateProvider);
+      await Future.delayed(Duration(milliseconds: 100));
     } catch (_) {
       throw const CacheFailure(message: 'An error occured removing user data');
     }

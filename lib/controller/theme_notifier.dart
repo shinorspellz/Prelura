@@ -12,6 +12,7 @@ final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, ThemeMode>(
 class ThemeNotifier extends StateNotifier<ThemeMode> {
   static const _themeKey = 'themeMode';
   final Box settingsBox;
+  static const _lastThemeKey = 'lastThemeMode';
 
   ThemeNotifier(this.settingsBox)
       : super(
@@ -26,9 +27,26 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
   void toggleThemeMode() {
     if (state == ThemeMode.light) {
       _setThemeMode(ThemeMode.dark); // Switch to dark mode
-    } else {
+    } else if (state == ThemeMode.dark) {
       _setThemeMode(ThemeMode.light); // Switch to light mode
+    } else {
+      _setThemeMode(_loadLastThemeMode()); // Revert to last non-system theme
     }
+  }
+
+  void useSystemSetting() {
+    if (state != ThemeMode.system) {
+      settingsBox.put(_lastThemeKey, state.index);
+      _setThemeMode(ThemeMode.system);
+    } else {
+      _setThemeMode(_loadLastThemeMode());
+    }
+  }
+
+  ThemeMode _loadLastThemeMode() {
+    final lastThemeIndex =
+        settingsBox.get(_lastThemeKey, defaultValue: ThemeMode.light.index);
+    return ThemeMode.values[lastThemeIndex];
   }
 
   void _setThemeMode(ThemeMode mode) {
