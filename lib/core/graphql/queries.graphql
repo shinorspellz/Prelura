@@ -646,6 +646,7 @@ query Conversation($id: ID!, $pageCount: Int, $pageNumber: Int) {
     itemId
     itemType
     createdAt
+    imageUrls
     replyTo {
       id
       text
