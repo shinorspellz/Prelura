@@ -445,7 +445,7 @@ type MessageType {
   itemId: Int
   replyTo: MessageType
   itemType: String
-  imageUrls: JSONString
+  imageUrls: [JSONString!]!
   replies: [MessageType!]!
   senderName: String
   receiverProfile: String
@@ -608,6 +608,7 @@ type Mutation {
   """Verify email address"""
   verifyEmail(code: String!, email: String!): VerifyEmail
   deleteSearchHistory(clearAll: Boolean = false, searchId: ID): DeleteSearchHistory
+  reportAccount(content: String, reason: String!, username: String!): ReportAccount
 
   """
   Register user with fields defined in the settings.
@@ -1453,6 +1454,10 @@ type RecommendedSellerType {
   productViews: Int
   sellerScore: Float
   activeListings: Int
+}
+
+type ReportAccount {
+  message: String
 }
 
 """
