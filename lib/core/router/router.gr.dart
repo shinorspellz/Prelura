@@ -2054,6 +2054,7 @@ class ReportAccountHomepage
   ReportAccountHomepage({
     required String selectedOption,
     required bool isOptionSelected,
+    required String username,
     _i87.Key? key,
     List<_i86.PageRouteInfo>? children,
   }) : super(
@@ -2061,6 +2062,7 @@ class ReportAccountHomepage
           args: ReportAccountHomepageArgs(
             selectedOption: selectedOption,
             isOptionSelected: isOptionSelected,
+            username: username,
             key: key,
           ),
           initialChildren: children,
@@ -2075,6 +2077,7 @@ class ReportAccountHomepage
       return _i63.ReportAccountHomepage(
         selectedOption: args.selectedOption,
         isOptionSelected: args.isOptionSelected,
+        username: args.username,
         key: args.key,
       );
     },
@@ -2085,6 +2088,7 @@ class ReportAccountHomepageArgs {
   const ReportAccountHomepageArgs({
     required this.selectedOption,
     required this.isOptionSelected,
+    required this.username,
     this.key,
   });
 
@@ -2092,11 +2096,13 @@ class ReportAccountHomepageArgs {
 
   final bool isOptionSelected;
 
+  final String username;
+
   final _i87.Key? key;
 
   @override
   String toString() {
-    return 'ReportAccountHomepageArgs{selectedOption: $selectedOption, isOptionSelected: $isOptionSelected, key: $key}';
+    return 'ReportAccountHomepageArgs{selectedOption: $selectedOption, isOptionSelected: $isOptionSelected, username: $username, key: $key}';
   }
 }
 

@@ -9,7 +9,7 @@ part 'notification_model.g.dart';
 class NotificationModel with _$NotificationModel {
   const factory NotificationModel({
     required String id,
-    required SenderType sender,
+    SenderType? sender,
     required String message,
     required String model,
     String? modelId,
@@ -19,9 +19,11 @@ class NotificationModel with _$NotificationModel {
     bool? deleted,
     DateTime? createdAt,
     DateTime? updatedAt,
-    @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson) required Map<String, dynamic> meta,
+    @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
+    required Map<String, dynamic> meta,
   }) = _NotificationModel;
-  factory NotificationModel.fromJson(Map<String, dynamic> json) => _$NotificationModelFromJson(json);
+  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationModelFromJson(json);
 }
 
 @freezed
@@ -31,7 +33,8 @@ class SenderType with _$SenderType {
     String? thumbnailUrl,
     String? profilePictureUrl,
   }) = _SenderType;
-  factory SenderType.fromJson(Map<String, dynamic> json) => _$SenderTypeFromJson(json);
+  factory SenderType.fromJson(Map<String, dynamic> json) =>
+      _$SenderTypeFromJson(json);
 }
 
 @freezed
@@ -40,17 +43,26 @@ class NotificationPreference with _$NotificationPreference {
     UserModel? user,
     bool? isPushNotification,
     bool? isEmailNotification,
-    @JsonKey(fromJson: _parseNotifications, toJson: _convertToJson) NotificationsPreferenceInputType? inappNotifications,
-    @JsonKey(fromJson: _parseNotifications, toJson: _convertToJson) NotificationsPreferenceInputType? emailNotifications,
+    @JsonKey(fromJson: _parseNotifications, toJson: _convertToJson)
+    NotificationsPreferenceInputType? inappNotifications,
+    @JsonKey(fromJson: _parseNotifications, toJson: _convertToJson)
+    NotificationsPreferenceInputType? emailNotifications,
   }) = _NotificationPreference;
-  factory NotificationPreference.fromJson(Map<String, dynamic> json) => _$NotificationPreferenceFromJson(json);
+  factory NotificationPreference.fromJson(Map<String, dynamic> json) =>
+      _$NotificationPreferenceFromJson(json);
 }
 
 @freezed
 class NotificationsPreferenceInputType with _$NotificationsPreferenceInputType {
-  const factory NotificationsPreferenceInputType({bool? likes, bool? newFollowers, bool? profileView, bool? messages}) = _NotificationsPreferenceInputType;
+  const factory NotificationsPreferenceInputType(
+      {bool? likes,
+      bool? newFollowers,
+      bool? profileView,
+      bool? messages}) = _NotificationsPreferenceInputType;
 
-  factory NotificationsPreferenceInputType.fromJson(Map<String, dynamic> json) => _$NotificationsPreferenceInputTypeFromJson(json);
+  factory NotificationsPreferenceInputType.fromJson(
+          Map<String, dynamic> json) =>
+      _$NotificationsPreferenceInputTypeFromJson(json);
 }
 
 // Helper functions for JSON parsing

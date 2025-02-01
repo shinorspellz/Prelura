@@ -31,7 +31,7 @@ class NotificationCard extends ConsumerWidget {
           context.router.push(ChatRoute(
             id: notification.meta["conversation_id"],
             username: notification.meta["sender"],
-            avatarUrl: notification.sender.profilePictureUrl,
+            avatarUrl: notification.sender?.profilePictureUrl,
             isOffer: notification.meta["is_offer"] ?? false,
           ));
         }
@@ -39,13 +39,13 @@ class NotificationCard extends ConsumerWidget {
           context.router.push(ChatRoute(
             id: notification.meta["conversation_id"],
             username: notification.meta["sender"],
-            avatarUrl: notification.sender.profilePictureUrl,
+            avatarUrl: notification.sender?.profilePictureUrl,
             isOffer: true,
           ));
         }
         if (notification.modelGroup == "UserProfile") {
           context.router.push(ProfileDetailsRoute(
-            username: notification.sender.username,
+            username: notification.sender?.username ?? "",
           ));
         }
 
@@ -72,14 +72,14 @@ class NotificationCard extends ConsumerWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             // Image
-            if (notification.sender.profilePictureUrl == null) ...[
+            if (notification.sender?.profilePictureUrl == null) ...[
               Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: CircleAvatar(
                   radius: 20,
-                  child: Text(notification.sender.username
+                  child: Text(notification.sender?.username
                           .split('')
                           .first
                           .toUpperCase() ??
@@ -87,11 +87,11 @@ class NotificationCard extends ConsumerWidget {
                 ),
               )
             ],
-            if (notification.sender.profilePictureUrl != null) ...[
+            if (notification.sender?.profilePictureUrl != null) ...[
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: CachedNetworkImage(
-                  imageUrl: notification.sender.profilePictureUrl!,
+                  imageUrl: notification.sender?.profilePictureUrl ?? "",
                   fit: BoxFit.cover,
                   height: 40,
                   width: 40,
@@ -122,7 +122,7 @@ class NotificationCard extends ConsumerWidget {
                       Expanded(
                           child: HighlightUserName(
                               isRead: notification.isRead ?? false,
-                              username: notification.sender.username,
+                              username: notification.sender?.username ??"",
                               message: notification.message)
 
                           // Row(

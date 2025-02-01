@@ -48,10 +48,9 @@ class _ReportAccountOptionsPageState
         ),
       ),
       body: SingleChildScrollView(
-        // padding: const EdgeInsets.symmetric(6.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Column(
           children: [
-            addVerticalSpacing(25),
             ...options.map((e) {
               return PreluraCheckBox(
                 isChecked: isOptionSelected,
@@ -59,6 +58,7 @@ class _ReportAccountOptionsPageState
                 onChanged: (value) => _onItemSelected(e, context),
               );
             }).toList(),
+            16.verticalSpacing
           ],
         ),
       ),
@@ -69,6 +69,7 @@ class _ReportAccountOptionsPageState
     context.router.push(ReportAccountHomepage(
       selectedOption: option,
       isOptionSelected: true,
+      username: widget.username,
     ));
   }
 }

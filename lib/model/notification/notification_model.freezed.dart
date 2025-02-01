@@ -21,7 +21,7 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NotificationModel {
   String get id => throw _privateConstructorUsedError;
-  SenderType get sender => throw _privateConstructorUsedError;
+  SenderType? get sender => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get model => throw _privateConstructorUsedError;
   String? get modelId => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $NotificationModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      SenderType sender,
+      SenderType? sender,
       String message,
       String model,
       String? modelId,
@@ -65,7 +65,7 @@ abstract class $NotificationModelCopyWith<$Res> {
       @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
       Map<String, dynamic> meta});
 
-  $SenderTypeCopyWith<$Res> get sender;
+  $SenderTypeCopyWith<$Res>? get sender;
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   @override
   $Res call({
     Object? id = null,
-    Object? sender = null,
+    Object? sender = freezed,
     Object? message = null,
     Object? model = null,
     Object? modelId = freezed,
@@ -101,10 +101,10 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      sender: null == sender
+      sender: freezed == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
-              as SenderType,
+              as SenderType?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -152,8 +152,12 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SenderTypeCopyWith<$Res> get sender {
-    return $SenderTypeCopyWith<$Res>(_value.sender, (value) {
+  $SenderTypeCopyWith<$Res>? get sender {
+    if (_value.sender == null) {
+      return null;
+    }
+
+    return $SenderTypeCopyWith<$Res>(_value.sender!, (value) {
       return _then(_value.copyWith(sender: value) as $Val);
     });
   }
@@ -169,7 +173,7 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      SenderType sender,
+      SenderType? sender,
       String message,
       String model,
       String? modelId,
@@ -183,7 +187,7 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
       Map<String, dynamic> meta});
 
   @override
-  $SenderTypeCopyWith<$Res> get sender;
+  $SenderTypeCopyWith<$Res>? get sender;
 }
 
 /// @nodoc
@@ -200,7 +204,7 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? sender = null,
+    Object? sender = freezed,
     Object? message = null,
     Object? model = null,
     Object? modelId = freezed,
@@ -217,10 +221,10 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      sender: null == sender
+      sender: freezed == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
-              as SenderType,
+              as SenderType?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -270,7 +274,7 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
 class _$NotificationModelImpl implements _NotificationModel {
   const _$NotificationModelImpl(
       {required this.id,
-      required this.sender,
+      this.sender,
       required this.message,
       required this.model,
       this.modelId,
@@ -290,7 +294,7 @@ class _$NotificationModelImpl implements _NotificationModel {
   @override
   final String id;
   @override
-  final SenderType sender;
+  final SenderType? sender;
   @override
   final String message;
   @override
@@ -383,7 +387,7 @@ class _$NotificationModelImpl implements _NotificationModel {
 abstract class _NotificationModel implements NotificationModel {
   const factory _NotificationModel(
       {required final String id,
-      required final SenderType sender,
+      final SenderType? sender,
       required final String message,
       required final String model,
       final String? modelId,
@@ -402,7 +406,7 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   String get id;
   @override
-  SenderType get sender;
+  SenderType? get sender;
   @override
   String get message;
   @override

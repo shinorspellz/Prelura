@@ -7,13 +7,18 @@ import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import '../../../controller/user/account_controller.dart';
+import '../../../res/helper_function.dart';
+
 @RoutePage()
 class ReportAccountHomepage extends ConsumerStatefulWidget {
   final String selectedOption;
   final bool isOptionSelected;
+  final String username;
   const ReportAccountHomepage({
     required this.selectedOption,
     required this.isOptionSelected,
+    required this.username,
     super.key,
   });
 
@@ -76,22 +81,26 @@ class _ReportAccountHomepageState extends ConsumerState<ReportAccountHomepage> {
                     text: "Send Report",
                     onTap: () async {
                       showLoading.value = true;
-                      // final response = await ref
-                      //     .read(reportAccountProvider.notifier)
-                      //     .reportAccount(
-                      //         reason: widget.selectedOption,
-                      //         content: textController.text);
-                      // showLoading.value = false;
-                      // if (!response.isEmptyOrNull) {
-                      //   textController.clear();
-                      //   Navigator.of(context)
-                      //     ..pop()
-                      //     ..pop();
-                      // responseDialog(context, response);
-                      // SnackBarService().showSnackBar(
-                      //     message: response,
-                      //     context: context);
-                      // }
+                      final response = await ref
+                          .read(reportAccountProvider.notifier)
+                          .reportAccount(
+                              reason: widget.selectedOption,
+                              username: widget.username,
+                              content: textController.text);
+                      showLoading.value = false;
+                      HelperFunction.context = context;
+                      HelperFunction.showToast(
+                        message: response,
+                      );
+                      await Future.delayed(Duration(seconds: 1));
+                      if (!response.isEmpty) {
+                        textController.clear();
+                        Navigator.of(context)
+                          ..pop()
+                          ..pop()
+                          ..pop();
+                        // responseDialog(context, response);
+                      }
                     },
                   ),
                 );

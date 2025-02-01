@@ -10,7 +10,9 @@ _$NotificationModelImpl _$$NotificationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NotificationModelImpl(
       id: json['id'] as String,
-      sender: SenderType.fromJson(json['sender'] as Map<String, dynamic>),
+      sender: json['sender'] == null
+          ? null
+          : SenderType.fromJson(json['sender'] as Map<String, dynamic>),
       message: json['message'] as String,
       model: json['model'] as String,
       modelId: json['modelId'] as String?,

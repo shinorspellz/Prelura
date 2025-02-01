@@ -363,6 +363,26 @@ class UserRepo {
       throw 'An error occured';
     }
   }
-}
 
-// followers repo
+  Future<String> reportAccount(
+      {required String reason,
+      required String username,
+      String? content}) async {
+    final response = await _client.mutate$reportAccount(
+      Options$Mutation$reportAccount(
+          variables: Variables$Mutation$reportAccount(
+              reason: reason, username: username, content: content)),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.reportAccount!.message!;
+  }
+}

@@ -29,13 +29,13 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
   @override
   void initState() {
     controller.addListener(() {
-      if (mounted) return;
+      if (!mounted) return;
       // setState(() => autoScroll = false);
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.sizeOf(context).height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        if (ref.read(brandsProvider).isLoading) return;
+        // if (ref.read(brandsProvider).isLoading) return;
         if (searchQuery.isNotEmpty) return;
         ref.read(brandsProvider.notifier).fetchMoreData();
       }
