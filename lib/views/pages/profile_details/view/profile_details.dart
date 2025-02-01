@@ -10,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../core/router/router.gr.dart';
 import '../../../../res/colors.dart';
+import '../../../../res/helper_function.dart';
 import '../provider/tab_controller.dart';
 import '../widgets/multi_discount_bottom_view.dart';
 
@@ -56,7 +57,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
     _tabController.dispose();
     super.dispose();
     Future.microtask(() {
-      ref.read(multiProducts.notifier).clearProducts();
+      HelperFunction.genRef!.read(multiProducts.notifier).clearProducts();
     });
   }
 

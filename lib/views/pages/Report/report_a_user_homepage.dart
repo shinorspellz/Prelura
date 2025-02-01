@@ -88,16 +88,18 @@ class _ReportAccountHomepageState extends ConsumerState<ReportAccountHomepage> {
                               username: widget.username,
                               content: textController.text);
                       showLoading.value = false;
+                      HelperFunction.context = context;
+                      HelperFunction.showToast(
+                        message: response,
+                      );
+                      await Future.delayed(Duration(seconds: 1));
                       if (!response.isEmpty) {
                         textController.clear();
                         Navigator.of(context)
                           ..pop()
+                          ..pop()
                           ..pop();
                         // responseDialog(context, response);
-                        HelperFunction.context = context;
-                        HelperFunction.showToast(
-                          message: response,
-                        );
                       }
                     },
                   ),
