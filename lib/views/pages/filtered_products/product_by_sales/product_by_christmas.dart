@@ -32,9 +32,10 @@ class _ProductFilterPageState
   void initState() {
     super.initState();
     Future.microtask(
-      () {
+      () async {
         ref.read(selectedFilteredProductProvider.notifier).state =
             Input$ProductFiltersInput(style: widget.style);
+        await ref.refresh(filteredProductProvider((searchQuery)).future);
       },
     );
     controller.addListener(() {

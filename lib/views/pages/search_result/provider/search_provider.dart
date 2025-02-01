@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
@@ -276,18 +278,17 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     }
   }
 
-  void removeFilter(FilterTypes filterType) {
+  void removeFilter(FilterTypes filterType, BuildContext context) {
     state.remove(filterType);
     final providerFilter = ref.read(filteredProductProvider('').notifier);
+    final selectedProvider = ref.read(selectedFilteredProductProvider);
+    final currentProvider = providerFilter.currentFilter;
+    final routeName = context.router.current.name;
+
     final brandFilter = state.entries
         .where((e) => e.key == FilterTypes.brand)
         .firstOrNull
         ?.value;
-    // final sizeFilter = FilterTypes.size.simpleName;
-    // filters.entries
-    // .where((e) => e.key == FilterTypes.size)
-    // .firstOrNull
-    // ?.value;
     final conditionFilter = state.entries
         .where((e) => e.key == FilterTypes.condition)
         .firstOrNull
@@ -339,17 +340,29 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
         .firstOrNull
         ?.key;
 
+    log(selectedProvider.toJson().toString(),
+        name: 'selectedProvider in search provider');
+    log(context.router.current.name, name: 'current route in search provider');
+
     final filter = Input$ProductFiltersInput(
-        parentCategory: category,
-        maxPrice: maxPriceFilter != null && maxPriceFilter.isNotEmpty
-            ? double.parse(maxPriceFilter ?? "0")
-            : null,
+        parentCategory: routeName == "FilterProductRoute"
+            ? currentProvider?.parentCategory
+            : category,
+        maxPrice: routeName == "ProductPriceFilterRoute"
+            ? currentProvider?.maxPrice
+            : maxPriceFilter != null && maxPriceFilter.isNotEmpty
+                ? double.parse(maxPriceFilter ?? "0")
+                : null,
         minPrice: minPriceFilter != null && minPriceFilter.isNotEmpty
             ? double.parse(minPriceFilter ?? "0")
             : 0,
-        brand: brand?.id,
+        brand: currentProvider?.brand,
         condition: condition,
-        style: style,
+        style: routeName == "ChristmasFilteredProductRoute"
+            ? currentProvider?.style
+            : style,
+        discountPrice: currentProvider?.discountPrice,
+        hashtags: currentProvider?.hashtags,
         colors: color != null ? [color] : []);
 
     providerFilter.updateFilter(filter);
@@ -446,7 +459,8 @@ void ShowFilteredProductFilterModal(
                               log("value : $value",
                                   name: "Search product provider");
                               if (selectedOptions == e) {
-                                filterNotifier.removeFilter(filterType);
+                                filterNotifier.removeFilter(
+                                    filterType, context);
                                 selectedOptions = "";
                               } else {
                                 filterNotifier.updateFilter(filterType, e);
@@ -470,7 +484,7 @@ void ShowFilteredProductFilterModal(
                     width: double.infinity,
                     isDisabled: selectedOptions == null,
                     onTap: () {
-                      filterNotifier.removeFilter(filterType);
+                      filterNotifier.removeFilter(filterType, context);
                       Navigator.pop(context);
                       setState(() {
                         selectedOptions = null;
