@@ -279,10 +279,80 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
   void removeFilter(FilterTypes filterType) {
     state.remove(filterType);
     final providerFilter = ref.read(filteredProductProvider('').notifier);
-    // providerFilter.removeFilter();
+    final brandFilter = state.entries
+        .where((e) => e.key == FilterTypes.brand)
+        .firstOrNull
+        ?.value;
+    // final sizeFilter = FilterTypes.size.simpleName;
+    // filters.entries
+    // .where((e) => e.key == FilterTypes.size)
+    // .firstOrNull
+    // ?.value;
+    final conditionFilter = state.entries
+        .where((e) => e.key == FilterTypes.condition)
+        .firstOrNull
+        ?.value;
+    final styleFilter = state.entries
+        .where((e) => e.key == FilterTypes.style)
+        .firstOrNull
+        ?.value;
+    final parentCategoryFilter = state.entries
+        .where((e) => e.key == FilterTypes.gender)
+        .firstOrNull
+        ?.value;
+    final colorFilter = state.entries
+        .where((e) => e.key == FilterTypes.color)
+        .firstOrNull
+        ?.value;
+    final minPriceFilter = state.entries
+        .where((e) => e.key == FilterTypes.price)
+        .firstOrNull
+        ?.value
+        .split(" ")
+        .first;
+    final maxPriceFilter = state.entries
+        .where((e) => e.key == FilterTypes.price)
+        .firstOrNull
+        ?.value
+        .split(" ")
+        .last;
 
-    ref.refresh(filteredProductProvider("").future);
-    ref.refresh(discountedProductsProvider("").future);
+    final brand = ref
+        .watch(brandsProvider)
+        .valueOrNull
+        ?.where((e) => e.name == brandFilter)
+        .firstOrNull;
+
+    final category = Enum$ParentCategoryEnum.values
+        .where((e) => e.name == parentCategoryFilter)
+        .firstOrNull;
+    final condition = ConditionsEnum.values
+        .where((e) => e.name == conditionFilter)
+        .firstOrNull;
+    final style =
+        Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
+
+    final color = ref
+        .watch(colorsProvider)
+        .entries
+        .where((e) => e.key == colorFilter)
+        .firstOrNull
+        ?.key;
+
+    final filter = Input$ProductFiltersInput(
+        parentCategory: category,
+        maxPrice: maxPriceFilter != null && maxPriceFilter.isNotEmpty
+            ? double.parse(maxPriceFilter ?? "0")
+            : null,
+        minPrice: minPriceFilter != null && minPriceFilter.isNotEmpty
+            ? double.parse(minPriceFilter ?? "0")
+            : 0,
+        brand: brand?.id,
+        condition: condition,
+        style: style,
+        colors: color != null ? [color] : []);
+
+    providerFilter.updateFilter(filter);
   }
 
   void clearFilter() {
