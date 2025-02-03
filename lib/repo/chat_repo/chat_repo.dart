@@ -46,7 +46,9 @@ class ChatRepo {
     ));
 
     if (response.hasException) {
+      log("::::You called me :::: 5");
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        log("::::You called me :::: 6");
         final error = response.exception!.graphqlErrors.first.message;
         throw error;
       }

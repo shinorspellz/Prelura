@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -9,6 +10,7 @@ import 'package:prelura_app/model/user/earnings/earnings_model.dart';
 import 'package:prelura_app/model/user/multi_buy_discounts/multi_buy_discounts_model.dart';
 import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
+import 'package:prelura_app/res/helper_function.dart';
 
 class UserRepo {
   final GraphQLClient _client;
@@ -25,7 +27,9 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
-
+        if (error == "Signature has expired") {
+          HelperFunction.genRef!.read(refreshTokenSession);
+        }
         throw error;
       }
       log(response.exception.toString(), name: 'UserRepo');
@@ -40,6 +44,34 @@ class UserRepo {
     log(' response gotten ${response.parsedData!.viewMe!.toJson()}');
 
     return UserModel.fromJson(response.parsedData!.viewMe!.toJson());
+  }
+
+  Future<Mutation$RefreashToken$refreshToken?>? refreshToken(
+      String refreshToken) async {
+    final response = await _client.mutate$RefreashToken(
+      Options$Mutation$RefreashToken(
+          variables: Variables$Mutation$RefreashToken(
+        refreshToken: refreshToken,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Missing response', name: 'UserRef-Token');
+      throw 'An error occurred';
+    }
+
+    log(' response gotten ${response.parsedData!.toJson()}');
+
+    return response.parsedData!.refreshToken;
   }
 
   Future<UserModel> getUser(String username) async {

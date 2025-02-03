@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/time_formatter.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
@@ -24,7 +27,7 @@ class MessageCard extends ConsumerWidget {
     // log("The last message::: ${model.lastMessage?.toJson()}");
     bool isLastMessageAnOffer = model.offer != null;
     // log("The last message an offer::: $isLastMessageAnOffer");
-
+    final user = ref.watch(userProvider).value;
     return GestureDetector(
       onTap: () {
         if (isLastMessageAnOffer) {
@@ -91,7 +94,45 @@ class MessageCard extends ConsumerWidget {
                   ]),
                   if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
-                    if (isLastMessageAnOffer) ...[
+                    if (model.lastMessage?.imageUrls.isNotEmpty) ...[
+                      Row(children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(2),
+                          child: SizedBox(
+                            height: 26,
+                            width: 23,
+                            child: CachedNetworkImage(
+                              errorWidget: (context, url, error) => Container(
+                                color: PreluraColors.grey,
+                              ),
+                              imageUrl: jsonDecode(
+                                  model.lastMessage?.imageUrls[0])["url"],
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) {
+                                return ShimmerBox(
+                                  height: 26,
+                                  width: 23,
+                                );
+                              },
+                              fadeInDuration: Duration.zero,
+                              fadeOutDuration: Duration.zero,
+                            ),
+                          ),
+                        ),
+                        addHorizontalSpacing(5),
+                        Text(
+                          model.lastMessage?.sender.username == user?.username
+                              ? "You sent a picture"
+                              : "${model.lastMessage?.sender.username} sent a picture",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(fontWeight: FontWeight.w400),
+                        ),
+                      ])
+                    ] else if (isLastMessageAnOffer) ...[
                       addVerticalSpacing(5),
                       BuildOfferRow(
                         text: model.lastMessage!.text,

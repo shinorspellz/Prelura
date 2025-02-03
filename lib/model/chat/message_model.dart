@@ -9,6 +9,7 @@ class MessageModel with _$MessageModel {
   const factory MessageModel({
     required dynamic id,
     required String text,
+    dynamic imageUrls,
     String? attachment,
     itemType,
     bool? read,
@@ -32,6 +33,7 @@ class MessageModel with _$MessageModel {
         read: json["read"],
 
         isItem: json["is_item"],
+        imageUrls: json["imageUrls"],
         createdAt: json["createdAt"].runtimeType == String
             ? DateTime.parse(json["createdAt"])
             : json["createdAt"],

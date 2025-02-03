@@ -2,6 +2,7 @@ mutation Login($password: String!, $username: String) {
   login(password: $password, username: $username) {
     restToken
     token
+    refreshToken
     user {
       id
       username
@@ -34,12 +35,19 @@ mutation Register(
   }
 }
 
-mutation Logout {
-  logout {
+mutation Logout($refreshToken: String) {
+  logout(refreshToken: $refreshToken) {
     message
   }
 }
 
+mutation RefreashToken($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken ) {
+    token
+    payload
+    refreshExpiresIn
+  }
+}
 
 mutation CreateProduct(
   $category: Int!

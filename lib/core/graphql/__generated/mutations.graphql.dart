@@ -335,6 +335,13 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'refreshToken'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'user'),
             alias: null,
             arguments: [],
@@ -479,6 +486,7 @@ class Mutation$Login$login {
   Mutation$Login$login({
     this.restToken,
     required this.token,
+    required this.refreshToken,
     this.user,
     this.$__typename = 'NewObtainJSONWebToken',
   });
@@ -486,11 +494,13 @@ class Mutation$Login$login {
   factory Mutation$Login$login.fromJson(Map<String, dynamic> json) {
     final l$restToken = json['restToken'];
     final l$token = json['token'];
+    final l$refreshToken = json['refreshToken'];
     final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Mutation$Login$login(
       restToken: (l$restToken as String?),
       token: (l$token as String),
+      refreshToken: (l$refreshToken as String),
       user: l$user == null
           ? null
           : Mutation$Login$login$user.fromJson(
@@ -503,6 +513,8 @@ class Mutation$Login$login {
 
   final String token;
 
+  final String refreshToken;
+
   final Mutation$Login$login$user? user;
 
   final String $__typename;
@@ -513,6 +525,8 @@ class Mutation$Login$login {
     _resultData['restToken'] = l$restToken;
     final l$token = token;
     _resultData['token'] = l$token;
+    final l$refreshToken = refreshToken;
+    _resultData['refreshToken'] = l$refreshToken;
     final l$user = user;
     _resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
@@ -524,11 +538,13 @@ class Mutation$Login$login {
   int get hashCode {
     final l$restToken = restToken;
     final l$token = token;
+    final l$refreshToken = refreshToken;
     final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$restToken,
       l$token,
+      l$refreshToken,
       l$user,
       l$$__typename,
     ]);
@@ -550,6 +566,11 @@ class Mutation$Login$login {
     final l$token = token;
     final lOther$token = other.token;
     if (l$token != lOther$token) {
+      return false;
+    }
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (l$refreshToken != lOther$refreshToken) {
       return false;
     }
     final l$user = user;
@@ -586,6 +607,7 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
   TRes call({
     String? restToken,
     String? token,
+    String? refreshToken,
     Mutation$Login$login$user? user,
     String? $__typename,
   });
@@ -608,6 +630,7 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
   TRes call({
     Object? restToken = _undefined,
     Object? token = _undefined,
+    Object? refreshToken = _undefined,
     Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -618,6 +641,9 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
         token: token == _undefined || token == null
             ? _instance.token
             : (token as String),
+        refreshToken: refreshToken == _undefined || refreshToken == null
+            ? _instance.refreshToken
+            : (refreshToken as String),
         user: user == _undefined
             ? _instance.user
             : (user as Mutation$Login$login$user?),
@@ -643,6 +669,7 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes>
   call({
     String? restToken,
     String? token,
+    String? refreshToken,
     Mutation$Login$login$user? user,
     String? $__typename,
   }) =>
@@ -1584,6 +1611,113 @@ class _CopyWithStubImpl$Mutation$Register$register<TRes>
       _res;
 }
 
+class Variables$Mutation$Logout {
+  factory Variables$Mutation$Logout({String? refreshToken}) =>
+      Variables$Mutation$Logout._({
+        if (refreshToken != null) r'refreshToken': refreshToken,
+      });
+
+  Variables$Mutation$Logout._(this._$data);
+
+  factory Variables$Mutation$Logout.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('refreshToken')) {
+      final l$refreshToken = data['refreshToken'];
+      result$data['refreshToken'] = (l$refreshToken as String?);
+    }
+    return Variables$Mutation$Logout._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get refreshToken => (_$data['refreshToken'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('refreshToken')) {
+      final l$refreshToken = refreshToken;
+      result$data['refreshToken'] = l$refreshToken;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$Logout<Variables$Mutation$Logout> get copyWith =>
+      CopyWith$Variables$Mutation$Logout(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$Logout ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (_$data.containsKey('refreshToken') !=
+        other._$data.containsKey('refreshToken')) {
+      return false;
+    }
+    if (l$refreshToken != lOther$refreshToken) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$refreshToken = refreshToken;
+    return Object.hashAll(
+        [_$data.containsKey('refreshToken') ? l$refreshToken : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$Logout<TRes> {
+  factory CopyWith$Variables$Mutation$Logout(
+    Variables$Mutation$Logout instance,
+    TRes Function(Variables$Mutation$Logout) then,
+  ) = _CopyWithImpl$Variables$Mutation$Logout;
+
+  factory CopyWith$Variables$Mutation$Logout.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$Logout;
+
+  TRes call({String? refreshToken});
+}
+
+class _CopyWithImpl$Variables$Mutation$Logout<TRes>
+    implements CopyWith$Variables$Mutation$Logout<TRes> {
+  _CopyWithImpl$Variables$Mutation$Logout(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$Logout _instance;
+
+  final TRes Function(Variables$Mutation$Logout) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? refreshToken = _undefined}) =>
+      _then(Variables$Mutation$Logout._({
+        ..._instance._$data,
+        if (refreshToken != _undefined)
+          'refreshToken': (refreshToken as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$Logout<TRes>
+    implements CopyWith$Variables$Mutation$Logout<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$Logout(this._res);
+
+  TRes _res;
+
+  call({String? refreshToken}) => _res;
+}
+
 class Mutation$Logout {
   Mutation$Logout({
     this.logout,
@@ -1724,13 +1858,28 @@ const documentNodeMutationLogout = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.mutation,
     name: NameNode(value: 'Logout'),
-    variableDefinitions: [],
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'refreshToken')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
         name: NameNode(value: 'logout'),
         alias: null,
-        arguments: [],
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'refreshToken'),
+            value: VariableNode(name: NameNode(value: 'refreshToken')),
+          )
+        ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
@@ -1769,6 +1918,7 @@ typedef OnMutationCompleted$Mutation$Logout = FutureOr<void> Function(
 class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
   Options$Mutation$Logout({
     String? operationName,
+    Variables$Mutation$Logout? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1780,6 +1930,7 @@ class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1813,6 +1964,7 @@ class WatchOptions$Mutation$Logout
     extends graphql.WatchQueryOptions<Mutation$Logout> {
   WatchOptions$Mutation$Logout({
     String? operationName,
+    Variables$Mutation$Logout? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1824,6 +1976,7 @@ class WatchOptions$Mutation$Logout
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1965,6 +2118,575 @@ class _CopyWithStubImpl$Mutation$Logout$logout<TRes>
 
   call({
     String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$RefreashToken {
+  factory Variables$Mutation$RefreashToken({required String refreshToken}) =>
+      Variables$Mutation$RefreashToken._({
+        r'refreshToken': refreshToken,
+      });
+
+  Variables$Mutation$RefreashToken._(this._$data);
+
+  factory Variables$Mutation$RefreashToken.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$refreshToken = data['refreshToken'];
+    result$data['refreshToken'] = (l$refreshToken as String);
+    return Variables$Mutation$RefreashToken._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get refreshToken => (_$data['refreshToken'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$refreshToken = refreshToken;
+    result$data['refreshToken'] = l$refreshToken;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$RefreashToken<Variables$Mutation$RefreashToken>
+      get copyWith => CopyWith$Variables$Mutation$RefreashToken(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$RefreashToken ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (l$refreshToken != lOther$refreshToken) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$refreshToken = refreshToken;
+    return Object.hashAll([l$refreshToken]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$RefreashToken<TRes> {
+  factory CopyWith$Variables$Mutation$RefreashToken(
+    Variables$Mutation$RefreashToken instance,
+    TRes Function(Variables$Mutation$RefreashToken) then,
+  ) = _CopyWithImpl$Variables$Mutation$RefreashToken;
+
+  factory CopyWith$Variables$Mutation$RefreashToken.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$RefreashToken;
+
+  TRes call({String? refreshToken});
+}
+
+class _CopyWithImpl$Variables$Mutation$RefreashToken<TRes>
+    implements CopyWith$Variables$Mutation$RefreashToken<TRes> {
+  _CopyWithImpl$Variables$Mutation$RefreashToken(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$RefreashToken _instance;
+
+  final TRes Function(Variables$Mutation$RefreashToken) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? refreshToken = _undefined}) =>
+      _then(Variables$Mutation$RefreashToken._({
+        ..._instance._$data,
+        if (refreshToken != _undefined && refreshToken != null)
+          'refreshToken': (refreshToken as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$RefreashToken<TRes>
+    implements CopyWith$Variables$Mutation$RefreashToken<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$RefreashToken(this._res);
+
+  TRes _res;
+
+  call({String? refreshToken}) => _res;
+}
+
+class Mutation$RefreashToken {
+  Mutation$RefreashToken({
+    this.refreshToken,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$RefreashToken.fromJson(Map<String, dynamic> json) {
+    final l$refreshToken = json['refreshToken'];
+    final l$$__typename = json['__typename'];
+    return Mutation$RefreashToken(
+      refreshToken: l$refreshToken == null
+          ? null
+          : Mutation$RefreashToken$refreshToken.fromJson(
+              (l$refreshToken as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$RefreashToken$refreshToken? refreshToken;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$refreshToken = refreshToken;
+    _resultData['refreshToken'] = l$refreshToken?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$refreshToken = refreshToken;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$refreshToken,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$RefreashToken || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (l$refreshToken != lOther$refreshToken) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RefreashToken on Mutation$RefreashToken {
+  CopyWith$Mutation$RefreashToken<Mutation$RefreashToken> get copyWith =>
+      CopyWith$Mutation$RefreashToken(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$RefreashToken<TRes> {
+  factory CopyWith$Mutation$RefreashToken(
+    Mutation$RefreashToken instance,
+    TRes Function(Mutation$RefreashToken) then,
+  ) = _CopyWithImpl$Mutation$RefreashToken;
+
+  factory CopyWith$Mutation$RefreashToken.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RefreashToken;
+
+  TRes call({
+    Mutation$RefreashToken$refreshToken? refreshToken,
+    String? $__typename,
+  });
+  CopyWith$Mutation$RefreashToken$refreshToken<TRes> get refreshToken;
+}
+
+class _CopyWithImpl$Mutation$RefreashToken<TRes>
+    implements CopyWith$Mutation$RefreashToken<TRes> {
+  _CopyWithImpl$Mutation$RefreashToken(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$RefreashToken _instance;
+
+  final TRes Function(Mutation$RefreashToken) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? refreshToken = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$RefreashToken(
+        refreshToken: refreshToken == _undefined
+            ? _instance.refreshToken
+            : (refreshToken as Mutation$RefreashToken$refreshToken?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$RefreashToken$refreshToken<TRes> get refreshToken {
+    final local$refreshToken = _instance.refreshToken;
+    return local$refreshToken == null
+        ? CopyWith$Mutation$RefreashToken$refreshToken.stub(_then(_instance))
+        : CopyWith$Mutation$RefreashToken$refreshToken(
+            local$refreshToken, (e) => call(refreshToken: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$RefreashToken<TRes>
+    implements CopyWith$Mutation$RefreashToken<TRes> {
+  _CopyWithStubImpl$Mutation$RefreashToken(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$RefreashToken$refreshToken? refreshToken,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$RefreashToken$refreshToken<TRes> get refreshToken =>
+      CopyWith$Mutation$RefreashToken$refreshToken.stub(_res);
+}
+
+const documentNodeMutationRefreashToken = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'RefreashToken'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'refreshToken')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'refreshToken'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'refreshToken'),
+            value: VariableNode(name: NameNode(value: 'refreshToken')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'token'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'payload'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'refreshExpiresIn'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$RefreashToken _parserFn$Mutation$RefreashToken(
+        Map<String, dynamic> data) =>
+    Mutation$RefreashToken.fromJson(data);
+typedef OnMutationCompleted$Mutation$RefreashToken = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$RefreashToken?,
+);
+
+class Options$Mutation$RefreashToken
+    extends graphql.MutationOptions<Mutation$RefreashToken> {
+  Options$Mutation$RefreashToken({
+    String? operationName,
+    required Variables$Mutation$RefreashToken variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$RefreashToken? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$RefreashToken? onCompleted,
+    graphql.OnMutationUpdate<Mutation$RefreashToken>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RefreashToken(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationRefreashToken,
+          parserFn: _parserFn$Mutation$RefreashToken,
+        );
+
+  final OnMutationCompleted$Mutation$RefreashToken? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$RefreashToken
+    extends graphql.WatchQueryOptions<Mutation$RefreashToken> {
+  WatchOptions$Mutation$RefreashToken({
+    String? operationName,
+    required Variables$Mutation$RefreashToken variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$RefreashToken? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationRefreashToken,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$RefreashToken,
+        );
+}
+
+extension ClientExtension$Mutation$RefreashToken on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$RefreashToken>> mutate$RefreashToken(
+          Options$Mutation$RefreashToken options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$RefreashToken> watchMutation$RefreashToken(
+          WatchOptions$Mutation$RefreashToken options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$RefreashToken$refreshToken {
+  Mutation$RefreashToken$refreshToken({
+    required this.token,
+    required this.payload,
+    required this.refreshExpiresIn,
+    this.$__typename = 'Refresh',
+  });
+
+  factory Mutation$RefreashToken$refreshToken.fromJson(
+      Map<String, dynamic> json) {
+    final l$token = json['token'];
+    final l$payload = json['payload'];
+    final l$refreshExpiresIn = json['refreshExpiresIn'];
+    final l$$__typename = json['__typename'];
+    return Mutation$RefreashToken$refreshToken(
+      token: (l$token as String),
+      payload: (l$payload as dynamic),
+      refreshExpiresIn: (l$refreshExpiresIn as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String token;
+
+  final dynamic payload;
+
+  final int refreshExpiresIn;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$token = token;
+    _resultData['token'] = l$token;
+    final l$payload = payload;
+    _resultData['payload'] = l$payload;
+    final l$refreshExpiresIn = refreshExpiresIn;
+    _resultData['refreshExpiresIn'] = l$refreshExpiresIn;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$token = token;
+    final l$payload = payload;
+    final l$refreshExpiresIn = refreshExpiresIn;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$token,
+      l$payload,
+      l$refreshExpiresIn,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$RefreashToken$refreshToken ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) {
+      return false;
+    }
+    final l$payload = payload;
+    final lOther$payload = other.payload;
+    if (l$payload != lOther$payload) {
+      return false;
+    }
+    final l$refreshExpiresIn = refreshExpiresIn;
+    final lOther$refreshExpiresIn = other.refreshExpiresIn;
+    if (l$refreshExpiresIn != lOther$refreshExpiresIn) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RefreashToken$refreshToken
+    on Mutation$RefreashToken$refreshToken {
+  CopyWith$Mutation$RefreashToken$refreshToken<
+          Mutation$RefreashToken$refreshToken>
+      get copyWith => CopyWith$Mutation$RefreashToken$refreshToken(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$RefreashToken$refreshToken<TRes> {
+  factory CopyWith$Mutation$RefreashToken$refreshToken(
+    Mutation$RefreashToken$refreshToken instance,
+    TRes Function(Mutation$RefreashToken$refreshToken) then,
+  ) = _CopyWithImpl$Mutation$RefreashToken$refreshToken;
+
+  factory CopyWith$Mutation$RefreashToken$refreshToken.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RefreashToken$refreshToken;
+
+  TRes call({
+    String? token,
+    dynamic? payload,
+    int? refreshExpiresIn,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$RefreashToken$refreshToken<TRes>
+    implements CopyWith$Mutation$RefreashToken$refreshToken<TRes> {
+  _CopyWithImpl$Mutation$RefreashToken$refreshToken(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$RefreashToken$refreshToken _instance;
+
+  final TRes Function(Mutation$RefreashToken$refreshToken) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? token = _undefined,
+    Object? payload = _undefined,
+    Object? refreshExpiresIn = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$RefreashToken$refreshToken(
+        token: token == _undefined || token == null
+            ? _instance.token
+            : (token as String),
+        payload: payload == _undefined || payload == null
+            ? _instance.payload
+            : (payload as dynamic),
+        refreshExpiresIn:
+            refreshExpiresIn == _undefined || refreshExpiresIn == null
+                ? _instance.refreshExpiresIn
+                : (refreshExpiresIn as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$RefreashToken$refreshToken<TRes>
+    implements CopyWith$Mutation$RefreashToken$refreshToken<TRes> {
+  _CopyWithStubImpl$Mutation$RefreashToken$refreshToken(this._res);
+
+  TRes _res;
+
+  call({
+    String? token,
+    dynamic? payload,
+    int? refreshExpiresIn,
     String? $__typename,
   }) =>
       _res;

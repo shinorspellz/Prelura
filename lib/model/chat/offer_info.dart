@@ -371,6 +371,7 @@ class OfferSubStateInfo {
   String? updatedBy, createdBy;
   String? status;
   Recipient? buyer;
+  dynamic imageUrls;
   DateTime? updatedAt;
   DateTime? createdAt;
   ChildProduct? product;
@@ -380,6 +381,7 @@ class OfferSubStateInfo {
     this.id,
     this.message,
     this.offerPrice,
+    this.imageUrls,
     this.status,
     this.updatedBy,
     this.updatedAt,
@@ -430,6 +432,7 @@ class OfferSubStateInfo {
     DateTime? createdAt,
     String? updatedBy,
     String? createdBy,
+    dynamic imageUrls,
     DateTime? updatedAt,
     dynamic message,
     String? offerPrice,
@@ -444,6 +447,7 @@ class OfferSubStateInfo {
         updatedBy: updatedBy ?? this.updatedBy,
         createdBy: createdBy ?? this.createdBy,
         updatedAt: updatedAt ?? this.updatedAt,
+        imageUrls: imageUrls ?? this.imageUrls,
         message: message ?? this.message,
         offerPrice: offerPrice ?? this.offerPrice,
         status: status ?? this.status,

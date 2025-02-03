@@ -31708,6 +31708,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'imageUrls'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'isItem'),
                 alias: null,
                 arguments: [],
@@ -34667,6 +34674,7 @@ class Query$Conversations$conversations$lastMessage {
     this.attachment,
     this.attachmentType,
     required this.read,
+    required this.imageUrls,
     required this.isItem,
     this.sender,
     this.$__typename = 'MessageType',
@@ -34679,6 +34687,7 @@ class Query$Conversations$conversations$lastMessage {
     final l$attachment = json['attachment'];
     final l$attachmentType = json['attachmentType'];
     final l$read = json['read'];
+    final l$imageUrls = json['imageUrls'];
     final l$isItem = json['isItem'];
     final l$sender = json['sender'];
     final l$$__typename = json['__typename'];
@@ -34691,6 +34700,8 @@ class Query$Conversations$conversations$lastMessage {
           : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
               (l$attachmentType as String)),
       read: (l$read as bool),
+      imageUrls:
+          (l$imageUrls as List<dynamic>).map((e) => (e as String)).toList(),
       isItem: (l$isItem as bool),
       sender: l$sender == null
           ? null
@@ -34709,6 +34720,8 @@ class Query$Conversations$conversations$lastMessage {
   final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
 
   final bool read;
+
+  final List<String> imageUrls;
 
   final bool isItem;
 
@@ -34730,6 +34743,8 @@ class Query$Conversations$conversations$lastMessage {
         : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
     final l$read = read;
     _resultData['read'] = l$read;
+    final l$imageUrls = imageUrls;
+    _resultData['imageUrls'] = l$imageUrls.map((e) => e).toList();
     final l$isItem = isItem;
     _resultData['isItem'] = l$isItem;
     final l$sender = sender;
@@ -34746,6 +34761,7 @@ class Query$Conversations$conversations$lastMessage {
     final l$attachment = attachment;
     final l$attachmentType = attachmentType;
     final l$read = read;
+    final l$imageUrls = imageUrls;
     final l$isItem = isItem;
     final l$sender = sender;
     final l$$__typename = $__typename;
@@ -34755,6 +34771,7 @@ class Query$Conversations$conversations$lastMessage {
       l$attachment,
       l$attachmentType,
       l$read,
+      Object.hashAll(l$imageUrls.map((v) => v)),
       l$isItem,
       l$sender,
       l$$__typename,
@@ -34794,6 +34811,18 @@ class Query$Conversations$conversations$lastMessage {
     final lOther$read = other.read;
     if (l$read != lOther$read) {
       return false;
+    }
+    final l$imageUrls = imageUrls;
+    final lOther$imageUrls = other.imageUrls;
+    if (l$imageUrls.length != lOther$imageUrls.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imageUrls.length; i++) {
+      final l$imageUrls$entry = l$imageUrls[i];
+      final lOther$imageUrls$entry = lOther$imageUrls[i];
+      if (l$imageUrls$entry != lOther$imageUrls$entry) {
+        return false;
+      }
     }
     final l$isItem = isItem;
     final lOther$isItem = other.isItem;
@@ -34840,6 +34869,7 @@ abstract class CopyWith$Query$Conversations$conversations$lastMessage<TRes> {
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     bool? read,
+    List<String>? imageUrls,
     bool? isItem,
     Query$Conversations$conversations$lastMessage$sender? sender,
     String? $__typename,
@@ -34867,6 +34897,7 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
     Object? attachment = _undefined,
     Object? attachmentType = _undefined,
     Object? read = _undefined,
+    Object? imageUrls = _undefined,
     Object? isItem = _undefined,
     Object? sender = _undefined,
     Object? $__typename = _undefined,
@@ -34885,6 +34916,9 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
         read: read == _undefined || read == null
             ? _instance.read
             : (read as bool),
+        imageUrls: imageUrls == _undefined || imageUrls == null
+            ? _instance.imageUrls
+            : (imageUrls as List<String>),
         isItem: isItem == _undefined || isItem == null
             ? _instance.isItem
             : (isItem as bool),
@@ -34919,6 +34953,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage<TRes>
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     bool? read,
+    List<String>? imageUrls,
     bool? isItem,
     Query$Conversations$conversations$lastMessage$sender? sender,
     String? $__typename,
