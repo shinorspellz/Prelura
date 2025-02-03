@@ -68,12 +68,6 @@ class _AuthController extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(() async {
       await _repo.logout();
-
-      ref.refresh(authStateProvider.future);
-       final isAuthenticated = ref.read(authStateProvider).requireValue;
-
-       log("$isAuthenticated");
-
     });
   }
 }

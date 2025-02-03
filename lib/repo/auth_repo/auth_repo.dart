@@ -17,10 +17,11 @@ import 'package:rxdart/rxdart.dart';
 /// each graphql query or mutation.
 class AuthRepo {
   final GraphqlCL _client;
+  final GraphQLClient client;
   final Box _cacheBox;
   final Ref _ref;
 
-  AuthRepo(this._client, this._cacheBox, this._ref);
+  AuthRepo(this._client, this._cacheBox, this._ref, this.client);
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
@@ -90,25 +91,37 @@ class AuthRepo {
     String token = _cacheBox.get("REFRESH_TOKEN");
     log("The token is::: $token");
     try {
-      final response = await _client.executeGraphQL(
-        operation: ClientOperation(
-          (cl) => cl.mutate$Logout(Options$Mutation$Logout(
-            variables: Variables$Mutation$Logout(
-              refreshToken: token,
-            ),
-          )),
-        ),
-      );
-
-      if (response.logout!.message !=
-          "You do not have permission to perform this action") {
-        await _remove();
-        _ref.invalidateSelf();
+      // final response = await _client.executeGraphQL(
+      //   operation: ClientOperation(
+      //     (cl) => cl.mutate$Logout(Options$Mutation$Logout(
+      //       variables: Variables$Mutation$Logout(
+      //         refreshToken: token,
+      //       ),
+      //     )),
+      //   ),
+      // );
+      final response = await client.mutate$Logout(Options$Mutation$Logout(
+          variables: Variables$Mutation$Logout(refreshToken: token)));
+      if (response.hasException) {
+        if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+          final error = response.exception!.graphqlErrors.first.message;
+          log("$error");
+          throw error;
+        }
+        log(response.exception.toString(), name: 'UserRepo');
+        throw 'An error occured';
       }
+      // log(response.parsedData!.logout!.message!);
+      // if (response.parsedData!.logout!.message !=
+      //     "You do not have permission to perform this action") {
+      //   await _remove();
+      //   _ref.invalidateSelf();
+      // }
 
-      log('${response.logout?.message}', name: 'AuthMutation');
-    } catch (e) {
+      log('${response.parsedData!.logout?.message}', name: 'AuthMutation');
+    } catch (e, _) {
       log(":::Error from logout user:::: ::: $e");
+      log(":::Error from logout user:::: ::: $_");
     }
   }
 
