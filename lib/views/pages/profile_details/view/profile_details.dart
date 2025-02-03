@@ -107,8 +107,8 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                     onTap: (context) {
                       Navigator.pop(context);
 
-                      context.router.push(
-                          ReportAccountOptionsRoute(username: widget.username));
+                      context.router.push(ReportAccountOptionsRoute(
+                          username: widget.username, isProduct: false));
                     },
                     title: 'Report',
                     textColor: PreluraColors.error),

@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
@@ -147,14 +149,13 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
   ProductFilterNotifier(this.ref) : super({});
 
   void updateFilter(FilterTypes filterType, String value) {
+    final query = ref.read(filteredProductSearchQueryProvider);
     // Update the local filter state
     state = state..[filterType] = value;
 
     log(filterType.toString());
     log(value);
-    final providerFilter = ref.read(filteredProductProvider('').notifier);
-    final discountedProviderFilter =
-        ref.read(discountedProductsProvider('').notifier);
+    final providerFilter = ref.read(filteredProductProvider(query).notifier);
     log(providerFilter.currentFilter!.toJson().toString(),
         name: ' filteredProducts filter in search provider ');
 
@@ -276,19 +277,100 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     }
   }
 
-  void removeFilter(FilterTypes filterType) {
+  void removeFilter(FilterTypes filterType, BuildContext context) {
     state.remove(filterType);
-    final providerFilter = ref.read(filteredProductProvider('').notifier);
-    // providerFilter.removeFilter();
+    final query = ref.read(filteredProductSearchQueryProvider);
+    final providerFilter = ref.read(filteredProductProvider(query).notifier);
+    final selectedProvider = ref.read(selectedFilteredProductProvider);
+    final currentProvider = providerFilter.currentFilter;
+    final routeName = context.router.current.name;
 
-    ref.refresh(filteredProductProvider("").future);
-    ref.refresh(discountedProductsProvider("").future);
+    final brandFilter = state.entries
+        .where((e) => e.key == FilterTypes.brand)
+        .firstOrNull
+        ?.value;
+    final conditionFilter = state.entries
+        .where((e) => e.key == FilterTypes.condition)
+        .firstOrNull
+        ?.value;
+    final styleFilter = state.entries
+        .where((e) => e.key == FilterTypes.style)
+        .firstOrNull
+        ?.value;
+    final parentCategoryFilter = state.entries
+        .where((e) => e.key == FilterTypes.gender)
+        .firstOrNull
+        ?.value;
+    final colorFilter = state.entries
+        .where((e) => e.key == FilterTypes.color)
+        .firstOrNull
+        ?.value;
+    final minPriceFilter = state.entries
+        .where((e) => e.key == FilterTypes.price)
+        .firstOrNull
+        ?.value
+        .split(" ")
+        .first;
+    final maxPriceFilter = state.entries
+        .where((e) => e.key == FilterTypes.price)
+        .firstOrNull
+        ?.value
+        .split(" ")
+        .last;
+
+    final brand = ref
+        .watch(brandsProvider)
+        .valueOrNull
+        ?.where((e) => e.name == brandFilter)
+        .firstOrNull;
+
+    final category = Enum$ParentCategoryEnum.values
+        .where((e) => e.name == parentCategoryFilter)
+        .firstOrNull;
+    final condition = ConditionsEnum.values
+        .where((e) => e.name == conditionFilter)
+        .firstOrNull;
+    final style =
+        Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
+
+    final color = ref
+        .watch(colorsProvider)
+        .entries
+        .where((e) => e.key == colorFilter)
+        .firstOrNull
+        ?.key;
+
+    log(selectedProvider.toJson().toString(),
+        name: 'selectedProvider in search provider');
+    log(context.router.current.name, name: 'current route in search provider');
+
+    final filter = Input$ProductFiltersInput(
+        parentCategory: routeName == "FilterProductRoute"
+            ? currentProvider?.parentCategory
+            : category,
+        maxPrice: routeName == "ProductPriceFilterRoute"
+            ? currentProvider?.maxPrice
+            : maxPriceFilter != null && maxPriceFilter.isNotEmpty
+                ? double.parse(maxPriceFilter ?? "0")
+                : null,
+        minPrice: minPriceFilter != null && minPriceFilter.isNotEmpty
+            ? double.parse(minPriceFilter ?? "0")
+            : 0,
+        brand: currentProvider?.brand,
+        condition: condition,
+        style: routeName == "ChristmasFilteredProductRoute"
+            ? currentProvider?.style
+            : style,
+        discountPrice: currentProvider?.discountPrice,
+        hashtags: currentProvider?.hashtags,
+        colors: color != null ? [color] : []);
+
+    providerFilter.updateFilter(filter);
   }
 
   void clearFilter() {
     state = {};
     ref.invalidate(filteredProductProvider);
-    ref.invalidate(discountedProductsProvider);
   }
 }
 
@@ -376,7 +458,8 @@ void ShowFilteredProductFilterModal(
                               log("value : $value",
                                   name: "Search product provider");
                               if (selectedOptions == e) {
-                                filterNotifier.removeFilter(filterType);
+                                filterNotifier.removeFilter(
+                                    filterType, context);
                                 selectedOptions = "";
                               } else {
                                 filterNotifier.updateFilter(filterType, e);
@@ -400,7 +483,7 @@ void ShowFilteredProductFilterModal(
                     width: double.infinity,
                     isDisabled: selectedOptions == null,
                     onTap: () {
-                      filterNotifier.removeFilter(filterType);
+                      filterNotifier.removeFilter(filterType, context);
                       Navigator.pop(context);
                       setState(() {
                         selectedOptions = null;

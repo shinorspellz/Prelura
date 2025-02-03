@@ -9,13 +9,15 @@ import '../../widgets/gap.dart';
 
 @RoutePage()
 class ReportAccountOptionsPage extends ConsumerStatefulWidget {
-  const ReportAccountOptionsPage({
-    super.key,
-    required this.username,
-  });
+  const ReportAccountOptionsPage(
+      {super.key,
+      required this.username,
+      required this.isProduct,
+      this.productId});
 
   final String username;
-
+  final bool isProduct;
+  final int? productId;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _ReportAccountOptionsPageState();
@@ -35,6 +37,13 @@ class _ReportAccountOptionsPageState
     "This user has engaged in harassing or abusive behavior towards others on the platform.",
     "Other",
   ];
+  final productOptions = <String>[
+    "The product has violated our community guidelines and terms of service.",
+    "The product has posted inappropriate or explicit content.",
+    "This product has been involved in fraudulent or deceptive activities.",
+    "The product has been consistently unprofessional in their description.",
+    "Other",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +60,23 @@ class _ReportAccountOptionsPageState
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Column(
           children: [
-            ...options.map((e) {
-              return PreluraCheckBox(
-                isChecked: isOptionSelected,
-                title: e,
-                onChanged: (value) => _onItemSelected(e, context),
-              );
-            }).toList(),
+            if (!widget.isProduct) ...[
+              ...options.map((e) {
+                return PreluraCheckBox(
+                  isChecked: isOptionSelected,
+                  title: e,
+                  onChanged: (value) => _onItemSelected(e, context),
+                );
+              }).toList(),
+            ] else ...[
+              ...productOptions.map((e) {
+                return PreluraCheckBox(
+                  isChecked: isOptionSelected,
+                  title: e,
+                  onChanged: (value) => _onItemSelected(e, context),
+                );
+              }).toList(),
+            ],
             16.verticalSpacing
           ],
         ),
@@ -67,9 +86,10 @@ class _ReportAccountOptionsPageState
 
   void _onItemSelected(String option, BuildContext context) {
     context.router.push(ReportAccountHomepage(
-      selectedOption: option,
-      isOptionSelected: true,
-      username: widget.username,
-    ));
+        selectedOption: option,
+        isOptionSelected: true,
+        username: widget.username,
+        productId: widget.productId,
+        isProduct: widget.isProduct));
   }
 }

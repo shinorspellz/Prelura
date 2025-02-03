@@ -122,16 +122,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             password!.trim(),
                           );
                       ref.read(authProvider).whenOrNull(
-                            error: (e, _) => context.alert(e.toString()),
-                            data: (_) {
-                              if (widget.onLoginResult == null) {
-                                context.router.replaceAll([const AuthRoute()]);
-                                log('auth with login result');
-                                return;
-                              }
-                              widget.onLoginResult?.call(true);
-                            },
-                          );
+                        error: (e, _) {
+                          context.alert(e.toString());
+                          log("$e");
+                          log("$_");
+                        },
+                        data: (_) {
+                          if (widget.onLoginResult == null) {
+                            context.router.replaceAll([const AuthRoute()]);
+                            log('auth with login result');
+                            return;
+                          }
+                          widget.onLoginResult?.call(true);
+                        },
+                      );
                     },
                     buttonTitle: 'Sign in',
                   ),

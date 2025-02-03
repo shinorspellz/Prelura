@@ -2055,6 +2055,8 @@ class ReportAccountHomepage
     required String selectedOption,
     required bool isOptionSelected,
     required String username,
+    int? productId,
+    required bool isProduct,
     _i87.Key? key,
     List<_i86.PageRouteInfo>? children,
   }) : super(
@@ -2063,6 +2065,8 @@ class ReportAccountHomepage
             selectedOption: selectedOption,
             isOptionSelected: isOptionSelected,
             username: username,
+            productId: productId,
+            isProduct: isProduct,
             key: key,
           ),
           initialChildren: children,
@@ -2078,6 +2082,8 @@ class ReportAccountHomepage
         selectedOption: args.selectedOption,
         isOptionSelected: args.isOptionSelected,
         username: args.username,
+        productId: args.productId,
+        isProduct: args.isProduct,
         key: args.key,
       );
     },
@@ -2089,6 +2095,8 @@ class ReportAccountHomepageArgs {
     required this.selectedOption,
     required this.isOptionSelected,
     required this.username,
+    this.productId,
+    required this.isProduct,
     this.key,
   });
 
@@ -2098,11 +2106,15 @@ class ReportAccountHomepageArgs {
 
   final String username;
 
+  final int? productId;
+
+  final bool isProduct;
+
   final _i87.Key? key;
 
   @override
   String toString() {
-    return 'ReportAccountHomepageArgs{selectedOption: $selectedOption, isOptionSelected: $isOptionSelected, username: $username, key: $key}';
+    return 'ReportAccountHomepageArgs{selectedOption: $selectedOption, isOptionSelected: $isOptionSelected, username: $username, productId: $productId, isProduct: $isProduct, key: $key}';
   }
 }
 
@@ -2113,12 +2125,16 @@ class ReportAccountOptionsRoute
   ReportAccountOptionsRoute({
     _i87.Key? key,
     required String username,
+    required bool isProduct,
+    int? productId,
     List<_i86.PageRouteInfo>? children,
   }) : super(
           ReportAccountOptionsRoute.name,
           args: ReportAccountOptionsRouteArgs(
             key: key,
             username: username,
+            isProduct: isProduct,
+            productId: productId,
           ),
           initialChildren: children,
         );
@@ -2132,6 +2148,8 @@ class ReportAccountOptionsRoute
       return _i64.ReportAccountOptionsPage(
         key: args.key,
         username: args.username,
+        isProduct: args.isProduct,
+        productId: args.productId,
       );
     },
   );
@@ -2141,15 +2159,21 @@ class ReportAccountOptionsRouteArgs {
   const ReportAccountOptionsRouteArgs({
     this.key,
     required this.username,
+    required this.isProduct,
+    this.productId,
   });
 
   final _i87.Key? key;
 
   final String username;
 
+  final bool isProduct;
+
+  final int? productId;
+
   @override
   String toString() {
-    return 'ReportAccountOptionsRouteArgs{key: $key, username: $username}';
+    return 'ReportAccountOptionsRouteArgs{key: $key, username: $username, isProduct: $isProduct, productId: $productId}';
   }
 }
 

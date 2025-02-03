@@ -13,6 +13,7 @@ import '../widgets/SearchWidget.dart';
 import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/error_placeholder.dart';
 import '../widgets/gap.dart';
+import 'profile_details/widgets/no_product_widget.dart';
 import 'sell_item/brand_view.dart';
 
 @RoutePage()
@@ -67,7 +68,7 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                   return products.isEmpty
                       ? SizedBox(
                           height: MediaQuery.of(context).size.height * 0.7,
-                          child: EmptyScreenPlaceholder(text: "No items"),
+                          child: NoProductWidget(),
                         )
                       : CustomScrollView(controller: controller, slivers: [
                           SliverPersistentHeader(
