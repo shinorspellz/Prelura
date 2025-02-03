@@ -41,8 +41,8 @@ class AuthRepo {
     log("token is ${response.login!.token!}");
     await _store(
       response.login!.token!,
-      response.login!.restToken!,
       response.login!.user!.username!,
+      response.login!.refreshToken!,
     );
 
     log('Bearer ${response.login?.token}', name: 'AuthMutation');
@@ -111,10 +111,12 @@ class AuthRepo {
   }
 
   /// Cache all required data neccesary for user session like [token], [restToken] & [username]
-  Future<void> _store(String token, String restToken, String username) async {
+  Future<void> _store(
+      String token, String username, String refreshToken) async {
     await _cacheBox.put('AUTH_TOKEN', token);
-    await _cacheBox.put('REST_TOKEN', restToken);
+    await _cacheBox.put('REFRESH_TOKEN', refreshToken);
     await _cacheBox.put('USERNAME', username);
+    await _cacheBox.put('tokenTime', DateTime.now());
   }
 
   Stream<BoxEvent> authState() {

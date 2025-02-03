@@ -2,6 +2,7 @@ mutation Login($password: String!, $username: String) {
   login(password: $password, username: $username) {
     restToken
     token
+    refreshToken
     user {
       id
       username
@@ -40,8 +41,8 @@ mutation Logout {
   }
 }
 
-mutation TokenAuth($email: String, $password: String!, $username: String!) {
-  tokenAuth(email: $email, password: $password, username: $username) {
+mutation RefreashToken($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken ) {
     token
     payload
     refreshExpiresIn

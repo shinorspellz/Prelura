@@ -335,6 +335,13 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'refreshToken'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'user'),
             alias: null,
             arguments: [],
@@ -478,19 +485,22 @@ extension ClientExtension$Mutation$Login on graphql.GraphQLClient {
 class Mutation$Login$login {
   Mutation$Login$login({
     this.restToken,
-    this.token,
+    required this.token,
+    required this.refreshToken,
     this.user,
-    this.$__typename = 'LoginMutation',
+    this.$__typename = 'NewObtainJSONWebToken',
   });
 
   factory Mutation$Login$login.fromJson(Map<String, dynamic> json) {
     final l$restToken = json['restToken'];
     final l$token = json['token'];
+    final l$refreshToken = json['refreshToken'];
     final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Mutation$Login$login(
       restToken: (l$restToken as String?),
-      token: (l$token as String?),
+      token: (l$token as String),
+      refreshToken: (l$refreshToken as String),
       user: l$user == null
           ? null
           : Mutation$Login$login$user.fromJson(
@@ -501,7 +511,9 @@ class Mutation$Login$login {
 
   final String? restToken;
 
-  final String? token;
+  final String token;
+
+  final String refreshToken;
 
   final Mutation$Login$login$user? user;
 
@@ -513,6 +525,8 @@ class Mutation$Login$login {
     _resultData['restToken'] = l$restToken;
     final l$token = token;
     _resultData['token'] = l$token;
+    final l$refreshToken = refreshToken;
+    _resultData['refreshToken'] = l$refreshToken;
     final l$user = user;
     _resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
@@ -524,11 +538,13 @@ class Mutation$Login$login {
   int get hashCode {
     final l$restToken = restToken;
     final l$token = token;
+    final l$refreshToken = refreshToken;
     final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$restToken,
       l$token,
+      l$refreshToken,
       l$user,
       l$$__typename,
     ]);
@@ -550,6 +566,11 @@ class Mutation$Login$login {
     final l$token = token;
     final lOther$token = other.token;
     if (l$token != lOther$token) {
+      return false;
+    }
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (l$refreshToken != lOther$refreshToken) {
       return false;
     }
     final l$user = user;
@@ -586,6 +607,7 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
   TRes call({
     String? restToken,
     String? token,
+    String? refreshToken,
     Mutation$Login$login$user? user,
     String? $__typename,
   });
@@ -608,6 +630,7 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
   TRes call({
     Object? restToken = _undefined,
     Object? token = _undefined,
+    Object? refreshToken = _undefined,
     Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -615,7 +638,12 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
         restToken: restToken == _undefined
             ? _instance.restToken
             : (restToken as String?),
-        token: token == _undefined ? _instance.token : (token as String?),
+        token: token == _undefined || token == null
+            ? _instance.token
+            : (token as String),
+        refreshToken: refreshToken == _undefined || refreshToken == null
+            ? _instance.refreshToken
+            : (refreshToken as String),
         user: user == _undefined
             ? _instance.user
             : (user as Mutation$Login$login$user?),
@@ -641,6 +669,7 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes>
   call({
     String? restToken,
     String? token,
+    String? refreshToken,
     Mutation$Login$login$user? user,
     String? $__typename,
   }) =>
@@ -652,9 +681,9 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes>
 
 class Mutation$Login$login$user {
   Mutation$Login$login$user({
-    this.id,
-    this.username,
-    this.$__typename = 'UserType',
+    required this.id,
+    required this.username,
+    this.$__typename = 'UserNode',
   });
 
   factory Mutation$Login$login$user.fromJson(Map<String, dynamic> json) {
@@ -662,15 +691,15 @@ class Mutation$Login$login$user {
     final l$username = json['username'];
     final l$$__typename = json['__typename'];
     return Mutation$Login$login$user(
-      id: (l$id as int?),
-      username: (l$username as String?),
+      id: (l$id as String),
+      username: (l$username as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int? id;
+  final String id;
 
-  final String? username;
+  final String username;
 
   final String $__typename;
 
@@ -744,7 +773,7 @@ abstract class CopyWith$Mutation$Login$login$user<TRes> {
       _CopyWithStubImpl$Mutation$Login$login$user;
 
   TRes call({
-    int? id,
+    String? id,
     String? username,
     String? $__typename,
   });
@@ -769,9 +798,10 @@ class _CopyWithImpl$Mutation$Login$login$user<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login$login$user(
-        id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -785,7 +815,7 @@ class _CopyWithStubImpl$Mutation$Login$login$user<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? id,
     String? username,
     String? $__typename,
   }) =>
@@ -1967,56 +1997,34 @@ class _CopyWithStubImpl$Mutation$Logout$logout<TRes>
       _res;
 }
 
-class Variables$Mutation$TokenAuth {
-  factory Variables$Mutation$TokenAuth({
-    String? email,
-    required String password,
-    required String username,
-  }) =>
-      Variables$Mutation$TokenAuth._({
-        if (email != null) r'email': email,
-        r'password': password,
-        r'username': username,
+class Variables$Mutation$RefreashToken {
+  factory Variables$Mutation$RefreashToken({required String refreshToken}) =>
+      Variables$Mutation$RefreashToken._({
+        r'refreshToken': refreshToken,
       });
 
-  Variables$Mutation$TokenAuth._(this._$data);
+  Variables$Mutation$RefreashToken._(this._$data);
 
-  factory Variables$Mutation$TokenAuth.fromJson(Map<String, dynamic> data) {
+  factory Variables$Mutation$RefreashToken.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('email')) {
-      final l$email = data['email'];
-      result$data['email'] = (l$email as String?);
-    }
-    final l$password = data['password'];
-    result$data['password'] = (l$password as String);
-    final l$username = data['username'];
-    result$data['username'] = (l$username as String);
-    return Variables$Mutation$TokenAuth._(result$data);
+    final l$refreshToken = data['refreshToken'];
+    result$data['refreshToken'] = (l$refreshToken as String);
+    return Variables$Mutation$RefreashToken._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get email => (_$data['email'] as String?);
-
-  String get password => (_$data['password'] as String);
-
-  String get username => (_$data['username'] as String);
+  String get refreshToken => (_$data['refreshToken'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('email')) {
-      final l$email = email;
-      result$data['email'] = l$email;
-    }
-    final l$password = password;
-    result$data['password'] = l$password;
-    final l$username = username;
-    result$data['username'] = l$username;
+    final l$refreshToken = refreshToken;
+    result$data['refreshToken'] = l$refreshToken;
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$TokenAuth<Variables$Mutation$TokenAuth>
-      get copyWith => CopyWith$Variables$Mutation$TokenAuth(
+  CopyWith$Variables$Mutation$RefreashToken<Variables$Mutation$RefreashToken>
+      get copyWith => CopyWith$Variables$Mutation$RefreashToken(
             this,
             (i) => i,
           );
@@ -2026,26 +2034,13 @@ class Variables$Mutation$TokenAuth {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$TokenAuth ||
+    if (other is! Variables$Mutation$RefreashToken ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$email = email;
-    final lOther$email = other.email;
-    if (_$data.containsKey('email') != other._$data.containsKey('email')) {
-      return false;
-    }
-    if (l$email != lOther$email) {
-      return false;
-    }
-    final l$password = password;
-    final lOther$password = other.password;
-    if (l$password != lOther$password) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (l$refreshToken != lOther$refreshToken) {
       return false;
     }
     return true;
@@ -2053,101 +2048,79 @@ class Variables$Mutation$TokenAuth {
 
   @override
   int get hashCode {
-    final l$email = email;
-    final l$password = password;
-    final l$username = username;
-    return Object.hashAll([
-      _$data.containsKey('email') ? l$email : const {},
-      l$password,
-      l$username,
-    ]);
+    final l$refreshToken = refreshToken;
+    return Object.hashAll([l$refreshToken]);
   }
 }
 
-abstract class CopyWith$Variables$Mutation$TokenAuth<TRes> {
-  factory CopyWith$Variables$Mutation$TokenAuth(
-    Variables$Mutation$TokenAuth instance,
-    TRes Function(Variables$Mutation$TokenAuth) then,
-  ) = _CopyWithImpl$Variables$Mutation$TokenAuth;
+abstract class CopyWith$Variables$Mutation$RefreashToken<TRes> {
+  factory CopyWith$Variables$Mutation$RefreashToken(
+    Variables$Mutation$RefreashToken instance,
+    TRes Function(Variables$Mutation$RefreashToken) then,
+  ) = _CopyWithImpl$Variables$Mutation$RefreashToken;
 
-  factory CopyWith$Variables$Mutation$TokenAuth.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$TokenAuth;
+  factory CopyWith$Variables$Mutation$RefreashToken.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$RefreashToken;
 
-  TRes call({
-    String? email,
-    String? password,
-    String? username,
-  });
+  TRes call({String? refreshToken});
 }
 
-class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes>
-    implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
-  _CopyWithImpl$Variables$Mutation$TokenAuth(
+class _CopyWithImpl$Variables$Mutation$RefreashToken<TRes>
+    implements CopyWith$Variables$Mutation$RefreashToken<TRes> {
+  _CopyWithImpl$Variables$Mutation$RefreashToken(
     this._instance,
     this._then,
   );
 
-  final Variables$Mutation$TokenAuth _instance;
+  final Variables$Mutation$RefreashToken _instance;
 
-  final TRes Function(Variables$Mutation$TokenAuth) _then;
+  final TRes Function(Variables$Mutation$RefreashToken) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({
-    Object? email = _undefined,
-    Object? password = _undefined,
-    Object? username = _undefined,
-  }) =>
-      _then(Variables$Mutation$TokenAuth._({
+  TRes call({Object? refreshToken = _undefined}) =>
+      _then(Variables$Mutation$RefreashToken._({
         ..._instance._$data,
-        if (email != _undefined) 'email': (email as String?),
-        if (password != _undefined && password != null)
-          'password': (password as String),
-        if (username != _undefined && username != null)
-          'username': (username as String),
+        if (refreshToken != _undefined && refreshToken != null)
+          'refreshToken': (refreshToken as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$TokenAuth<TRes>
-    implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
-  _CopyWithStubImpl$Variables$Mutation$TokenAuth(this._res);
+class _CopyWithStubImpl$Variables$Mutation$RefreashToken<TRes>
+    implements CopyWith$Variables$Mutation$RefreashToken<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$RefreashToken(this._res);
 
   TRes _res;
 
-  call({
-    String? email,
-    String? password,
-    String? username,
-  }) =>
-      _res;
+  call({String? refreshToken}) => _res;
 }
 
-class Mutation$TokenAuth {
-  Mutation$TokenAuth({
-    this.tokenAuth,
+class Mutation$RefreashToken {
+  Mutation$RefreashToken({
+    this.refreshToken,
     this.$__typename = 'Mutation',
   });
 
-  factory Mutation$TokenAuth.fromJson(Map<String, dynamic> json) {
-    final l$tokenAuth = json['tokenAuth'];
+  factory Mutation$RefreashToken.fromJson(Map<String, dynamic> json) {
+    final l$refreshToken = json['refreshToken'];
     final l$$__typename = json['__typename'];
-    return Mutation$TokenAuth(
-      tokenAuth: l$tokenAuth == null
+    return Mutation$RefreashToken(
+      refreshToken: l$refreshToken == null
           ? null
-          : Mutation$TokenAuth$tokenAuth.fromJson(
-              (l$tokenAuth as Map<String, dynamic>)),
+          : Mutation$RefreashToken$refreshToken.fromJson(
+              (l$refreshToken as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$TokenAuth$tokenAuth? tokenAuth;
+  final Mutation$RefreashToken$refreshToken? refreshToken;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$tokenAuth = tokenAuth;
-    _resultData['tokenAuth'] = l$tokenAuth?.toJson();
+    final l$refreshToken = refreshToken;
+    _resultData['refreshToken'] = l$refreshToken?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2155,10 +2128,10 @@ class Mutation$TokenAuth {
 
   @override
   int get hashCode {
-    final l$tokenAuth = tokenAuth;
+    final l$refreshToken = refreshToken;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$tokenAuth,
+      l$refreshToken,
       l$$__typename,
     ]);
   }
@@ -2168,12 +2141,12 @@ class Mutation$TokenAuth {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$TokenAuth || runtimeType != other.runtimeType) {
+    if (other is! Mutation$RefreashToken || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$tokenAuth = tokenAuth;
-    final lOther$tokenAuth = other.tokenAuth;
-    if (l$tokenAuth != lOther$tokenAuth) {
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (l$refreshToken != lOther$refreshToken) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2185,132 +2158,106 @@ class Mutation$TokenAuth {
   }
 }
 
-extension UtilityExtension$Mutation$TokenAuth on Mutation$TokenAuth {
-  CopyWith$Mutation$TokenAuth<Mutation$TokenAuth> get copyWith =>
-      CopyWith$Mutation$TokenAuth(
+extension UtilityExtension$Mutation$RefreashToken on Mutation$RefreashToken {
+  CopyWith$Mutation$RefreashToken<Mutation$RefreashToken> get copyWith =>
+      CopyWith$Mutation$RefreashToken(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Mutation$TokenAuth<TRes> {
-  factory CopyWith$Mutation$TokenAuth(
-    Mutation$TokenAuth instance,
-    TRes Function(Mutation$TokenAuth) then,
-  ) = _CopyWithImpl$Mutation$TokenAuth;
+abstract class CopyWith$Mutation$RefreashToken<TRes> {
+  factory CopyWith$Mutation$RefreashToken(
+    Mutation$RefreashToken instance,
+    TRes Function(Mutation$RefreashToken) then,
+  ) = _CopyWithImpl$Mutation$RefreashToken;
 
-  factory CopyWith$Mutation$TokenAuth.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$TokenAuth;
+  factory CopyWith$Mutation$RefreashToken.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RefreashToken;
 
   TRes call({
-    Mutation$TokenAuth$tokenAuth? tokenAuth,
+    Mutation$RefreashToken$refreshToken? refreshToken,
     String? $__typename,
   });
-  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth;
+  CopyWith$Mutation$RefreashToken$refreshToken<TRes> get refreshToken;
 }
 
-class _CopyWithImpl$Mutation$TokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth<TRes> {
-  _CopyWithImpl$Mutation$TokenAuth(
+class _CopyWithImpl$Mutation$RefreashToken<TRes>
+    implements CopyWith$Mutation$RefreashToken<TRes> {
+  _CopyWithImpl$Mutation$RefreashToken(
     this._instance,
     this._then,
   );
 
-  final Mutation$TokenAuth _instance;
+  final Mutation$RefreashToken _instance;
 
-  final TRes Function(Mutation$TokenAuth) _then;
+  final TRes Function(Mutation$RefreashToken) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? tokenAuth = _undefined,
+    Object? refreshToken = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$TokenAuth(
-        tokenAuth: tokenAuth == _undefined
-            ? _instance.tokenAuth
-            : (tokenAuth as Mutation$TokenAuth$tokenAuth?),
+      _then(Mutation$RefreashToken(
+        refreshToken: refreshToken == _undefined
+            ? _instance.refreshToken
+            : (refreshToken as Mutation$RefreashToken$refreshToken?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth {
-    final local$tokenAuth = _instance.tokenAuth;
-    return local$tokenAuth == null
-        ? CopyWith$Mutation$TokenAuth$tokenAuth.stub(_then(_instance))
-        : CopyWith$Mutation$TokenAuth$tokenAuth(
-            local$tokenAuth, (e) => call(tokenAuth: e));
+  CopyWith$Mutation$RefreashToken$refreshToken<TRes> get refreshToken {
+    final local$refreshToken = _instance.refreshToken;
+    return local$refreshToken == null
+        ? CopyWith$Mutation$RefreashToken$refreshToken.stub(_then(_instance))
+        : CopyWith$Mutation$RefreashToken$refreshToken(
+            local$refreshToken, (e) => call(refreshToken: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$TokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth<TRes> {
-  _CopyWithStubImpl$Mutation$TokenAuth(this._res);
+class _CopyWithStubImpl$Mutation$RefreashToken<TRes>
+    implements CopyWith$Mutation$RefreashToken<TRes> {
+  _CopyWithStubImpl$Mutation$RefreashToken(this._res);
 
   TRes _res;
 
   call({
-    Mutation$TokenAuth$tokenAuth? tokenAuth,
+    Mutation$RefreashToken$refreshToken? refreshToken,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth =>
-      CopyWith$Mutation$TokenAuth$tokenAuth.stub(_res);
+  CopyWith$Mutation$RefreashToken$refreshToken<TRes> get refreshToken =>
+      CopyWith$Mutation$RefreashToken$refreshToken.stub(_res);
 }
 
-const documentNodeMutationTokenAuth = DocumentNode(definitions: [
+const documentNodeMutationRefreashToken = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.mutation,
-    name: NameNode(value: 'TokenAuth'),
+    name: NameNode(value: 'RefreashToken'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'email')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'password')),
+        variable: VariableNode(name: NameNode(value: 'refreshToken')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'username')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
+      )
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'tokenAuth'),
+        name: NameNode(value: 'refreshToken'),
         alias: null,
         arguments: [
           ArgumentNode(
-            name: NameNode(value: 'email'),
-            value: VariableNode(name: NameNode(value: 'email')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'password'),
-            value: VariableNode(name: NameNode(value: 'password')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'username'),
-            value: VariableNode(name: NameNode(value: 'username')),
-          ),
+            name: NameNode(value: 'refreshToken'),
+            value: VariableNode(name: NameNode(value: 'refreshToken')),
+          )
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -2354,26 +2301,27 @@ const documentNodeMutationTokenAuth = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$TokenAuth _parserFn$Mutation$TokenAuth(Map<String, dynamic> data) =>
-    Mutation$TokenAuth.fromJson(data);
-typedef OnMutationCompleted$Mutation$TokenAuth = FutureOr<void> Function(
+Mutation$RefreashToken _parserFn$Mutation$RefreashToken(
+        Map<String, dynamic> data) =>
+    Mutation$RefreashToken.fromJson(data);
+typedef OnMutationCompleted$Mutation$RefreashToken = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Mutation$TokenAuth?,
+  Mutation$RefreashToken?,
 );
 
-class Options$Mutation$TokenAuth
-    extends graphql.MutationOptions<Mutation$TokenAuth> {
-  Options$Mutation$TokenAuth({
+class Options$Mutation$RefreashToken
+    extends graphql.MutationOptions<Mutation$RefreashToken> {
+  Options$Mutation$RefreashToken({
     String? operationName,
-    required Variables$Mutation$TokenAuth variables,
+    required Variables$Mutation$RefreashToken variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$TokenAuth? typedOptimisticResult,
+    Mutation$RefreashToken? typedOptimisticResult,
     graphql.Context? context,
-    OnMutationCompleted$Mutation$TokenAuth? onCompleted,
-    graphql.OnMutationUpdate<Mutation$TokenAuth>? update,
+    OnMutationCompleted$Mutation$RefreashToken? onCompleted,
+    graphql.OnMutationUpdate<Mutation$RefreashToken>? update,
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
@@ -2388,15 +2336,17 @@ class Options$Mutation$TokenAuth
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$TokenAuth(data),
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RefreashToken(data),
                   ),
           update: update,
           onError: onError,
-          document: documentNodeMutationTokenAuth,
-          parserFn: _parserFn$Mutation$TokenAuth,
+          document: documentNodeMutationRefreashToken,
+          parserFn: _parserFn$Mutation$RefreashToken,
         );
 
-  final OnMutationCompleted$Mutation$TokenAuth? onCompletedWithParsed;
+  final OnMutationCompleted$Mutation$RefreashToken? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -2407,16 +2357,16 @@ class Options$Mutation$TokenAuth
       ];
 }
 
-class WatchOptions$Mutation$TokenAuth
-    extends graphql.WatchQueryOptions<Mutation$TokenAuth> {
-  WatchOptions$Mutation$TokenAuth({
+class WatchOptions$Mutation$RefreashToken
+    extends graphql.WatchQueryOptions<Mutation$RefreashToken> {
+  WatchOptions$Mutation$RefreashToken({
     String? operationName,
-    required Variables$Mutation$TokenAuth variables,
+    required Variables$Mutation$RefreashToken variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$TokenAuth? typedOptimisticResult,
+    Mutation$RefreashToken? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -2430,50 +2380,51 @@ class WatchOptions$Mutation$TokenAuth
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeMutationTokenAuth,
+          document: documentNodeMutationRefreashToken,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Mutation$TokenAuth,
+          parserFn: _parserFn$Mutation$RefreashToken,
         );
 }
 
-extension ClientExtension$Mutation$TokenAuth on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$TokenAuth>> mutate$TokenAuth(
-          Options$Mutation$TokenAuth options) async =>
+extension ClientExtension$Mutation$RefreashToken on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$RefreashToken>> mutate$RefreashToken(
+          Options$Mutation$RefreashToken options) async =>
       await this.mutate(options);
-  graphql.ObservableQuery<Mutation$TokenAuth> watchMutation$TokenAuth(
-          WatchOptions$Mutation$TokenAuth options) =>
+  graphql.ObservableQuery<Mutation$RefreashToken> watchMutation$RefreashToken(
+          WatchOptions$Mutation$RefreashToken options) =>
       this.watchMutation(options);
 }
 
-class Mutation$TokenAuth$tokenAuth {
-  Mutation$TokenAuth$tokenAuth({
+class Mutation$RefreashToken$refreshToken {
+  Mutation$RefreashToken$refreshToken({
     required this.token,
-    this.payload,
-    this.refreshExpiresIn,
-    this.$__typename = 'NewObtainJSONWebToken',
+    required this.payload,
+    required this.refreshExpiresIn,
+    this.$__typename = 'Refresh',
   });
 
-  factory Mutation$TokenAuth$tokenAuth.fromJson(Map<String, dynamic> json) {
+  factory Mutation$RefreashToken$refreshToken.fromJson(
+      Map<String, dynamic> json) {
     final l$token = json['token'];
     final l$payload = json['payload'];
     final l$refreshExpiresIn = json['refreshExpiresIn'];
     final l$$__typename = json['__typename'];
-    return Mutation$TokenAuth$tokenAuth(
+    return Mutation$RefreashToken$refreshToken(
       token: (l$token as String),
-      payload: (l$payload as dynamic?),
-      refreshExpiresIn: (l$refreshExpiresIn as int?),
+      payload: (l$payload as dynamic),
+      refreshExpiresIn: (l$refreshExpiresIn as int),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String token;
 
-  final dynamic? payload;
+  final dynamic payload;
 
-  final int? refreshExpiresIn;
+  final int refreshExpiresIn;
 
   final String $__typename;
 
@@ -2509,7 +2460,7 @@ class Mutation$TokenAuth$tokenAuth {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$TokenAuth$tokenAuth ||
+    if (other is! Mutation$RefreashToken$refreshToken ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2537,23 +2488,24 @@ class Mutation$TokenAuth$tokenAuth {
   }
 }
 
-extension UtilityExtension$Mutation$TokenAuth$tokenAuth
-    on Mutation$TokenAuth$tokenAuth {
-  CopyWith$Mutation$TokenAuth$tokenAuth<Mutation$TokenAuth$tokenAuth>
-      get copyWith => CopyWith$Mutation$TokenAuth$tokenAuth(
+extension UtilityExtension$Mutation$RefreashToken$refreshToken
+    on Mutation$RefreashToken$refreshToken {
+  CopyWith$Mutation$RefreashToken$refreshToken<
+          Mutation$RefreashToken$refreshToken>
+      get copyWith => CopyWith$Mutation$RefreashToken$refreshToken(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
-  factory CopyWith$Mutation$TokenAuth$tokenAuth(
-    Mutation$TokenAuth$tokenAuth instance,
-    TRes Function(Mutation$TokenAuth$tokenAuth) then,
-  ) = _CopyWithImpl$Mutation$TokenAuth$tokenAuth;
+abstract class CopyWith$Mutation$RefreashToken$refreshToken<TRes> {
+  factory CopyWith$Mutation$RefreashToken$refreshToken(
+    Mutation$RefreashToken$refreshToken instance,
+    TRes Function(Mutation$RefreashToken$refreshToken) then,
+  ) = _CopyWithImpl$Mutation$RefreashToken$refreshToken;
 
-  factory CopyWith$Mutation$TokenAuth$tokenAuth.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth;
+  factory CopyWith$Mutation$RefreashToken$refreshToken.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RefreashToken$refreshToken;
 
   TRes call({
     String? token,
@@ -2563,16 +2515,16 @@ abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
-  _CopyWithImpl$Mutation$TokenAuth$tokenAuth(
+class _CopyWithImpl$Mutation$RefreashToken$refreshToken<TRes>
+    implements CopyWith$Mutation$RefreashToken$refreshToken<TRes> {
+  _CopyWithImpl$Mutation$RefreashToken$refreshToken(
     this._instance,
     this._then,
   );
 
-  final Mutation$TokenAuth$tokenAuth _instance;
+  final Mutation$RefreashToken$refreshToken _instance;
 
-  final TRes Function(Mutation$TokenAuth$tokenAuth) _then;
+  final TRes Function(Mutation$RefreashToken$refreshToken) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -2582,24 +2534,26 @@ class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
     Object? refreshExpiresIn = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$TokenAuth$tokenAuth(
+      _then(Mutation$RefreashToken$refreshToken(
         token: token == _undefined || token == null
             ? _instance.token
             : (token as String),
-        payload:
-            payload == _undefined ? _instance.payload : (payload as dynamic?),
-        refreshExpiresIn: refreshExpiresIn == _undefined
-            ? _instance.refreshExpiresIn
-            : (refreshExpiresIn as int?),
+        payload: payload == _undefined || payload == null
+            ? _instance.payload
+            : (payload as dynamic),
+        refreshExpiresIn:
+            refreshExpiresIn == _undefined || refreshExpiresIn == null
+                ? _instance.refreshExpiresIn
+                : (refreshExpiresIn as int),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
-  _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth(this._res);
+class _CopyWithStubImpl$Mutation$RefreashToken$refreshToken<TRes>
+    implements CopyWith$Mutation$RefreashToken$refreshToken<TRes> {
+  _CopyWithStubImpl$Mutation$RefreashToken$refreshToken(this._res);
 
   TRes _res;
 
