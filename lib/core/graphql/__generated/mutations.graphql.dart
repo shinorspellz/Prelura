@@ -32545,7 +32545,7 @@ class _CopyWithStubImpl$Mutation$reportAccount$reportAccount<TRes>
 class Variables$Mutation$reportProduct {
   factory Variables$Mutation$reportProduct({
     required String reason,
-    required int productId,
+    required String productId,
     String? content,
   }) =>
       Variables$Mutation$reportProduct._({
@@ -32561,7 +32561,7 @@ class Variables$Mutation$reportProduct {
     final l$reason = data['reason'];
     result$data['reason'] = (l$reason as String);
     final l$productId = data['productId'];
-    result$data['productId'] = (l$productId as int);
+    result$data['productId'] = (l$productId as String);
     if (data.containsKey('content')) {
       final l$content = data['content'];
       result$data['content'] = (l$content as String?);
@@ -32573,7 +32573,7 @@ class Variables$Mutation$reportProduct {
 
   String get reason => (_$data['reason'] as String);
 
-  int get productId => (_$data['productId'] as int);
+  String get productId => (_$data['productId'] as String);
 
   String? get content => (_$data['content'] as String?);
 
@@ -32650,7 +32650,7 @@ abstract class CopyWith$Variables$Mutation$reportProduct<TRes> {
 
   TRes call({
     String? reason,
-    int? productId,
+    String? productId,
     String? content,
   });
 }
@@ -32678,7 +32678,7 @@ class _CopyWithImpl$Variables$Mutation$reportProduct<TRes>
         if (reason != _undefined && reason != null)
           'reason': (reason as String),
         if (productId != _undefined && productId != null)
-          'productId': (productId as int),
+          'productId': (productId as String),
         if (content != _undefined) 'content': (content as String?),
       }));
 }
@@ -32691,7 +32691,7 @@ class _CopyWithStubImpl$Variables$Mutation$reportProduct<TRes>
 
   call({
     String? reason,
-    int? productId,
+    String? productId,
     String? content,
   }) =>
       _res;
@@ -32852,7 +32852,7 @@ const documentNodeMutationreportProduct = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'productId')),
         type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
+          name: NameNode(value: 'ID'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),

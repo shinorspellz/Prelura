@@ -630,7 +630,7 @@ mutation reportAccount(
 
 mutation reportProduct(
   $reason: String!,
-  $productId: Int!,
+  $productId: ID!,
   $content: String
 ){
   reportProduct(

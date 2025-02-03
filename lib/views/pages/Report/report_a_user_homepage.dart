@@ -60,6 +60,7 @@ class _ReportAccountHomepageState extends ConsumerState<ReportAccountHomepage> {
                       isChecked: widget.isOptionSelected,
                       title: widget.selectedOption,
                       onChanged: (value) {}),
+                  16.verticalSpacing,
                   PreluraAuthTextField(
                     controller: textController,
                     isDescription: true,
@@ -93,13 +94,15 @@ class _ReportAccountHomepageState extends ConsumerState<ReportAccountHomepage> {
                                   reason: widget.selectedOption,
                                   productId: widget.productId ?? 0,
                                   content: textController.text);
+                          showLoading.value = false;
+
                           if (!response.isEmpty) {
                             textController.clear();
                             HelperFunction.context = context;
                             HelperFunction.showToast(
                               message: response,
                             );
-                            await Future.delayed(Duration(seconds: 1));
+                            await Future.delayed(Duration(seconds: 2));
 
                             Navigator.of(context)
                               ..pop()
@@ -113,20 +116,21 @@ class _ReportAccountHomepageState extends ConsumerState<ReportAccountHomepage> {
                                   reason: widget.selectedOption,
                                   username: widget.username,
                                   content: textController.text);
+                          showLoading.value = false;
+
                           if (!response.isEmpty) {
                             textController.clear();
                             HelperFunction.context = context;
                             HelperFunction.showToast(
                               message: response,
                             );
-                            await Future.delayed(Duration(seconds: 1));
+                            await Future.delayed(Duration(seconds: 2));
                             Navigator.of(context)
                               ..pop()
                               ..pop()
                               ..pop();
                           }
                         }
-                        showLoading.value = false;
                       }),
                 );
               })

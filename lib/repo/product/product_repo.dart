@@ -504,11 +504,15 @@ class ProductRepo {
   }
 
   Future<String> reportProduct(
-      {required int productId, required String reason, String? content}) async {
+      {required dynamic productId,
+      required String reason,
+      String? content}) async {
     final response = await _client.mutate$reportProduct(
         Options$Mutation$reportProduct(
             variables: Variables$Mutation$reportProduct(
-                reason: reason, productId: productId, content: content)));
+                reason: reason,
+                productId: productId.toString(),
+                content: content)));
 
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
