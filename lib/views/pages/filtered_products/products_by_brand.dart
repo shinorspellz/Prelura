@@ -41,6 +41,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
       if (!mounted) return;
 
       previousState = ref.read(selectedFilteredProductProvider);
+      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(
               brand: (widget.id)?.toInt(), customBrand: widget.customBrand);

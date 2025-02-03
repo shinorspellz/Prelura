@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
@@ -35,7 +36,7 @@ class _ProductPriceFilterPageState
 
     Future.microtask(() async {
       if (!mounted) return;
-
+      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(maxPrice: 15);
       await ref.refresh(filteredProductProvider(("")).future);
@@ -57,6 +58,9 @@ class _ProductPriceFilterPageState
   @override
   void dispose() {
     controller.dispose();
+    HelperFunction.genRef!
+        .read(filteredProductSearchQueryProvider.notifier)
+        .state = "";
     super.dispose();
   }
 

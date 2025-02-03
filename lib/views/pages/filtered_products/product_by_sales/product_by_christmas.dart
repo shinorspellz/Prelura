@@ -7,6 +7,7 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
 import '../../../../controller/product/product_provider.dart';
+import '../../../../res/helper_function.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../../../widgets/filters_options.dart';
@@ -33,6 +34,7 @@ class _ProductFilterPageState
     super.initState();
     Future.microtask(
       () async {
+        ref.read(filteredProductSearchQueryProvider.notifier).state = "";
         ref.read(selectedFilteredProductProvider.notifier).state =
             Input$ProductFiltersInput(style: widget.style);
         await ref.refresh(filteredProductProvider((searchQuery)).future);
@@ -54,6 +56,10 @@ class _ProductFilterPageState
 
   @override
   void dispose() {
+    HelperFunction.genRef!
+        .read(filteredProductSearchQueryProvider.notifier)
+        .state = "";
+
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -62,6 +68,8 @@ class _ProductFilterPageState
 
   @override
   Widget build(BuildContext context) {
+    searchQuery = ref.watch(filteredProductSearchQueryProvider);
+
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
@@ -111,6 +119,10 @@ class _ProductFilterPageState
                             cancelButton: true,
                             onChanged: (val) {
                               searchQuery = val;
+                              ref
+                                  .read(filteredProductSearchQueryProvider
+                                      .notifier)
+                                  .state = val;
                               setState(() {});
                             },
                           ),

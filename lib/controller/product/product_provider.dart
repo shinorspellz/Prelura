@@ -747,6 +747,7 @@ class _AllProductController
 final selectedFilteredProductProvider =
     StateProvider<Input$ProductFiltersInput>(
         (ref) => Input$ProductFiltersInput());
+final filteredProductSearchQueryProvider = StateProvider<String>((ref) => "");
 
 final filteredProductProvider = AsyncNotifierProvider.family<
     FilteredProductController,
@@ -772,7 +773,7 @@ class FilteredProductController
     state = const AsyncLoading();
     _currentPage = 1;
     _filter = ref.read(selectedFilteredProductProvider);
-    _query = query;
+    _query = ref.read(filteredProductSearchQueryProvider);
     log(_filter!.toJson().toString(),
         name: ' filteredProducts filter in build');
 
@@ -784,7 +785,7 @@ class FilteredProductController
       return await _getProducts(
         filter: ref.read(selectedFilteredProductProvider),
         pageNumber: _currentPage,
-        query: query,
+        query: _query,
       );
     } catch (e, stack) {
       state = AsyncError(e, stack);
@@ -794,27 +795,12 @@ class FilteredProductController
 
   void updateFilter(Input$ProductFiltersInput updatedFilter) async {
     _filter = updatedFilter;
+    _currentPage = 1;
+    _query = ref.read(filteredProductSearchQueryProvider);
     ref.read(selectedFilteredProductProvider.notifier).state = updatedFilter;
     log(_filter!.toJson().toString(),
         name: ' filteredProducts filter in update ');
-    log(updatedFilter.toJson().toString(),
-        name: ' filteredProducts updated filter');
-    try {
-      await _getProducts(
-        filter: _filter,
-        pageNumber: _currentPage,
-        query: _query,
-      );
-    } catch (e, stack) {
-      state = AsyncError(e, stack);
-    }
-  }
-
-  void removeFilter() async {
-    final updatedFilter = ref.read(productFilterProvider);
-
-    _filter = Input$ProductFiltersInput();
-
+    log(_query.toString(), name: ' filteredProducts query in filter');
     try {
       await _getProducts(
         filter: _filter,
@@ -1405,7 +1391,6 @@ class _userFavouriteProductController
     final newState = result.likedProducts!
         .map((x) => ProductModel.fromJson((x!.product)!.toJson()))
         .toList();
-    newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
@@ -1439,5 +1424,33 @@ class _userFavouriteProductController
 
   bool canLoadMore() {
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  }
+}
+
+final reportPorductProvider =
+    AsyncNotifierProvider<_ReportProductNotifier, void>(
+        _ReportProductNotifier.new);
+
+class _ReportProductNotifier extends AsyncNotifier<void> {
+  late final _repo = ref.read(productRepo);
+  @override
+  Future<void> build() async {}
+
+  Future<String> reportProduct(
+      {required String reason, required int productId, String? content}) async {
+    state = const AsyncLoading();
+
+    try {
+      final result = await _repo.reportProduct(
+        reason: reason,
+        productId: productId,
+        content: content,
+      );
+      state = AsyncValue.data(result);
+      return result;
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+      rethrow;
+    }
   }
 }

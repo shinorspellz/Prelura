@@ -143,7 +143,7 @@ class NotificationPreferenceNotifier
       );
 
       if (!success) {
-        throw Exception('Failed to update preferences on the server.');
+        throw 'Failed to update preferences on the server.';
       }
     } catch (e) {
       // Log or handle error appropriately

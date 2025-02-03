@@ -9,6 +9,7 @@ import 'package:prelura_app/views/widgets/filters_options.dart';
 
 import '../../controller/product/product_provider.dart';
 import '../../core/graphql/__generated/schema.graphql.dart';
+import '../../res/helper_function.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
 import 'profile_details/widgets/no_product_widget.dart';
@@ -37,6 +38,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
 
     Future.microtask(() async {
       if (!mounted) return;
+      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(discountPrice: true);
       await ref.refresh(filteredProductProvider((searchQuery)).future);
@@ -58,7 +60,11 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
 
   @override
   void dispose() {
-    controller.removeListener(() {}); // Ensure listener is removed
+    controller.removeListener(() {});
+    HelperFunction.genRef!
+        .read(filteredProductSearchQueryProvider.notifier)
+        .state = "";
+
     super.dispose();
   }
 
@@ -110,6 +116,10 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                             cancelButton: true,
                             onChanged: (val) {
                               searchQuery = val;
+                              ref
+                                  .read(filteredProductSearchQueryProvider
+                                      .notifier)
+                                  .state = val;
                               setState(() {});
                             },
                           ),

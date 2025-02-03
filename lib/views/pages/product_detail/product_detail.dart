@@ -221,6 +221,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                         VBottomSheetItem(
                             onTap: (context) {
                               Navigator.pop(context);
+                              context.router.push(ReportAccountOptionsRoute(
+                                  username: "",
+                                  productId: widget.productId,
+                                  isProduct: true));
                             },
                             title: 'Report',
                             textColor: PreluraColors.error),

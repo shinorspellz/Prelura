@@ -13,10 +13,13 @@ import '../../repo/network_repo.dart';
 
 final userProvider = FutureProvider((ref) async {
   final repo = ref.watch(userRepo);
+  try {
+    final result = repo.getMe();
 
-  final result = repo.getMe();
-
-  return result;
+    return result;
+  } catch (e) {
+    throw "An  error ocuured";
+  }
 });
 
 final searchUserProvider = FutureProvider.family((ref, String query) async {

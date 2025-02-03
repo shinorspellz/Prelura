@@ -9,6 +9,7 @@ import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
+import '../../../res/helper_function.dart';
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../profile_details/widgets/no_product_widget.dart';
@@ -32,6 +33,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
   void initState() {
     super.initState();
     Future.microtask(() async {
+      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(hashtags: [widget.hashtag]);
       await ref.refresh(filteredProductProvider((searchQuery)).future);
@@ -52,6 +54,9 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
 
   @override
   void dispose() {
+    HelperFunction.genRef!
+        .read(filteredProductSearchQueryProvider.notifier)
+        .state = "";
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -106,6 +111,12 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             cancelButton: true,
                             onChanged: (val) {
                               searchQuery = val;
+                              ref
+                                  .read(filteredProductSearchQueryProvider
+                                      .notifier)
+                                  .state = val;
+                              ref.refresh(filteredProductProvider((searchQuery))
+                                  .future);
                               setState(() {});
                             },
                           ),

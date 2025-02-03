@@ -149,14 +149,13 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
   ProductFilterNotifier(this.ref) : super({});
 
   void updateFilter(FilterTypes filterType, String value) {
+    final query = ref.read(filteredProductSearchQueryProvider);
     // Update the local filter state
     state = state..[filterType] = value;
 
     log(filterType.toString());
     log(value);
-    final providerFilter = ref.read(filteredProductProvider('').notifier);
-    final discountedProviderFilter =
-        ref.read(discountedProductsProvider('').notifier);
+    final providerFilter = ref.read(filteredProductProvider(query).notifier);
     log(providerFilter.currentFilter!.toJson().toString(),
         name: ' filteredProducts filter in search provider ');
 
@@ -280,7 +279,8 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 
   void removeFilter(FilterTypes filterType, BuildContext context) {
     state.remove(filterType);
-    final providerFilter = ref.read(filteredProductProvider('').notifier);
+    final query = ref.read(filteredProductSearchQueryProvider);
+    final providerFilter = ref.read(filteredProductProvider(query).notifier);
     final selectedProvider = ref.read(selectedFilteredProductProvider);
     final currentProvider = providerFilter.currentFilter;
     final routeName = context.router.current.name;
@@ -371,7 +371,6 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
   void clearFilter() {
     state = {};
     ref.invalidate(filteredProductProvider);
-    ref.invalidate(discountedProductsProvider);
   }
 }
 

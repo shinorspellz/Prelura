@@ -69,6 +69,16 @@ type AdminUserType {
   bio: String
 }
 
+"""
+Archive account and revoke refresh tokens.
+
+User must be verified and confirm password.
+"""
+type ArchiveAccount {
+  errors: ExpectedErrorType
+  success: Boolean
+}
+
 type ArchiveConversation {
   message: String
 }
@@ -421,12 +431,6 @@ type LocationType {
   locationName: String
 }
 
-type LoginMutation {
-  user: UserType
-  token: String
-  restToken: String
-}
-
 type LogoutMutation {
   message: String
 }
@@ -566,8 +570,7 @@ type Mutation {
       
   """
   respondToOffer(action: OfferActionEnum!, offerId: Int!, offerPrice: Float): RespondToOffer
-  login(password: String!, username: String): LoginMutation
-  logout: LogoutMutation
+  reportProduct(content: String, productId: ID!, reason: String!): ReportProduct
   updateProfile(
     bio: String
     country: String
@@ -600,7 +603,6 @@ type Mutation {
   unfollowUser(followedId: Int!): UnfollowUser
   rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
   resetPassword(email: String): ResetPassword
-  passwordReset(code: String!, email: String!, password: String!): PasswordReset
 
   """Change email address"""
   changeEmail(email: String): ChangeEmail
@@ -645,14 +647,8 @@ type Mutation {
   If user is archived, make it unarchive and
   return `unarchiving=True` on output.
   """
-  tokenAuth(password: String!, email: String, username: String): NewObtainJSONWebToken
-
-  """
-  Update user model fields, defined on settings.
-  
-  User must be verified.
-  """
-  updateAccount(firstName: String, lastName: String): UpdateAccount
+  login(password: String!, email: String, username: String): NewObtainJSONWebToken
+  logout(refreshToken: String): LogoutMutation
 
   """
   Sends activation email.
@@ -685,6 +681,25 @@ type Mutation {
 
   """Social Auth Mutation"""
   socialAuth(accessToken: String!, provider: String!): SocialAuth
+  passwordReset(code: String!, email: String!, password: String!): PasswordReset
+
+  """
+  Archive account and revoke refresh tokens.
+  
+  User must be verified and confirm password.
+  """
+  archiveAccount(password: String!): ArchiveAccount
+
+  """
+  Verify user account.
+  
+  Receive the token that was sent by email.
+  If the token is valid, make the user verified
+  by making the `user.status.verified` field true.
+  """
+  verifyAccount(token: String!): VerifyAccount
+  verifyToken(token: String): Verify
+  refreshToken(refreshToken: String): Refresh
 }
 
 """
@@ -711,6 +726,7 @@ type NewObtainJSONWebToken {
   use2fa: Boolean
   useGoogleAuthenticator: Boolean
   token: String!
+  refreshToken: String!
 }
 
 """
@@ -870,6 +886,7 @@ type PasswordChange {
   errors: ExpectedErrorType
   success: Boolean
   token: String
+  refreshToken: String
 }
 
 type PasswordReset {
@@ -1456,7 +1473,18 @@ type RecommendedSellerType {
   activeListings: Int
 }
 
+type Refresh {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  token: String!
+  refreshToken: String!
+}
+
 type ReportAccount {
+  message: String
+}
+
+type ReportProduct {
   message: String
 }
 
@@ -1665,16 +1693,6 @@ type UnfollowUser {
   success: Boolean
 }
 
-"""
-Update user model fields, defined on settings.
-
-User must be verified.
-"""
-type UpdateAccount {
-  errors: ExpectedErrorType
-  success: Boolean
-}
-
 type UpdateBanner {
   message: String
   success: Boolean
@@ -1809,6 +1827,22 @@ type UserType {
   preferredCurrency: CurrencyEnum
   shippingAddress: JSONString
   isMultibuyEnabled: Boolean
+}
+
+type Verify {
+  payload: GenericScalar!
+}
+
+"""
+Verify user account.
+
+Receive the token that was sent by email.
+If the token is valid, make the user verified
+by making the `user.status.verified` field true.
+"""
+type VerifyAccount {
+  errors: ExpectedErrorType
+  success: Boolean
 }
 
 type VerifyEmail {

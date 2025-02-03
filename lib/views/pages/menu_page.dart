@@ -20,7 +20,7 @@ class MenuPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = MenuPage.menuScrollController;
-    final user = ref.watch(userProvider).valueOrNull;
+    final user = ref.read(userProvider).valueOrNull;
 
     return Scaffold(
       appBar: PreluraAppBar(

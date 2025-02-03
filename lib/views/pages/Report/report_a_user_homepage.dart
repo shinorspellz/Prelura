@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
@@ -15,10 +16,14 @@ class ReportAccountHomepage extends ConsumerStatefulWidget {
   final String selectedOption;
   final bool isOptionSelected;
   final String username;
+  final bool isProduct;
+  final int? productId;
   const ReportAccountHomepage({
     required this.selectedOption,
     required this.isOptionSelected,
     required this.username,
+    this.productId,
+    required this.isProduct,
     super.key,
   });
 
@@ -76,33 +81,53 @@ class _ReportAccountHomepageState extends ConsumerState<ReportAccountHomepage> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 40),
                   child: AppButton(
-                    loading: value,
-                    width: double.infinity,
-                    text: "Send Report",
-                    onTap: () async {
-                      showLoading.value = true;
-                      final response = await ref
-                          .read(reportAccountProvider.notifier)
-                          .reportAccount(
-                              reason: widget.selectedOption,
-                              username: widget.username,
-                              content: textController.text);
-                      showLoading.value = false;
-                      HelperFunction.context = context;
-                      HelperFunction.showToast(
-                        message: response,
-                      );
-                      await Future.delayed(Duration(seconds: 1));
-                      if (!response.isEmpty) {
-                        textController.clear();
-                        Navigator.of(context)
-                          ..pop()
-                          ..pop()
-                          ..pop();
-                        // responseDialog(context, response);
-                      }
-                    },
-                  ),
+                      loading: value,
+                      width: double.infinity,
+                      text: "Send Report",
+                      onTap: () async {
+                        showLoading.value = true;
+                        if (widget.isProduct) {
+                          final response = await ref
+                              .read(reportPorductProvider.notifier)
+                              .reportProduct(
+                                  reason: widget.selectedOption,
+                                  productId: widget.productId ?? 0,
+                                  content: textController.text);
+                          if (!response.isEmpty) {
+                            textController.clear();
+                            HelperFunction.context = context;
+                            HelperFunction.showToast(
+                              message: response,
+                            );
+                            await Future.delayed(Duration(seconds: 1));
+
+                            Navigator.of(context)
+                              ..pop()
+                              ..pop()
+                              ..pop();
+                          }
+                        } else {
+                          final response = await ref
+                              .read(reportAccountProvider.notifier)
+                              .reportAccount(
+                                  reason: widget.selectedOption,
+                                  username: widget.username,
+                                  content: textController.text);
+                          if (!response.isEmpty) {
+                            textController.clear();
+                            HelperFunction.context = context;
+                            HelperFunction.showToast(
+                              message: response,
+                            );
+                            await Future.delayed(Duration(seconds: 1));
+                            Navigator.of(context)
+                              ..pop()
+                              ..pop()
+                              ..pop();
+                          }
+                        }
+                        showLoading.value = false;
+                      }),
                 );
               })
         ],

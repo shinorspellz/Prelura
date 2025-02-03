@@ -40,13 +40,6 @@ mutation Logout {
   }
 }
 
-mutation TokenAuth($email: String, $password: String!, $username: String!) {
-  tokenAuth(email: $email, password: $password, username: $username) {
-    token
-    payload
-    refreshExpiresIn
-  }
-}
 
 mutation CreateProduct(
   $category: Int!
@@ -628,6 +621,21 @@ mutation reportAccount(
   reportAccount(
     reason:$reason,
     username: $username,
+    content:$content
+  ){
+    message
+  }
+}
+
+
+mutation reportProduct(
+  $reason: String!,
+  $productId: Int!,
+  $content: String
+){
+  reportProduct(
+    reason:$reason,
+    productId: $productId,
     content:$content
   ){
     message
