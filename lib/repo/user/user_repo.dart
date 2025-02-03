@@ -276,7 +276,7 @@ class UserRepo {
   /// Cache all required data neccesary for user session like [token], [restToken] & [username]
   Future<void> _store(String token, String restToken, String username) async {
     await _cacheBox.put('AUTH_TOKEN', token);
-    await _cacheBox.put('REST_TOKEN', restToken);
+    await _cacheBox.put('REFRESH_TOKEN', restToken);
     await _cacheBox.put('USERNAME', username);
   }
 

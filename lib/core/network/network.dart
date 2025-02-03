@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/errors/failures.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:graphql/client.dart';
 
 class SocketChannel {
   /// Constructor that initializes the websocket connection with the provided [url]
@@ -45,7 +45,8 @@ class SocketChannel {
   void _handleLostConnection() {
     if (!_isRestarting) {
       _isRestarting = true;
-      final delay = _isFirstRestart ? const Duration(seconds: 3) : Duration.zero;
+      final delay =
+          _isFirstRestart ? const Duration(seconds: 3) : Duration.zero;
       Future.delayed(delay, () {
         _isFirstRestart = true;
         _isRestarting = false;
@@ -55,7 +56,7 @@ class SocketChannel {
   }
 
   /// retrieves the restoken from the caches
-  String? get _getToken => _cache.get('REST_TOKEN');
+  String? get _getToken => _cache.get('REFRESH_TOKEN');
 
   /// Initiates the websocket connection
   void _startConnection() async {
@@ -70,7 +71,8 @@ class SocketChannel {
         },
       );
 
-      log('Websocket connection in progress... at: $url', name: 'SocketChannel');
+      log('Websocket connection in progress... at: $url',
+          name: 'SocketChannel');
       await _ioWebSocketChannel.ready;
       log('Websocket connection established! at: $url', name: 'SocketChannel');
 
@@ -88,13 +90,15 @@ class SocketChannel {
         },
         onDone: () {
           if (!_isManuallyClosed) {
-            log('Websocket connection closed unexpectedly at: $url', name: 'SocketChannel');
+            log('Websocket connection closed unexpectedly at: $url',
+                name: 'SocketChannel');
             _handleLostConnection();
           }
         },
       );
     } catch (e, stackTrace) {
-      log('Websocket connection error: $e at: $url', stackTrace: stackTrace, name: 'SocketChannel');
+      log('Websocket connection error: $e at: $url',
+          stackTrace: stackTrace, name: 'SocketChannel');
       if (_counter < 10) {
         _handleLostConnection();
         _counter++;
@@ -142,7 +146,9 @@ class GraphqlCL {
         }
         if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
           final error = response.exception!.graphqlErrors.first.message;
-          log(error, name: operationName ?? 'GraphQL', stackTrace: response.exception?.originalStackTrace);
+          log(error,
+              name: operationName ?? 'GraphQL',
+              stackTrace: response.exception?.originalStackTrace);
           throw RequestFailure(error, response.exception?.originalStackTrace);
         }
         log(response.exception.toString(), name: operationName ?? 'GraphQL');
