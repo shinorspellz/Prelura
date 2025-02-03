@@ -1611,6 +1611,113 @@ class _CopyWithStubImpl$Mutation$Register$register<TRes>
       _res;
 }
 
+class Variables$Mutation$Logout {
+  factory Variables$Mutation$Logout({String? refreshToken}) =>
+      Variables$Mutation$Logout._({
+        if (refreshToken != null) r'refreshToken': refreshToken,
+      });
+
+  Variables$Mutation$Logout._(this._$data);
+
+  factory Variables$Mutation$Logout.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('refreshToken')) {
+      final l$refreshToken = data['refreshToken'];
+      result$data['refreshToken'] = (l$refreshToken as String?);
+    }
+    return Variables$Mutation$Logout._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get refreshToken => (_$data['refreshToken'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('refreshToken')) {
+      final l$refreshToken = refreshToken;
+      result$data['refreshToken'] = l$refreshToken;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$Logout<Variables$Mutation$Logout> get copyWith =>
+      CopyWith$Variables$Mutation$Logout(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$Logout ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$refreshToken = refreshToken;
+    final lOther$refreshToken = other.refreshToken;
+    if (_$data.containsKey('refreshToken') !=
+        other._$data.containsKey('refreshToken')) {
+      return false;
+    }
+    if (l$refreshToken != lOther$refreshToken) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$refreshToken = refreshToken;
+    return Object.hashAll(
+        [_$data.containsKey('refreshToken') ? l$refreshToken : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$Logout<TRes> {
+  factory CopyWith$Variables$Mutation$Logout(
+    Variables$Mutation$Logout instance,
+    TRes Function(Variables$Mutation$Logout) then,
+  ) = _CopyWithImpl$Variables$Mutation$Logout;
+
+  factory CopyWith$Variables$Mutation$Logout.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$Logout;
+
+  TRes call({String? refreshToken});
+}
+
+class _CopyWithImpl$Variables$Mutation$Logout<TRes>
+    implements CopyWith$Variables$Mutation$Logout<TRes> {
+  _CopyWithImpl$Variables$Mutation$Logout(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$Logout _instance;
+
+  final TRes Function(Variables$Mutation$Logout) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? refreshToken = _undefined}) =>
+      _then(Variables$Mutation$Logout._({
+        ..._instance._$data,
+        if (refreshToken != _undefined)
+          'refreshToken': (refreshToken as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$Logout<TRes>
+    implements CopyWith$Variables$Mutation$Logout<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$Logout(this._res);
+
+  TRes _res;
+
+  call({String? refreshToken}) => _res;
+}
+
 class Mutation$Logout {
   Mutation$Logout({
     this.logout,
@@ -1751,13 +1858,28 @@ const documentNodeMutationLogout = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.mutation,
     name: NameNode(value: 'Logout'),
-    variableDefinitions: [],
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'refreshToken')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
         name: NameNode(value: 'logout'),
         alias: null,
-        arguments: [],
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'refreshToken'),
+            value: VariableNode(name: NameNode(value: 'refreshToken')),
+          )
+        ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
@@ -1796,6 +1918,7 @@ typedef OnMutationCompleted$Mutation$Logout = FutureOr<void> Function(
 class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
   Options$Mutation$Logout({
     String? operationName,
+    Variables$Mutation$Logout? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1807,6 +1930,7 @@ class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1840,6 +1964,7 @@ class WatchOptions$Mutation$Logout
     extends graphql.WatchQueryOptions<Mutation$Logout> {
   WatchOptions$Mutation$Logout({
     String? operationName,
+    Variables$Mutation$Logout? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1851,6 +1976,7 @@ class WatchOptions$Mutation$Logout
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -32537,6 +32663,1198 @@ class _CopyWithStubImpl$Mutation$DeleteAccount$deleteAccount<TRes>
   call({
     Map<String, dynamic>? errors,
     bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$reportAccount {
+  factory Variables$Mutation$reportAccount({
+    required String reason,
+    required String username,
+    String? content,
+  }) =>
+      Variables$Mutation$reportAccount._({
+        r'reason': reason,
+        r'username': username,
+        if (content != null) r'content': content,
+      });
+
+  Variables$Mutation$reportAccount._(this._$data);
+
+  factory Variables$Mutation$reportAccount.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$reason = data['reason'];
+    result$data['reason'] = (l$reason as String);
+    final l$username = data['username'];
+    result$data['username'] = (l$username as String);
+    if (data.containsKey('content')) {
+      final l$content = data['content'];
+      result$data['content'] = (l$content as String?);
+    }
+    return Variables$Mutation$reportAccount._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get reason => (_$data['reason'] as String);
+
+  String get username => (_$data['username'] as String);
+
+  String? get content => (_$data['content'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$reason = reason;
+    result$data['reason'] = l$reason;
+    final l$username = username;
+    result$data['username'] = l$username;
+    if (_$data.containsKey('content')) {
+      final l$content = content;
+      result$data['content'] = l$content;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$reportAccount<Variables$Mutation$reportAccount>
+      get copyWith => CopyWith$Variables$Mutation$reportAccount(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$reportAccount ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$reason = reason;
+    final lOther$reason = other.reason;
+    if (l$reason != lOther$reason) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$content = content;
+    final lOther$content = other.content;
+    if (_$data.containsKey('content') != other._$data.containsKey('content')) {
+      return false;
+    }
+    if (l$content != lOther$content) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$reason = reason;
+    final l$username = username;
+    final l$content = content;
+    return Object.hashAll([
+      l$reason,
+      l$username,
+      _$data.containsKey('content') ? l$content : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$reportAccount<TRes> {
+  factory CopyWith$Variables$Mutation$reportAccount(
+    Variables$Mutation$reportAccount instance,
+    TRes Function(Variables$Mutation$reportAccount) then,
+  ) = _CopyWithImpl$Variables$Mutation$reportAccount;
+
+  factory CopyWith$Variables$Mutation$reportAccount.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$reportAccount;
+
+  TRes call({
+    String? reason,
+    String? username,
+    String? content,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$reportAccount<TRes>
+    implements CopyWith$Variables$Mutation$reportAccount<TRes> {
+  _CopyWithImpl$Variables$Mutation$reportAccount(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$reportAccount _instance;
+
+  final TRes Function(Variables$Mutation$reportAccount) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? reason = _undefined,
+    Object? username = _undefined,
+    Object? content = _undefined,
+  }) =>
+      _then(Variables$Mutation$reportAccount._({
+        ..._instance._$data,
+        if (reason != _undefined && reason != null)
+          'reason': (reason as String),
+        if (username != _undefined && username != null)
+          'username': (username as String),
+        if (content != _undefined) 'content': (content as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$reportAccount<TRes>
+    implements CopyWith$Variables$Mutation$reportAccount<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$reportAccount(this._res);
+
+  TRes _res;
+
+  call({
+    String? reason,
+    String? username,
+    String? content,
+  }) =>
+      _res;
+}
+
+class Mutation$reportAccount {
+  Mutation$reportAccount({
+    this.reportAccount,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$reportAccount.fromJson(Map<String, dynamic> json) {
+    final l$reportAccount = json['reportAccount'];
+    final l$$__typename = json['__typename'];
+    return Mutation$reportAccount(
+      reportAccount: l$reportAccount == null
+          ? null
+          : Mutation$reportAccount$reportAccount.fromJson(
+              (l$reportAccount as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$reportAccount$reportAccount? reportAccount;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$reportAccount = reportAccount;
+    _resultData['reportAccount'] = l$reportAccount?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$reportAccount = reportAccount;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$reportAccount,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$reportAccount || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$reportAccount = reportAccount;
+    final lOther$reportAccount = other.reportAccount;
+    if (l$reportAccount != lOther$reportAccount) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$reportAccount on Mutation$reportAccount {
+  CopyWith$Mutation$reportAccount<Mutation$reportAccount> get copyWith =>
+      CopyWith$Mutation$reportAccount(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$reportAccount<TRes> {
+  factory CopyWith$Mutation$reportAccount(
+    Mutation$reportAccount instance,
+    TRes Function(Mutation$reportAccount) then,
+  ) = _CopyWithImpl$Mutation$reportAccount;
+
+  factory CopyWith$Mutation$reportAccount.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$reportAccount;
+
+  TRes call({
+    Mutation$reportAccount$reportAccount? reportAccount,
+    String? $__typename,
+  });
+  CopyWith$Mutation$reportAccount$reportAccount<TRes> get reportAccount;
+}
+
+class _CopyWithImpl$Mutation$reportAccount<TRes>
+    implements CopyWith$Mutation$reportAccount<TRes> {
+  _CopyWithImpl$Mutation$reportAccount(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$reportAccount _instance;
+
+  final TRes Function(Mutation$reportAccount) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? reportAccount = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$reportAccount(
+        reportAccount: reportAccount == _undefined
+            ? _instance.reportAccount
+            : (reportAccount as Mutation$reportAccount$reportAccount?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$reportAccount$reportAccount<TRes> get reportAccount {
+    final local$reportAccount = _instance.reportAccount;
+    return local$reportAccount == null
+        ? CopyWith$Mutation$reportAccount$reportAccount.stub(_then(_instance))
+        : CopyWith$Mutation$reportAccount$reportAccount(
+            local$reportAccount, (e) => call(reportAccount: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$reportAccount<TRes>
+    implements CopyWith$Mutation$reportAccount<TRes> {
+  _CopyWithStubImpl$Mutation$reportAccount(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$reportAccount$reportAccount? reportAccount,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$reportAccount$reportAccount<TRes> get reportAccount =>
+      CopyWith$Mutation$reportAccount$reportAccount.stub(_res);
+}
+
+const documentNodeMutationreportAccount = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'reportAccount'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'reason')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'username')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'content')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'reportAccount'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'reason'),
+            value: VariableNode(name: NameNode(value: 'reason')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'username'),
+            value: VariableNode(name: NameNode(value: 'username')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'content'),
+            value: VariableNode(name: NameNode(value: 'content')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$reportAccount _parserFn$Mutation$reportAccount(
+        Map<String, dynamic> data) =>
+    Mutation$reportAccount.fromJson(data);
+typedef OnMutationCompleted$Mutation$reportAccount = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$reportAccount?,
+);
+
+class Options$Mutation$reportAccount
+    extends graphql.MutationOptions<Mutation$reportAccount> {
+  Options$Mutation$reportAccount({
+    String? operationName,
+    required Variables$Mutation$reportAccount variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$reportAccount? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$reportAccount? onCompleted,
+    graphql.OnMutationUpdate<Mutation$reportAccount>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$reportAccount(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationreportAccount,
+          parserFn: _parserFn$Mutation$reportAccount,
+        );
+
+  final OnMutationCompleted$Mutation$reportAccount? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$reportAccount
+    extends graphql.WatchQueryOptions<Mutation$reportAccount> {
+  WatchOptions$Mutation$reportAccount({
+    String? operationName,
+    required Variables$Mutation$reportAccount variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$reportAccount? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationreportAccount,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$reportAccount,
+        );
+}
+
+extension ClientExtension$Mutation$reportAccount on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$reportAccount>> mutate$reportAccount(
+          Options$Mutation$reportAccount options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$reportAccount> watchMutation$reportAccount(
+          WatchOptions$Mutation$reportAccount options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$reportAccount$reportAccount {
+  Mutation$reportAccount$reportAccount({
+    this.message,
+    this.$__typename = 'ReportAccount',
+  });
+
+  factory Mutation$reportAccount$reportAccount.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$reportAccount$reportAccount(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$reportAccount$reportAccount ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$reportAccount$reportAccount
+    on Mutation$reportAccount$reportAccount {
+  CopyWith$Mutation$reportAccount$reportAccount<
+          Mutation$reportAccount$reportAccount>
+      get copyWith => CopyWith$Mutation$reportAccount$reportAccount(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$reportAccount$reportAccount<TRes> {
+  factory CopyWith$Mutation$reportAccount$reportAccount(
+    Mutation$reportAccount$reportAccount instance,
+    TRes Function(Mutation$reportAccount$reportAccount) then,
+  ) = _CopyWithImpl$Mutation$reportAccount$reportAccount;
+
+  factory CopyWith$Mutation$reportAccount$reportAccount.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$reportAccount$reportAccount;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$reportAccount$reportAccount<TRes>
+    implements CopyWith$Mutation$reportAccount$reportAccount<TRes> {
+  _CopyWithImpl$Mutation$reportAccount$reportAccount(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$reportAccount$reportAccount _instance;
+
+  final TRes Function(Mutation$reportAccount$reportAccount) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$reportAccount$reportAccount(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$reportAccount$reportAccount<TRes>
+    implements CopyWith$Mutation$reportAccount$reportAccount<TRes> {
+  _CopyWithStubImpl$Mutation$reportAccount$reportAccount(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$reportProduct {
+  factory Variables$Mutation$reportProduct({
+    required String reason,
+    required String productId,
+    String? content,
+  }) =>
+      Variables$Mutation$reportProduct._({
+        r'reason': reason,
+        r'productId': productId,
+        if (content != null) r'content': content,
+      });
+
+  Variables$Mutation$reportProduct._(this._$data);
+
+  factory Variables$Mutation$reportProduct.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$reason = data['reason'];
+    result$data['reason'] = (l$reason as String);
+    final l$productId = data['productId'];
+    result$data['productId'] = (l$productId as String);
+    if (data.containsKey('content')) {
+      final l$content = data['content'];
+      result$data['content'] = (l$content as String?);
+    }
+    return Variables$Mutation$reportProduct._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get reason => (_$data['reason'] as String);
+
+  String get productId => (_$data['productId'] as String);
+
+  String? get content => (_$data['content'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$reason = reason;
+    result$data['reason'] = l$reason;
+    final l$productId = productId;
+    result$data['productId'] = l$productId;
+    if (_$data.containsKey('content')) {
+      final l$content = content;
+      result$data['content'] = l$content;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$reportProduct<Variables$Mutation$reportProduct>
+      get copyWith => CopyWith$Variables$Mutation$reportProduct(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$reportProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$reason = reason;
+    final lOther$reason = other.reason;
+    if (l$reason != lOther$reason) {
+      return false;
+    }
+    final l$productId = productId;
+    final lOther$productId = other.productId;
+    if (l$productId != lOther$productId) {
+      return false;
+    }
+    final l$content = content;
+    final lOther$content = other.content;
+    if (_$data.containsKey('content') != other._$data.containsKey('content')) {
+      return false;
+    }
+    if (l$content != lOther$content) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$reason = reason;
+    final l$productId = productId;
+    final l$content = content;
+    return Object.hashAll([
+      l$reason,
+      l$productId,
+      _$data.containsKey('content') ? l$content : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$reportProduct<TRes> {
+  factory CopyWith$Variables$Mutation$reportProduct(
+    Variables$Mutation$reportProduct instance,
+    TRes Function(Variables$Mutation$reportProduct) then,
+  ) = _CopyWithImpl$Variables$Mutation$reportProduct;
+
+  factory CopyWith$Variables$Mutation$reportProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$reportProduct;
+
+  TRes call({
+    String? reason,
+    String? productId,
+    String? content,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$reportProduct<TRes>
+    implements CopyWith$Variables$Mutation$reportProduct<TRes> {
+  _CopyWithImpl$Variables$Mutation$reportProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$reportProduct _instance;
+
+  final TRes Function(Variables$Mutation$reportProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? reason = _undefined,
+    Object? productId = _undefined,
+    Object? content = _undefined,
+  }) =>
+      _then(Variables$Mutation$reportProduct._({
+        ..._instance._$data,
+        if (reason != _undefined && reason != null)
+          'reason': (reason as String),
+        if (productId != _undefined && productId != null)
+          'productId': (productId as String),
+        if (content != _undefined) 'content': (content as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$reportProduct<TRes>
+    implements CopyWith$Variables$Mutation$reportProduct<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$reportProduct(this._res);
+
+  TRes _res;
+
+  call({
+    String? reason,
+    String? productId,
+    String? content,
+  }) =>
+      _res;
+}
+
+class Mutation$reportProduct {
+  Mutation$reportProduct({
+    this.reportProduct,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$reportProduct.fromJson(Map<String, dynamic> json) {
+    final l$reportProduct = json['reportProduct'];
+    final l$$__typename = json['__typename'];
+    return Mutation$reportProduct(
+      reportProduct: l$reportProduct == null
+          ? null
+          : Mutation$reportProduct$reportProduct.fromJson(
+              (l$reportProduct as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$reportProduct$reportProduct? reportProduct;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$reportProduct = reportProduct;
+    _resultData['reportProduct'] = l$reportProduct?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$reportProduct = reportProduct;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$reportProduct,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$reportProduct || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$reportProduct = reportProduct;
+    final lOther$reportProduct = other.reportProduct;
+    if (l$reportProduct != lOther$reportProduct) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$reportProduct on Mutation$reportProduct {
+  CopyWith$Mutation$reportProduct<Mutation$reportProduct> get copyWith =>
+      CopyWith$Mutation$reportProduct(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$reportProduct<TRes> {
+  factory CopyWith$Mutation$reportProduct(
+    Mutation$reportProduct instance,
+    TRes Function(Mutation$reportProduct) then,
+  ) = _CopyWithImpl$Mutation$reportProduct;
+
+  factory CopyWith$Mutation$reportProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$reportProduct;
+
+  TRes call({
+    Mutation$reportProduct$reportProduct? reportProduct,
+    String? $__typename,
+  });
+  CopyWith$Mutation$reportProduct$reportProduct<TRes> get reportProduct;
+}
+
+class _CopyWithImpl$Mutation$reportProduct<TRes>
+    implements CopyWith$Mutation$reportProduct<TRes> {
+  _CopyWithImpl$Mutation$reportProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$reportProduct _instance;
+
+  final TRes Function(Mutation$reportProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? reportProduct = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$reportProduct(
+        reportProduct: reportProduct == _undefined
+            ? _instance.reportProduct
+            : (reportProduct as Mutation$reportProduct$reportProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$reportProduct$reportProduct<TRes> get reportProduct {
+    final local$reportProduct = _instance.reportProduct;
+    return local$reportProduct == null
+        ? CopyWith$Mutation$reportProduct$reportProduct.stub(_then(_instance))
+        : CopyWith$Mutation$reportProduct$reportProduct(
+            local$reportProduct, (e) => call(reportProduct: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$reportProduct<TRes>
+    implements CopyWith$Mutation$reportProduct<TRes> {
+  _CopyWithStubImpl$Mutation$reportProduct(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$reportProduct$reportProduct? reportProduct,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$reportProduct$reportProduct<TRes> get reportProduct =>
+      CopyWith$Mutation$reportProduct$reportProduct.stub(_res);
+}
+
+const documentNodeMutationreportProduct = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'reportProduct'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'reason')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'productId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'content')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'reportProduct'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'reason'),
+            value: VariableNode(name: NameNode(value: 'reason')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'productId'),
+            value: VariableNode(name: NameNode(value: 'productId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'content'),
+            value: VariableNode(name: NameNode(value: 'content')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$reportProduct _parserFn$Mutation$reportProduct(
+        Map<String, dynamic> data) =>
+    Mutation$reportProduct.fromJson(data);
+typedef OnMutationCompleted$Mutation$reportProduct = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$reportProduct?,
+);
+
+class Options$Mutation$reportProduct
+    extends graphql.MutationOptions<Mutation$reportProduct> {
+  Options$Mutation$reportProduct({
+    String? operationName,
+    required Variables$Mutation$reportProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$reportProduct? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$reportProduct? onCompleted,
+    graphql.OnMutationUpdate<Mutation$reportProduct>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$reportProduct(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationreportProduct,
+          parserFn: _parserFn$Mutation$reportProduct,
+        );
+
+  final OnMutationCompleted$Mutation$reportProduct? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$reportProduct
+    extends graphql.WatchQueryOptions<Mutation$reportProduct> {
+  WatchOptions$Mutation$reportProduct({
+    String? operationName,
+    required Variables$Mutation$reportProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$reportProduct? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationreportProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$reportProduct,
+        );
+}
+
+extension ClientExtension$Mutation$reportProduct on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$reportProduct>> mutate$reportProduct(
+          Options$Mutation$reportProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$reportProduct> watchMutation$reportProduct(
+          WatchOptions$Mutation$reportProduct options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$reportProduct$reportProduct {
+  Mutation$reportProduct$reportProduct({
+    this.message,
+    this.$__typename = 'ReportProduct',
+  });
+
+  factory Mutation$reportProduct$reportProduct.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$reportProduct$reportProduct(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$reportProduct$reportProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$reportProduct$reportProduct
+    on Mutation$reportProduct$reportProduct {
+  CopyWith$Mutation$reportProduct$reportProduct<
+          Mutation$reportProduct$reportProduct>
+      get copyWith => CopyWith$Mutation$reportProduct$reportProduct(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$reportProduct$reportProduct<TRes> {
+  factory CopyWith$Mutation$reportProduct$reportProduct(
+    Mutation$reportProduct$reportProduct instance,
+    TRes Function(Mutation$reportProduct$reportProduct) then,
+  ) = _CopyWithImpl$Mutation$reportProduct$reportProduct;
+
+  factory CopyWith$Mutation$reportProduct$reportProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$reportProduct$reportProduct;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$reportProduct$reportProduct<TRes>
+    implements CopyWith$Mutation$reportProduct$reportProduct<TRes> {
+  _CopyWithImpl$Mutation$reportProduct$reportProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$reportProduct$reportProduct _instance;
+
+  final TRes Function(Mutation$reportProduct$reportProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$reportProduct$reportProduct(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$reportProduct$reportProduct<TRes>
+    implements CopyWith$Mutation$reportProduct$reportProduct<TRes> {
+  _CopyWithStubImpl$Mutation$reportProduct$reportProduct(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
     String? $__typename,
   }) =>
       _res;
