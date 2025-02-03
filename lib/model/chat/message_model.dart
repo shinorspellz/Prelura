@@ -33,6 +33,7 @@ class MessageModel with _$MessageModel {
         read: json["read"],
 
         isItem: json["is_item"],
+        imageUrls: json["imageUrls"],
         createdAt: json["createdAt"].runtimeType == String
             ? DateTime.parse(json["createdAt"])
             : json["createdAt"],
