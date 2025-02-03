@@ -100,6 +100,7 @@ class AuthRepo {
       //     )),
       //   ),
       // );
+      
       final response = await client.mutate$Logout(Options$Mutation$Logout(
           variables: Variables$Mutation$Logout(refreshToken: token)));
       if (response.hasException) {
