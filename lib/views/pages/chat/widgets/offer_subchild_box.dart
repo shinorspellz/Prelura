@@ -9,6 +9,7 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
+import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
@@ -22,6 +23,7 @@ import 'package:prelura_app/views/widgets/price_field.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 import 'package:sizer/sizer.dart';
 
+import 'message_conversation_builder.dart';
 import 'offer_product_card.dart';
 
 class OfferSubCardBox extends ConsumerStatefulWidget {
@@ -202,33 +204,42 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                     username: widget.eventInfo.createdBy,
                   ),
                 8.horizontalSpacing,
-                Container(
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * .6,
-                  ),
-                  padding: EdgeInsets.only(
-                    top: 10,
-                    bottom: 10,
-                    left: isSender ? 10 : 14,
-                    right: isSender ? 14 : 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      topLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
+                if (widget.eventInfo.imageUrls != null &&
+                    widget.eventInfo.imageUrls.isNotEmpty)
+                  MessageImageBuilder(
+                      chatInfo: MessageModel(
+                          id: "",
+                          text: "",
+                          sender: UserModel(id: null, username: ''),
+                          imageUrls: widget.eventInfo.imageUrls))
+                else
+                  Container(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * .6,
                     ),
-                    color: Theme.of(context).dividerColor,
+                    padding: EdgeInsets.only(
+                      top: 10,
+                      bottom: 10,
+                      left: isSender ? 10 : 14,
+                      right: isSender ? 14 : 10,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        topLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                      color: Theme.of(context).dividerColor,
+                    ),
+                    child: Text(
+                      widget.eventInfo.message,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
                   ),
-                  child: Text(
-                    widget.eventInfo.message,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ),
                 addHorizontalSpacing(15),
               ])
         : Column(children: [

@@ -10,8 +10,6 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../controller/auth/auth_controller.dart';
-
 /// Authentication Repository for all auth operation like [login], [register] & [login]
 /// and depends on the [GraphQLClient] via dependency injection.
 ///
@@ -43,8 +41,8 @@ class AuthRepo {
     log("token is ${response.login!.token!}");
     await _store(
       response.login!.token!,
-      // response.login!.restToken!,
       response.login!.user!.username!,
+      response.login!.refreshToken!,
     );
 
     log('Bearer ${response.login?.token}', name: 'AuthMutation');
@@ -89,44 +87,52 @@ class AuthRepo {
 
   /// Logout action
   Future<void> logout() async {
-    final response = await _client.executeGraphQL(
+    String token = _cacheBox.get("REFRESH_TOKEN");
+    log("The token is::: $token");
+    try {
+      final response = await _client.executeGraphQL(
         operation: ClientOperation(
-      (cl) => cl.mutate$Logout(Options$Mutation$Logout()),
-    ));
+          (cl) => cl.mutate$Logout(Options$Mutation$Logout(
+            variables: Variables$Mutation$Logout(
+              refreshToken: token,
+            ),
+          )),
+        ),
+      );
 
-    await _remove();
-    _ref.invalidateSelf();
+      if (response.logout!.message !=
+          "You do not have permission to perform this action") {
+        await _remove();
+        _ref.invalidateSelf();
+      }
 
-    log('${response.logout?.message}', name: 'AuthMutation');
+      log('${response.logout?.message}', name: 'AuthMutation');
+    } catch (e) {
+      log(":::Error from logout user:::: ::: $e");
+    }
   }
 
   String? get getToken => _cacheBox.get('AUTH_TOKEN');
-  String? get getRestToken => _cacheBox.get('REST_TOKEN');
+  String? get getRestToken => _cacheBox.get('REFRESH_TOKEN');
 
   Future<void> _remove() async {
     try {
-      await _cacheBox.delete('AUTH_TOKEN').then((onValue) {
-        log('Auth token removed');
-      });
-      await _cacheBox.delete('REST_TOKEN').then((onValue) {
-        log('Rest token removed');
-      });
-      await _cacheBox.delete('USERNAME').then((value) {
-        log('Username removed');
-      });
-
-      // _ref.invalidate(authStateProvider);
-      await Future.delayed(Duration(milliseconds: 100));
+      await _cacheBox.delete('AUTH_TOKEN');
+      await _cacheBox.delete('REFRESH_TOKEN');
+      await _cacheBox.delete('tokenTime');
+      await _cacheBox.delete('USERNAME');
     } catch (_) {
       throw const CacheFailure(message: 'An error occured removing user data');
     }
   }
 
   /// Cache all required data neccesary for user session like [token], [restToken] & [username]
-  Future<void> _store(String token, String username) async {
+  Future<void> _store(
+      String token, String username, String refreshToken) async {
     await _cacheBox.put('AUTH_TOKEN', token);
-    // await _cacheBox.put('REST_TOKEN', restToken);
+    await _cacheBox.put('REFRESH_TOKEN', refreshToken);
     await _cacheBox.put('USERNAME', username);
+    await _cacheBox.put('tokenTime', DateTime.now());
   }
 
   Stream<BoxEvent> authState() {

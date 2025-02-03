@@ -21,7 +21,7 @@ class Failure with _$Failure implements Exception {
     return when(
       connectionFailure: (e) => e,
       requestFailure: (e, _) => e,
-      cacheFailure: (e, _) => e ?? 'An error occured loading cached data',
+      cacheFailure: (e, _) => e ?? 'An error occurred loading cached data',
       jsonParseFailure: (_) => 'An error occured parsing data from the server',
       unknownFailure: (e, _) => e,
     );

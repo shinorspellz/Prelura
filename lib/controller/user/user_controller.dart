@@ -22,6 +22,16 @@ final userProvider = FutureProvider((ref) async {
   }
 });
 
+final FutureProvider refreshTokenSession = FutureProvider((ref) async {
+  final repo = ref.watch(userRepo);
+  final box = ref.read(hive).requireValue;
+
+  final result = await repo.refreshToken(box.get("REFRESH_TOKEN"));
+
+  box.put('REFRESH_TOKEN', result!.token);
+  box.put('tokenTime', DateTime.now());
+});
+
 final searchUserProvider = FutureProvider.family((ref, String query) async {
   final repo = ref.watch(userRepo);
   final result = await repo.searchUser(query);

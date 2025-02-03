@@ -755,6 +755,7 @@ query Conversations {
       attachment
       attachmentType
       read
+      imageUrls
       isItem
       sender {
         id

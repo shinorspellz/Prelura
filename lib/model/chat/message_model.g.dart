@@ -10,6 +10,7 @@ _$MessageModelImpl _$$MessageModelImplFromJson(Map<String, dynamic> json) =>
     _$MessageModelImpl(
       id: json['id'],
       text: json['text'] as String,
+      imageUrls: json['imageUrls'],
       attachment: json['attachment'] as String?,
       itemType: json['itemType'],
       read: json['read'] as bool?,
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$MessageModelImplToJson(_$MessageModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
+      'imageUrls': instance.imageUrls,
       'attachment': instance.attachment,
       'itemType': instance.itemType,
       'read': instance.read,
