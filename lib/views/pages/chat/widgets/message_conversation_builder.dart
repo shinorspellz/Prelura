@@ -10,8 +10,10 @@ import 'package:intl/intl.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
+import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/date_time_extension.dart';
+import 'package:prelura_app/views/widgets/full_screen_image.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
@@ -319,14 +321,33 @@ class MessageImageBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String imagePath = jsonDecode(chatInfo.imageUrls[0])["url"];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: ImageBuilder(
-          height: 200,
-          width: 70.w,
-          imageUrl: jsonDecode(chatInfo.imageUrls[0])["url"],
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => FullScreenImage(
+                imageUrl: [
+                  ProductBanners(
+                    url: imagePath,
+                    thumbnail: '',
+                  ),
+                ],
+                initialIndex: 0,
+                isLocal: false,
+              ),
+            ),
+          );
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: ImageBuilder(
+            height: 200,
+            width: 70.w,
+            imageUrl: imagePath,
+          ),
         ),
       ),
     );
