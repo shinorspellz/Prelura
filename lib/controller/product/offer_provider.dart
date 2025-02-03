@@ -183,6 +183,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
             message: chatInfo.text,
             createdBy: chatInfo.sender.username,
             createdAt: chatInfo.createdAt,
+            imageUrls: chatInfo.imageUrls,
             buyer: Recipient(
               username: chatInfo.sender.username,
               profilePictureUrl: chatInfo.sender.profilePictureUrl,

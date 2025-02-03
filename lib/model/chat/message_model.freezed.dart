@@ -22,6 +22,7 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) {
 mixin _$MessageModel {
   dynamic get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
+  dynamic get imageUrls => throw _privateConstructorUsedError;
   String? get attachment => throw _privateConstructorUsedError;
   dynamic get itemType => throw _privateConstructorUsedError;
   bool? get read => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $MessageModelCopyWith<$Res> {
   $Res call(
       {dynamic id,
       String text,
+      dynamic imageUrls,
       String? attachment,
       dynamic itemType,
       bool? read,
@@ -80,6 +82,7 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
   $Res call({
     Object? id = freezed,
     Object? text = null,
+    Object? imageUrls = freezed,
     Object? attachment = freezed,
     Object? itemType = freezed,
     Object? read = freezed,
@@ -98,6 +101,10 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrls: freezed == imageUrls
+          ? _value.imageUrls
+          : imageUrls // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       attachment: freezed == attachment
           ? _value.attachment
           : attachment // ignore: cast_nullable_to_non_nullable
@@ -169,6 +176,7 @@ abstract class _$$MessageModelImplCopyWith<$Res>
   $Res call(
       {dynamic id,
       String text,
+      dynamic imageUrls,
       String? attachment,
       dynamic itemType,
       bool? read,
@@ -199,6 +207,7 @@ class __$$MessageModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? text = null,
+    Object? imageUrls = freezed,
     Object? attachment = freezed,
     Object? itemType = freezed,
     Object? read = freezed,
@@ -217,6 +226,10 @@ class __$$MessageModelImplCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrls: freezed == imageUrls
+          ? _value.imageUrls
+          : imageUrls // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       attachment: freezed == attachment
           ? _value.attachment
           : attachment // ignore: cast_nullable_to_non_nullable
@@ -256,6 +269,7 @@ class _$MessageModelImpl implements _MessageModel {
   const _$MessageModelImpl(
       {required this.id,
       required this.text,
+      this.imageUrls,
       this.attachment,
       this.itemType,
       this.read,
@@ -272,6 +286,8 @@ class _$MessageModelImpl implements _MessageModel {
   final dynamic id;
   @override
   final String text;
+  @override
+  final dynamic imageUrls;
   @override
   final String? attachment;
   @override
@@ -291,7 +307,7 @@ class _$MessageModelImpl implements _MessageModel {
 
   @override
   String toString() {
-    return 'MessageModel(id: $id, text: $text, attachment: $attachment, itemType: $itemType, read: $read, isItem: $isItem, itemId: $itemId, replyTo: $replyTo, createdAt: $createdAt, sender: $sender)';
+    return 'MessageModel(id: $id, text: $text, imageUrls: $imageUrls, attachment: $attachment, itemType: $itemType, read: $read, isItem: $isItem, itemId: $itemId, replyTo: $replyTo, createdAt: $createdAt, sender: $sender)';
   }
 
   @override
@@ -301,6 +317,7 @@ class _$MessageModelImpl implements _MessageModel {
             other is _$MessageModelImpl &&
             const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.imageUrls, imageUrls) &&
             (identical(other.attachment, attachment) ||
                 other.attachment == attachment) &&
             const DeepCollectionEquality().equals(other.itemType, itemType) &&
@@ -319,6 +336,7 @@ class _$MessageModelImpl implements _MessageModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       text,
+      const DeepCollectionEquality().hash(imageUrls),
       attachment,
       const DeepCollectionEquality().hash(itemType),
       read,
@@ -348,6 +366,7 @@ abstract class _MessageModel implements MessageModel {
   const factory _MessageModel(
       {required final dynamic id,
       required final String text,
+      final dynamic imageUrls,
       final String? attachment,
       final dynamic itemType,
       final bool? read,
@@ -364,6 +383,8 @@ abstract class _MessageModel implements MessageModel {
   dynamic get id;
   @override
   String get text;
+  @override
+  dynamic get imageUrls;
   @override
   String? get attachment;
   @override

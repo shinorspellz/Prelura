@@ -133,15 +133,21 @@ class OfferProductCard extends ConsumerWidget {
 
 class ImageBuilder extends StatelessWidget {
   final String imageUrl;
-  const ImageBuilder({super.key, required this.imageUrl});
+  final double? height, width;
+  const ImageBuilder({
+    super.key,
+    required this.imageUrl,
+    this.height,
+    this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(2),
       child: SizedBox(
-        height: 75,
-        width: 60,
+        height: height ?? 75,
+        width: width ?? 60,
         child: CachedNetworkImage(
           errorWidget: (context, url, error) => Container(
             color: PreluraColors.grey,

@@ -1,6 +1,6 @@
 // import 'dart:developer';
 
-// import 'package:flutter/scheduler.dart';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -15,11 +15,13 @@ import 'package:prelura_app/res/date_time_extension.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
+import 'package:sizer/sizer.dart';
 // import 'package:sticky_grouped_list_plus/sticky_grouped_list.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import 'chat_text_box.dart';
 import 'message_helper.dart';
+import 'offer_product_card.dart';
 
 class MessageConversationBuilder extends ConsumerStatefulWidget {
   final String? avatar;
@@ -96,16 +98,14 @@ class _MessageConversationBuilderState
   // Build the message row with message bubbles and profile picture
   Widget _buildMessageRow(MessageModel chatInfo, bool isMe) {
     final canShowImage = MessageHelper.canShowImage(chatInfo);
-    final messageType = MessageHelper.getMessageType(chatInfo);
+    // final messageType = MessageHelper.getMessageType(chatInfo);
     return Padding(
         padding: EdgeInsets.only(
             top: MessageHelper.getMyTopSpace(
           chatInfo,
         )),
         child: Row(
-            crossAxisAlignment: messageType == "service"
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment:
                 isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
@@ -137,7 +137,7 @@ class _MessageConversationBuilderState
 
   // Message bubble for different message types
   Widget _buildMessageBubble(MessageModel chatInfo, bool isMe) {
-    final messageType = MessageHelper.getMessageType(chatInfo);
+    // final messageType = MessageHelper.getMessageType(chatInfo);
     // final myNotifier = ref.watch(messagesNotifierProvider.notifier);
     return VisibilityDetector(
       key: Key(chatInfo.id.toString()),
@@ -153,11 +153,16 @@ class _MessageConversationBuilderState
             mainAxisAlignment:
                 isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
-              PlainMessageBox(
-                isMe: isMe,
-                chatInfo: chatInfo,
-                currentUsername: currentUser?.username ?? "",
-              ),
+              if (chatInfo.text.isNotEmpty)
+                PlainMessageBox(
+                  isMe: isMe,
+                  chatInfo: chatInfo,
+                  currentUsername: currentUser?.username ?? "",
+                ),
+              if (chatInfo.imageUrls != null && chatInfo.imageUrls.isNotEmpty)
+                MessageImageBuilder(
+                  chatInfo: chatInfo,
+                ),
             ]),
       ),
     );
@@ -299,6 +304,29 @@ class _MessageConversationBuilderState
           child: Text(
             "An error occurred, please try again.",
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class MessageImageBuilder extends StatelessWidget {
+  final MessageModel chatInfo;
+  const MessageImageBuilder({
+    super.key,
+    required this.chatInfo,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: ImageBuilder(
+          height: 200,
+          width: 70.w,
+          imageUrl: jsonDecode(chatInfo.imageUrls[0])["url"],
         ),
       ),
     );

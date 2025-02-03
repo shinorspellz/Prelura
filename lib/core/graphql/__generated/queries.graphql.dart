@@ -29926,7 +29926,7 @@ class Query$Conversation$conversation {
     this.itemId,
     this.itemType,
     required this.createdAt,
-    this.imageUrls,
+    required this.imageUrls,
     this.replyTo,
     this.sender,
     this.$__typename = 'MessageType',
@@ -29959,7 +29959,8 @@ class Query$Conversation$conversation {
       itemId: (l$itemId as int?),
       itemType: (l$itemType as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
-      imageUrls: (l$imageUrls as String?),
+      imageUrls:
+          (l$imageUrls as List<dynamic>).map((e) => (e as String)).toList(),
       replyTo: l$replyTo == null
           ? null
           : Query$Conversation$conversation$replyTo.fromJson(
@@ -29990,7 +29991,7 @@ class Query$Conversation$conversation {
 
   final DateTime createdAt;
 
-  final String? imageUrls;
+  final List<String> imageUrls;
 
   final Query$Conversation$conversation$replyTo? replyTo;
 
@@ -30021,7 +30022,7 @@ class Query$Conversation$conversation {
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$imageUrls = imageUrls;
-    _resultData['imageUrls'] = l$imageUrls;
+    _resultData['imageUrls'] = l$imageUrls.map((e) => e).toList();
     final l$replyTo = replyTo;
     _resultData['replyTo'] = l$replyTo?.toJson();
     final l$sender = sender;
@@ -30056,7 +30057,7 @@ class Query$Conversation$conversation {
       l$itemId,
       l$itemType,
       l$createdAt,
-      l$imageUrls,
+      Object.hashAll(l$imageUrls.map((v) => v)),
       l$replyTo,
       l$sender,
       l$$__typename,
@@ -30119,8 +30120,15 @@ class Query$Conversation$conversation {
     }
     final l$imageUrls = imageUrls;
     final lOther$imageUrls = other.imageUrls;
-    if (l$imageUrls != lOther$imageUrls) {
+    if (l$imageUrls.length != lOther$imageUrls.length) {
       return false;
+    }
+    for (int i = 0; i < l$imageUrls.length; i++) {
+      final l$imageUrls$entry = l$imageUrls[i];
+      final lOther$imageUrls$entry = lOther$imageUrls[i];
+      if (l$imageUrls$entry != lOther$imageUrls$entry) {
+        return false;
+      }
     }
     final l$replyTo = replyTo;
     final lOther$replyTo = other.replyTo;
@@ -30169,7 +30177,7 @@ abstract class CopyWith$Query$Conversation$conversation<TRes> {
     int? itemId,
     String? itemType,
     DateTime? createdAt,
-    String? imageUrls,
+    List<String>? imageUrls,
     Query$Conversation$conversation$replyTo? replyTo,
     Query$Conversation$conversation$sender? sender,
     String? $__typename,
@@ -30229,9 +30237,9 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
-        imageUrls: imageUrls == _undefined
+        imageUrls: imageUrls == _undefined || imageUrls == null
             ? _instance.imageUrls
-            : (imageUrls as String?),
+            : (imageUrls as List<String>),
         replyTo: replyTo == _undefined
             ? _instance.replyTo
             : (replyTo as Query$Conversation$conversation$replyTo?),
@@ -30277,7 +30285,7 @@ class _CopyWithStubImpl$Query$Conversation$conversation<TRes>
     int? itemId,
     String? itemType,
     DateTime? createdAt,
-    String? imageUrls,
+    List<String>? imageUrls,
     Query$Conversation$conversation$replyTo? replyTo,
     Query$Conversation$conversation$sender? sender,
     String? $__typename,

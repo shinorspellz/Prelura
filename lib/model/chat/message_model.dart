@@ -9,6 +9,7 @@ class MessageModel with _$MessageModel {
   const factory MessageModel({
     required dynamic id,
     required String text,
+    dynamic imageUrls,
     String? attachment,
     itemType,
     bool? read,
