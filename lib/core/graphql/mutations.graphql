@@ -620,3 +620,32 @@ mutation DeleteAccount($password: String!) {
     success
   }
 }
+
+mutation reportAccount(
+  $reason: String!,
+  $username: String!,
+  $content: String
+){
+  reportAccount(
+    reason:$reason,
+    username: $username,
+    content:$content
+  ){
+    message
+  }
+}
+
+
+mutation reportProduct(
+  $reason: String!,
+  $productId: Int!,
+  $content: String
+){
+  reportProduct(
+    reason:$reason,
+    productId: $productId,
+    content:$content
+  ){
+    message
+  }
+}

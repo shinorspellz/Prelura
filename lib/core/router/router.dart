@@ -272,6 +272,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: PostageSettings.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: InviteFriend.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ListOfContacts.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: ReportAccountHomepage.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: ReportAccountOptionsRoute.page, guards: [AuthGuard(_ref)]),
       ];
 }
 
@@ -282,15 +285,16 @@ class AuthGuard extends AutoRouteGuard {
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    final isAuthenticated = _ref.read(authStateProvider).requireValue;
-    if (isAuthenticated) {
-      if (router.current.name == LoginRoute.name) {
-        router.replace(const AuthRoute());
-      } else {
+    try {
+      final isAuthenticated = _ref.read(authStateProvider).requireValue;
+      log("isAuthenticated: $isAuthenticated");
+      if (isAuthenticated) {
         resolver.next();
+      } else {
+        router.push(LoginRoute());
       }
-    } else {
-      router.push(LoginRoute());
+    } catch (e) {
+      log("AuthGuard: $e");
     }
   }
 

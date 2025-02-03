@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
+import '../../core/router/router.gr.dart';
 import '../notification_provider.dart';
 
 final authProvider =
@@ -23,7 +25,7 @@ final authStateProvider = StreamProvider((ref) async* {
       yield value;
     }
   } catch (_, st) {
-    log(_.toString(), stackTrace: st);
+    log(_.toString(), stackTrace: st, name: 'AuthController');
     yield false;
   }
 });
@@ -32,6 +34,7 @@ final authTokenProvider = Provider((ref) => ref.watch(authRepo).getToken);
 
 class _AuthController extends AsyncNotifier<void> {
   late final _repo = ref.read(authRepo);
+  final context = BuildContext;
 
   @override
   FutureOr build() {}
@@ -41,7 +44,6 @@ class _AuthController extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(() async {
       await _repo.login(username, password);
-      ref.invalidate(notificationProvider);
     });
   }
 
@@ -65,9 +67,13 @@ class _AuthController extends AsyncNotifier<void> {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
-      ref.invalidate(notificationProvider);
       await _repo.logout();
-      ref.invalidate(notificationProvider);
+
+      ref.refresh(authStateProvider.future);
+       final isAuthenticated = ref.read(authStateProvider).requireValue;
+
+       log("$isAuthenticated");
+
     });
   }
 }

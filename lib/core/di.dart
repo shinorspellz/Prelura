@@ -121,10 +121,10 @@ final graphqUploadlClient = Provider((ref) {
 
   final prettyLogger = TalkerDioLogger(
       settings: const TalkerDioLoggerSettings(
-    printRequestData: false,
+    printRequestData: true,
     printRequestHeaders: false,
-    printResponseHeaders: false,
-    printResponseMessage: false,
+    printResponseHeaders: true,
+    printResponseMessage: true,
   ));
 
   // dio setup

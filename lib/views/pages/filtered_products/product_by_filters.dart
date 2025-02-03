@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
@@ -40,6 +41,9 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
   @override
   void dispose() {
     super.dispose();
+    HelperFunction.genRef!
+        .read(filteredProductSearchQueryProvider.notifier)
+        .state = "";
   }
 
   @override
@@ -47,6 +51,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     super.initState();
     Future.microtask(() {
       log("here in the microstask");
+      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
+
       // Ensure the widget is still mounted
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(parentCategory: widget.parentCategory);
@@ -67,10 +73,11 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     });
   }
 
-  String searchQuery = '';
+  String searchQuery = "";
 
   @override
   Widget build(BuildContext context) {
+    searchQuery = ref.watch(filteredProductSearchQueryProvider);
     // useEffect(
     //   () {
     //     log("::::: You called me ::::");
@@ -126,6 +133,12 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                             cancelButton: true,
                             onChanged: (val) {
                               searchQuery = val;
+                              ref
+                                  .read(filteredProductSearchQueryProvider
+                                      .notifier)
+                                  .state = val;
+                              ref.refresh(filteredProductProvider(ref
+                                  .read(filteredProductSearchQueryProvider)));
                               setState(() {});
                             },
                           ),

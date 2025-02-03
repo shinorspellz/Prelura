@@ -48,3 +48,33 @@ class _AccountController extends AsyncNotifier<void> {
     }
   }
 }
+
+final reportAccountProvider =
+    AsyncNotifierProvider<_ReportAccountNotifier, void>(
+        _ReportAccountNotifier.new);
+
+class _ReportAccountNotifier extends AsyncNotifier<void> {
+  late final _repo = ref.read(userRepo);
+  @override
+  Future<void> build() async {}
+
+  Future<String> reportAccount(
+      {required String reason,
+      required String username,
+      String? content}) async {
+    state = const AsyncLoading();
+
+    try {
+      final result = await _repo.reportAccount(
+        reason: reason,
+        username: username,
+        content: content,
+      );
+      state = AsyncValue.data(result);
+      return result;
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+      rethrow;
+    }
+  }
+}

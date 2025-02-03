@@ -10,6 +10,8 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../controller/auth/auth_controller.dart';
+
 /// Authentication Repository for all auth operation like [login], [register] & [login]
 /// and depends on the [GraphQLClient] via dependency injection.
 ///
@@ -35,7 +37,7 @@ class AuthRepo {
     ));
 
     // checks if any data is available in the mutation
-    if (response.login?.token == null || response.login?.restToken == null) {
+    if (response.login?.token == null) {
       throw const CacheFailure();
     }
     log("token is ${response.login!.token!}");
@@ -94,6 +96,7 @@ class AuthRepo {
 
     await _remove();
     _ref.invalidateSelf();
+
     log('${response.logout?.message}', name: 'AuthMutation');
   }
 

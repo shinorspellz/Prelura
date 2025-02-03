@@ -8,7 +8,9 @@ import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../core/router/router.gr.dart';
 import '../../../../res/colors.dart';
+import '../../../../res/helper_function.dart';
 import '../provider/tab_controller.dart';
 import '../widgets/multi_discount_bottom_view.dart';
 
@@ -55,7 +57,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
     _tabController.dispose();
     super.dispose();
     Future.microtask(() {
-      ref.read(multiProducts.notifier).clearProducts();
+      HelperFunction.genRef!.read(multiProducts.notifier).clearProducts();
     });
   }
 
@@ -104,6 +106,9 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                 VBottomSheetItem(
                     onTap: (context) {
                       Navigator.pop(context);
+
+                      context.router.push(ReportAccountOptionsRoute(
+                          username: widget.username, isProduct: false));
                     },
                     title: 'Report',
                     textColor: PreluraColors.error),
@@ -114,7 +119,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
           10.horizontalSpacing,
         ],
       ),
-    
+
       bottomSheet: Container(
           constraints: BoxConstraints(maxHeight: 200),
           child: MultiDiscountBottomView()),

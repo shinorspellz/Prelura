@@ -351,7 +351,7 @@ class SearchScreen extends ConsumerWidget {
             ),
           ),
           Container(
-            height: 106,
+            height: 110,
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

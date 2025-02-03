@@ -87,18 +87,19 @@ class PreluraCheckBox extends StatelessWidget {
                       ] else ...[
                         Row(
                           children: [
-                            Text(
-                              title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: style ??
-                                  Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        fontSize: getDefaultSize(),
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                            Expanded(
+                              child: Text(
+                                title,
+                                softWrap: true,
+                                style: style ??
+                                    Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          fontSize: getDefaultSize(),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                              ),
                             ),
                             6.horizontalSpacing,
                             if (sideText != null)

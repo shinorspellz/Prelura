@@ -184,6 +184,11 @@ Future<dynamic> showPriceDialog(
   }
 
   return showCustomDialog(context, child: Builder(builder: (context) {
+    void clearPriceFilter() {
+      filterNotifier.removeFilter(FilterTypes.price, context);
+      Navigator.pop(context);
+    }
+
     void validateAndFilter() {
       try {
         final minPriceText = minPriceController.text;
@@ -264,11 +269,23 @@ Future<dynamic> showPriceDialog(
               ),
             ),
           24.verticalSpacing,
-          AppButton(
-            onTap: validateAndFilter,
-            text: "Filter",
-            width: 130,
-            height: 45,
+          Row(
+            children: [
+              AppButton(
+                onTap: clearPriceFilter,
+                text: "Clear",
+                bgColor: context.theme.scaffoldBackgroundColor,
+                width: 120,
+                height: 45,
+              ),
+              24.horizontalSpacing,
+              AppButton(
+                onTap: validateAndFilter,
+                text: "Filter",
+                width: 120,
+                height: 45,
+              ),
+            ],
           )
         ],
       ),
