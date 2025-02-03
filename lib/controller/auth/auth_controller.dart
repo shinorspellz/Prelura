@@ -6,9 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
-import '../../core/router/router.gr.dart';
-import '../notification_provider.dart';
-
 final authProvider =
     AsyncNotifierProvider<_AuthController, void>(_AuthController.new);
 
@@ -68,6 +65,11 @@ class _AuthController extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(() async {
       await _repo.logout();
+
+      // ref.refresh(authStateProvider.future);
+      //  final isAuthenticated = ref.read(authStateProvider).requireValue;
+      //
+      //  log("$isAuthenticated");
     });
   }
 }

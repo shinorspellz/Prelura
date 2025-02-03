@@ -150,38 +150,42 @@ class SettingScreen extends StatelessWidget {
                                     child: SizedBox(
                                   height: 20,
                                   width: 20,
-                                  child: LoadingWidget(),
+                                  child: LoadingWidget(
+                                    height: 18,
+                                  ),
                                 )),
                               )
                             else
                               TextButton(
-                                  onPressed: () async {
-                                    await HelperFunction.genRef!
-                                        .read(authProvider.notifier)
-                                        .logout();
-                                    HelperFunction.genRef!
-                                        .read(categoryNotifierProvider.notifier)
-                                        .clearCache();
-                                    HelperFunction.genRef!
-                                        .read(authProvider)
-                                        .whenOrNull(
-                                      data: (data) {
-                                        context.router.pushAndPopUntil(
-                                            LoginRoute(),
-                                            predicate: (route) => false);
-                                      },
-                                      error: (e, _) {
-                                        log("${e.toString()}");
-                                        log("stack trace : ${_.toString()}",
-                                            name: "logout");
-                                        context.alert("An error occurred");
-                                      },
-                                    );
-                                  },
-                                  child: const Text('Logout')),
+                                onPressed: () async {
+                                  await HelperFunction.genRef!
+                                      .read(authProvider.notifier)
+                                      .logout();
+                                  HelperFunction.genRef!
+                                      .read(categoryNotifierProvider.notifier)
+                                      .clearCache();
+                                  HelperFunction.genRef!
+                                      .read(authProvider)
+                                      .whenOrNull(
+                                    data: (data) {
+                                      context.router.pushAndPopUntil(
+                                          LoginRoute(),
+                                          predicate: (route) => false);
+                                    },
+                                    error: (e, _) {
+                                      log(e.toString());
+                                      log("stack trace : ${_.toString()}",
+                                          name: "logout");
+                                      context.alert("An error occurred");
+                                    },
+                                  );
+                                },
+                                child: const Text('Logout'),
+                              ),
                             TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('Dismiss')),
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Dismiss'),
+                            ),
                           ],
                         );
                       }));

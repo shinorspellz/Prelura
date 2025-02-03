@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/errors/failures.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:graphql/client.dart';
 
 class SocketChannel {
   /// Constructor that initializes the websocket connection with the provided [url]
@@ -56,7 +56,7 @@ class SocketChannel {
   }
 
   /// retrieves the restoken from the caches
-  String? get _getToken => _cache.get('REST_TOKEN');
+  String? get _getToken => _cache.get('REFRESH_TOKEN');
 
   /// Initiates the websocket connection
   void _startConnection() async {
@@ -146,7 +146,7 @@ class GraphqlCL {
         }
         if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
           final error = response.exception!.graphqlErrors.first.message;
-          log(":${error}",
+          log(error,
               name: operationName ?? 'GraphQL',
               stackTrace: response.exception?.originalStackTrace);
           throw RequestFailure(error, response.exception?.originalStackTrace);

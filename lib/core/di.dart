@@ -181,8 +181,12 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) => AuthRepo(ref.watch(networkClient), ref.watch(hive).requireValue, ref,
-      ref.watch(graphqlClient)),
+  (ref) => AuthRepo(
+    ref.watch(networkClient),
+    ref.watch(hive).requireValue,
+    ref,
+    ref.watch(graphqlClient),
+  ),
 );
 
 /// Product Repository for any dependency

@@ -17,11 +17,11 @@ import 'package:rxdart/rxdart.dart';
 /// each graphql query or mutation.
 class AuthRepo {
   final GraphqlCL _client;
-  final GraphQLClient client;
+  final GraphQLClient _client2;
   final Box _cacheBox;
   final Ref _ref;
 
-  AuthRepo(this._client, this._cacheBox, this._ref, this.client);
+  AuthRepo(this._client, this._cacheBox, this._ref, this._client2);
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
@@ -89,38 +89,19 @@ class AuthRepo {
   /// Logout action
   Future<void> logout() async {
     String token = _cacheBox.get("REFRESH_TOKEN");
+    String token2 = _cacheBox.get("AUTH_TOKEN");
     log("The token is::: $token");
+    log("The token is::: $token2");
     try {
-      // final response = await _client.executeGraphQL(
-      //   operation: ClientOperation(
-      //     (cl) => cl.mutate$Logout(Options$Mutation$Logout(
-      //       variables: Variables$Mutation$Logout(
-      //         refreshToken: token,
-      //       ),
-      //     )),
-      //   ),
-      // );
-      
-      final response = await client.mutate$Logout(Options$Mutation$Logout(
-          variables: Variables$Mutation$Logout(refreshToken: token)));
-      if (response.hasException) {
-        if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-          final error = response.exception!.graphqlErrors.first.message;
-          log("$error");
-          throw error;
-        }
-        log(response.exception.toString(), name: 'UserRepo');
-        throw 'An error occured';
-      }
-      // log(response.parsedData!.logout!.message!);
-      // if (response.parsedData!.logout!.message !=
-      //     "You do not have permission to perform this action") {
-      //   await _remove();
-      //   _ref.invalidateSelf();
-      // }
+      await _client2.mutate$Logout(
+        Options$Mutation$Logout(
+            variables: Variables$Mutation$Logout(
+          refreshToken: token,
+        )),
+      );
 
-      log('${response.parsedData!.logout?.message}', name: 'AuthMutation');
-    } catch (e, _) {
+      _remove();
+    } catch (e) {
       log(":::Error from logout user:::: ::: $e");
       log(":::Error from logout user:::: ::: $_");
     }
