@@ -17,10 +17,11 @@ import 'package:rxdart/rxdart.dart';
 /// each graphql query or mutation.
 class AuthRepo {
   final GraphqlCL _client;
+  final GraphQLClient _client2;
   final Box _cacheBox;
   final Ref _ref;
 
-  AuthRepo(this._client, this._cacheBox, this._ref);
+  AuthRepo(this._client, this._cacheBox, this._ref, this._client2);
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
@@ -88,25 +89,18 @@ class AuthRepo {
   /// Logout action
   Future<void> logout() async {
     String token = _cacheBox.get("REFRESH_TOKEN");
+    String token2 = _cacheBox.get("AUTH_TOKEN");
     log("The token is::: $token");
+    log("The token is::: $token2");
     try {
-      final response = await _client.executeGraphQL(
-        operation: ClientOperation(
-          (cl) => cl.mutate$Logout(Options$Mutation$Logout(
+      await _client2.mutate$Logout(
+        Options$Mutation$Logout(
             variables: Variables$Mutation$Logout(
-              refreshToken: token,
-            ),
-          )),
-        ),
+          refreshToken: token,
+        )),
       );
 
-      if (response.logout!.message !=
-          "You do not have permission to perform this action") {
-        await _remove();
-        _ref.invalidateSelf();
-      }
-
-      log('${response.logout?.message}', name: 'AuthMutation');
+      _remove();
     } catch (e) {
       log(":::Error from logout user:::: ::: $e");
     }
