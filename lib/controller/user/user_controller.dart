@@ -14,6 +14,7 @@ import '../../repo/network_repo.dart';
 final userProvider = FutureProvider((ref) async {
   final repo = ref.watch(userRepo);
   try {
+    ref.read(refreshTokenSession);
     final result = repo.getMe();
 
     return result;
@@ -23,12 +24,16 @@ final userProvider = FutureProvider((ref) async {
 });
 
 final FutureProvider refreshTokenSession = FutureProvider((ref) async {
-  final repo = ref.watch(userRepo);
+  final repo = ref.read(userRepo);
   final box = ref.read(hive).requireValue;
+  if (DateTime.now().difference(box.get('tokenTime')) < Duration(hours: 22)) {
+    return;
+  }
 
   final result = await repo.refreshToken(box.get("REFRESH_TOKEN"));
 
-  box.put('REFRESH_TOKEN', result!.token);
+  log("::::The refresh token result is :::: ${result?.toJson()}");
+  box.put('AUTH_TOKEN', result!.token);
   box.put('tokenTime', DateTime.now());
 });
 

@@ -15,6 +15,8 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
   FutureOr<List<ConversationModel>> build() => _getConversations();
 
   Future<List<ConversationModel>> _getConversations() async {
+    state = AsyncData([]);
+    state = AsyncLoading();
     final result = await _repo.getConversation();
     return result;
   }
