@@ -127,13 +127,10 @@ class _MessageConversationBuilderState
                 addHorizontalSpacing(isMe ? 0 : 47)
               else
                 SizedBox.shrink(),
-              Expanded(
-                child: Stack(children: [
-                  _buildMessageTimestamp(chatInfo),
-                  _buildMessageBubble(chatInfo, isMe),
-                ]),
-              ),
-              if (isMe) addHorizontalSpacing(0),
+              Stack(children: [
+                _buildMessageTimestamp(chatInfo),
+                _buildMessageBubble(chatInfo, isMe),
+              ]),
             ]));
   }
 
@@ -218,16 +215,16 @@ class _MessageConversationBuilderState
         }
         MessageHelper.messages = chatList;
         // Scroll to bottom on first load
-        if (isFirstTime && chatList.isNotEmpty) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            widget.scrollController.animateTo(
-              widget.scrollController.position.minScrollExtent,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.linear,
-            );
-          });
-          isFirstTime = false;
-        }
+        // if (isFirstTime) {
+        //   WidgetsBinding.instance.addPostFrameCallback((_) {
+        //     widget.scrollController.animateTo(
+        //       widget.scrollController.position.minScrollExtent,
+        //       duration: const Duration(milliseconds: 200),
+        //       curve: Curves.linear,
+        //     );
+        //   });
+        //   isFirstTime = false;
+        // }
         // log("::::: The bottomHeight:: ${MediaQuery.of(context).viewPadding.bottom}");
         return GestureDetector(
           onHorizontalDragUpdate: (details) => _onHorizontalDragUpdate(details),
@@ -285,12 +282,12 @@ class _MessageConversationBuilderState
             // TypingHandlerBox(
             //   textController: widget.textController,
             // ),
-            addVerticalSpacing(
-                MediaQuery.of(context).viewPadding.bottom > 0 ? 85 : 75),
-            if (ref.watch(
-              showEmojiProvider,
-            ))
-              addVerticalSpacing(250),
+            // addVerticalSpacing(
+            //     MediaQuery.of(context).viewPadding.bottom > 0 ? 85 : 0),
+            // if (ref.watch(
+            //   showEmojiProvider,
+            // ))
+            // addVerticalSpacing(250),
           ]),
         );
       },
@@ -321,7 +318,10 @@ class MessageImageBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String imagePath = jsonDecode(chatInfo.imageUrls[0])["url"];
+    final String imagePath = chatInfo.imageUrls[0].runtimeType == String
+        ? jsonDecode(chatInfo.imageUrls[0])["url"]
+        : chatInfo.imageUrls[0]['url'];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(

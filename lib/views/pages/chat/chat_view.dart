@@ -116,14 +116,17 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           ? OfferConversationBuilder(
               conversationId: widget.id,
             )
-          : ListView(controller: ref.watch(chatScrollController), children: [
-              MessageConversationBuilder(
-                conversationId: int.parse(widget.id),
-                avatar: widget.avatarUrl,
-                scrollController: ref.watch(chatScrollController),
-                textController: textController,
-              ),
-            ]),
+          : ListView(
+              reverse: true,
+              controller: ref.watch(chatScrollController),
+              children: [
+                  MessageConversationBuilder(
+                    conversationId: int.parse(widget.id),
+                    avatar: widget.avatarUrl,
+                    scrollController: ref.watch(chatScrollController),
+                    textController: textController,
+                  ),
+                ]),
 
       // SingleChildScrollView(
       //         controller: ref.watch(chatScrollController),
