@@ -103,7 +103,6 @@ class AuthRepo {
       _remove();
     } catch (e) {
       log(":::Error from logout user:::: ::: $e");
-      log(":::Error from logout user:::: ::: $_");
     }
   }
 

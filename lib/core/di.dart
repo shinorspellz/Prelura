@@ -75,10 +75,10 @@ final graphqlClient = Provider((ref) {
 
   final prettyLogger = TalkerDioLogger(
       settings: const TalkerDioLoggerSettings(
-    printRequestData: false,
-    printRequestHeaders: false,
-    printResponseHeaders: false,
-    printResponseMessage: false,
+    printRequestData: true,
+    printRequestHeaders: true,
+    printResponseHeaders: true,
+    printResponseMessage: true,
   ));
 
   // dio setup

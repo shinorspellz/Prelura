@@ -16,6 +16,7 @@ import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
+import 'package:uni_links/uni_links.dart';
 
 import 'controller/theme_notifier.dart';
 
@@ -44,11 +45,40 @@ void main() async {
   });
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    _initDeepLinkListener();
+  }
+
+  void _initDeepLinkListener() async {
+    uriLinkStream.listen((Uri? uri) {
+      if (uri != null) {
+        debugPrint('Deep link received: ${uri.toString()}');
+        _handleDeepLink(uri);
+      }
+    }, onError: (err) {
+      debugPrint('Deep Link Error: $err');
+    });
+  }
+
+  void _handleDeepLink(Uri uri) {
+    String? id = uri.queryParameters['id'];
+    if (id != null) {
+      // context.router.push(VerifyUserRoute(id: id));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     HelperFunction.genRef = ref;
     final themeMode = ref.watch(themeNotifierProvider);
     ref.watch(notificationProvider);

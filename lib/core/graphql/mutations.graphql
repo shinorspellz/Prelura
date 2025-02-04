@@ -649,3 +649,4 @@ mutation reportProduct(
     message
   }
 }
+
