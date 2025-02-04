@@ -11,7 +11,6 @@ import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/theme.dart';
