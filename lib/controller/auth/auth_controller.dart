@@ -78,6 +78,18 @@ class _AuthController extends AsyncNotifier<void> {
       //  log("$isAuthenticated");
     });
   }
+
+  Future<void> verifyAccount({required String token}) async {
+    state = const AsyncLoading();
+
+    try {
+      state = await AsyncValue.guard(() async {
+        await _repo.verifyAccount(token: token);
+      });
+    } catch (e, _) {
+      state = AsyncError(e, _);
+    }
+  }
 }
 
 final forgotPasswordProvider =
