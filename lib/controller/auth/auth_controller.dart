@@ -82,9 +82,13 @@ class _AuthController extends AsyncNotifier<void> {
   Future<void> verifyAccount({required String token}) async {
     state = const AsyncLoading();
 
-    state = await AsyncValue.guard(() async {
-      await _repo.verifyAccount(token: token);
-    });
+    try {
+      state = await AsyncValue.guard(() async {
+        await _repo.verifyAccount(token: token);
+      });
+    } catch (e, _) {
+      state = AsyncError(e, _);
+    }
   }
 }
 

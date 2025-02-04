@@ -4,11 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_text_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 
 import '../../widgets/app_button_with_loader.dart';
+import '../../widgets/custom_widget.dart';
 import '../../widgets/gap.dart';
 import '../../widgets/show_animated_dialog.dart';
 
@@ -109,7 +111,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     onSaved: (value) => email = value,
                     validator: (p0) {
                       if (p0!.isEmpty) {
-                        return "Username is required";
+                        return "Email is required";
                       }
                       return null;
                     },
@@ -178,14 +180,23 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           );
                       ref.read(authProvider).whenOrNull(
                           error: (e, _) => context.alert(e.toString()),
-                          data: (_) =>
-                              // context.router.replaceAll([const Veri()]),
-                              showAnimatedDialog(
-                                  barrierDismissible: false,
-                                  context: context,
-                                  child: Container(
-                                    child: Text(""),
-                                  )));
+                          data: (_) {
+                            // context.router.replaceAll([const Veri()]),
+                            // return showCustomDialog(context,
+                            //     child: Container(
+                            //       height: 250,
+                            //       padding: EdgeInsets.all(16),
+                            //       color: context.theme.scaffoldBackgroundColor,
+                            //       child: Text(" Congratulations"),
+                            //     ));
+
+                            context.router.replaceAll([
+                              EmailSentRoute(
+                                  email: email!,
+                                  username: username!,
+                                  password: password!)
+                            ]);
+                          });
                     },
                     buttonTitle: 'Sign Up',
                   ),

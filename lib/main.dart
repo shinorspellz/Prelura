@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +75,8 @@ class _MyAppState extends ConsumerState<MyApp> {
   void _handleDeepLink(Uri uri) {
     String? id = uri.queryParameters['token'];
     if (id != null) {
-      context.router.push(VerifyUserRoute(id: id));
+      log("$id");
+      // context.router.push(VerifyUserRoute(token: id));
     }
   }
 
