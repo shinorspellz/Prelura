@@ -74,6 +74,7 @@ class _MessagesNotifier
     await _getMessages(id: arg, pageNumber: _currentPage);
     await for (final event in _channel!.stream) {
       final newMessageData = event is String ? jsonDecode(event) : event;
+      log("::::: The new messages:::${newMessageData}");
       if (newMessageData["is_typing"] == null) {
         final MessageModel newMessage = MessageModel.fromSocket(newMessageData);
         if (ref.read(chatScrollController).hasClients) {

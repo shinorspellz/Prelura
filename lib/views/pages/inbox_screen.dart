@@ -145,6 +145,7 @@ class ChatsTab extends ConsumerWidget {
               child: LoadingWidget(),
             ),
         data: (List<ConversationModel> conversations) {
+          log("::::The conversation lis count::: ${conversations.length}");
           if (conversations.isEmpty) {
             return EmptyScreenPlaceholder(
               text: "No messages",

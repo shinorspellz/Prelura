@@ -321,13 +321,6 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'restToken'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'token'),
             alias: null,
             arguments: [],
@@ -484,7 +477,6 @@ extension ClientExtension$Mutation$Login on graphql.GraphQLClient {
 
 class Mutation$Login$login {
   Mutation$Login$login({
-    this.restToken,
     required this.token,
     required this.refreshToken,
     this.user,
@@ -492,13 +484,11 @@ class Mutation$Login$login {
   });
 
   factory Mutation$Login$login.fromJson(Map<String, dynamic> json) {
-    final l$restToken = json['restToken'];
     final l$token = json['token'];
     final l$refreshToken = json['refreshToken'];
     final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Mutation$Login$login(
-      restToken: (l$restToken as String?),
       token: (l$token as String),
       refreshToken: (l$refreshToken as String),
       user: l$user == null
@@ -508,8 +498,6 @@ class Mutation$Login$login {
       $__typename: (l$$__typename as String),
     );
   }
-
-  final String? restToken;
 
   final String token;
 
@@ -521,8 +509,6 @@ class Mutation$Login$login {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$restToken = restToken;
-    _resultData['restToken'] = l$restToken;
     final l$token = token;
     _resultData['token'] = l$token;
     final l$refreshToken = refreshToken;
@@ -536,13 +522,11 @@ class Mutation$Login$login {
 
   @override
   int get hashCode {
-    final l$restToken = restToken;
     final l$token = token;
     final l$refreshToken = refreshToken;
     final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$restToken,
       l$token,
       l$refreshToken,
       l$user,
@@ -556,11 +540,6 @@ class Mutation$Login$login {
       return true;
     }
     if (other is! Mutation$Login$login || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$restToken = restToken;
-    final lOther$restToken = other.restToken;
-    if (l$restToken != lOther$restToken) {
       return false;
     }
     final l$token = token;
@@ -605,7 +584,6 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
       _CopyWithStubImpl$Mutation$Login$login;
 
   TRes call({
-    String? restToken,
     String? token,
     String? refreshToken,
     Mutation$Login$login$user? user,
@@ -628,16 +606,12 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? restToken = _undefined,
     Object? token = _undefined,
     Object? refreshToken = _undefined,
     Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login$login(
-        restToken: restToken == _undefined
-            ? _instance.restToken
-            : (restToken as String?),
         token: token == _undefined || token == null
             ? _instance.token
             : (token as String),
@@ -667,7 +641,6 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes>
   TRes _res;
 
   call({
-    String? restToken,
     String? token,
     String? refreshToken,
     Mutation$Login$login$user? user,

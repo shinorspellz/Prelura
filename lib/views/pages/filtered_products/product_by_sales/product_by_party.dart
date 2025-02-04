@@ -30,17 +30,19 @@ class _ProductFilterPageState
   void initState() {
     super.initState();
 
-    controller.addListener(() {
-      if (!mounted) return; // Guard against unmounted state
-      final maxScroll = controller.position.maxScrollExtent;
-      final currentScroll = controller.position.pixels;
-      final delta = MediaQuery.of(context).size.height * 0.2;
-      if (maxScroll - currentScroll <= delta) {
-        ref
-            .read(allProductProvider(searchQuery).notifier)
-            .fetchMoreData(context);
-      }
-    });
+    // controller.addListener(() {
+    //   if (!mounted) return; // Guard against unmounted state
+    //   final maxScroll = controller.position.maxScrollExtent;
+    //   final currentScroll = controller.position.pixels;
+    //   final delta = MediaQuery.of(context).size.height * 0.2;
+    //   if (maxScroll - currentScroll <= delta) {
+    //     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+    //       ref
+    //           .read(allProductProvider(searchQuery).notifier)
+    //           .fetchMoreData(context);
+    //     });
+    //   }
+    // });
   }
 
   @override
@@ -117,9 +119,12 @@ class _ProductFilterPageState
                             .toList();
 
                         if (filteredProducts.isEmpty) {
-                          ref
-                              .read(allProductProvider(searchQuery).notifier)
-                              .fetchMoreData(context);
+                          WidgetsFlutterBinding.ensureInitialized()
+                              .addPostFrameCallback((_) {
+                            ref
+                                .read(allProductProvider(searchQuery).notifier)
+                                .fetchMoreData(context);
+                          });
                           return SliverToBoxAdapter(
                             child: SizedBox(
                               height: MediaQuery.of(context).size.height * 0.7,
