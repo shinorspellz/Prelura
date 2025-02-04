@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
+import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 @RoutePage()
@@ -44,12 +45,10 @@ class _ListOfContactsState extends State<ListOfContacts> {
         child: isLoading
             ? const Center(child: LoadingWidget())
             : Scrollbar(
-                child: ListView.separated(
+                child: ListView.builder(
                   controller: scrollController,
                   itemCount:
                       displayedContacts.length + (hasMoreContacts ? 1 : 0),
-                  separatorBuilder: (context, index) =>
-                      const Divider(thickness: 0.4),
                   itemBuilder: (context, index) {
                     // Show loading indicator at the bottom when loading more
                     if (index >= displayedContacts.length) {
@@ -64,40 +63,13 @@ class _ListOfContactsState extends State<ListOfContacts> {
                         ? contact.phones.first.number
                         : null;
                     final isSelected = selectedContacts.contains(phoneNumber);
-
-                    return ListTile(
-                      onTap: phoneNumber?.isNotEmpty == true
-                          ? () => toggleSelection(contact)
-                          : null,
-                      enabled: phoneNumber?.isNotEmpty == true,
-                      dense: true,
-                      trailing: Radio.adaptive(
-                        value: true,
-                        groupValue: isSelected,
-                        activeColor: colorScheme.primary,
-                        onChanged: phoneNumber?.isNotEmpty == true
-                            ? (value) => toggleSelection(contact)
-                            : null,
-                      ),
-                      title: Text(
-                        contact.structuredName?.displayName ??
-                            contact.displayName,
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: phoneNumber?.isNotEmpty == true
-                                  ? Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.color
-                                  : Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.color!
-                                      .withOpacity(0.5),
-                              fontSize: 14,
-                            ),
-                      ),
+                    return PreluraCheckBox(
+                      isChecked: isSelected,
+                      onChanged: phoneNumber?.isNotEmpty == true
+                          ? (value) => toggleSelection(contact)
+                          : (value) {},
+                      title: contact.structuredName?.displayName ??
+                          contact.displayName,
                     );
                   },
                 ),
@@ -116,11 +88,9 @@ class _ListOfContactsState extends State<ListOfContacts> {
       child: PreluraButtonWithLoader(
         buttonTitle: "Invite",
         buttonColor: PreluraColors.primaryColor,
-        onPressed: selectedContacts.isEmpty
-            ? null
-            : () {
-                inviteSelectedContacts(context);
-              },
+        onPressed: () {
+          inviteSelectedContacts(context);
+        },
       ),
     );
   }

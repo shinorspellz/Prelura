@@ -1,18 +1,19 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:prelura_app/controller/payment_method_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
-
-import 'package:prelura_app/controller/payment_method_controller.dart';
 
 @RoutePage()
 class PaymentSettings extends ConsumerStatefulWidget {
@@ -119,55 +120,50 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
   }
 
   Future<void> deletePaymentMethod() async {
-        try {
-     
-      // Send Payment Method ID to backend to attach to the customer
+    try {
+      var paymentMethodId = "";
+      // Delete Payment Method ID from backend for the customer
       ref
           .read(paymentMethodNotifierProvider.notifier)
-          .deletePaymentMethod(paymentMethodId: paymentMethod.id);
+          .deletePaymentMethod(paymentMethodId: paymentMethodId);
 
-      ref.read(paymentMethodNotifierProvider).whenOrNull(
-        error: (e, _) {
-          return context.alert('An error occurred: $e');
-        },
-        data: (_) async {
-          HelperFunction.context = context;
-          HelperFunction.showToast(message: "Payment Method saved");
+      ref.read(paymentMethodNotifierProvider).whenOrNull(error: (e, _) {
+        return context.alert('An error occurred: $e');
+      }, data: (_) async {
+        HelperFunction.context = context;
+        HelperFunction.showToast(message: "Payment Method saved");
 
-          prefs.setBool("paymentMethodIsAdded", false);
-          await Future.delayed(const Duration(seconds: 2));
+        prefs.setBool("paymentMethodIsAdded", false);
+        await Future.delayed(const Duration(seconds: 2));
 
-             setState(() {
-      paymentMethodIsAdded == false;
-    });
-          if (mounted) {
-            context.router.popForced();
-            context.router.popForced();
-    if (context.mounted) {
-      prefs.setBool("paymentMethodIsAdded", false);
-      context.alert("Payment method deleted successfully");
-    }
-    log("Payment method is added: $paymentMethodIsAdded");
-    context.router.popForced();
-  }
+        setState(() {
+          paymentMethodIsAdded == false;
+        });
+        if (mounted) {
+          context.router.popForced();
+          context.router.popForced();
+          if (context.mounted) {
+            prefs.setBool("paymentMethodIsAdded", false);
+            context.alert("Payment method deleted successfully");
           }
-    
-      );
+          log("Payment method is added: $paymentMethodIsAdded");
+          context.router.popForced();
+        }
+      });
     } on SocketException {
       if (mounted) context.alert("Please connect to the internet");
     } on StripeException catch (e, stackTrace) {
       log(
-        "Error creating payment method: $e",
+        "Error deleting payment method: $e",
         name: "Stripe",
         stackTrace: stackTrace,
       );
     } catch (e, stackTrace) {
       log(
-        "Error adding payment method: $e",
+        "Error deleting payment method: $e",
         name: "BACKEND",
         stackTrace: stackTrace,
       );
     }
   }
-   
-
+}
