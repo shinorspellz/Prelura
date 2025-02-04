@@ -275,6 +275,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ReportAccountHomepage.page, guards: [AuthGuard(_ref)]),
         AutoRoute(
             page: ReportAccountOptionsRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: PaymentSettings.page, guards: [AuthGuard(_ref)]),
       ];
 }
 

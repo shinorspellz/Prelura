@@ -417,4 +417,40 @@ class UserRepo {
 
     return response.parsedData!.reportAccount!.message!;
   }
+
+  Future<void> addPaymentMethod({required String paymentMethodId}) async {
+    final response = await _client.mutate$AddPaymentMethod(
+      Options$Mutation$AddPaymentMethod(
+        variables: Variables$Mutation$AddPaymentMethod(
+          paymentMethodID: paymentMethodId,
+        ),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+  }
+
+  Future<void> deletePaymentMethod({required String paymentMethodId}) async {
+    final response = await _client.mutate$DeletePaymentMethod(
+      Options$Mutation$DeletePaymentMethod(
+        variables: Variables$Mutation$DeletePaymentMethod(
+          paymentMethodID: paymentMethodId,
+        ),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+  }
 }

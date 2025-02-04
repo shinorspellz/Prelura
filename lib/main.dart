@@ -14,9 +14,12 @@ import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import 'controller/theme_notifier.dart';
+
+late SharedPreferences prefs;
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

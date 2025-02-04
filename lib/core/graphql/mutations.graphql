@@ -632,3 +632,19 @@ mutation reportProduct($reason: String!, $productId: ID!, $content: String) {
     message
   }
 }
+
+mutation AddPaymentMethod($paymentMethodID: String!) {
+  addPaymentMethod(paymentMethodId: $paymentMethodID) {
+    success
+    paymentMethod {
+      last4Digits
+    }
+  }
+}
+
+mutation DeletePaymentMethod($paymentMethodID: String!) {
+  deletePaymentMethod(paymentMethodId: $paymentMethodID) {
+    success
+    error
+  }
+}

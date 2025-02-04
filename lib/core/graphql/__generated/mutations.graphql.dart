@@ -33859,3 +33859,1280 @@ class _CopyWithStubImpl$Mutation$reportProduct$reportProduct<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$AddPaymentMethod {
+  factory Variables$Mutation$AddPaymentMethod(
+          {required String paymentMethodID}) =>
+      Variables$Mutation$AddPaymentMethod._({
+        r'paymentMethodID': paymentMethodID,
+      });
+
+  Variables$Mutation$AddPaymentMethod._(this._$data);
+
+  factory Variables$Mutation$AddPaymentMethod.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$paymentMethodID = data['paymentMethodID'];
+    result$data['paymentMethodID'] = (l$paymentMethodID as String);
+    return Variables$Mutation$AddPaymentMethod._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get paymentMethodID => (_$data['paymentMethodID'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$paymentMethodID = paymentMethodID;
+    result$data['paymentMethodID'] = l$paymentMethodID;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$AddPaymentMethod<
+          Variables$Mutation$AddPaymentMethod>
+      get copyWith => CopyWith$Variables$Mutation$AddPaymentMethod(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$AddPaymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$paymentMethodID = paymentMethodID;
+    final lOther$paymentMethodID = other.paymentMethodID;
+    if (l$paymentMethodID != lOther$paymentMethodID) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$paymentMethodID = paymentMethodID;
+    return Object.hashAll([l$paymentMethodID]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$AddPaymentMethod<TRes> {
+  factory CopyWith$Variables$Mutation$AddPaymentMethod(
+    Variables$Mutation$AddPaymentMethod instance,
+    TRes Function(Variables$Mutation$AddPaymentMethod) then,
+  ) = _CopyWithImpl$Variables$Mutation$AddPaymentMethod;
+
+  factory CopyWith$Variables$Mutation$AddPaymentMethod.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$AddPaymentMethod;
+
+  TRes call({String? paymentMethodID});
+}
+
+class _CopyWithImpl$Variables$Mutation$AddPaymentMethod<TRes>
+    implements CopyWith$Variables$Mutation$AddPaymentMethod<TRes> {
+  _CopyWithImpl$Variables$Mutation$AddPaymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$AddPaymentMethod _instance;
+
+  final TRes Function(Variables$Mutation$AddPaymentMethod) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? paymentMethodID = _undefined}) =>
+      _then(Variables$Mutation$AddPaymentMethod._({
+        ..._instance._$data,
+        if (paymentMethodID != _undefined && paymentMethodID != null)
+          'paymentMethodID': (paymentMethodID as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$AddPaymentMethod<TRes>
+    implements CopyWith$Variables$Mutation$AddPaymentMethod<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$AddPaymentMethod(this._res);
+
+  TRes _res;
+
+  call({String? paymentMethodID}) => _res;
+}
+
+class Mutation$AddPaymentMethod {
+  Mutation$AddPaymentMethod({
+    this.addPaymentMethod,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$AddPaymentMethod.fromJson(Map<String, dynamic> json) {
+    final l$addPaymentMethod = json['addPaymentMethod'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddPaymentMethod(
+      addPaymentMethod: l$addPaymentMethod == null
+          ? null
+          : Mutation$AddPaymentMethod$addPaymentMethod.fromJson(
+              (l$addPaymentMethod as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$AddPaymentMethod$addPaymentMethod? addPaymentMethod;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$addPaymentMethod = addPaymentMethod;
+    _resultData['addPaymentMethod'] = l$addPaymentMethod?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$addPaymentMethod = addPaymentMethod;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$addPaymentMethod,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$AddPaymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$addPaymentMethod = addPaymentMethod;
+    final lOther$addPaymentMethod = other.addPaymentMethod;
+    if (l$addPaymentMethod != lOther$addPaymentMethod) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPaymentMethod
+    on Mutation$AddPaymentMethod {
+  CopyWith$Mutation$AddPaymentMethod<Mutation$AddPaymentMethod> get copyWith =>
+      CopyWith$Mutation$AddPaymentMethod(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$AddPaymentMethod<TRes> {
+  factory CopyWith$Mutation$AddPaymentMethod(
+    Mutation$AddPaymentMethod instance,
+    TRes Function(Mutation$AddPaymentMethod) then,
+  ) = _CopyWithImpl$Mutation$AddPaymentMethod;
+
+  factory CopyWith$Mutation$AddPaymentMethod.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$AddPaymentMethod;
+
+  TRes call({
+    Mutation$AddPaymentMethod$addPaymentMethod? addPaymentMethod,
+    String? $__typename,
+  });
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
+      get addPaymentMethod;
+}
+
+class _CopyWithImpl$Mutation$AddPaymentMethod<TRes>
+    implements CopyWith$Mutation$AddPaymentMethod<TRes> {
+  _CopyWithImpl$Mutation$AddPaymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddPaymentMethod _instance;
+
+  final TRes Function(Mutation$AddPaymentMethod) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? addPaymentMethod = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddPaymentMethod(
+        addPaymentMethod: addPaymentMethod == _undefined
+            ? _instance.addPaymentMethod
+            : (addPaymentMethod as Mutation$AddPaymentMethod$addPaymentMethod?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
+      get addPaymentMethod {
+    final local$addPaymentMethod = _instance.addPaymentMethod;
+    return local$addPaymentMethod == null
+        ? CopyWith$Mutation$AddPaymentMethod$addPaymentMethod.stub(
+            _then(_instance))
+        : CopyWith$Mutation$AddPaymentMethod$addPaymentMethod(
+            local$addPaymentMethod, (e) => call(addPaymentMethod: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$AddPaymentMethod<TRes>
+    implements CopyWith$Mutation$AddPaymentMethod<TRes> {
+  _CopyWithStubImpl$Mutation$AddPaymentMethod(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$AddPaymentMethod$addPaymentMethod? addPaymentMethod,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
+      get addPaymentMethod =>
+          CopyWith$Mutation$AddPaymentMethod$addPaymentMethod.stub(_res);
+}
+
+const documentNodeMutationAddPaymentMethod = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'AddPaymentMethod'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'paymentMethodID')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'addPaymentMethod'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'paymentMethodId'),
+            value: VariableNode(name: NameNode(value: 'paymentMethodID')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'paymentMethod'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'last4Digits'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$AddPaymentMethod _parserFn$Mutation$AddPaymentMethod(
+        Map<String, dynamic> data) =>
+    Mutation$AddPaymentMethod.fromJson(data);
+typedef OnMutationCompleted$Mutation$AddPaymentMethod = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$AddPaymentMethod?,
+);
+
+class Options$Mutation$AddPaymentMethod
+    extends graphql.MutationOptions<Mutation$AddPaymentMethod> {
+  Options$Mutation$AddPaymentMethod({
+    String? operationName,
+    required Variables$Mutation$AddPaymentMethod variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$AddPaymentMethod? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$AddPaymentMethod? onCompleted,
+    graphql.OnMutationUpdate<Mutation$AddPaymentMethod>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$AddPaymentMethod(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationAddPaymentMethod,
+          parserFn: _parserFn$Mutation$AddPaymentMethod,
+        );
+
+  final OnMutationCompleted$Mutation$AddPaymentMethod? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$AddPaymentMethod
+    extends graphql.WatchQueryOptions<Mutation$AddPaymentMethod> {
+  WatchOptions$Mutation$AddPaymentMethod({
+    String? operationName,
+    required Variables$Mutation$AddPaymentMethod variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$AddPaymentMethod? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationAddPaymentMethod,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$AddPaymentMethod,
+        );
+}
+
+extension ClientExtension$Mutation$AddPaymentMethod on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$AddPaymentMethod>>
+      mutate$AddPaymentMethod(
+              Options$Mutation$AddPaymentMethod options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$AddPaymentMethod>
+      watchMutation$AddPaymentMethod(
+              WatchOptions$Mutation$AddPaymentMethod options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$AddPaymentMethod$addPaymentMethod {
+  Mutation$AddPaymentMethod$addPaymentMethod({
+    this.success,
+    this.paymentMethod,
+    this.$__typename = 'AddPaymentMethod',
+  });
+
+  factory Mutation$AddPaymentMethod$addPaymentMethod.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$paymentMethod = json['paymentMethod'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddPaymentMethod$addPaymentMethod(
+      success: (l$success as bool?),
+      paymentMethod: l$paymentMethod == null
+          ? null
+          : Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod.fromJson(
+              (l$paymentMethod as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod? paymentMethod;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$paymentMethod = paymentMethod;
+    _resultData['paymentMethod'] = l$paymentMethod?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$paymentMethod = paymentMethod;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$paymentMethod,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$AddPaymentMethod$addPaymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$paymentMethod = paymentMethod;
+    final lOther$paymentMethod = other.paymentMethod;
+    if (l$paymentMethod != lOther$paymentMethod) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPaymentMethod$addPaymentMethod
+    on Mutation$AddPaymentMethod$addPaymentMethod {
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<
+          Mutation$AddPaymentMethod$addPaymentMethod>
+      get copyWith => CopyWith$Mutation$AddPaymentMethod$addPaymentMethod(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes> {
+  factory CopyWith$Mutation$AddPaymentMethod$addPaymentMethod(
+    Mutation$AddPaymentMethod$addPaymentMethod instance,
+    TRes Function(Mutation$AddPaymentMethod$addPaymentMethod) then,
+  ) = _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod;
+
+  factory CopyWith$Mutation$AddPaymentMethod$addPaymentMethod.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod;
+
+  TRes call({
+    bool? success,
+    Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod? paymentMethod,
+    String? $__typename,
+  });
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<TRes>
+      get paymentMethod;
+}
+
+class _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
+    implements CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes> {
+  _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddPaymentMethod$addPaymentMethod _instance;
+
+  final TRes Function(Mutation$AddPaymentMethod$addPaymentMethod) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? paymentMethod = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddPaymentMethod$addPaymentMethod(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        paymentMethod: paymentMethod == _undefined
+            ? _instance.paymentMethod
+            : (paymentMethod
+                as Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<TRes>
+      get paymentMethod {
+    final local$paymentMethod = _instance.paymentMethod;
+    return local$paymentMethod == null
+        ? CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod
+            .stub(_then(_instance))
+        : CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+            local$paymentMethod, (e) => call(paymentMethod: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
+    implements CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes> {
+  _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod? paymentMethod,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<TRes>
+      get paymentMethod =>
+          CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod
+              .stub(_res);
+}
+
+class Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod {
+  Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod({
+    required this.last4Digits,
+    this.$__typename = 'PaymentMethodType',
+  });
+
+  factory Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod.fromJson(
+      Map<String, dynamic> json) {
+    final l$last4Digits = json['last4Digits'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+      last4Digits: (l$last4Digits as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String last4Digits;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$last4Digits = last4Digits;
+    _resultData['last4Digits'] = l$last4Digits;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$last4Digits = last4Digits;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$last4Digits,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$last4Digits = last4Digits;
+    final lOther$last4Digits = other.last4Digits;
+    if (l$last4Digits != lOther$last4Digits) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod
+    on Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod {
+  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
+          Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod>
+      get copyWith =>
+          CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
+    TRes> {
+  factory CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+    Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod instance,
+    TRes Function(Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod)
+        then,
+  ) = _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod;
+
+  factory CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod;
+
+  TRes call({
+    String? last4Digits,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod _instance;
+
+  final TRes Function(Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? last4Digits = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+        last4Digits: last4Digits == _undefined || last4Digits == null
+            ? _instance.last4Digits
+            : (last4Digits as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? last4Digits,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$DeletePaymentMethod {
+  factory Variables$Mutation$DeletePaymentMethod(
+          {required String paymentMethodID}) =>
+      Variables$Mutation$DeletePaymentMethod._({
+        r'paymentMethodID': paymentMethodID,
+      });
+
+  Variables$Mutation$DeletePaymentMethod._(this._$data);
+
+  factory Variables$Mutation$DeletePaymentMethod.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$paymentMethodID = data['paymentMethodID'];
+    result$data['paymentMethodID'] = (l$paymentMethodID as String);
+    return Variables$Mutation$DeletePaymentMethod._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get paymentMethodID => (_$data['paymentMethodID'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$paymentMethodID = paymentMethodID;
+    result$data['paymentMethodID'] = l$paymentMethodID;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeletePaymentMethod<
+          Variables$Mutation$DeletePaymentMethod>
+      get copyWith => CopyWith$Variables$Mutation$DeletePaymentMethod(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$DeletePaymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$paymentMethodID = paymentMethodID;
+    final lOther$paymentMethodID = other.paymentMethodID;
+    if (l$paymentMethodID != lOther$paymentMethodID) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$paymentMethodID = paymentMethodID;
+    return Object.hashAll([l$paymentMethodID]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeletePaymentMethod<TRes> {
+  factory CopyWith$Variables$Mutation$DeletePaymentMethod(
+    Variables$Mutation$DeletePaymentMethod instance,
+    TRes Function(Variables$Mutation$DeletePaymentMethod) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeletePaymentMethod;
+
+  factory CopyWith$Variables$Mutation$DeletePaymentMethod.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeletePaymentMethod;
+
+  TRes call({String? paymentMethodID});
+}
+
+class _CopyWithImpl$Variables$Mutation$DeletePaymentMethod<TRes>
+    implements CopyWith$Variables$Mutation$DeletePaymentMethod<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeletePaymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeletePaymentMethod _instance;
+
+  final TRes Function(Variables$Mutation$DeletePaymentMethod) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? paymentMethodID = _undefined}) =>
+      _then(Variables$Mutation$DeletePaymentMethod._({
+        ..._instance._$data,
+        if (paymentMethodID != _undefined && paymentMethodID != null)
+          'paymentMethodID': (paymentMethodID as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeletePaymentMethod<TRes>
+    implements CopyWith$Variables$Mutation$DeletePaymentMethod<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeletePaymentMethod(this._res);
+
+  TRes _res;
+
+  call({String? paymentMethodID}) => _res;
+}
+
+class Mutation$DeletePaymentMethod {
+  Mutation$DeletePaymentMethod({
+    this.deletePaymentMethod,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeletePaymentMethod.fromJson(Map<String, dynamic> json) {
+    final l$deletePaymentMethod = json['deletePaymentMethod'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeletePaymentMethod(
+      deletePaymentMethod: l$deletePaymentMethod == null
+          ? null
+          : Mutation$DeletePaymentMethod$deletePaymentMethod.fromJson(
+              (l$deletePaymentMethod as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeletePaymentMethod$deletePaymentMethod? deletePaymentMethod;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deletePaymentMethod = deletePaymentMethod;
+    _resultData['deletePaymentMethod'] = l$deletePaymentMethod?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deletePaymentMethod = deletePaymentMethod;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deletePaymentMethod,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeletePaymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deletePaymentMethod = deletePaymentMethod;
+    final lOther$deletePaymentMethod = other.deletePaymentMethod;
+    if (l$deletePaymentMethod != lOther$deletePaymentMethod) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeletePaymentMethod
+    on Mutation$DeletePaymentMethod {
+  CopyWith$Mutation$DeletePaymentMethod<Mutation$DeletePaymentMethod>
+      get copyWith => CopyWith$Mutation$DeletePaymentMethod(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeletePaymentMethod<TRes> {
+  factory CopyWith$Mutation$DeletePaymentMethod(
+    Mutation$DeletePaymentMethod instance,
+    TRes Function(Mutation$DeletePaymentMethod) then,
+  ) = _CopyWithImpl$Mutation$DeletePaymentMethod;
+
+  factory CopyWith$Mutation$DeletePaymentMethod.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeletePaymentMethod;
+
+  TRes call({
+    Mutation$DeletePaymentMethod$deletePaymentMethod? deletePaymentMethod,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes>
+      get deletePaymentMethod;
+}
+
+class _CopyWithImpl$Mutation$DeletePaymentMethod<TRes>
+    implements CopyWith$Mutation$DeletePaymentMethod<TRes> {
+  _CopyWithImpl$Mutation$DeletePaymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeletePaymentMethod _instance;
+
+  final TRes Function(Mutation$DeletePaymentMethod) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deletePaymentMethod = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeletePaymentMethod(
+        deletePaymentMethod: deletePaymentMethod == _undefined
+            ? _instance.deletePaymentMethod
+            : (deletePaymentMethod
+                as Mutation$DeletePaymentMethod$deletePaymentMethod?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes>
+      get deletePaymentMethod {
+    final local$deletePaymentMethod = _instance.deletePaymentMethod;
+    return local$deletePaymentMethod == null
+        ? CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod.stub(
+            _then(_instance))
+        : CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod(
+            local$deletePaymentMethod, (e) => call(deletePaymentMethod: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeletePaymentMethod<TRes>
+    implements CopyWith$Mutation$DeletePaymentMethod<TRes> {
+  _CopyWithStubImpl$Mutation$DeletePaymentMethod(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeletePaymentMethod$deletePaymentMethod? deletePaymentMethod,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes>
+      get deletePaymentMethod =>
+          CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod.stub(_res);
+}
+
+const documentNodeMutationDeletePaymentMethod = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeletePaymentMethod'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'paymentMethodID')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deletePaymentMethod'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'paymentMethodId'),
+            value: VariableNode(name: NameNode(value: 'paymentMethodID')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'error'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeletePaymentMethod _parserFn$Mutation$DeletePaymentMethod(
+        Map<String, dynamic> data) =>
+    Mutation$DeletePaymentMethod.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeletePaymentMethod = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$DeletePaymentMethod?,
+);
+
+class Options$Mutation$DeletePaymentMethod
+    extends graphql.MutationOptions<Mutation$DeletePaymentMethod> {
+  Options$Mutation$DeletePaymentMethod({
+    String? operationName,
+    required Variables$Mutation$DeletePaymentMethod variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeletePaymentMethod? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeletePaymentMethod? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeletePaymentMethod>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeletePaymentMethod(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeletePaymentMethod,
+          parserFn: _parserFn$Mutation$DeletePaymentMethod,
+        );
+
+  final OnMutationCompleted$Mutation$DeletePaymentMethod? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeletePaymentMethod
+    extends graphql.WatchQueryOptions<Mutation$DeletePaymentMethod> {
+  WatchOptions$Mutation$DeletePaymentMethod({
+    String? operationName,
+    required Variables$Mutation$DeletePaymentMethod variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeletePaymentMethod? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeletePaymentMethod,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeletePaymentMethod,
+        );
+}
+
+extension ClientExtension$Mutation$DeletePaymentMethod
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeletePaymentMethod>>
+      mutate$DeletePaymentMethod(
+              Options$Mutation$DeletePaymentMethod options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeletePaymentMethod>
+      watchMutation$DeletePaymentMethod(
+              WatchOptions$Mutation$DeletePaymentMethod options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$DeletePaymentMethod$deletePaymentMethod {
+  Mutation$DeletePaymentMethod$deletePaymentMethod({
+    this.success,
+    this.error,
+    this.$__typename = 'DeletePaymentMethod',
+  });
+
+  factory Mutation$DeletePaymentMethod$deletePaymentMethod.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$error = json['error'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeletePaymentMethod$deletePaymentMethod(
+      success: (l$success as bool?),
+      error: (l$error as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String? error;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$error = error;
+    _resultData['error'] = l$error;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$error = error;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$error,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeletePaymentMethod$deletePaymentMethod ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$error = error;
+    final lOther$error = other.error;
+    if (l$error != lOther$error) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeletePaymentMethod$deletePaymentMethod
+    on Mutation$DeletePaymentMethod$deletePaymentMethod {
+  CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<
+          Mutation$DeletePaymentMethod$deletePaymentMethod>
+      get copyWith => CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes> {
+  factory CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod(
+    Mutation$DeletePaymentMethod$deletePaymentMethod instance,
+    TRes Function(Mutation$DeletePaymentMethod$deletePaymentMethod) then,
+  ) = _CopyWithImpl$Mutation$DeletePaymentMethod$deletePaymentMethod;
+
+  factory CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$DeletePaymentMethod$deletePaymentMethod;
+
+  TRes call({
+    bool? success,
+    String? error,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes>
+    implements CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes> {
+  _CopyWithImpl$Mutation$DeletePaymentMethod$deletePaymentMethod(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeletePaymentMethod$deletePaymentMethod _instance;
+
+  final TRes Function(Mutation$DeletePaymentMethod$deletePaymentMethod) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? error = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeletePaymentMethod$deletePaymentMethod(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        error: error == _undefined ? _instance.error : (error as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes>
+    implements CopyWith$Mutation$DeletePaymentMethod$deletePaymentMethod<TRes> {
+  _CopyWithStubImpl$Mutation$DeletePaymentMethod$deletePaymentMethod(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? error,
+    String? $__typename,
+  }) =>
+      _res;
+}
