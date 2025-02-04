@@ -39,15 +39,15 @@ class AuthRepo {
     if (response.login?.token == null) {
       throw const CacheFailure();
     }
-    log("token is ${response.login!.token!}");
+    log("token is ${response.login!.token}");
     await _store(
-      response.login!.token!,
-      response.login!.user!.username!,
-      response.login!.refreshToken!,
+      token: response.login!.token,
+      username: response.login!.user!.username,
+      refreshToken: response.login!.refreshToken,
     );
 
     log('Bearer ${response.login?.token}', name: 'AuthMutation');
-    log('Rest ${response.login!.restToken}', name: 'AuthMutation');
+    log('Rest ${response.login!.refreshToken}', name: 'AuthMutation');
     log('Username ${response.login!.user!.username}', name: 'AuthMutation');
 
     // invalidate graphql client to use the version with with a beare token
@@ -107,7 +107,7 @@ class AuthRepo {
   }
 
   String? get getToken => _cacheBox.get('AUTH_TOKEN');
-  String? get getRestToken => _cacheBox.get('REFRESH_TOKEN');
+  // String? get getRestToken => _cacheBox.get('REFRESH_TOKEN');
 
   Future<void> _remove() async {
     try {
@@ -122,7 +122,9 @@ class AuthRepo {
 
   /// Cache all required data neccesary for user session like [token], [restToken] & [username]
   Future<void> _store(
-      String token, String username, String refreshToken) async {
+      {required String token,
+      required String username,
+      required String refreshToken}) async {
     await _cacheBox.put('AUTH_TOKEN', token);
     await _cacheBox.put('REFRESH_TOKEN', refreshToken);
     await _cacheBox.put('USERNAME', username);
