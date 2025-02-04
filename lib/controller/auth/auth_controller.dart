@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
@@ -65,6 +66,11 @@ class _AuthController extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(() async {
       await _repo.logout();
+
+      ref.invalidate(graphqlClient);
+      ref.invalidate(authStateProvider);
+      ref.invalidate(userProvider);
+      ref.invalidate(networkClient);
 
       // ref.refresh(authStateProvider.future);
       //  final isAuthenticated = ref.read(authStateProvider).requireValue;

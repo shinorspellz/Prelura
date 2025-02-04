@@ -71,8 +71,10 @@ class SocketChannel {
         },
       );
 
-      log('Websocket connection in progress... at: $url',
-          name: 'SocketChannel');
+      log(
+        'Websocket connection in progress... at: $url',
+        name: 'SocketChannel',
+      );
       await _ioWebSocketChannel.ready;
       log('Websocket connection established! at: $url', name: 'SocketChannel');
 
@@ -99,7 +101,7 @@ class SocketChannel {
     } catch (e, stackTrace) {
       log('Websocket connection error: $e at: $url',
           stackTrace: stackTrace, name: 'SocketChannel');
-      if (_counter < 10) {
+      if (_counter < 5) {
         _handleLostConnection();
         _counter++;
       }

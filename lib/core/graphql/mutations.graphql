@@ -1,6 +1,5 @@
 mutation Login($password: String!, $username: String) {
   login(password: $password, username: $username) {
-    restToken
     token
     refreshToken
     user {

@@ -70,26 +70,28 @@ final appStartUpProvider = FutureProvider((ref) async {
 final router = Provider((ref) => AppRouter(ref));
 
 /// Default [GraphQLClient] for all basic mutation & quries.
+///
+
 final graphqlClient = Provider((ref) {
   final cachedBox = ref.read(hive).requireValue;
 
   final prettyLogger = TalkerDioLogger(
-      settings: const TalkerDioLoggerSettings(
-    printRequestData: true,
-    printRequestHeaders: true,
-    printResponseHeaders: true,
-    printResponseMessage: true,
-  ));
+    settings: const TalkerDioLoggerSettings(
+      printRequestData: false,
+      printRequestHeaders: false,
+      printResponseHeaders: false,
+      printResponseMessage: false,
+    ),
+  );
 
-  // dio setup
   final dio = Dio()..interceptors.add(prettyLogger);
 
-  final token = cachedBox.get('AUTH_TOKEN');
-
   AuthLink authLink = AuthLink(getToken: () {
-    if (token == null) return null;
-    return 'Bearer $token';
+    final token = cachedBox.get('AUTH_TOKEN'); // Always fetch fresh token
+    return token != null ? 'Bearer $token' : null;
   });
+
+  log("::::The token from here :::: $token");
 
   final link = Link.from([
     authLink,
@@ -100,7 +102,7 @@ final graphqlClient = Provider((ref) {
     ),
   ]);
 
-  GraphQLClient client = GraphQLClient(
+  return GraphQLClient(
     defaultPolicies: DefaultPolicies(
       query: Policies(
         cacheReread: CacheRereadPolicy.ignoreAll,
@@ -108,12 +110,61 @@ final graphqlClient = Provider((ref) {
       ),
     ),
     queryRequestTimeout: const Duration(minutes: 3),
-    cache: GraphQLCache(store: InMemoryStore()),
+    cache: GraphQLCache(),
     link: link,
   );
-
-  return client;
 });
+
+///
+///
+///
+// final graphqlClient = Provider((ref) {
+//   final cachedBox = ref.read(hive).requireValue;
+//
+//   final prettyLogger = TalkerDioLogger(
+//       settings: const TalkerDioLoggerSettings(
+//     printRequestData: false,
+//     printRequestHeaders: false,
+//     printResponseHeaders: false,
+//     printResponseMessage: false,
+//   ));
+//
+//   // dio setup
+//   final dio = Dio()..interceptors.add(prettyLogger);
+//
+//   final token = cachedBox.get('AUTH_TOKEN');
+//
+//   AuthLink authLink = AuthLink(getToken: () {
+//     if (token == null) return null;
+//     return 'Bearer $token';
+//   });
+//
+//   final link = Link.from([
+//     authLink,
+//     DioLink(
+//       "https://prelura.com/graphql/",
+//       client: dio,
+//       defaultHeaders: {HttpHeaders.acceptHeader: 'application/json'},
+//     ),
+//   ]);
+//
+//   GraphQLClient client = GraphQLClient(
+//     defaultPolicies: DefaultPolicies(
+//       query: Policies(
+//         cacheReread: CacheRereadPolicy.ignoreAll,
+//         fetch: FetchPolicy.noCache,
+//       ),
+//     ),
+//     queryRequestTimeout: const Duration(minutes: 3),
+//     cache: GraphQLCache(),
+//     link: link,
+//   );
+//
+//   return client;
+// });
+///
+///
+///
 
 /// Upload [GraphQLClient] for upload mutations basic mutation & quries.
 final graphqUploadlClient = Provider((ref) {
@@ -131,7 +182,7 @@ final graphqUploadlClient = Provider((ref) {
   final dio = Dio()..interceptors.add(prettyLogger);
 
   final token = cachedBox.get('AUTH_TOKEN');
-
+  log("::::The token from here 1:::: $token");
   AuthLink authLink = AuthLink(getToken: () {
     if (token == null) return null;
     return 'Bearer $token';
@@ -154,7 +205,7 @@ final graphqUploadlClient = Provider((ref) {
       ),
     ),
     queryRequestTimeout: const Duration(minutes: 1),
-    cache: GraphQLCache(store: InMemoryStore()),
+    cache: GraphQLCache(),
     link: link,
   );
 
