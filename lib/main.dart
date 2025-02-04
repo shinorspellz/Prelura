@@ -16,7 +16,7 @@ import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
-import 'package:uni_links/uni_links.dart';
+import 'package:uni_links3/uni_links.dart';
 
 import 'controller/theme_notifier.dart';
 
@@ -71,9 +71,9 @@ class _MyAppState extends ConsumerState<MyApp> {
   }
 
   void _handleDeepLink(Uri uri) {
-    String? id = uri.queryParameters['id'];
+    String? id = uri.queryParameters['token'];
     if (id != null) {
-      // context.router.push(VerifyUserRoute(id: id));
+      context.router.push(VerifyUserRoute(id: id));
     }
   }
 

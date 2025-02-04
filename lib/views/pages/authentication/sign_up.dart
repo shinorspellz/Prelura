@@ -10,6 +10,7 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 
 import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/gap.dart';
+import '../../widgets/show_animated_dialog.dart';
 
 @RoutePage()
 class SignUpScreen extends ConsumerStatefulWidget {
@@ -176,10 +177,15 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                             username!,
                           );
                       ref.read(authProvider).whenOrNull(
-                            error: (e, _) => context.alert(e.toString()),
-                            data: (_) =>
-                                context.router.replaceAll([const AuthRoute()]),
-                          );
+                          error: (e, _) => context.alert(e.toString()),
+                          data: (_) =>
+                              // context.router.replaceAll([const Veri()]),
+                              showAnimatedDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  child: Container(
+                                    child: Text(""),
+                                  )));
                     },
                     buttonTitle: 'Sign Up',
                   ),

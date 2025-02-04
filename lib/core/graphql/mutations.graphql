@@ -650,3 +650,9 @@ mutation reportProduct(
   }
 }
 
+mutation verifyAccount($token : String!){
+  verifyAccount(token: $token){
+    errors
+    success
+  }
+}
