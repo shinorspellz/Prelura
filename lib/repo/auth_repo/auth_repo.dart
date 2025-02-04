@@ -25,34 +25,39 @@ class AuthRepo {
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
-    final response = await _client.executeGraphQL(
-        operation: ClientOperation(
-      (cl) => cl.mutate$Login(Options$Mutation$Login(
-        variables: Variables$Mutation$Login(
-          password: password,
-          username: username,
-        ),
-      )),
-    ));
+    try {
+      final response = await _client.executeGraphQL(
+          operation: ClientOperation(
+        (cl) => cl.mutate$Login(Options$Mutation$Login(
+          variables: Variables$Mutation$Login(
+            password: password,
+            username: username,
+          ),
+        )),
+      ));
 
-    // checks if any data is available in the mutation
-    if (response.login?.token == null) {
-      throw const CacheFailure();
+      // checks if any data is available in the mutation
+      if (response.login?.token == null) {
+        throw const CacheFailure();
+      }
+      log("token is ${response.login!.token}");
+      await _store(
+        token: response.login!.token,
+        username: response.login!.user!.username,
+        refreshToken: response.login!.refreshToken,
+      );
+
+      log('Bearer ${response.login?.token}', name: 'AuthMutation');
+      log('Rest ${response.login!.refreshToken}', name: 'AuthMutation');
+      log('Username ${response.login!.user!.username}', name: 'AuthMutation');
+
+      // invalidate graphql client to use the version with with a beare token
+      _ref.invalidate(networkClient);
+      _ref.invalidate(notificationProvider);
+    } catch (e) {
+      log("::::::From login error:::$e");
+      log("::::::From login error:::${_cacheBox.get("REFRESH_TOKEN")}");
     }
-    log("token is ${response.login!.token}");
-    await _store(
-      token: response.login!.token,
-      username: response.login!.user!.username,
-      refreshToken: response.login!.refreshToken,
-    );
-
-    log('Bearer ${response.login?.token}', name: 'AuthMutation');
-    log('Rest ${response.login!.refreshToken}', name: 'AuthMutation');
-    log('Username ${response.login!.user!.username}', name: 'AuthMutation');
-
-    // invalidate graphql client to use the version with with a beare token
-    _ref.invalidate(networkClient);
-    _ref.invalidate(notificationProvider);
   }
 
   /// Registration operation using generated [Variables$Mutation$Register] class as param for required
