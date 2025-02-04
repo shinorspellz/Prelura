@@ -18,7 +18,7 @@ import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
-import 'package:uni_links3/uni_links.dart';
+// import 'package:uni_links3/uni_links.dart';
 
 import 'controller/theme_notifier.dart';
 
@@ -58,27 +58,27 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
     super.initState();
-    _initDeepLinkListener();
+    // _initDeepLinkListener();
   }
 
-  void _initDeepLinkListener() async {
-    uriLinkStream.listen((Uri? uri) {
-      if (uri != null) {
-        debugPrint('Deep link received: ${uri.toString()}');
-        _handleDeepLink(uri);
-      }
-    }, onError: (err) {
-      debugPrint('Deep Link Error: $err');
-    });
-  }
+  // void _initDeepLinkListener() async {
+  //   uriLinkStream.listen((Uri? uri) {
+  //     if (uri != null) {
+  //       debugPrint('Deep link received: ${uri.toString()}');
+  //       _handleDeepLink(uri);
+  //     }
+  //   }, onError: (err) {
+  //     debugPrint('Deep Link Error: $err');
+  //   });
+  // }
 
-  void _handleDeepLink(Uri uri) {
-    String? id = uri.queryParameters['token'];
-    if (id != null) {
-      log("$id");
-      // context.router.push(VerifyUserRoute(token: id));
-    }
-  }
+  // void _handleDeepLink(Uri uri) {
+  //   String? id = uri.queryParameters['token'];
+  //   if (id != null) {
+  //     log("$id");
+  //     // context.router.push(VerifyUserRoute(token: id));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
