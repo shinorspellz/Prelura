@@ -91,8 +91,6 @@ final graphqlClient = Provider((ref) {
     return token != null ? 'Bearer $token' : null;
   });
 
-  log("::::The token from here :::: $token");
-
   final link = Link.from([
     authLink,
     DioLink(
