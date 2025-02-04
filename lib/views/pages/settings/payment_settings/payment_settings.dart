@@ -12,6 +12,8 @@ import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
 
+import 'package:prelura_app/controller/payment_method_controller.dart';
+
 @RoutePage()
 class PaymentSettings extends ConsumerStatefulWidget {
   const PaymentSettings({super.key});
@@ -117,9 +119,30 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
   }
 
   Future<void> deletePaymentMethod() async {
-    setState(() {
+        try {
+     
+      // Send Payment Method ID to backend to attach to the customer
+      ref
+          .read(paymentMethodNotifierProvider.notifier)
+          .deletePaymentMethod(paymentMethodId: paymentMethod.id);
+
+      ref.read(paymentMethodNotifierProvider).whenOrNull(
+        error: (e, _) {
+          return context.alert('An error occurred: $e');
+        },
+        data: (_) async {
+          HelperFunction.context = context;
+          HelperFunction.showToast(message: "Payment Method saved");
+
+          prefs.setBool("paymentMethodIsAdded", false);
+          await Future.delayed(const Duration(seconds: 2));
+
+             setState(() {
       paymentMethodIsAdded == false;
     });
+          if (mounted) {
+            context.router.popForced();
+            context.router.popForced();
     if (context.mounted) {
       prefs.setBool("paymentMethodIsAdded", false);
       context.alert("Payment method deleted successfully");
@@ -127,4 +150,24 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
     log("Payment method is added: $paymentMethodIsAdded");
     context.router.popForced();
   }
-}
+          }
+    
+      );
+    } on SocketException {
+      if (mounted) context.alert("Please connect to the internet");
+    } on StripeException catch (e, stackTrace) {
+      log(
+        "Error creating payment method: $e",
+        name: "Stripe",
+        stackTrace: stackTrace,
+      );
+    } catch (e, stackTrace) {
+      log(
+        "Error adding payment method: $e",
+        name: "BACKEND",
+        stackTrace: stackTrace,
+      );
+    }
+  }
+   
+
