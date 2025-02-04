@@ -29,6 +29,9 @@ void main() async {
   await Hive.openBox('settings');
   Stripe.publishableKey =
       'pk_test_51QZLUu2LCwCAAIPiQaNscHb0rfE53OokrEEboDTJWn6BxMsGTib5S6u4rMflxm7RWnSK213nOeUj5uTYcpBykNmB00MDeN70RI';
+  await Stripe.instance.applySettings();
+
+  prefs = await SharedPreferences.getInstance();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/main.dart';
@@ -12,14 +13,14 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
 
 @RoutePage()
-class PaymentSettings extends StatefulWidget {
+class PaymentSettings extends ConsumerStatefulWidget {
   const PaymentSettings({super.key});
 
   @override
-  State<PaymentSettings> createState() => _PaymentSettingsState();
+  ConsumerState<PaymentSettings> createState() => _PaymentSettingsState();
 }
 
-class _PaymentSettingsState extends State<PaymentSettings> {
+class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
   @override
   void initState() {
     super.initState();
@@ -79,7 +80,7 @@ class _PaymentSettingsState extends State<PaymentSettings> {
                         ),
                       ),
                       child: Text(
-                        "Card ending in 5555",
+                        "Card ending in ",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontWeight: FontWeight.w500,
@@ -92,23 +93,7 @@ class _PaymentSettingsState extends State<PaymentSettings> {
                       buttonTitle: "Delete",
                       buttonColor: PreluraColors.error,
                       showLoadingIndicator: isLoading,
-                      onPressed: () async {
-                        setState(() {
-                          isLoading = true;
-                        });
-                        await Future.delayed(const Duration(seconds: 2));
-                        setState(() {
-                          isLoading = false;
-                          paymentMethodIsAdded == false;
-                        });
-                        if (context.mounted) {
-                          prefs.setBool("paymentMethodIsAdded", false);
-                          context.alert("Payment method deleted successfully");
-                        }
-                        log("Payment method is added: $paymentMethodIsAdded");
-                        await Future.delayed(const Duration(seconds: 1));
-                        if (context.mounted) return context.router.popForced();
-                      },
+                      onPressed: deletePaymentMethod,
                     ),
                   ],
                 ),
@@ -129,5 +114,17 @@ class _PaymentSettingsState extends State<PaymentSettings> {
               ),
       ),
     );
+  }
+
+  Future<void> deletePaymentMethod() async {
+    setState(() {
+      paymentMethodIsAdded == false;
+    });
+    if (context.mounted) {
+      prefs.setBool("paymentMethodIsAdded", false);
+      context.alert("Payment method deleted successfully");
+    }
+    log("Payment method is added: $paymentMethodIsAdded");
+    context.router.popForced();
   }
 }

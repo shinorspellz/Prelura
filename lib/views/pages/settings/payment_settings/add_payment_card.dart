@@ -41,14 +41,13 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
 
   //!================ Variables ================\\
   final controller = CardEditController();
+  var stripe = Stripe.instance;
 
 //!================ Booleans ================\\
   var isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    // var colorScheme = Theme.of(context).colorScheme;
-
     return GestureDetector(
       onTap: dismissKeyboard,
       child: Scaffold(
@@ -106,7 +105,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
 
   Future<void> saveCard() async {
     try {
-      final paymentMethod = await Stripe.instance.createPaymentMethod(
+      final paymentMethod = await stripe.createPaymentMethod(
         params: PaymentMethodParams.card(
           paymentMethodData: PaymentMethodData(),
         ),
