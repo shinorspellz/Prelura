@@ -91,6 +91,8 @@ final graphqlClient = Provider((ref) {
     return 'Bearer $token';
   });
 
+  log("::::The token from here :::: $token");
+
   final link = Link.from([
     authLink,
     DioLink(
@@ -131,7 +133,7 @@ final graphqUploadlClient = Provider((ref) {
   final dio = Dio()..interceptors.add(prettyLogger);
 
   final token = cachedBox.get('AUTH_TOKEN');
-
+  log("::::The token from here 1:::: $token");
   AuthLink authLink = AuthLink(getToken: () {
     if (token == null) return null;
     return 'Bearer $token';
