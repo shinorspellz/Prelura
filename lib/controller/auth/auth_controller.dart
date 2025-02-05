@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
+import 'package:prelura_app/res/helper_function.dart';
 
 final authProvider =
     AsyncNotifierProvider<_AuthController, void>(_AuthController.new);
@@ -86,6 +87,7 @@ class _AuthController extends AsyncNotifier<void> {
     ref.invalidate(authStateProvider);
     ref.invalidate(userProvider);
     ref.invalidate(networkClient);
+    HelperFunction.genRef!.invalidate(authProvider);
   }
 }
 
