@@ -11,7 +11,9 @@ _$OfferTypeImpl _$$OfferTypeImplFromJson(Map<String, dynamic> json) =>
       products: (json['products'] as List<dynamic>)
           .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      buyer: UserModel.fromJson(json['buyer'] as Map<String, dynamic>),
+      buyer: json['buyer'] == null
+          ? null
+          : UserModel.fromJson(json['buyer'] as Map<String, dynamic>),
       offerPrice: (json['offerPrice'] as num).toDouble(),
       status: Enum$OfferActionEnum.fromJson(json['status'] as String),
       message: json['message'] as String,

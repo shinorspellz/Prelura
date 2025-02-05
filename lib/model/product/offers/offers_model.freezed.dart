@@ -21,7 +21,7 @@ OfferType _$OfferTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OfferType {
   List<ProductModel> get products => throw _privateConstructorUsedError;
-  UserModel get buyer => throw _privateConstructorUsedError;
+  UserModel? get buyer => throw _privateConstructorUsedError;
   double get offerPrice => throw _privateConstructorUsedError;
   Enum$OfferActionEnum get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $OfferTypeCopyWith<$Res> {
   @useResult
   $Res call(
       {List<ProductModel> products,
-      UserModel buyer,
+      UserModel? buyer,
       double offerPrice,
       Enum$OfferActionEnum status,
       String message,
@@ -62,7 +62,7 @@ abstract class $OfferTypeCopyWith<$Res> {
       OfferType? children,
       ConversationModel? conversation});
 
-  $UserModelCopyWith<$Res> get buyer;
+  $UserModelCopyWith<$Res>? get buyer;
   $OfferTypeCopyWith<$Res>? get parent;
   $OfferTypeCopyWith<$Res>? get children;
   $ConversationModelCopyWith<$Res>? get conversation;
@@ -84,7 +84,7 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
   @override
   $Res call({
     Object? products = null,
-    Object? buyer = null,
+    Object? buyer = freezed,
     Object? offerPrice = null,
     Object? status = null,
     Object? message = null,
@@ -101,10 +101,10 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
-      buyer: null == buyer
+      buyer: freezed == buyer
           ? _value.buyer
           : buyer // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as UserModel?,
       offerPrice: null == offerPrice
           ? _value.offerPrice
           : offerPrice // ignore: cast_nullable_to_non_nullable
@@ -152,8 +152,12 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get buyer {
-    return $UserModelCopyWith<$Res>(_value.buyer, (value) {
+  $UserModelCopyWith<$Res>? get buyer {
+    if (_value.buyer == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.buyer!, (value) {
       return _then(_value.copyWith(buyer: value) as $Val);
     });
   }
@@ -211,7 +215,7 @@ abstract class _$$OfferTypeImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<ProductModel> products,
-      UserModel buyer,
+      UserModel? buyer,
       double offerPrice,
       Enum$OfferActionEnum status,
       String message,
@@ -224,7 +228,7 @@ abstract class _$$OfferTypeImplCopyWith<$Res>
       ConversationModel? conversation});
 
   @override
-  $UserModelCopyWith<$Res> get buyer;
+  $UserModelCopyWith<$Res>? get buyer;
   @override
   $OfferTypeCopyWith<$Res>? get parent;
   @override
@@ -247,7 +251,7 @@ class __$$OfferTypeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? products = null,
-    Object? buyer = null,
+    Object? buyer = freezed,
     Object? offerPrice = null,
     Object? status = null,
     Object? message = null,
@@ -264,10 +268,10 @@ class __$$OfferTypeImplCopyWithImpl<$Res>
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
-      buyer: null == buyer
+      buyer: freezed == buyer
           ? _value.buyer
           : buyer // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as UserModel?,
       offerPrice: null == offerPrice
           ? _value.offerPrice
           : offerPrice // ignore: cast_nullable_to_non_nullable
@@ -342,7 +346,7 @@ class _$OfferTypeImpl implements _OfferType {
   }
 
   @override
-  final UserModel buyer;
+  final UserModel? buyer;
   @override
   final double offerPrice;
   @override
@@ -430,7 +434,7 @@ class _$OfferTypeImpl implements _OfferType {
 abstract class _OfferType implements OfferType {
   const factory _OfferType(
       {required final List<ProductModel> products,
-      required final UserModel buyer,
+      required final UserModel? buyer,
       required final double offerPrice,
       required final Enum$OfferActionEnum status,
       required final String message,
@@ -448,7 +452,7 @@ abstract class _OfferType implements OfferType {
   @override
   List<ProductModel> get products;
   @override
-  UserModel get buyer;
+  UserModel? get buyer;
   @override
   double get offerPrice;
   @override

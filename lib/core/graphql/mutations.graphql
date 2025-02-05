@@ -632,6 +632,13 @@ mutation reportProduct($reason: String!, $productId: ID!, $content: String) {
   }
 }
 
+mutation verifyAccount($token: String!) {
+  verifyAccount(token: $token) {
+    errors
+    success
+  }
+}
+
 mutation AddPaymentMethod($paymentMethodID: String!) {
   addPaymentMethod(paymentMethodId: $paymentMethodID) {
     paymentMethod {

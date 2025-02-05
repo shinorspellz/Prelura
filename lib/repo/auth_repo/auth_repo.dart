@@ -87,7 +87,7 @@ class AuthRepo {
       }
       throw 'An error occured';
     }
-    await login(params.username, params.password1);
+    // await login(params.username, params.password1);
     // }
   }
 
@@ -176,5 +176,13 @@ class AuthRepo {
             )));
 
     return response.passwordReset!.message.toString();
+  }
+
+  Future<bool> verifyAccount({required String token}) async {
+    final response = await _client.executeGraphQL(
+        operation: ClientOperation((cl) => cl.mutate$verifyAccount(
+            Options$Mutation$verifyAccount(
+                variables: Variables$Mutation$verifyAccount(token: token)))));
+    return response.verifyAccount!.success!;
   }
 }

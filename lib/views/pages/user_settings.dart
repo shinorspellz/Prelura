@@ -39,7 +39,7 @@ class SettingScreen extends StatelessWidget {
       MenuCard(
           title: "Payments",
           onTap: () {
-            context.router.push(const PaymentSettings());
+            context.router.push(PaymentSettings());
           }),
       MenuCard(
           title: "Postage",
