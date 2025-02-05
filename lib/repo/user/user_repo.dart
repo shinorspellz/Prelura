@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
-import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -28,17 +28,20 @@ class UserRepo {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
         if (error == "Signature has expired") {
-          HelperFunction.genRef!.read(refreshTokenSession);
+          log(":::: I am running from here :::: ${error}");
+          HelperFunction.genRef!
+              .read(authProvider.notifier)
+              .logout(signatureLost: true);
         }
         throw error;
       }
       log(response.exception.toString(), name: 'UserRepo');
-      throw 'An error occured';
+      throw 'An error occurred';
     }
 
     if (response.parsedData == null) {
-      log('Mising response', name: 'UserRepo');
-      throw 'An error occured';
+      log('Missing response', name: 'UserRepo');
+      throw 'An error occurred';
     }
 
     log(' response gotten ${response.parsedData!.viewMe!.toJson()}');
