@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -8,9 +10,10 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:prelura_app/controller/payment_method_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/main.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/helper_function.dart';
-import 'package:prelura_app/res/ui_constants.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
@@ -40,8 +43,9 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   }
 
   //!================ Variables ================\\
-  final controller = CardEditController();
+  final controller = CardFormEditController();
   var stripe = Stripe.instance;
+  CardFieldName? focusedField;
 
 //!================ Booleans ================\\
   var isLoading = false;
@@ -66,31 +70,34 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                CardField(
-                  countryCode: 'UK',
+                CardFormField(
                   controller: controller,
-                  decoration: UIConstants.instance.inputDecoration(context),
                   enablePostalCode: true,
-                  numberHintText: "0000-0000-0000-0000",
-                  postalCodeHintText: "Postal code",
-                  onCardChanged: (details) {
-                    log("Card details changed", name: "DEBUG");
-                    if (details != null) {
-                      log("Raw details: $details", name: "DEBUG");
-                      log("Card Number: ${details.number}",
-                          name: "Card number");
-                      log("CVC: ${details.cvc}", name: "CVC");
-                      log("Expiry Month: ${details.expiryMonth}",
-                          name: "Expiry Month");
-                      log("Expiry Year: ${details.expiryYear}",
-                          name: "Expiry Year");
-                    }
+                  countryCode: "US",
+                  onCardChanged: (details) {},
+                  onFocus: (CardFieldName? field) {
+                    setState(() {
+                      focusedField = field;
+                    });
                   },
+                  style: CardFormStyle(
+                    backgroundColor: context.theme.scaffoldBackgroundColor,
+                    borderRadius: 5,
+                    fontSize: 16,
+                    borderWidth: 1,
+                    borderColor: focusedField != null
+                        ? PreluraColors.primaryColor
+                        : context.theme.dividerColor,
+                    textErrorColor: PreluraColors.error,
+                    cursorColor: PreluraColors.primaryColor,
+                    placeholderColor:
+                        Theme.of(context).textTheme.bodyMedium?.color,
+                    textColor: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
                 ),
                 40.toHeight,
                 PreluraButtonWithLoader(
-                  showLoadingIndicator:
-                      ref.watch(paymentMethodNotifierProvider).isLoading,
+                  showLoadingIndicator: isLoading,
                   onPressed: controller.details.complete ? saveCard : null,
                   buttonTitle: "Save",
                 ),
@@ -105,6 +112,10 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
 
   Future<void> saveCard() async {
     try {
+      setState(() {
+        isLoading = true;
+      });
+
       final paymentMethod = await stripe.createPaymentMethod(
         params: PaymentMethodParams.card(
           paymentMethodData: PaymentMethodData(),
@@ -131,6 +142,9 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
           prefs.setBool("paymentMethodIsAdded", true);
           await Future.delayed(const Duration(seconds: 2));
 
+          setState(() {
+            isLoading = false;
+          });
           if (mounted) {
             context.router.popForced();
             context.router.popForced();
@@ -152,6 +166,10 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
         name: "BACKEND",
         stackTrace: stackTrace,
       );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

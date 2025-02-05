@@ -34114,28 +34114,6 @@ const documentNodeMutationAddPaymentMethod = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'paymentMethod'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'last4Digits'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -34256,28 +34234,20 @@ extension ClientExtension$Mutation$AddPaymentMethod on graphql.GraphQLClient {
 class Mutation$AddPaymentMethod$addPaymentMethod {
   Mutation$AddPaymentMethod$addPaymentMethod({
     this.success,
-    this.paymentMethod,
     this.$__typename = 'AddPaymentMethod',
   });
 
   factory Mutation$AddPaymentMethod$addPaymentMethod.fromJson(
       Map<String, dynamic> json) {
     final l$success = json['success'];
-    final l$paymentMethod = json['paymentMethod'];
     final l$$__typename = json['__typename'];
     return Mutation$AddPaymentMethod$addPaymentMethod(
       success: (l$success as bool?),
-      paymentMethod: l$paymentMethod == null
-          ? null
-          : Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod.fromJson(
-              (l$paymentMethod as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final bool? success;
-
-  final Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod? paymentMethod;
 
   final String $__typename;
 
@@ -34285,8 +34255,6 @@ class Mutation$AddPaymentMethod$addPaymentMethod {
     final _resultData = <String, dynamic>{};
     final l$success = success;
     _resultData['success'] = l$success;
-    final l$paymentMethod = paymentMethod;
-    _resultData['paymentMethod'] = l$paymentMethod?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -34295,11 +34263,9 @@ class Mutation$AddPaymentMethod$addPaymentMethod {
   @override
   int get hashCode {
     final l$success = success;
-    final l$paymentMethod = paymentMethod;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$success,
-      l$paymentMethod,
       l$$__typename,
     ]);
   }
@@ -34316,11 +34282,6 @@ class Mutation$AddPaymentMethod$addPaymentMethod {
     final l$success = success;
     final lOther$success = other.success;
     if (l$success != lOther$success) {
-      return false;
-    }
-    final l$paymentMethod = paymentMethod;
-    final lOther$paymentMethod = other.paymentMethod;
-    if (l$paymentMethod != lOther$paymentMethod) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -34353,11 +34314,8 @@ abstract class CopyWith$Mutation$AddPaymentMethod$addPaymentMethod<TRes> {
 
   TRes call({
     bool? success,
-    Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod? paymentMethod,
     String? $__typename,
   });
-  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<TRes>
-      get paymentMethod;
 }
 
 class _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
@@ -34375,29 +34333,14 @@ class _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
 
   TRes call({
     Object? success = _undefined,
-    Object? paymentMethod = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$AddPaymentMethod$addPaymentMethod(
         success: success == _undefined ? _instance.success : (success as bool?),
-        paymentMethod: paymentMethod == _undefined
-            ? _instance.paymentMethod
-            : (paymentMethod
-                as Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<TRes>
-      get paymentMethod {
-    final local$paymentMethod = _instance.paymentMethod;
-    return local$paymentMethod == null
-        ? CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod
-            .stub(_then(_instance))
-        : CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-            local$paymentMethod, (e) => call(paymentMethod: e));
-  }
 }
 
 class _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
@@ -34408,151 +34351,6 @@ class _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod<TRes>
 
   call({
     bool? success,
-    Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod? paymentMethod,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<TRes>
-      get paymentMethod =>
-          CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod
-              .stub(_res);
-}
-
-class Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod {
-  Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod({
-    required this.last4Digits,
-    this.$__typename = 'PaymentMethodType',
-  });
-
-  factory Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod.fromJson(
-      Map<String, dynamic> json) {
-    final l$last4Digits = json['last4Digits'];
-    final l$$__typename = json['__typename'];
-    return Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-      last4Digits: (l$last4Digits as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String last4Digits;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$last4Digits = last4Digits;
-    _resultData['last4Digits'] = l$last4Digits;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$last4Digits = last4Digits;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$last4Digits,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$last4Digits = last4Digits;
-    final lOther$last4Digits = other.last4Digits;
-    if (l$last4Digits != lOther$last4Digits) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod
-    on Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod {
-  CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
-          Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod>
-      get copyWith =>
-          CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
-    TRes> {
-  factory CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-    Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod instance,
-    TRes Function(Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod)
-        then,
-  ) = _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod;
-
-  factory CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod;
-
-  TRes call({
-    String? last4Digits,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
-        TRes>
-    implements
-        CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
-            TRes> {
-  _CopyWithImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod _instance;
-
-  final TRes Function(Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? last4Digits = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-        last4Digits: last4Digits == _undefined || last4Digits == null
-            ? _instance.last4Digits
-            : (last4Digits as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
-        TRes>
-    implements
-        CopyWith$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod<
-            TRes> {
-  _CopyWithStubImpl$Mutation$AddPaymentMethod$addPaymentMethod$paymentMethod(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? last4Digits,
     String? $__typename,
   }) =>
       _res;
