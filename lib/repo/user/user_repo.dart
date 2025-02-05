@@ -222,29 +222,29 @@ class UserRepo {
     }
   }
 
-  Future<void> verifyEmail(String code, String email) async {
-    final response =
-        await _client.mutate$VerifyEmail(Options$Mutation$VerifyEmail(
-      variables: Variables$Mutation$VerifyEmail(code: code, email: email),
-    ));
-    if (response.hasException) {
-      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-        final error = response.exception!.graphqlErrors.first.message;
-        throw error;
-      }
-      log(response.exception.toString(), name: 'UserRepo');
-      throw 'An error occured';
-    }
+  // Future<void> verifyEmail(String code, String email) async {
+  //   final response =
+  //       await _client.mutate$VerifyEmail(Options$Mutation$VerifyEmail(
+  //     variables: Variables$Mutation$VerifyEmail(code: code, email: email),
+  //   ));
+  //   if (response.hasException) {
+  //     if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+  //       final error = response.exception!.graphqlErrors.first.message;
+  //       throw error;
+  //     }
+  //     log(response.exception.toString(), name: 'UserRepo');
+  //     throw 'An error occured';
+  //   }
 
-    if (response.parsedData == null) {
-      throw 'Invalid response';
-    }
+  //   if (response.parsedData == null) {
+  //     throw 'Invalid response';
+  //   }
 
-    final verifiyInfo = response.parsedData!.verifyEmail!;
+  //   final verifiyInfo = response.parsedData!.verifyEmail!;
 
-    _store(verifiyInfo.token!, verifiyInfo.restToken!,
-        verifiyInfo.user!.username!);
-  }
+  //   _store(verifiyInfo.token!, verifiyInfo.restToken!,
+  //       verifiyInfo.user!.username!);
+  // }
 
   /// Cache all required data neccesary for user session like [token], [restToken] & [username]
   Future<void> _store(String token, String restToken, String username) async {

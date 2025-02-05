@@ -571,15 +571,15 @@ mutation ChangeEmail($email: String) {
   }
 }
 
-mutation VerifyEmail($code: String!, $email: String!) {
-  verifyEmail(code: $code, email: $email) {
-    token
-    restToken
-    user {
-      username
-    }
-  }
-}
+# mutation VerifyEmail($code: String!, $email: String!) {
+#   verifyEmail(code: $code, email: $email) {
+#     token
+#     restToken
+#     user {
+#       username
+#     }
+#   }
+# }
 
 mutation CreateMultibuyDiscount($inputs: [MultibuyInputType]!) {
   createMultibuyDiscount(inputs: $inputs) {
@@ -646,5 +646,19 @@ mutation reportProduct(
     content:$content
   ){
     message
+  }
+}
+
+mutation verifyAccount($code : String!){
+  verifyAccount(code: $code){
+
+    success
+  }
+}
+
+mutation resendActivationEmail($email: String!){
+  resendActivationEmail(email: $email){
+    errors
+    success
   }
 }

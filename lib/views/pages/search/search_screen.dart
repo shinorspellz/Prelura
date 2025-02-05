@@ -370,7 +370,7 @@ class SearchScreen extends ConsumerWidget {
                   padding: EdgeInsets.only(top: 10, bottom: 6),
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Searchwidget(
-                      hintText: "Search for members and hashtags",
+                      hintText: "Search members and hashtags",
                       obscureText: false,
                       shouldReadOnly: false,
                       controller: ref.read(searchTextController),

@@ -128,7 +128,7 @@ class AuthRepo {
       }
       throw 'An error occured';
     }
-    await login(params.username, params.password1);
+    // await login(params.username, params.password1);
     // }
   }
 
@@ -217,5 +217,27 @@ class AuthRepo {
             )));
 
     return response.passwordReset!.message.toString();
+  }
+
+  Future<bool?> verifyAccount({required String code}) async {
+    final response = await _client.executeGraphQL(
+        operation: ClientOperation((cl) => cl.mutate$verifyAccount(
+            Options$Mutation$verifyAccount(
+                variables: Variables$Mutation$verifyAccount(code: code)))));
+
+    return response.verifyAccount!.success;
+  }
+
+  Future<void> resendActivationEmail({required String email}) async {
+    final response = await _client.executeGraphQL(
+        operation: ClientOperation((cl) => cl.mutate$resendActivationEmail(
+            Options$Mutation$resendActivationEmail(
+                variables:
+                    Variables$Mutation$resendActivationEmail(email: email)))));
+
+    if (response.resendActivationEmail?.errors != null) {
+      throw response.resendActivationEmail?.errors?['email'][0] ??
+          'An error occured';
+    }
   }
 }

@@ -22,11 +22,13 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: OnboardingRoute.page,
         ),
+        AutoRoute(page: VerifyUserRoute.page, path: "/verify/:token"),
         AutoRoute(
             page: LoginRoute.page,
             initial: !_ref.read(authStateProvider).requireValue),
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
+        AutoRoute(page: EmailSentRoute.page),
         AutoRoute(page: NewPasswordRoute.page),
         AutoRoute(
             page: AppStartupRoute.page,

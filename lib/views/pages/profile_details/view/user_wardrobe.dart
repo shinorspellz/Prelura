@@ -1,12 +1,14 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/user_product_grouping/user_product_grouping.dart';
@@ -240,6 +242,33 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  if (widget.username == null && user.isVerified == false)
+                    Container(
+                        color: PreluraColors.error.withOpacity(0.3),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Verify your account",
+                                style: context.textTheme.bodyMedium?.copyWith(
+                                  fontSize: getDefaultSize(),
+                                  fontWeight: FontWeight.w500,
+                                  color: PreluraColors.error.withOpacity(0.7),
+                                ),
+                              ),
+                              AppButton(
+                                  borderColor: Colors.transparent,
+                                  bgColor:
+                                      context.theme.scaffoldBackgroundColor,
+                                  onTap: () {
+                                    context.router.push(VerifyUserRoute(
+                                        inAppVerification: true,
+                                        email: user.email ?? ""));
+                                  },
+                                  text: "Activate")
+                            ])),
                   Stack(clipBehavior: Clip.none, children: [
                     // if (widget.username != null)
                     Padding(

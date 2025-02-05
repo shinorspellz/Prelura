@@ -30,6 +30,7 @@ class UserModel with _$UserModel {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       ShippingAddress? shippingAddress,

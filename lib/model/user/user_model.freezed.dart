@@ -42,6 +42,7 @@ mixin _$UserModel {
   bool? get isVacationMode => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
   int? get noOfFollowers => throw _privateConstructorUsedError;
+  bool? get isVerified => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   ShippingAddress? get shippingAddress => throw _privateConstructorUsedError;
   bool? get isMultibuyEnabled => throw _privateConstructorUsedError;
@@ -84,6 +85,7 @@ abstract class $UserModelCopyWith<$Res> {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       ShippingAddress? shippingAddress,
@@ -131,6 +133,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
+    Object? isVerified = freezed,
     Object? shippingAddress = freezed,
     Object? isMultibuyEnabled = freezed,
     Object? noOfFollowing = freezed,
@@ -220,6 +223,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.noOfFollowers
           : noOfFollowers // ignore: cast_nullable_to_non_nullable
               as int?,
+      isVerified: freezed == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
       shippingAddress: freezed == shippingAddress
           ? _value.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
@@ -308,6 +315,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       ShippingAddress? shippingAddress,
@@ -356,6 +364,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
+    Object? isVerified = freezed,
     Object? shippingAddress = freezed,
     Object? isMultibuyEnabled = freezed,
     Object? noOfFollowing = freezed,
@@ -445,6 +454,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.noOfFollowers
           : noOfFollowers // ignore: cast_nullable_to_non_nullable
               as int?,
+      isVerified: freezed == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
       shippingAddress: freezed == shippingAddress
           ? _value.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
@@ -486,6 +499,7 @@ class _$UserModelImpl implements _UserModel {
       this.isVacationMode,
       this.isFollowing,
       this.noOfFollowers,
+      this.isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       this.shippingAddress,
@@ -538,6 +552,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   final int? noOfFollowers;
   @override
+  final bool? isVerified;
+  @override
   @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   final ShippingAddress? shippingAddress;
   @override
@@ -547,7 +563,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, shippingAddress: $shippingAddress, isMultibuyEnabled: $isMultibuyEnabled, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, isVerified: $isVerified, shippingAddress: $shippingAddress, isMultibuyEnabled: $isMultibuyEnabled, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -590,6 +606,8 @@ class _$UserModelImpl implements _UserModel {
                 other.isFollowing == isFollowing) &&
             (identical(other.noOfFollowers, noOfFollowers) ||
                 other.noOfFollowers == noOfFollowers) &&
+            (identical(other.isVerified, isVerified) ||
+                other.isVerified == isVerified) &&
             (identical(other.shippingAddress, shippingAddress) ||
                 other.shippingAddress == shippingAddress) &&
             (identical(other.isMultibuyEnabled, isMultibuyEnabled) ||
@@ -623,6 +641,7 @@ class _$UserModelImpl implements _UserModel {
         isVacationMode,
         isFollowing,
         noOfFollowers,
+        isVerified,
         shippingAddress,
         isMultibuyEnabled,
         noOfFollowing
@@ -667,6 +686,7 @@ abstract class _UserModel implements UserModel {
       final bool? isVacationMode,
       final bool? isFollowing,
       final int? noOfFollowers,
+      final bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       final ShippingAddress? shippingAddress,
@@ -718,6 +738,8 @@ abstract class _UserModel implements UserModel {
   bool? get isFollowing;
   @override
   int? get noOfFollowers;
+  @override
+  bool? get isVerified;
   @override
   @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   ShippingAddress? get shippingAddress;
