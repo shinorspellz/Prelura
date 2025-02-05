@@ -113,68 +113,18 @@ final graphqlClient = Provider((ref) {
   );
 });
 
-///
-///
-///
-// final graphqlClient = Provider((ref) {
-//   final cachedBox = ref.read(hive).requireValue;
-//
-//   final prettyLogger = TalkerDioLogger(
-//       settings: const TalkerDioLoggerSettings(
-//     printRequestData: false,
-//     printRequestHeaders: false,
-//     printResponseHeaders: false,
-//     printResponseMessage: false,
-//   ));
-//
-//   // dio setup
-//   final dio = Dio()..interceptors.add(prettyLogger);
-//
-//   final token = cachedBox.get('AUTH_TOKEN');
-//
-//   AuthLink authLink = AuthLink(getToken: () {
-//     if (token == null) return null;
-//     return 'Bearer $token';
-//   });
-//
-//   final link = Link.from([
-//     authLink,
-//     DioLink(
-//       "https://prelura.com/graphql/",
-//       client: dio,
-//       defaultHeaders: {HttpHeaders.acceptHeader: 'application/json'},
-//     ),
-//   ]);
-//
-//   GraphQLClient client = GraphQLClient(
-//     defaultPolicies: DefaultPolicies(
-//       query: Policies(
-//         cacheReread: CacheRereadPolicy.ignoreAll,
-//         fetch: FetchPolicy.noCache,
-//       ),
-//     ),
-//     queryRequestTimeout: const Duration(minutes: 3),
-//     cache: GraphQLCache(),
-//     link: link,
-//   );
-//
-//   return client;
-// });
-///
-///
-///
-
 /// Upload [GraphQLClient] for upload mutations basic mutation & quries.
 final graphqUploadlClient = Provider((ref) {
   final cachedBox = ref.read(hive).requireValue;
 
   final prettyLogger = TalkerDioLogger(
-      settings: const TalkerDioLoggerSettings(
-    printRequestData: true,
-    printRequestHeaders: false,
-    printResponseHeaders: true,
-    printResponseMessage: true,
-  ));
+    settings: const TalkerDioLoggerSettings(
+      printRequestData: true,
+      printRequestHeaders: false,
+      printResponseHeaders: true,
+      printResponseMessage: true,
+    ),
+  );
 
   // dio setup
   final dio = Dio()..interceptors.add(prettyLogger);
