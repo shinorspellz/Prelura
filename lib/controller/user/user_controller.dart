@@ -158,7 +158,7 @@ class _UserController extends AsyncNotifier<void> {
     state = AsyncLoading();
 
     state = await AsyncValue.guard(() async {
-      await _repo.verifyEmail(code, email);
+      // await _repo.verifyEmail(code, email);
       await ref.refresh(userProvider.future);
     });
   }

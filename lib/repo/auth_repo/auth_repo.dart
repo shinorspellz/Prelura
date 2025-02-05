@@ -178,11 +178,12 @@ class AuthRepo {
     return response.passwordReset!.message.toString();
   }
 
-  Future<bool> verifyAccount({required String token}) async {
+  Future<bool?> verifyAccount({required String code}) async {
     final response = await _client.executeGraphQL(
         operation: ClientOperation((cl) => cl.mutate$verifyAccount(
             Options$Mutation$verifyAccount(
-                variables: Variables$Mutation$verifyAccount(token: token)))));
-    return response.verifyAccount!.success!;
+                variables: Variables$Mutation$verifyAccount(code: code)))));
+
+    return response.verifyAccount!.success;
   }
 }

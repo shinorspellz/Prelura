@@ -173,7 +173,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 padding: EdgeInsets.zero,
                                 obscureText: false,
                                 shouldReadOnly: false,
-                                hintText: "Search items, Brands or Styles",
+                                hintText: "Search items, brands or styles",
                                 enabled: true,
                                 controller: ref.read(searchTextController),
                                 showInputBorder: true,

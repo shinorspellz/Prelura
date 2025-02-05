@@ -16,6 +16,7 @@ query ViewMe {
     isMultibuyEnabled
     shippingAddress
     listing
+    isVerified
     location {
       latitude
       longitude

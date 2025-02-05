@@ -2797,18 +2797,10 @@ class VerifyEmailRouteArgs {
 
 /// generated route for
 /// [_i84.VerifyUserScreen]
-class VerifyUserRoute extends _i88.PageRouteInfo<VerifyUserRouteArgs> {
-  VerifyUserRoute({
-    _i89.Key? key,
-    required String token,
-    List<_i88.PageRouteInfo>? children,
-  }) : super(
+class VerifyUserRoute extends _i88.PageRouteInfo<void> {
+  const VerifyUserRoute({List<_i88.PageRouteInfo>? children})
+      : super(
           VerifyUserRoute.name,
-          args: VerifyUserRouteArgs(
-            key: key,
-            token: token,
-          ),
-          rawPathParams: {'token': token},
           initialChildren: children,
         );
 
@@ -2817,32 +2809,9 @@ class VerifyUserRoute extends _i88.PageRouteInfo<VerifyUserRouteArgs> {
   static _i88.PageInfo page = _i88.PageInfo(
     name,
     builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<VerifyUserRouteArgs>(
-          orElse: () =>
-              VerifyUserRouteArgs(token: pathParams.getString('token')));
-      return _i84.VerifyUserScreen(
-        key: args.key,
-        token: args.token,
-      );
+      return const _i84.VerifyUserScreen();
     },
   );
-}
-
-class VerifyUserRouteArgs {
-  const VerifyUserRouteArgs({
-    this.key,
-    required this.token,
-  });
-
-  final _i89.Key? key;
-
-  final String token;
-
-  @override
-  String toString() {
-    return 'VerifyUserRouteArgs{key: $key, token: $token}';
-  }
 }
 
 /// generated route for

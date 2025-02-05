@@ -63,32 +63,53 @@ class EmailSentScreen extends ConsumerWidget {
       ),
       bottomSheet: Container(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-        height: 90,
-        child: PreluraButtonWithLoader(
-          // padding: EdgeInsets.all(16),
-          showLoadingIndicator: ref.watch(authProvider).isLoading,
-          onPressed: () async {
-            await ref.read(authProvider.notifier).login(
-                  username.trim(),
-                  password.trim(),
+        height: 200,
+        child: Column(
+          children: [
+            PreluraButtonWithLoader(
+                borderColor: PreluraColors.primaryColor,
+                buttonColor: context.theme.scaffoldBackgroundColor,
+                buttonTitle: "CONTINUE TO VERIFICATION",
+                buttonTitleTextStyle:
+                    context.theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: PreluraColors.primaryColor,
+                ),
+                onPressed: () async {
+                  await ref.read(authProvider.notifier).login(
+                        username.trim(),
+                        password.trim(),
+                      );
+                  context.router.push(VerifyUserRoute());
+                }),
+            16.verticalSpacing,
+            PreluraButtonWithLoader(
+              // padding: EdgeInsets.all(16),
+              showLoadingIndicator: ref.watch(authProvider).isLoading,
+              onPressed: () async {
+                await ref.read(authProvider.notifier).login(
+                      username.trim(),
+                      password.trim(),
+                    );
+                ref.read(authProvider).whenOrNull(
+                  error: (e, _) {
+                    context.alert(e.toString());
+                    log("$e");
+                    log("$_");
+                  },
+                  data: (_) {
+                    if (onLoginResult == null) {
+                      context.router.replaceAll([const AuthRoute()]);
+                      log('auth with login result');
+                      return;
+                    }
+                    onLoginResult?.call(true);
+                  },
                 );
-            ref.read(authProvider).whenOrNull(
-              error: (e, _) {
-                context.alert(e.toString());
-                log("$e");
-                log("$_");
               },
-              data: (_) {
-                if (onLoginResult == null) {
-                  context.router.replaceAll([const AuthRoute()]);
-                  log('auth with login result');
-                  return;
-                }
-                onLoginResult?.call(true);
-              },
-            );
-          },
-          buttonTitle: "CONTINUE TO LOGIN",
+              buttonTitle: "CONTINUE TO LOGIN",
+            ),
+          ],
         ),
       ),
     );
