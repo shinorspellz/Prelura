@@ -67,6 +67,7 @@ class EmailSentScreen extends ConsumerWidget {
         child: Column(
           children: [
             PreluraButtonWithLoader(
+                elevation: 0,
                 borderColor: PreluraColors.primaryColor,
                 buttonColor: context.theme.scaffoldBackgroundColor,
                 buttonTitle: "CONTINUE TO VERIFICATION",
@@ -80,7 +81,15 @@ class EmailSentScreen extends ConsumerWidget {
                         username.trim(),
                         password.trim(),
                       );
-                  context.router.push(VerifyUserRoute());
+                  ref.read(authProvider).whenOrNull(data: (data) {
+                    onLoginResult?.call(true);
+                    context.router.push(VerifyUserRoute(
+                        email: email, inAppVerification: false));
+                  }, error: (e, _) {
+                    context.alert(e.toString());
+                    log("$e");
+                    log("$_");
+                  });
                 }),
             16.verticalSpacing,
             PreluraButtonWithLoader(

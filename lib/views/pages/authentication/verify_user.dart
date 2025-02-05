@@ -12,16 +12,19 @@ import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/custom_widget.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import '../../../controller/user/user_controller.dart';
 import '../../../core/utils/assets.dart';
+import '../../../res/colors.dart';
+import '../../widgets/app_bar.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/pinfeild_widget.dart';
 
 @RoutePage()
 class VerifyUserScreen extends ConsumerStatefulWidget {
-  const VerifyUserScreen({
-    super.key,
-  });
+  final String email;
+  final bool inAppVerification;
+  const VerifyUserScreen({super.key, required this.email, required this.inAppVerification});
 
   @override
   ConsumerState<VerifyUserScreen> createState() => _VerifyUserScreenState();
@@ -44,6 +47,14 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreluraAppBar(
+        appbarTitle: "",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -63,6 +74,26 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
                 controller: controller,
               ),
               Spacer(),
+              AppButton(
+                  bgColor: context.theme.scaffoldBackgroundColor,
+                  borderColor: PreluraColors.primaryColor,
+                  width: MediaQuery.sizeOf(context).width,
+                  text: "Resend activation email",
+                  onTap: () async {
+                    await ref
+                        .read(authProvider.notifier)
+                        .resendActivationEmail(email: widget.email);
+
+                    ref.read(authProvider).whenOrNull(
+                      data: (data) {
+                        context.alert('Activation email sent');
+                      },
+                      error: (error, stackTrace) {
+                        context.alert(error.toString());
+                      },
+                    );
+                  }),
+              30.verticalSpacing,
               Consumer(builder: (context, ref, _) {
                 return SafeArea(
                   child: AppButton(
@@ -80,45 +111,58 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
                           .verifyAccount(code: controller.text);
                       ref.read(authProvider).whenOrNull(
                           error: (e, _) => context.alert(e.toString()),
-                          data: (_) {
+                          data: (_) async {
                             // context.alert('Verified email successfully');
                             final isAuthrnticated =
                                 ref.read(authStateProvider).requireValue;
+                            await ref.refresh(userProvider.future);
                             return showCustomDialog(
                               context,
                               allowDismissal: false,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Lottie.asset(
-                                    AnimationAssets.account,
-                                    height: 100,
-                                    width: 100,
-                                    // repeat: false,
-                                  ),
-                                  12.verticalSpacing,
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Congratulations\n  your account has been verified",
-                                      textAlign: TextAlign.center,
-                                      style: context.theme.textTheme.bodyMedium
-                                          ?.copyWith(
-                                              fontSize:
-                                                  getDefaultSize(size: 16),
-                                              fontWeight: FontWeight.w500),
+                              child: Container(
+                                color: context.theme.scaffoldBackgroundColor,
+                                padding: EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Lottie.asset(
+                                      AnimationAssets.account,
+                                      height: 100,
+                                      width: 100,
+                                      // repeat: false,
                                     ),
-                                  ),
-                                  16.verticalSpacing,
-                                  PreluraButtonWithLoader(onPressed: () async {
-                                    if (isAuthrnticated) {
-                                      context.router.replace(AuthRoute());
-                                    } else {
-                                      context.router.replace(LoginRoute());
-                                    }
-                                  })
-                                ],
+                                    12.verticalSpacing,
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Congratulations\n  your account has been verified",
+                                        textAlign: TextAlign.center,
+                                        style: context
+                                            .theme.textTheme.bodyMedium
+                                            ?.copyWith(
+                                                fontSize:
+                                                    getDefaultSize(size: 16),
+                                                fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    16.verticalSpacing,
+                                    PreluraButtonWithLoader(
+                                        buttonTitle: "Continue",
+                                        onPressed: () async {
+                                          if(widget.inAppVerification){
+                                            context.router.popForced();
+                                            return;
+                                          }
+                                          if (isAuthrnticated) {
+                                            context.router.replace(AuthRoute());
+                                          } else {
+                                            context.router
+                                                .replace(LoginRoute());
+                                          }
+                                        })
+                                  ],
+                                ),
                               ),
                             );
                           });

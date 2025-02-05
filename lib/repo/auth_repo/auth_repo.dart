@@ -186,4 +186,17 @@ class AuthRepo {
 
     return response.verifyAccount!.success;
   }
+
+  Future<void> resendActivationEmail({required String email}) async {
+    final response = await _client.executeGraphQL(
+        operation: ClientOperation((cl) => cl.mutate$resendActivationEmail(
+            Options$Mutation$resendActivationEmail(
+                variables:
+                    Variables$Mutation$resendActivationEmail(email: email)))));
+
+    if (response.resendActivationEmail?.errors != null) {
+      throw response.resendActivationEmail?.errors?['email'][0] ??
+          'An error occured';
+    }
+  }
 }
