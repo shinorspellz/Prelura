@@ -61,22 +61,31 @@ class _AuthController extends AsyncNotifier<void> {
         ));
   }
 
-  Future<void> logout() async {
+  Future<void> logout({bool signatureLost = false}) async {
     state = const AsyncLoading();
 
-    state = await AsyncValue.guard(() async {
+    try {
       await _repo.logout();
 
-      ref.invalidate(graphqlClient);
-      ref.invalidate(authStateProvider);
-      ref.invalidate(userProvider);
-      ref.invalidate(networkClient);
+      _invalidateProv();
+    } catch (e) {
+      log(":::::You called the logout :::3");
+      if (signatureLost) {
+        var box = ref.read(hive).requireValue;
+        await box.delete('AUTH_TOKEN');
+        await box.delete('REFRESH_TOKEN');
+        await box.delete('tokenTime');
+        await box.delete('USERNAME');
+        _invalidateProv();
+      }
+    }
+  }
 
-      // ref.refresh(authStateProvider.future);
-      //  final isAuthenticated = ref.read(authStateProvider).requireValue;
-      //
-      //  log("$isAuthenticated");
-    });
+  _invalidateProv() {
+    ref.invalidate(graphqlClient);
+    ref.invalidate(authStateProvider);
+    ref.invalidate(userProvider);
+    ref.invalidate(networkClient);
   }
 
   Future<void> verifyAccount({required String token}) async {
