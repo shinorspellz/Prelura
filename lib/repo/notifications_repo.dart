@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
+import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/model/notification/notification_model.dart';
+import 'package:prelura_app/res/helper_function.dart';
 
 import '../core/graphql/__generated/schema.graphql.dart';
 
@@ -49,6 +51,7 @@ class NotificationRepo {
 
   Future<int> getNotificationsTotalNumbers(
       int pageCount, int pageNumber) async {
+    if (HelperFunction.genRef!.read(authRepo).getToken == null) return 0;
     final response = await _client.query$Notifications(
       Options$Query$Notifications(
         variables: Variables$Query$Notifications(

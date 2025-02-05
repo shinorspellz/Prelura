@@ -32,17 +32,20 @@ class NotificationsController
 
   Future<List<NotificationModel>> getAllNotifications(
       {required int page}) async {
+    // log("::::: The notification 0");
+    if (ref.read(authRepo).getToken == null) return [];
     try {
       final response = await _repository.getNotifications(
         pageCount: _pageSize,
         pageNumber: page,
       );
-
+      // log("::::: The notification 1");
       final newProducts = response;
-
+      // log("::::: The notification 2");
       if (page == 1) {
         state = AsyncData(newProducts);
       } else {
+        // log("::::: The notification 3");
         final currentProducts = state.value ?? [];
         state = AsyncData([...currentProducts, ...newProducts]);
       }
