@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
-import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -29,9 +29,7 @@ class UserRepo {
         final error = response.exception!.graphqlErrors.first.message;
         if (error == "Signature has expired") {
           log(":::: I am running from here :::: ${error}");
-          HelperFunction.genRef!
-              .read(authProvider.notifier)
-              .logout(signatureLost: true);
+          HelperFunction.genRef!.read(refreshTokenSession);
         }
         throw error;
       }
@@ -47,34 +45,6 @@ class UserRepo {
     log(' response gotten ${response.parsedData!.viewMe!.toJson()}');
 
     return UserModel.fromJson(response.parsedData!.viewMe!.toJson());
-  }
-
-  Future<Mutation$RefreashToken$refreshToken?>? refreshToken(
-      String refreshToken) async {
-    final response = await _client.mutate$RefreashToken(
-      Options$Mutation$RefreashToken(
-          variables: Variables$Mutation$RefreashToken(
-        refreshToken: refreshToken,
-      )),
-    );
-
-    if (response.hasException) {
-      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-        final error = response.exception!.graphqlErrors.first.message;
-        throw error;
-      }
-      log(response.exception.toString(), name: 'UserRepo');
-      throw 'An error occured';
-    }
-
-    if (response.parsedData == null) {
-      log('Missing response', name: 'UserRef-Token');
-      throw 'An error occurred';
-    }
-
-    log(' response gotten ${response.parsedData!.toJson()}');
-
-    return response.parsedData!.refreshToken;
   }
 
   Future<UserModel> getUser(String username) async {

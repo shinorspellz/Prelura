@@ -125,7 +125,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         error: (e, _) {
                           context.alert(e.toString());
                           log("$e");
-                          log("$_");
                         },
                         data: (_) {
                           if (widget.onLoginResult == null) {

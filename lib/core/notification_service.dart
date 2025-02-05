@@ -64,6 +64,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
           priority: Priority.high,
           colorized: true,
           color: Colors.deepPurple,
+          icon: "@mipmap/launcher_icon",
         ),
         iOS: DarwinNotificationDetails(
           presentSound: true,

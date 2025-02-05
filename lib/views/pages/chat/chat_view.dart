@@ -81,6 +81,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       HelperFunction.genRef!.read(inChatRoom.notifier).state = false;
       HelperFunction.genRef!.invalidate(offerProvider);
+      HelperFunction.genRef!.invalidate(messageImageProvider);
     });
     super.dispose();
   }

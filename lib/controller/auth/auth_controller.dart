@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
+import 'package:prelura_app/res/helper_function.dart';
 
 final authProvider =
     AsyncNotifierProvider<_AuthController, void>(_AuthController.new);
@@ -61,7 +62,7 @@ class _AuthController extends AsyncNotifier<void> {
         ));
   }
 
-  Future<void> logout({bool signatureLost = false}) async {
+  Future<void> logout() async {
     state = const AsyncLoading();
 
     try {
@@ -70,14 +71,6 @@ class _AuthController extends AsyncNotifier<void> {
       _invalidateProv();
     } catch (e) {
       log(":::::You called the logout :::3");
-      if (signatureLost) {
-        var box = ref.read(hive).requireValue;
-        await box.delete('AUTH_TOKEN');
-        await box.delete('REFRESH_TOKEN');
-        await box.delete('tokenTime');
-        await box.delete('USERNAME');
-        _invalidateProv();
-      }
     }
   }
 
@@ -86,6 +79,7 @@ class _AuthController extends AsyncNotifier<void> {
     ref.invalidate(authStateProvider);
     ref.invalidate(userProvider);
     ref.invalidate(networkClient);
+    HelperFunction.genRef!.invalidate(authProvider);
   }
 
   Future<void> verifyAccount({required String code}) async {
