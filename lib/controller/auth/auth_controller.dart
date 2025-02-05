@@ -62,7 +62,7 @@ class _AuthController extends AsyncNotifier<void> {
         ));
   }
 
-  Future<void> logout({bool signatureLost = false}) async {
+  Future<void> logout() async {
     state = const AsyncLoading();
 
     try {
@@ -71,14 +71,6 @@ class _AuthController extends AsyncNotifier<void> {
       _invalidateProv();
     } catch (e) {
       log(":::::You called the logout :::3");
-      if (signatureLost) {
-        var box = ref.read(hive).requireValue;
-        await box.delete('AUTH_TOKEN');
-        await box.delete('REFRESH_TOKEN');
-        await box.delete('tokenTime');
-        await box.delete('USERNAME');
-        _invalidateProv();
-      }
     }
   }
 

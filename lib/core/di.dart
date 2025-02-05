@@ -113,6 +113,38 @@ final graphqlClient = Provider((ref) {
   );
 });
 
+final normalQraphqlClient = Provider((ref) {
+  final prettyLogger = TalkerDioLogger(
+    settings: const TalkerDioLoggerSettings(
+      printRequestData: false,
+      printRequestHeaders: false,
+      printResponseHeaders: false,
+      printResponseMessage: false,
+    ),
+  );
+
+  final dio = Dio()..interceptors.add(prettyLogger);
+  final link = Link.from([
+    DioLink(
+      "https://prelura.com/graphql/",
+      client: dio,
+      defaultHeaders: {HttpHeaders.acceptHeader: 'application/json'},
+    ),
+  ]);
+
+  return GraphQLClient(
+    defaultPolicies: DefaultPolicies(
+      query: Policies(
+        cacheReread: CacheRereadPolicy.ignoreAll,
+        fetch: FetchPolicy.noCache,
+      ),
+    ),
+    queryRequestTimeout: const Duration(minutes: 3),
+    cache: GraphQLCache(),
+    link: link,
+  );
+});
+
 /// Upload [GraphQLClient] for upload mutations basic mutation & quries.
 final graphqUploadlClient = Provider((ref) {
   final cachedBox = ref.read(hive).requireValue;
@@ -180,10 +212,11 @@ final hive = FutureProvider((ref) async {
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
   (ref) => AuthRepo(
-    ref.watch(networkClient),
+    ref.read(networkClient),
     ref.watch(hive).requireValue,
     ref,
-    ref.watch(graphqlClient),
+    ref.read(graphqlClient),
+    ref.read(normalQraphqlClient),
   ),
 );
 
