@@ -29211,766 +29211,6 @@ class _CopyWithStubImpl$Mutation$ChangeEmail$changeEmail<TRes>
       _res;
 }
 
-class Variables$Mutation$VerifyEmail {
-  factory Variables$Mutation$VerifyEmail({
-    required String code,
-    required String email,
-  }) =>
-      Variables$Mutation$VerifyEmail._({
-        r'code': code,
-        r'email': email,
-      });
-
-  Variables$Mutation$VerifyEmail._(this._$data);
-
-  factory Variables$Mutation$VerifyEmail.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$code = data['code'];
-    result$data['code'] = (l$code as String);
-    final l$email = data['email'];
-    result$data['email'] = (l$email as String);
-    return Variables$Mutation$VerifyEmail._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get code => (_$data['code'] as String);
-
-  String get email => (_$data['email'] as String);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$code = code;
-    result$data['code'] = l$code;
-    final l$email = email;
-    result$data['email'] = l$email;
-    return result$data;
-  }
-
-  CopyWith$Variables$Mutation$VerifyEmail<Variables$Mutation$VerifyEmail>
-      get copyWith => CopyWith$Variables$Mutation$VerifyEmail(
-            this,
-            (i) => i,
-          );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Variables$Mutation$VerifyEmail ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$code = code;
-    final lOther$code = other.code;
-    if (l$code != lOther$code) {
-      return false;
-    }
-    final l$email = email;
-    final lOther$email = other.email;
-    if (l$email != lOther$email) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$code = code;
-    final l$email = email;
-    return Object.hashAll([
-      l$code,
-      l$email,
-    ]);
-  }
-}
-
-abstract class CopyWith$Variables$Mutation$VerifyEmail<TRes> {
-  factory CopyWith$Variables$Mutation$VerifyEmail(
-    Variables$Mutation$VerifyEmail instance,
-    TRes Function(Variables$Mutation$VerifyEmail) then,
-  ) = _CopyWithImpl$Variables$Mutation$VerifyEmail;
-
-  factory CopyWith$Variables$Mutation$VerifyEmail.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$VerifyEmail;
-
-  TRes call({
-    String? code,
-    String? email,
-  });
-}
-
-class _CopyWithImpl$Variables$Mutation$VerifyEmail<TRes>
-    implements CopyWith$Variables$Mutation$VerifyEmail<TRes> {
-  _CopyWithImpl$Variables$Mutation$VerifyEmail(
-    this._instance,
-    this._then,
-  );
-
-  final Variables$Mutation$VerifyEmail _instance;
-
-  final TRes Function(Variables$Mutation$VerifyEmail) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? code = _undefined,
-    Object? email = _undefined,
-  }) =>
-      _then(Variables$Mutation$VerifyEmail._({
-        ..._instance._$data,
-        if (code != _undefined && code != null) 'code': (code as String),
-        if (email != _undefined && email != null) 'email': (email as String),
-      }));
-}
-
-class _CopyWithStubImpl$Variables$Mutation$VerifyEmail<TRes>
-    implements CopyWith$Variables$Mutation$VerifyEmail<TRes> {
-  _CopyWithStubImpl$Variables$Mutation$VerifyEmail(this._res);
-
-  TRes _res;
-
-  call({
-    String? code,
-    String? email,
-  }) =>
-      _res;
-}
-
-class Mutation$VerifyEmail {
-  Mutation$VerifyEmail({
-    this.verifyEmail,
-    this.$__typename = 'Mutation',
-  });
-
-  factory Mutation$VerifyEmail.fromJson(Map<String, dynamic> json) {
-    final l$verifyEmail = json['verifyEmail'];
-    final l$$__typename = json['__typename'];
-    return Mutation$VerifyEmail(
-      verifyEmail: l$verifyEmail == null
-          ? null
-          : Mutation$VerifyEmail$verifyEmail.fromJson(
-              (l$verifyEmail as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Mutation$VerifyEmail$verifyEmail? verifyEmail;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$verifyEmail = verifyEmail;
-    _resultData['verifyEmail'] = l$verifyEmail?.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$verifyEmail = verifyEmail;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$verifyEmail,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$VerifyEmail || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$verifyEmail = verifyEmail;
-    final lOther$verifyEmail = other.verifyEmail;
-    if (l$verifyEmail != lOther$verifyEmail) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$VerifyEmail on Mutation$VerifyEmail {
-  CopyWith$Mutation$VerifyEmail<Mutation$VerifyEmail> get copyWith =>
-      CopyWith$Mutation$VerifyEmail(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Mutation$VerifyEmail<TRes> {
-  factory CopyWith$Mutation$VerifyEmail(
-    Mutation$VerifyEmail instance,
-    TRes Function(Mutation$VerifyEmail) then,
-  ) = _CopyWithImpl$Mutation$VerifyEmail;
-
-  factory CopyWith$Mutation$VerifyEmail.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$VerifyEmail;
-
-  TRes call({
-    Mutation$VerifyEmail$verifyEmail? verifyEmail,
-    String? $__typename,
-  });
-  CopyWith$Mutation$VerifyEmail$verifyEmail<TRes> get verifyEmail;
-}
-
-class _CopyWithImpl$Mutation$VerifyEmail<TRes>
-    implements CopyWith$Mutation$VerifyEmail<TRes> {
-  _CopyWithImpl$Mutation$VerifyEmail(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$VerifyEmail _instance;
-
-  final TRes Function(Mutation$VerifyEmail) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? verifyEmail = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$VerifyEmail(
-        verifyEmail: verifyEmail == _undefined
-            ? _instance.verifyEmail
-            : (verifyEmail as Mutation$VerifyEmail$verifyEmail?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Mutation$VerifyEmail$verifyEmail<TRes> get verifyEmail {
-    final local$verifyEmail = _instance.verifyEmail;
-    return local$verifyEmail == null
-        ? CopyWith$Mutation$VerifyEmail$verifyEmail.stub(_then(_instance))
-        : CopyWith$Mutation$VerifyEmail$verifyEmail(
-            local$verifyEmail, (e) => call(verifyEmail: e));
-  }
-}
-
-class _CopyWithStubImpl$Mutation$VerifyEmail<TRes>
-    implements CopyWith$Mutation$VerifyEmail<TRes> {
-  _CopyWithStubImpl$Mutation$VerifyEmail(this._res);
-
-  TRes _res;
-
-  call({
-    Mutation$VerifyEmail$verifyEmail? verifyEmail,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$VerifyEmail$verifyEmail<TRes> get verifyEmail =>
-      CopyWith$Mutation$VerifyEmail$verifyEmail.stub(_res);
-}
-
-const documentNodeMutationVerifyEmail = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.mutation,
-    name: NameNode(value: 'VerifyEmail'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'code')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'email')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'verifyEmail'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'code'),
-            value: VariableNode(name: NameNode(value: 'code')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'email'),
-            value: VariableNode(name: NameNode(value: 'email')),
-          ),
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'token'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'restToken'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'user'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'username'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Mutation$VerifyEmail _parserFn$Mutation$VerifyEmail(
-        Map<String, dynamic> data) =>
-    Mutation$VerifyEmail.fromJson(data);
-typedef OnMutationCompleted$Mutation$VerifyEmail = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Mutation$VerifyEmail?,
-);
-
-class Options$Mutation$VerifyEmail
-    extends graphql.MutationOptions<Mutation$VerifyEmail> {
-  Options$Mutation$VerifyEmail({
-    String? operationName,
-    required Variables$Mutation$VerifyEmail variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Mutation$VerifyEmail? typedOptimisticResult,
-    graphql.Context? context,
-    OnMutationCompleted$Mutation$VerifyEmail? onCompleted,
-    graphql.OnMutationUpdate<Mutation$VerifyEmail>? update,
-    graphql.OnError? onError,
-  })  : onCompletedWithParsed = onCompleted,
-        super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) => onCompleted(
-                    data,
-                    data == null ? null : _parserFn$Mutation$VerifyEmail(data),
-                  ),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationVerifyEmail,
-          parserFn: _parserFn$Mutation$VerifyEmail,
-        );
-
-  final OnMutationCompleted$Mutation$VerifyEmail? onCompletedWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
-        onCompletedWithParsed,
-      ];
-}
-
-class WatchOptions$Mutation$VerifyEmail
-    extends graphql.WatchQueryOptions<Mutation$VerifyEmail> {
-  WatchOptions$Mutation$VerifyEmail({
-    String? operationName,
-    required Variables$Mutation$VerifyEmail variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Mutation$VerifyEmail? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeMutationVerifyEmail,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Mutation$VerifyEmail,
-        );
-}
-
-extension ClientExtension$Mutation$VerifyEmail on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$VerifyEmail>> mutate$VerifyEmail(
-          Options$Mutation$VerifyEmail options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$VerifyEmail> watchMutation$VerifyEmail(
-          WatchOptions$Mutation$VerifyEmail options) =>
-      this.watchMutation(options);
-}
-
-class Mutation$VerifyEmail$verifyEmail {
-  Mutation$VerifyEmail$verifyEmail({
-    this.token,
-    this.restToken,
-    this.user,
-    this.$__typename = 'VerifyEmail',
-  });
-
-  factory Mutation$VerifyEmail$verifyEmail.fromJson(Map<String, dynamic> json) {
-    final l$token = json['token'];
-    final l$restToken = json['restToken'];
-    final l$user = json['user'];
-    final l$$__typename = json['__typename'];
-    return Mutation$VerifyEmail$verifyEmail(
-      token: (l$token as String?),
-      restToken: (l$restToken as String?),
-      user: l$user == null
-          ? null
-          : Mutation$VerifyEmail$verifyEmail$user.fromJson(
-              (l$user as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? token;
-
-  final String? restToken;
-
-  final Mutation$VerifyEmail$verifyEmail$user? user;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$token = token;
-    _resultData['token'] = l$token;
-    final l$restToken = restToken;
-    _resultData['restToken'] = l$restToken;
-    final l$user = user;
-    _resultData['user'] = l$user?.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$token = token;
-    final l$restToken = restToken;
-    final l$user = user;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$token,
-      l$restToken,
-      l$user,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$VerifyEmail$verifyEmail ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$token = token;
-    final lOther$token = other.token;
-    if (l$token != lOther$token) {
-      return false;
-    }
-    final l$restToken = restToken;
-    final lOther$restToken = other.restToken;
-    if (l$restToken != lOther$restToken) {
-      return false;
-    }
-    final l$user = user;
-    final lOther$user = other.user;
-    if (l$user != lOther$user) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$VerifyEmail$verifyEmail
-    on Mutation$VerifyEmail$verifyEmail {
-  CopyWith$Mutation$VerifyEmail$verifyEmail<Mutation$VerifyEmail$verifyEmail>
-      get copyWith => CopyWith$Mutation$VerifyEmail$verifyEmail(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$VerifyEmail$verifyEmail<TRes> {
-  factory CopyWith$Mutation$VerifyEmail$verifyEmail(
-    Mutation$VerifyEmail$verifyEmail instance,
-    TRes Function(Mutation$VerifyEmail$verifyEmail) then,
-  ) = _CopyWithImpl$Mutation$VerifyEmail$verifyEmail;
-
-  factory CopyWith$Mutation$VerifyEmail$verifyEmail.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail;
-
-  TRes call({
-    String? token,
-    String? restToken,
-    Mutation$VerifyEmail$verifyEmail$user? user,
-    String? $__typename,
-  });
-  CopyWith$Mutation$VerifyEmail$verifyEmail$user<TRes> get user;
-}
-
-class _CopyWithImpl$Mutation$VerifyEmail$verifyEmail<TRes>
-    implements CopyWith$Mutation$VerifyEmail$verifyEmail<TRes> {
-  _CopyWithImpl$Mutation$VerifyEmail$verifyEmail(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$VerifyEmail$verifyEmail _instance;
-
-  final TRes Function(Mutation$VerifyEmail$verifyEmail) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? token = _undefined,
-    Object? restToken = _undefined,
-    Object? user = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$VerifyEmail$verifyEmail(
-        token: token == _undefined ? _instance.token : (token as String?),
-        restToken: restToken == _undefined
-            ? _instance.restToken
-            : (restToken as String?),
-        user: user == _undefined
-            ? _instance.user
-            : (user as Mutation$VerifyEmail$verifyEmail$user?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Mutation$VerifyEmail$verifyEmail$user<TRes> get user {
-    final local$user = _instance.user;
-    return local$user == null
-        ? CopyWith$Mutation$VerifyEmail$verifyEmail$user.stub(_then(_instance))
-        : CopyWith$Mutation$VerifyEmail$verifyEmail$user(
-            local$user, (e) => call(user: e));
-  }
-}
-
-class _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail<TRes>
-    implements CopyWith$Mutation$VerifyEmail$verifyEmail<TRes> {
-  _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail(this._res);
-
-  TRes _res;
-
-  call({
-    String? token,
-    String? restToken,
-    Mutation$VerifyEmail$verifyEmail$user? user,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$VerifyEmail$verifyEmail$user<TRes> get user =>
-      CopyWith$Mutation$VerifyEmail$verifyEmail$user.stub(_res);
-}
-
-class Mutation$VerifyEmail$verifyEmail$user {
-  Mutation$VerifyEmail$verifyEmail$user({
-    this.username,
-    this.$__typename = 'UserType',
-  });
-
-  factory Mutation$VerifyEmail$verifyEmail$user.fromJson(
-      Map<String, dynamic> json) {
-    final l$username = json['username'];
-    final l$$__typename = json['__typename'];
-    return Mutation$VerifyEmail$verifyEmail$user(
-      username: (l$username as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? username;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$username = username;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$username,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$VerifyEmail$verifyEmail$user ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$VerifyEmail$verifyEmail$user
-    on Mutation$VerifyEmail$verifyEmail$user {
-  CopyWith$Mutation$VerifyEmail$verifyEmail$user<
-          Mutation$VerifyEmail$verifyEmail$user>
-      get copyWith => CopyWith$Mutation$VerifyEmail$verifyEmail$user(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$VerifyEmail$verifyEmail$user<TRes> {
-  factory CopyWith$Mutation$VerifyEmail$verifyEmail$user(
-    Mutation$VerifyEmail$verifyEmail$user instance,
-    TRes Function(Mutation$VerifyEmail$verifyEmail$user) then,
-  ) = _CopyWithImpl$Mutation$VerifyEmail$verifyEmail$user;
-
-  factory CopyWith$Mutation$VerifyEmail$verifyEmail$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail$user;
-
-  TRes call({
-    String? username,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$VerifyEmail$verifyEmail$user<TRes>
-    implements CopyWith$Mutation$VerifyEmail$verifyEmail$user<TRes> {
-  _CopyWithImpl$Mutation$VerifyEmail$verifyEmail$user(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$VerifyEmail$verifyEmail$user _instance;
-
-  final TRes Function(Mutation$VerifyEmail$verifyEmail$user) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? username = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$VerifyEmail$verifyEmail$user(
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail$user<TRes>
-    implements CopyWith$Mutation$VerifyEmail$verifyEmail$user<TRes> {
-  _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail$user(this._res);
-
-  TRes _res;
-
-  call({
-    String? username,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
 class Variables$Mutation$CreateMultibuyDiscount {
   factory Variables$Mutation$CreateMultibuyDiscount(
           {required List<Input$MultibuyInputType?> inputs}) =>
@@ -33834,28 +33074,28 @@ class _CopyWithStubImpl$Mutation$reportProduct$reportProduct<TRes>
 }
 
 class Variables$Mutation$verifyAccount {
-  factory Variables$Mutation$verifyAccount({required String token}) =>
+  factory Variables$Mutation$verifyAccount({required String code}) =>
       Variables$Mutation$verifyAccount._({
-        r'token': token,
+        r'code': code,
       });
 
   Variables$Mutation$verifyAccount._(this._$data);
 
   factory Variables$Mutation$verifyAccount.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$token = data['token'];
-    result$data['token'] = (l$token as String);
+    final l$code = data['code'];
+    result$data['code'] = (l$code as String);
     return Variables$Mutation$verifyAccount._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get token => (_$data['token'] as String);
+  String get code => (_$data['code'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$token = token;
-    result$data['token'] = l$token;
+    final l$code = code;
+    result$data['code'] = l$code;
     return result$data;
   }
 
@@ -33874,9 +33114,9 @@ class Variables$Mutation$verifyAccount {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$token = token;
-    final lOther$token = other.token;
-    if (l$token != lOther$token) {
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) {
       return false;
     }
     return true;
@@ -33884,8 +33124,8 @@ class Variables$Mutation$verifyAccount {
 
   @override
   int get hashCode {
-    final l$token = token;
-    return Object.hashAll([l$token]);
+    final l$code = code;
+    return Object.hashAll([l$code]);
   }
 }
 
@@ -33898,7 +33138,7 @@ abstract class CopyWith$Variables$Mutation$verifyAccount<TRes> {
   factory CopyWith$Variables$Mutation$verifyAccount.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$verifyAccount;
 
-  TRes call({String? token});
+  TRes call({String? code});
 }
 
 class _CopyWithImpl$Variables$Mutation$verifyAccount<TRes>
@@ -33914,10 +33154,10 @@ class _CopyWithImpl$Variables$Mutation$verifyAccount<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? token = _undefined}) =>
+  TRes call({Object? code = _undefined}) =>
       _then(Variables$Mutation$verifyAccount._({
         ..._instance._$data,
-        if (token != _undefined && token != null) 'token': (token as String),
+        if (code != _undefined && code != null) 'code': (code as String),
       }));
 }
 
@@ -33927,7 +33167,7 @@ class _CopyWithStubImpl$Variables$Mutation$verifyAccount<TRes>
 
   TRes _res;
 
-  call({String? token}) => _res;
+  call({String? code}) => _res;
 }
 
 class Mutation$verifyAccount {
@@ -34074,7 +33314,7 @@ const documentNodeMutationverifyAccount = DocumentNode(definitions: [
     name: NameNode(value: 'verifyAccount'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'token')),
+        variable: VariableNode(name: NameNode(value: 'code')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: true,
@@ -34090,19 +33330,12 @@ const documentNodeMutationverifyAccount = DocumentNode(definitions: [
         alias: null,
         arguments: [
           ArgumentNode(
-            name: NameNode(value: 'token'),
-            value: VariableNode(name: NameNode(value: 'token')),
+            name: NameNode(value: 'code'),
+            value: VariableNode(name: NameNode(value: 'code')),
           )
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'errors'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
           FieldNode(
             name: NameNode(value: 'success'),
             alias: null,
@@ -34228,17 +33461,551 @@ extension ClientExtension$Mutation$verifyAccount on graphql.GraphQLClient {
 
 class Mutation$verifyAccount$verifyAccount {
   Mutation$verifyAccount$verifyAccount({
-    this.errors,
     this.success,
     this.$__typename = 'VerifyAccount',
   });
 
   factory Mutation$verifyAccount$verifyAccount.fromJson(
       Map<String, dynamic> json) {
-    final l$errors = json['errors'];
     final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$verifyAccount$verifyAccount(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$verifyAccount$verifyAccount ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$verifyAccount$verifyAccount
+    on Mutation$verifyAccount$verifyAccount {
+  CopyWith$Mutation$verifyAccount$verifyAccount<
+          Mutation$verifyAccount$verifyAccount>
+      get copyWith => CopyWith$Mutation$verifyAccount$verifyAccount(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
+  factory CopyWith$Mutation$verifyAccount$verifyAccount(
+    Mutation$verifyAccount$verifyAccount instance,
+    TRes Function(Mutation$verifyAccount$verifyAccount) then,
+  ) = _CopyWithImpl$Mutation$verifyAccount$verifyAccount;
+
+  factory CopyWith$Mutation$verifyAccount$verifyAccount.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$verifyAccount$verifyAccount;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$verifyAccount$verifyAccount<TRes>
+    implements CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
+  _CopyWithImpl$Mutation$verifyAccount$verifyAccount(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$verifyAccount$verifyAccount _instance;
+
+  final TRes Function(Mutation$verifyAccount$verifyAccount) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$verifyAccount$verifyAccount(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$verifyAccount$verifyAccount<TRes>
+    implements CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
+  _CopyWithStubImpl$Mutation$verifyAccount$verifyAccount(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$resendActivationEmail {
+  factory Variables$Mutation$resendActivationEmail({required String email}) =>
+      Variables$Mutation$resendActivationEmail._({
+        r'email': email,
+      });
+
+  Variables$Mutation$resendActivationEmail._(this._$data);
+
+  factory Variables$Mutation$resendActivationEmail.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$email = data['email'];
+    result$data['email'] = (l$email as String);
+    return Variables$Mutation$resendActivationEmail._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get email => (_$data['email'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$email = email;
+    result$data['email'] = l$email;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$resendActivationEmail<
+          Variables$Mutation$resendActivationEmail>
+      get copyWith => CopyWith$Variables$Mutation$resendActivationEmail(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$resendActivationEmail ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$email = email;
+    return Object.hashAll([l$email]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$resendActivationEmail<TRes> {
+  factory CopyWith$Variables$Mutation$resendActivationEmail(
+    Variables$Mutation$resendActivationEmail instance,
+    TRes Function(Variables$Mutation$resendActivationEmail) then,
+  ) = _CopyWithImpl$Variables$Mutation$resendActivationEmail;
+
+  factory CopyWith$Variables$Mutation$resendActivationEmail.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$resendActivationEmail;
+
+  TRes call({String? email});
+}
+
+class _CopyWithImpl$Variables$Mutation$resendActivationEmail<TRes>
+    implements CopyWith$Variables$Mutation$resendActivationEmail<TRes> {
+  _CopyWithImpl$Variables$Mutation$resendActivationEmail(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$resendActivationEmail _instance;
+
+  final TRes Function(Variables$Mutation$resendActivationEmail) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? email = _undefined}) =>
+      _then(Variables$Mutation$resendActivationEmail._({
+        ..._instance._$data,
+        if (email != _undefined && email != null) 'email': (email as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$resendActivationEmail<TRes>
+    implements CopyWith$Variables$Mutation$resendActivationEmail<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$resendActivationEmail(this._res);
+
+  TRes _res;
+
+  call({String? email}) => _res;
+}
+
+class Mutation$resendActivationEmail {
+  Mutation$resendActivationEmail({
+    this.resendActivationEmail,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$resendActivationEmail.fromJson(Map<String, dynamic> json) {
+    final l$resendActivationEmail = json['resendActivationEmail'];
+    final l$$__typename = json['__typename'];
+    return Mutation$resendActivationEmail(
+      resendActivationEmail: l$resendActivationEmail == null
+          ? null
+          : Mutation$resendActivationEmail$resendActivationEmail.fromJson(
+              (l$resendActivationEmail as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$resendActivationEmail$resendActivationEmail?
+      resendActivationEmail;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$resendActivationEmail = resendActivationEmail;
+    _resultData['resendActivationEmail'] = l$resendActivationEmail?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$resendActivationEmail = resendActivationEmail;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$resendActivationEmail,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$resendActivationEmail ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$resendActivationEmail = resendActivationEmail;
+    final lOther$resendActivationEmail = other.resendActivationEmail;
+    if (l$resendActivationEmail != lOther$resendActivationEmail) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$resendActivationEmail
+    on Mutation$resendActivationEmail {
+  CopyWith$Mutation$resendActivationEmail<Mutation$resendActivationEmail>
+      get copyWith => CopyWith$Mutation$resendActivationEmail(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$resendActivationEmail<TRes> {
+  factory CopyWith$Mutation$resendActivationEmail(
+    Mutation$resendActivationEmail instance,
+    TRes Function(Mutation$resendActivationEmail) then,
+  ) = _CopyWithImpl$Mutation$resendActivationEmail;
+
+  factory CopyWith$Mutation$resendActivationEmail.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$resendActivationEmail;
+
+  TRes call({
+    Mutation$resendActivationEmail$resendActivationEmail? resendActivationEmail,
+    String? $__typename,
+  });
+  CopyWith$Mutation$resendActivationEmail$resendActivationEmail<TRes>
+      get resendActivationEmail;
+}
+
+class _CopyWithImpl$Mutation$resendActivationEmail<TRes>
+    implements CopyWith$Mutation$resendActivationEmail<TRes> {
+  _CopyWithImpl$Mutation$resendActivationEmail(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$resendActivationEmail _instance;
+
+  final TRes Function(Mutation$resendActivationEmail) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? resendActivationEmail = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$resendActivationEmail(
+        resendActivationEmail: resendActivationEmail == _undefined
+            ? _instance.resendActivationEmail
+            : (resendActivationEmail
+                as Mutation$resendActivationEmail$resendActivationEmail?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$resendActivationEmail$resendActivationEmail<TRes>
+      get resendActivationEmail {
+    final local$resendActivationEmail = _instance.resendActivationEmail;
+    return local$resendActivationEmail == null
+        ? CopyWith$Mutation$resendActivationEmail$resendActivationEmail.stub(
+            _then(_instance))
+        : CopyWith$Mutation$resendActivationEmail$resendActivationEmail(
+            local$resendActivationEmail, (e) => call(resendActivationEmail: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$resendActivationEmail<TRes>
+    implements CopyWith$Mutation$resendActivationEmail<TRes> {
+  _CopyWithStubImpl$Mutation$resendActivationEmail(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$resendActivationEmail$resendActivationEmail? resendActivationEmail,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$resendActivationEmail$resendActivationEmail<TRes>
+      get resendActivationEmail =>
+          CopyWith$Mutation$resendActivationEmail$resendActivationEmail.stub(
+              _res);
+}
+
+const documentNodeMutationresendActivationEmail = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'resendActivationEmail'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'email')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'resendActivationEmail'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'email'),
+            value: VariableNode(name: NameNode(value: 'email')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'errors'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$resendActivationEmail _parserFn$Mutation$resendActivationEmail(
+        Map<String, dynamic> data) =>
+    Mutation$resendActivationEmail.fromJson(data);
+typedef OnMutationCompleted$Mutation$resendActivationEmail = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$resendActivationEmail?,
+);
+
+class Options$Mutation$resendActivationEmail
+    extends graphql.MutationOptions<Mutation$resendActivationEmail> {
+  Options$Mutation$resendActivationEmail({
+    String? operationName,
+    required Variables$Mutation$resendActivationEmail variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$resendActivationEmail? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$resendActivationEmail? onCompleted,
+    graphql.OnMutationUpdate<Mutation$resendActivationEmail>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$resendActivationEmail(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationresendActivationEmail,
+          parserFn: _parserFn$Mutation$resendActivationEmail,
+        );
+
+  final OnMutationCompleted$Mutation$resendActivationEmail?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$resendActivationEmail
+    extends graphql.WatchQueryOptions<Mutation$resendActivationEmail> {
+  WatchOptions$Mutation$resendActivationEmail({
+    String? operationName,
+    required Variables$Mutation$resendActivationEmail variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$resendActivationEmail? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationresendActivationEmail,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$resendActivationEmail,
+        );
+}
+
+extension ClientExtension$Mutation$resendActivationEmail
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$resendActivationEmail>>
+      mutate$resendActivationEmail(
+              Options$Mutation$resendActivationEmail options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$resendActivationEmail>
+      watchMutation$resendActivationEmail(
+              WatchOptions$Mutation$resendActivationEmail options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$resendActivationEmail$resendActivationEmail {
+  Mutation$resendActivationEmail$resendActivationEmail({
+    this.errors,
+    this.success,
+    this.$__typename = 'ResendActivationEmail',
+  });
+
+  factory Mutation$resendActivationEmail$resendActivationEmail.fromJson(
+      Map<String, dynamic> json) {
+    final l$errors = json['errors'];
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$resendActivationEmail$resendActivationEmail(
       errors: (l$errors as Map<String, dynamic>?),
       success: (l$success as bool?),
       $__typename: (l$$__typename as String),
@@ -34279,7 +34046,7 @@ class Mutation$verifyAccount$verifyAccount {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$verifyAccount$verifyAccount ||
+    if (other is! Mutation$resendActivationEmail$resendActivationEmail ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -34302,24 +34069,27 @@ class Mutation$verifyAccount$verifyAccount {
   }
 }
 
-extension UtilityExtension$Mutation$verifyAccount$verifyAccount
-    on Mutation$verifyAccount$verifyAccount {
-  CopyWith$Mutation$verifyAccount$verifyAccount<
-          Mutation$verifyAccount$verifyAccount>
-      get copyWith => CopyWith$Mutation$verifyAccount$verifyAccount(
+extension UtilityExtension$Mutation$resendActivationEmail$resendActivationEmail
+    on Mutation$resendActivationEmail$resendActivationEmail {
+  CopyWith$Mutation$resendActivationEmail$resendActivationEmail<
+          Mutation$resendActivationEmail$resendActivationEmail>
+      get copyWith =>
+          CopyWith$Mutation$resendActivationEmail$resendActivationEmail(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
-  factory CopyWith$Mutation$verifyAccount$verifyAccount(
-    Mutation$verifyAccount$verifyAccount instance,
-    TRes Function(Mutation$verifyAccount$verifyAccount) then,
-  ) = _CopyWithImpl$Mutation$verifyAccount$verifyAccount;
+abstract class CopyWith$Mutation$resendActivationEmail$resendActivationEmail<
+    TRes> {
+  factory CopyWith$Mutation$resendActivationEmail$resendActivationEmail(
+    Mutation$resendActivationEmail$resendActivationEmail instance,
+    TRes Function(Mutation$resendActivationEmail$resendActivationEmail) then,
+  ) = _CopyWithImpl$Mutation$resendActivationEmail$resendActivationEmail;
 
-  factory CopyWith$Mutation$verifyAccount$verifyAccount.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$verifyAccount$verifyAccount;
+  factory CopyWith$Mutation$resendActivationEmail$resendActivationEmail.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$resendActivationEmail$resendActivationEmail;
 
   TRes call({
     Map<String, dynamic>? errors,
@@ -34328,16 +34098,18 @@ abstract class CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$verifyAccount$verifyAccount<TRes>
-    implements CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
-  _CopyWithImpl$Mutation$verifyAccount$verifyAccount(
+class _CopyWithImpl$Mutation$resendActivationEmail$resendActivationEmail<TRes>
+    implements
+        CopyWith$Mutation$resendActivationEmail$resendActivationEmail<TRes> {
+  _CopyWithImpl$Mutation$resendActivationEmail$resendActivationEmail(
     this._instance,
     this._then,
   );
 
-  final Mutation$verifyAccount$verifyAccount _instance;
+  final Mutation$resendActivationEmail$resendActivationEmail _instance;
 
-  final TRes Function(Mutation$verifyAccount$verifyAccount) _then;
+  final TRes Function(Mutation$resendActivationEmail$resendActivationEmail)
+      _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -34346,7 +34118,7 @@ class _CopyWithImpl$Mutation$verifyAccount$verifyAccount<TRes>
     Object? success = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$verifyAccount$verifyAccount(
+      _then(Mutation$resendActivationEmail$resendActivationEmail(
         errors: errors == _undefined
             ? _instance.errors
             : (errors as Map<String, dynamic>?),
@@ -34357,9 +34129,12 @@ class _CopyWithImpl$Mutation$verifyAccount$verifyAccount<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Mutation$verifyAccount$verifyAccount<TRes>
-    implements CopyWith$Mutation$verifyAccount$verifyAccount<TRes> {
-  _CopyWithStubImpl$Mutation$verifyAccount$verifyAccount(this._res);
+class _CopyWithStubImpl$Mutation$resendActivationEmail$resendActivationEmail<
+        TRes>
+    implements
+        CopyWith$Mutation$resendActivationEmail$resendActivationEmail<TRes> {
+  _CopyWithStubImpl$Mutation$resendActivationEmail$resendActivationEmail(
+      this._res);
 
   TRes _res;
 

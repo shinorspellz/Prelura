@@ -2800,15 +2800,16 @@ class VerifyEmailRouteArgs {
 class VerifyUserRoute extends _i88.PageRouteInfo<VerifyUserRouteArgs> {
   VerifyUserRoute({
     _i89.Key? key,
-    required String token,
+    required String email,
+    required bool inAppVerification,
     List<_i88.PageRouteInfo>? children,
   }) : super(
           VerifyUserRoute.name,
           args: VerifyUserRouteArgs(
             key: key,
-            token: token,
+            email: email,
+            inAppVerification: inAppVerification,
           ),
-          rawPathParams: {'token': token},
           initialChildren: children,
         );
 
@@ -2817,13 +2818,11 @@ class VerifyUserRoute extends _i88.PageRouteInfo<VerifyUserRouteArgs> {
   static _i88.PageInfo page = _i88.PageInfo(
     name,
     builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<VerifyUserRouteArgs>(
-          orElse: () =>
-              VerifyUserRouteArgs(token: pathParams.getString('token')));
+      final args = data.argsAs<VerifyUserRouteArgs>();
       return _i84.VerifyUserScreen(
         key: args.key,
-        token: args.token,
+        email: args.email,
+        inAppVerification: args.inAppVerification,
       );
     },
   );
@@ -2832,16 +2831,19 @@ class VerifyUserRoute extends _i88.PageRouteInfo<VerifyUserRouteArgs> {
 class VerifyUserRouteArgs {
   const VerifyUserRouteArgs({
     this.key,
-    required this.token,
+    required this.email,
+    required this.inAppVerification,
   });
 
   final _i89.Key? key;
 
-  final String token;
+  final String email;
+
+  final bool inAppVerification;
 
   @override
   String toString() {
-    return 'VerifyUserRouteArgs{key: $key, token: $token}';
+    return 'VerifyUserRouteArgs{key: $key, email: $email, inAppVerification: $inAppVerification}';
   }
 }
 

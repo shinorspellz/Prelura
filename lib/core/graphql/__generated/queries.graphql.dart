@@ -263,6 +263,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isVerified'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'location'),
             alias: null,
             arguments: [],
@@ -500,6 +507,7 @@ class Query$ViewMe$viewMe {
     this.isMultibuyEnabled,
     this.shippingAddress,
     this.listing,
+    this.isVerified,
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
@@ -525,6 +533,7 @@ class Query$ViewMe$viewMe {
     final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$shippingAddress = json['shippingAddress'];
     final l$listing = json['listing'];
+    final l$isVerified = json['isVerified'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
@@ -551,6 +560,7 @@ class Query$ViewMe$viewMe {
       isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       shippingAddress: (l$shippingAddress as String?),
       listing: (l$listing as int?),
+      isVerified: (l$isVerified as bool?),
       location: l$location == null
           ? null
           : Query$ViewMe$viewMe$location.fromJson(
@@ -598,6 +608,8 @@ class Query$ViewMe$viewMe {
 
   final int? listing;
 
+  final bool? isVerified;
+
   final Query$ViewMe$viewMe$location? location;
 
   final int? noOfFollowing;
@@ -644,6 +656,8 @@ class Query$ViewMe$viewMe {
     _resultData['shippingAddress'] = l$shippingAddress;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
+    final l$isVerified = isVerified;
+    _resultData['isVerified'] = l$isVerified;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
     final l$noOfFollowing = noOfFollowing;
@@ -677,6 +691,7 @@ class Query$ViewMe$viewMe {
     final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$shippingAddress = shippingAddress;
     final l$listing = listing;
+    final l$isVerified = isVerified;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
@@ -700,6 +715,7 @@ class Query$ViewMe$viewMe {
       l$isMultibuyEnabled,
       l$shippingAddress,
       l$listing,
+      l$isVerified,
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
@@ -797,6 +813,11 @@ class Query$ViewMe$viewMe {
     if (l$listing != lOther$listing) {
       return false;
     }
+    final l$isVerified = isVerified;
+    final lOther$isVerified = other.isVerified;
+    if (l$isVerified != lOther$isVerified) {
+      return false;
+    }
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
@@ -865,6 +886,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     bool? isMultibuyEnabled,
     String? shippingAddress,
     int? listing,
+    bool? isVerified,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -906,6 +928,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? isMultibuyEnabled = _undefined,
     Object? shippingAddress = _undefined,
     Object? listing = _undefined,
+    Object? isVerified = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
@@ -947,6 +970,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
             ? _instance.shippingAddress
             : (shippingAddress as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
+        isVerified: isVerified == _undefined
+            ? _instance.isVerified
+            : (isVerified as bool?),
         location: location == _undefined
             ? _instance.location
             : (location as Query$ViewMe$viewMe$location?),
@@ -1007,6 +1033,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     bool? isMultibuyEnabled,
     String? shippingAddress,
     int? listing,
+    bool? isVerified,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
