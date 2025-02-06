@@ -266,7 +266,7 @@ class Product {
             ? []
             : List<ImagesUrl>.from(json["imagesUrl"]!.map(
                 (x) => ImagesUrl.fromJson(
-                  jsonDecode(x),
+                  x.runtimeType == String ? jsonDecode(x) : x,
                 ),
               )),
         category: json["category"] == null
@@ -300,6 +300,9 @@ class Product {
         "parcelSize": parcelSize,
         "views": views,
         "likes": likes,
+        "imagesUrl": imagesUrl == null
+            ? []
+            : List<dynamic>.from(imagesUrl!.map((x) => x.toJson())),
         "__typename": typename,
       };
 }

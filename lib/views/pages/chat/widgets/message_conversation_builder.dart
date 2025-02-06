@@ -56,10 +56,6 @@ class _MessageConversationBuilderState
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-      // ref.read(scrollControllerProvider.notifier).state =
-      //     widget.scrollController;
-    });
 
     widget.scrollController.addListener(fetchMoreMessages);
   }
@@ -359,7 +355,7 @@ class MessageImageBuilder extends StatelessWidget {
         : chatInfo.imageUrls[0]['url'];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(

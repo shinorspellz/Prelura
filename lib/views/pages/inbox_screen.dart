@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:prelura_app/controller/chat/chat_cache_handler.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
@@ -31,6 +32,11 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
+      (_) {
+        ref.refresh(messageCacheProvider);
+      },
+    );
 
     // Add a listener to sync tab changes
     _tabController.addListener(() {
