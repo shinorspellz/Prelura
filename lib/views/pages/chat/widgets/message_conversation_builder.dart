@@ -319,7 +319,7 @@ class MessageImageBuilder extends StatelessWidget {
         : chatInfo.imageUrls[0]['url'];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(
