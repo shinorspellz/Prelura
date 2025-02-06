@@ -3,7 +3,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
@@ -21,6 +23,7 @@ import 'package:sizer/sizer.dart';
 // import 'package:sticky_grouped_list_plus/sticky_grouped_list.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import 'chat_card_box.dart';
 import 'chat_text_box.dart';
 import 'message_helper.dart';
 import 'offer_product_card.dart';
@@ -138,32 +141,65 @@ class _MessageConversationBuilderState
   Widget _buildMessageBubble(MessageModel chatInfo, bool isMe) {
     // final messageType = MessageHelper.getMessageType(chatInfo);
     // final myNotifier = ref.watch(messagesNotifierProvider.notifier);
-    return VisibilityDetector(
-      key: Key(chatInfo.id.toString()),
-      onVisibilityChanged: (visibilityInfo) {
-        if (visibilityInfo.visibleFraction > 0.9 && !(chatInfo.read ?? false)) {
-          // myNotifier.markMessageAsRead(
-          //     chatInfo.senderName!, [chatInfo.id.toString()]);
-        }
-      },
-      child: Transform.translate(
-        offset: Offset(-_listViewLeftPosition, 0),
-        child: Row(
-            mainAxisAlignment:
-                isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-            children: [
-              if (chatInfo.text.isNotEmpty)
-                PlainMessageBox(
-                  isMe: isMe,
-                  chatInfo: chatInfo,
-                  currentUsername: currentUser?.username ?? "",
-                ),
-              if (chatInfo.imageUrls != null && chatInfo.imageUrls.isNotEmpty)
-                MessageImageBuilder(
-                  chatInfo: chatInfo,
-                ),
-            ]),
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width * 0.8, // Prevents overflow
       ),
+      child: CupertinoContextMenu.builder(
+          enableHapticFeedback: true,
+          actions: [
+            CupertinoContextMenuAction(
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: chatInfo.text));
+                Navigator.pop(context);
+              },
+              trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
+              child: const Text('Copy'),
+            ),
+            if (isMe) // Only sender can delete their message
+              CupertinoContextMenuAction(
+                onPressed: () {
+                  ref
+                      .read(messagesProvider(widget.conversationId.toString())
+                          .notifier)
+                      .deleteMessage(chatInfo.id.toString());
+                  Navigator.pop(context);
+                },
+                isDestructiveAction: true,
+                trailingIcon: CupertinoIcons.delete,
+                child: const Text('Delete'),
+              ),
+          ],
+          builder: (context, animation) => VisibilityDetector(
+                key: Key(chatInfo.id.toString()),
+                onVisibilityChanged: (visibilityInfo) {
+                  if (visibilityInfo.visibleFraction > 0.9 &&
+                      !(chatInfo.read ?? false)) {
+                    // myNotifier.markMessageAsRead(
+                    //     chatInfo.senderName!, [chatInfo.id.toString()]);
+                  }
+                },
+                child: Transform.translate(
+                  offset: Offset(-_listViewLeftPosition, 0),
+                  child: Row(
+                      mainAxisAlignment: isMe
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        if (chatInfo.text.isNotEmpty)
+                          PlainMessageBox(
+                            isMe: isMe,
+                            chatInfo: chatInfo,
+                            currentUsername: currentUser?.username ?? "",
+                          ),
+                        if (chatInfo.imageUrls != null &&
+                            chatInfo.imageUrls.isNotEmpty)
+                          MessageImageBuilder(
+                            chatInfo: chatInfo,
+                          ),
+                      ]),
+                ),
+              )),
     );
   }
 
