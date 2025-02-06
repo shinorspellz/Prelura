@@ -13,6 +13,8 @@ import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:uuid/uuid.dart';
 
+import 'chat_cache_handler.dart';
+
 enum ChatRoomActivity {
   idle,
   typing,
@@ -71,10 +73,10 @@ class _MessagesNotifier
     _channel = SocketChannel(
         'wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
 
-    await _getMessages(id: arg, pageNumber: _currentPage);
+    _initializeChatRoom();
     await for (final event in _channel!.stream) {
       final newMessageData = event is String ? jsonDecode(event) : event;
-      log("::::: The new messages:::${newMessageData}");
+      log("::::: The new messages:::$newMessageData");
       if (newMessageData["is_typing"] == null) {
         final MessageModel newMessage = MessageModel.fromSocket(newMessageData);
         if (ref.read(chatScrollController).hasClients) {
@@ -90,11 +92,88 @@ class _MessagesNotifier
     }
   }
 
+  // cacheChat(String id, List<MessageModel> chats) {
+  //   final Box cacheBox = ref.watch(hive).requireValue;
+  //   Map<String, List
+  //   final cacheKey = 'chat_$id';
+  //   // .set(cacheKey, chats);
+  // }
+  ///
+  ///
+  ///
+
+  void _initializeChatRoom() async {
+    AsyncLoading();
+    if (_conversationId!.isEmpty) return;
+
+    // Retrieve valid messages for a user
+
+    final userMessages = await ref.read(
+      messageCacheProvider,
+    )[_conversationId];
+
+    log("From the cache fetching: :$_conversationId: $userMessages");
+    if (userMessages != null && userMessages.isNotEmpty) {
+      log("From the cache fetching::: 0");
+      state = AsyncData(userMessages);
+      //   //running a post fetch in-order to keep the list in sync
+      //   //with the server
+      //
+      postMessageFetch(int.parse(_conversationId!));
+      log("From the cache fetching::: 1", name: "From the cache room");
+      log("$state");
+    } else {
+      log("From the cache fetching::: 2");
+      // fetchPages = [];
+      var response = await _getMessages(id: arg, pageNumber: _currentPage);
+      state = AsyncData(response);
+      _cacheMessages();
+    }
+  }
+
+  Future<void> postMessageFetch(int id) async {
+    // fetchPages = [];
+    List<MessageModel> response =
+        await _getMessages(id: id.toString(), pageNumber: 0);
+    if (response.isNotEmpty) {
+      ref
+          .read(messageCacheProvider.notifier)
+          .cacheMessage(id.toString(), response);
+      state = AsyncData(response);
+    }
+  }
+
+  updateUserChatCache(String chatRoomId) async {
+    final response = await _repo.getMessages(
+      id: chatRoomId,
+      pageCount: 25,
+      pageNumber: 1,
+    );
+    final chats = response.conversation!
+        .map((e) => MessageModel.fromJson(e!.toJson()))
+        .toList();
+    if (chats.isNotEmpty) {
+      ref.read(messageCacheProvider.notifier).cacheMessage(chatRoomId, chats);
+    }
+  }
+
+  ///
+  ///
+  ///
+
   /// updates the state with the latest event
   void addMessage(MessageModel newMessage) {
     List<MessageModel> dataList =
         <MessageModel>{newMessage, ...state.value ?? []}.toList();
     state = AsyncData(dataList);
+    _cacheMessages();
+  }
+
+  Future<void> _cacheMessages() async {
+    // final userId = ref.read(currentChatRoomUserId).toString();
+    ref
+        .read(messageCacheProvider.notifier)
+        .cacheMessage(_conversationId!, (state.value ?? []).take(25).toList());
   }
 
   /// sends message to via [_channel]
@@ -105,7 +184,8 @@ class _MessagesNotifier
   }
 
   /// Retrieves the list of messages via api
-  Future<void> _getMessages({required String id, int? pageNumber}) async {
+  Future<List<MessageModel>> _getMessages(
+      {required String id, int? pageNumber}) async {
     log(":::::You called the get messages ::::");
     final result = await _repo.getMessages(
         id: id, pageCount: _pageCount, pageNumber: pageNumber);
@@ -115,16 +195,17 @@ class _MessagesNotifier
         result.conversation!.map((e) => MessageModel.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
-      state = AsyncData(newState.toList());
+      _currentPage = pageNumber!;
+      return newState.toList();
     } else {
       if (currentState.isNotEmpty &&
           newState.any((element) => currentState.last.id == element.id)) {
-        return;
+        _currentPage = pageNumber!;
+        return [];
       }
-
-      state = AsyncData([...currentState, ...newState]);
+      _currentPage = pageNumber!;
+      return [...currentState, ...newState];
     }
-    _currentPage = pageNumber!;
   }
 
   Future<void> fetchMoreData() async {
@@ -195,6 +276,7 @@ class _MessagesNotifier
 
   Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
     final _fileUploadRepo = ref.read(fileUploadRepo);
+
     final upload = await _fileUploadRepo.uploadFiles(
       files,
       Enum$FileTypeEnum.BANNER,

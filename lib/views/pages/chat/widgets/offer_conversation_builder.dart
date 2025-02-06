@@ -237,46 +237,43 @@ class OfferConversationBuilderState
             child: OfferProductCard(offerInfo: offerInfo),
           ),
           buildDivider(context),
-
           // if (offerChildren != null && offerChildren.isNotEmpty)
           Flexible(
             child: SingleChildScrollView(
               controller: _controller,
               reverse: true,
-              child: Column(
-                children: [
-                  OfferFirstCard(
-                    conversationInfo: conversationInfo!,
-                    amTheSeller: amTheSeller,
-                    isSender: isSender,
-                  ),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 10),
-                    reverse: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: offerChildren?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final chat = offerChildren![index];
-                      if (isFirstTime) {
-                        _controller.animateTo(
-                          _controller.position.maxScrollExtent,
-                          curve: Curves.linear,
-                          duration: const Duration(
-                            milliseconds: 350,
-                          ),
-                        );
-                        // isFirstTime = false;
-                      }
-                      return OfferSubCardBox(
-                        eventInfo: chat,
-                        appUserInfo: appUserInfo!,
+              child: Column(children: [
+                OfferFirstCard(
+                  conversationInfo: conversationInfo!,
+                  amTheSeller: amTheSeller,
+                  isSender: isSender,
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(top: 10),
+                  reverse: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: offerChildren?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final chat = offerChildren![index];
+                    if (isFirstTime) {
+                      _controller.animateTo(
+                        _controller.position.maxScrollExtent,
+                        curve: Curves.linear,
+                        duration: const Duration(
+                          milliseconds: 350,
+                        ),
                       );
-                    },
-                    separatorBuilder: (_, __) => addVerticalSpacing(10),
-                  ),
-                ],
-              ),
+                      // isFirstTime = false;
+                    }
+                    return OfferSubCardBox(
+                      eventInfo: chat,
+                      appUserInfo: appUserInfo!,
+                    );
+                  },
+                  separatorBuilder: (_, __) => addVerticalSpacing(10),
+                ),
+              ]),
             ),
           ),
         ],
