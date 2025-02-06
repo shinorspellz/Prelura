@@ -24,7 +24,8 @@ import '../../widgets/pinfeild_widget.dart';
 class VerifyUserScreen extends ConsumerStatefulWidget {
   final String email;
   final bool inAppVerification;
-  const VerifyUserScreen({super.key, required this.email, required this.inAppVerification});
+  const VerifyUserScreen(
+      {super.key, required this.email, required this.inAppVerification});
 
   @override
   ConsumerState<VerifyUserScreen> createState() => _VerifyUserScreenState();
@@ -75,7 +76,7 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
               ),
               Spacer(),
               AppButton(
-                  bgColor: context.theme.scaffoldBackgroundColor,
+                  bgColor: Theme.of(context).scaffoldBackgroundColor,
                   borderColor: PreluraColors.primaryColor,
                   width: MediaQuery.sizeOf(context).width,
                   text: "Resend activation email",
@@ -150,7 +151,7 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
                                     PreluraButtonWithLoader(
                                         buttonTitle: "Continue",
                                         onPressed: () async {
-                                          if(widget.inAppVerification){
+                                          if (widget.inAppVerification) {
                                             context.router.popForced();
                                             return;
                                           }

@@ -85,6 +85,9 @@ class PreluraIcons {
 
   static const String trusted_svg = "assets/svgs/Trusted.svg";
   static const String empty_box_svg = "assets/svgs/empty-box-icon.svg";
+  static const String check_circle_svg = 'assets/svgs/check_circle.svg';
+  static const String clock_circle_svg = "assets/svgs/clock_circle.svg";
+  static const String fast_delivery_svg = "assets/svgs/fast_delivery.svg";
 
   //category
   static const String men_svg = "assets/svgs/men.svg";
