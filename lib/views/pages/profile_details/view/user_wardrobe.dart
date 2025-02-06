@@ -1055,7 +1055,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         _buildRow(
             svg: PreluraIcons.clock_circle_svg,
             text:
-                "Last seen ${getUserLastSeen(user.lastSeen.toString() ?? "")}"),
+                "Last seen ${getUserLastSeen(user.lastSeen != null ? user.lastSeen.toString() : "")}"),
       ]),
     );
   }

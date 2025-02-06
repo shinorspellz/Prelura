@@ -197,25 +197,34 @@ extension StringExtension on String {
 }
 
 String getUserLastSeen(String lastSeen) {
-  DateTime lastSeenTime = DateTime.parse(lastSeen).toUtc();
-  DateTime now = DateTime.now().toUtc();
-
-  Duration difference = now.difference(lastSeenTime);
-
-  if (difference.inMinutes < 5) {
-    log("difference in ${difference.inMinutes}");
+  if (lastSeen.isEmpty) {
     return "moments ago";
-  } else if (difference.inMinutes < 60) {
-    log("difference in minutes ${difference.inMinutes}");
+  }
 
-    return "${difference.inMinutes} minutes ago";
-  } else if (difference.inHours < 24) {
-    log("difference in hours  ${difference.inHours}");
+  try {
+    DateTime lastSeenTime = DateTime.parse(lastSeen).toUtc();
+    DateTime now = DateTime.now().toUtc();
 
-    return "${difference.inHours} hours ago";
-  } else {
-    log("difference in days ${difference.inDays}");
+    Duration difference = now.difference(lastSeenTime);
 
-    return "${difference.inDays} days ago";
+    if (difference.inMinutes < 5) {
+      log("difference in ${difference.inMinutes}");
+      return "moments ago";
+    } else if (difference.inMinutes < 60) {
+      log("difference in minutes ${difference.inMinutes}");
+
+      return "${difference.inMinutes} minutes ago";
+    } else if (difference.inHours < 24) {
+      log("difference in hours  ${difference.inHours}");
+
+      return "${difference.inHours} hours ago";
+    } else {
+      log("difference in days ${difference.inDays}");
+
+      return "${difference.inDays} days ago";
+    }
+  } catch (e) {
+    log("Error parsing date: $e");
+    return "moments ago";
   }
 }
