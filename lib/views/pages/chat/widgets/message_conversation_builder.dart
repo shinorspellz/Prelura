@@ -111,7 +111,7 @@ class _MessageConversationBuilderState
                 Padding(
                     padding: EdgeInsets.only(
                       right: 8,
-                      left: 10,
+                      left: 14,
                     ),
                     child: ProfilePictureWidget(
                       profilePicture: widget.avatar,
@@ -318,32 +318,29 @@ class MessageImageBuilder extends StatelessWidget {
         ? jsonDecode(chatInfo.imageUrls[0])["url"]
         : chatInfo.imageUrls[0]['url'];
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => FullScreenImage(
-                imageUrl: [
-                  ProductBanners(
-                    url: imagePath,
-                    thumbnail: '',
-                  ),
-                ],
-                initialIndex: 0,
-                isLocal: false,
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => FullScreenImage(
+              imageUrl: [
+                ProductBanners(
+                  url: imagePath,
+                  thumbnail: '',
+                ),
+              ],
+              initialIndex: 0,
+              isLocal: false,
             ),
-          );
-        },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: ImageBuilder(
-            height: 200,
-            width: 70.w,
-            imageUrl: imagePath,
           ),
+        );
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: ImageBuilder(
+          height: 200,
+          width: 70.w,
+          imageUrl: imagePath,
         ),
       ),
     );
