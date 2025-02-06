@@ -131,9 +131,8 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
         data: (_) async {
           context.alert("Payment Method saved");
 
-          ref.refresh(paymentMethodProvider);
+          await ref.refresh(paymentMethodProvider.future);
 
-          await Future.delayed(const Duration(seconds: 2));
           if (mounted) {
             Navigator.of(context)
               ..pop()

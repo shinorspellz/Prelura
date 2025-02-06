@@ -428,7 +428,7 @@ class UserRepo {
     }
   }
 
-  Future<PaymentMethodModel> getUserPaymentMethod() async {
+  Future<PaymentMethodModel?> getUserPaymentMethod() async {
     try {
       final response = await _client
           .query$userPaymentMethods(Options$Query$userPaymentMethods());
@@ -443,14 +443,18 @@ class UserRepo {
         throw 'An error occurred';
       }
 
-      if (response.parsedData == null) {
-        throw 'Invalid response';
+      log(response.parsedData.toString(), name: "Parsed Data");
+
+      if (response.parsedData?.userPaymentMethods == null) {
+        log('Null response', name: 'User Payment Method');
+        return null;
       }
-
-      final paymentMethod = PaymentMethodModel.fromJson(
-          response.parsedData!.userPaymentMethods!.toJson());
-
-      return paymentMethod;
+      if (response.parsedData?.userPaymentMethods != null) {
+        final paymentMethod = PaymentMethodModel.fromJson(
+            response.parsedData!.userPaymentMethods!.toJson());
+        return paymentMethod;
+      }
+      return null;
     } catch (e, stack) {
       log('Error user payment method: $e',
           name: 'User Payment Method', stackTrace: stack);

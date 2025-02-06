@@ -43,7 +43,7 @@ class _PaymentMethodController extends AsyncNotifier<void> {
   }
 }
 
-final paymentMethodProvider = FutureProvider<PaymentMethodModel>((ref) async {
+final paymentMethodProvider = FutureProvider<PaymentMethodModel?>((ref) async {
   final repo = ref.watch(userRepo);
   try {
     final result = repo.getUserPaymentMethod();

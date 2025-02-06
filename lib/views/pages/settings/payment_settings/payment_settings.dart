@@ -42,7 +42,7 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
       body: SafeArea(
         child: ref.watch(paymentMethodProvider).when(
               data: (paymentMethod) {
-                return paymentMethod.paymentMethodId.isNotEmpty
+                return paymentMethod != null
                     ? Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 20, horizontal: 20),
@@ -152,7 +152,7 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
       ref.read(paymentMethodNotifierProvider).whenOrNull(error: (e, _) {
         return context.alert('An error occurred: $e');
       }, data: (_) async {
-        ref.refresh(paymentMethodProvider);
+        await ref.refresh(paymentMethodProvider.future);
         // ref.refresh(paymentMethodNotifierProvider);
         context.alert("Payment method deleted successfully");
         context.router.popForced();
