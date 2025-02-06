@@ -154,6 +154,7 @@ List<String> offerType2 = ["rejected"];
 ///
 ///
 ///
+
 class OfferConversationBuilder extends ConsumerStatefulWidget {
   final String conversationId;
   const OfferConversationBuilder({
@@ -169,7 +170,7 @@ class OfferConversationBuilder extends ConsumerStatefulWidget {
 class OfferConversationBuilderState
     extends ConsumerState<OfferConversationBuilder> {
   ConversationModel? conversationInfo;
-  final ScrollController _controller = ScrollController();
+
   bool isFirstTime = false;
 
   @override
@@ -237,46 +238,46 @@ class OfferConversationBuilderState
             child: OfferProductCard(offerInfo: offerInfo),
           ),
           buildDivider(context),
-
           // if (offerChildren != null && offerChildren.isNotEmpty)
           Flexible(
             child: SingleChildScrollView(
-              controller: _controller,
+              controller: ref.read(chatScrollController),
               reverse: true,
-              child: Column(
-                children: [
-                  OfferFirstCard(
-                    conversationInfo: conversationInfo!,
-                    amTheSeller: amTheSeller,
-                    isSender: isSender,
-                  ),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 10),
-                    reverse: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: offerChildren?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final chat = offerChildren![index];
-                      if (isFirstTime) {
-                        _controller.animateTo(
-                          _controller.position.maxScrollExtent,
-                          curve: Curves.linear,
-                          duration: const Duration(
-                            milliseconds: 350,
-                          ),
-                        );
-                        // isFirstTime = false;
-                      }
-                      return OfferSubCardBox(
-                        eventInfo: chat,
-                        appUserInfo: appUserInfo!,
-                      );
-                    },
-                    separatorBuilder: (_, __) => addVerticalSpacing(10),
-                  ),
-                ],
-              ),
+              child: Column(children: [
+                OfferFirstCard(
+                  conversationInfo: conversationInfo!,
+                  amTheSeller: amTheSeller,
+                  isSender: isSender,
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(top: 10),
+                  reverse: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: offerChildren?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final chat = offerChildren![index];
+                    if (isFirstTime) {
+                      ref.read(chatScrollController).animateTo(
+                            ref
+                                .read(chatScrollController)
+                                .position
+                                .maxScrollExtent,
+                            curve: Curves.linear,
+                            duration: const Duration(
+                              milliseconds: 350,
+                            ),
+                          );
+                      // isFirstTime = false;
+                    }
+                    return OfferSubCardBox(
+                      eventInfo: chat,
+                      appUserInfo: appUserInfo!,
+                    );
+                  },
+                  separatorBuilder: (_, __) => addVerticalSpacing(10),
+                ),
+              ]),
             ),
           ),
         ],
