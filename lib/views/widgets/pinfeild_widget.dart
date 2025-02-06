@@ -28,6 +28,7 @@ class PinfeildWidget extends StatelessWidget {
       height: 68,
       child: Pinput(
         controller: controller,
+        textCapitalization: TextCapitalization.characters,
         // focusNode: focusNode,
         keyboardType: TextInputType.text,
         defaultPinTheme: defaultPinTheme,

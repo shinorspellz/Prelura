@@ -13,6 +13,7 @@ import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/user_product_grouping/user_product_grouping.dart';
 import 'package:prelura_app/model/user/user_model.dart';
+import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/filter_and_sort.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/holiday_mode_widget.dart';
@@ -33,6 +34,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../model/product/product_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
+import '../../../../res/images.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
@@ -261,7 +263,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               AppButton(
                                   borderColor: Colors.transparent,
                                   bgColor:
-                                      context.theme.scaffoldBackgroundColor,
+                                      Theme.of(context).scaffoldBackgroundColor,
                                   onTap: () {
                                     context.router.push(VerifyUserRoute(
                                         inAppVerification: true,
@@ -378,6 +380,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        _buildOtherInfo(context: context, user: user),
+
                         if (user.bio == null && isCurrentUser)
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -1021,6 +1025,57 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           ),
         );
       }),
+    );
+  }
+
+  Widget _buildOtherInfo(
+      {required BuildContext context, required UserModel user}) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      margin: EdgeInsets.only(bottom: 8),
+      child: Column(children: [
+        _buildRow(
+            svg: PreluraIcons.fast_delivery_svg,
+            text: "Ships in 1 day",
+            width: 20),
+        5.verticalSpacing,
+        Row(
+          children: [
+            _buildRow(
+                svg: PreluraIcons.check_circle_svg,
+                text: user.isVerified == true
+                    ? "Email verified"
+                    : "Email not verified"),
+            11.horizontalSpacing,
+            _buildRow(
+                svg: PreluraIcons.check_circle_svg, text: "Number verified"),
+          ],
+        ),
+        5.verticalSpacing,
+        _buildRow(
+            svg: PreluraIcons.clock_circle_svg, text: "Last seen moments ago"),
+      ]),
+    );
+  }
+
+  Widget _buildRow({required String svg, required String text, double? width}) {
+    return Row(
+      children: [
+        SizedBox(
+            width: width ?? 16,
+            height: width ?? 16,
+            child: RenderSvgWithoutColor(
+                svgPath: svg, svgHeight: 16, svgWidth: 16)),
+        5.horizontalSpacing,
+        if (width == null) 4.horizontalSpacing,
+        Text(
+          text,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: PreluraColors.greyColor,
+              fontSize: getDefaultSize(),
+              fontWeight: FontWeight.w500),
+        )
+      ],
     );
   }
 }
