@@ -154,6 +154,7 @@ List<String> offerType2 = ["rejected"];
 ///
 ///
 ///
+
 class OfferConversationBuilder extends ConsumerStatefulWidget {
   final String conversationId;
   const OfferConversationBuilder({
@@ -169,7 +170,7 @@ class OfferConversationBuilder extends ConsumerStatefulWidget {
 class OfferConversationBuilderState
     extends ConsumerState<OfferConversationBuilder> {
   ConversationModel? conversationInfo;
-  final ScrollController _controller = ScrollController();
+
   bool isFirstTime = false;
 
   @override
@@ -240,7 +241,7 @@ class OfferConversationBuilderState
           // if (offerChildren != null && offerChildren.isNotEmpty)
           Flexible(
             child: SingleChildScrollView(
-              controller: _controller,
+              controller: ref.read(chatScrollController),
               reverse: true,
               child: Column(children: [
                 OfferFirstCard(
@@ -257,13 +258,16 @@ class OfferConversationBuilderState
                   itemBuilder: (context, index) {
                     final chat = offerChildren![index];
                     if (isFirstTime) {
-                      _controller.animateTo(
-                        _controller.position.maxScrollExtent,
-                        curve: Curves.linear,
-                        duration: const Duration(
-                          milliseconds: 350,
-                        ),
-                      );
+                      ref.read(chatScrollController).animateTo(
+                            ref
+                                .read(chatScrollController)
+                                .position
+                                .maxScrollExtent,
+                            curve: Curves.linear,
+                            duration: const Duration(
+                              milliseconds: 350,
+                            ),
+                          );
                       // isFirstTime = false;
                     }
                     return OfferSubCardBox(

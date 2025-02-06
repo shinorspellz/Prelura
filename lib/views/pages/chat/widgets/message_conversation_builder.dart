@@ -53,10 +53,6 @@ class _MessageConversationBuilderState
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-      // ref.read(scrollControllerProvider.notifier).state =
-      //     widget.scrollController;
-    });
 
     widget.scrollController.addListener(fetchMoreMessages);
   }

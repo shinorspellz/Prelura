@@ -73,6 +73,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       ref.read(inChatRoom.notifier).state = true;
     });
+
     super.initState();
   }
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -87,6 +88,7 @@ class _MessagesNotifier
               );
         }
         addMessage(newMessage);
+        _scrollToBottom();
         ref.invalidate(conversationProvider);
       }
     }
@@ -101,6 +103,17 @@ class _MessagesNotifier
   ///
   ///
   ///
+
+  void _scrollToBottom() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final controller = ref.read(chatScrollController);
+      controller.animateTo(
+        controller.position.minScrollExtent,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.linear,
+      );
+    });
+  }
 
   void _initializeChatRoom() async {
     AsyncLoading();
