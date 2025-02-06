@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:prelura_app/core/di.dart';
+import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 
 // Message Cache Notifier
@@ -103,6 +104,40 @@ class MessageCacheNotifier
       json.encode(cachedMapJson),
     );
     log("Starting to cache messages :: 4", name: "chatRoomCaching");
+  }
+
+  cacheConversations(List<ConversationModel> conversations) async {
+    log(":::::From caching conversations:: 1 ${conversations.length}");
+    final messageJsonList = conversations
+        .map(
+          (msg) => msg.toJson(),
+        )
+        .toList();
+    log(":::::From caching conversations:: 2");
+    await cacheBox.put(
+      'cachedConversations',
+      jsonEncode(messageJsonList),
+    );
+    log(":::::From caching conversations:: 3");
+  }
+
+  List<ConversationModel> fetchCachedConversations() {
+    log(":::::From fetching conversations:: 1");
+    final cachedMessagesJson = cacheBox.get('cachedConversations');
+    log(":::::From fetching conversations:: 2 :${cachedMessagesJson}");
+    if (cachedMessagesJson != null) {
+      log(":::::From fetching conversations:: 3");
+      final cachedMap = json.decode(cachedMessagesJson) as List<dynamic>;
+      log(":::::From fetching conversations:: 4");
+      final List<ConversationModel> conversations = cachedMap
+          .map(
+            (conversationInfo) => ConversationModel.fromJson(conversationInfo),
+          )
+          .toList();
+      return conversations;
+    }
+    log(":::::From fetching conversations:: 4");
+    return [];
   }
 }
 

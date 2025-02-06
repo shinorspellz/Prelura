@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 
+import 'chat_cache_handler.dart';
+
 final conversationProvider =
     AsyncNotifierProvider<_ConversationNotifier, List<ConversationModel>>(
         _ConversationNotifier.new);
@@ -15,10 +17,35 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
   FutureOr<List<ConversationModel>> build() => _getConversations();
 
   Future<List<ConversationModel>> _getConversations() async {
-    state = AsyncData([]);
-    state = AsyncLoading();
-    final result = await _repo.getConversation();
-    return result;
+    final List<ConversationModel> cachedConversations = ref
+        .read(
+          messageCacheProvider.notifier,
+        )
+        .fetchCachedConversations();
+    if (cachedConversations.isNotEmpty) {
+      _performPostCachedEvent();
+      return cachedConversations;
+    } else {
+      state = AsyncData([]);
+      state = AsyncLoading();
+      final result = await _repo.getConversation();
+      ref
+          .read(
+            messageCacheProvider.notifier,
+          )
+          .cacheConversations(result);
+      return result;
+    }
+  }
+
+  _performPostCachedEvent() async {
+    final List<ConversationModel> result = await _repo.getConversation();
+    ref
+        .read(
+          messageCacheProvider.notifier,
+        )
+        .cacheConversations(result);
+    state = AsyncData(result);
   }
 
   Future<void> createChat(String recipient) async {

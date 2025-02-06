@@ -143,20 +143,6 @@ class _MessagesNotifier
     }
   }
 
-  updateUserChatCache(String chatRoomId) async {
-    final response = await _repo.getMessages(
-      id: chatRoomId,
-      pageCount: 25,
-      pageNumber: 1,
-    );
-    final chats = response.conversation!
-        .map((e) => MessageModel.fromJson(e!.toJson()))
-        .toList();
-    if (chats.isNotEmpty) {
-      ref.read(messageCacheProvider.notifier).cacheMessage(chatRoomId, chats);
-    }
-  }
-
   ///
   ///
   ///
