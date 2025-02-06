@@ -42,6 +42,7 @@ mixin _$UserModel {
   bool? get isVacationMode => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
   int? get noOfFollowers => throw _privateConstructorUsedError;
+  DateTime? get lastSeen => throw _privateConstructorUsedError;
   bool? get isVerified => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   ShippingAddress? get shippingAddress => throw _privateConstructorUsedError;
@@ -85,6 +86,7 @@ abstract class $UserModelCopyWith<$Res> {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      DateTime? lastSeen,
       bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
@@ -133,6 +135,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
+    Object? lastSeen = freezed,
     Object? isVerified = freezed,
     Object? shippingAddress = freezed,
     Object? isMultibuyEnabled = freezed,
@@ -223,6 +226,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.noOfFollowers
           : noOfFollowers // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastSeen: freezed == lastSeen
+          ? _value.lastSeen
+          : lastSeen // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       isVerified: freezed == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
@@ -315,6 +322,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      DateTime? lastSeen,
       bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
@@ -364,6 +372,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
+    Object? lastSeen = freezed,
     Object? isVerified = freezed,
     Object? shippingAddress = freezed,
     Object? isMultibuyEnabled = freezed,
@@ -454,6 +463,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.noOfFollowers
           : noOfFollowers // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastSeen: freezed == lastSeen
+          ? _value.lastSeen
+          : lastSeen // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       isVerified: freezed == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
@@ -499,6 +512,7 @@ class _$UserModelImpl implements _UserModel {
       this.isVacationMode,
       this.isFollowing,
       this.noOfFollowers,
+      this.lastSeen,
       this.isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
@@ -552,6 +566,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   final int? noOfFollowers;
   @override
+  final DateTime? lastSeen;
+  @override
   final bool? isVerified;
   @override
   @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
@@ -563,7 +579,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, isVerified: $isVerified, shippingAddress: $shippingAddress, isMultibuyEnabled: $isMultibuyEnabled, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, lastSeen: $lastSeen, isVerified: $isVerified, shippingAddress: $shippingAddress, isMultibuyEnabled: $isMultibuyEnabled, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -606,6 +622,8 @@ class _$UserModelImpl implements _UserModel {
                 other.isFollowing == isFollowing) &&
             (identical(other.noOfFollowers, noOfFollowers) ||
                 other.noOfFollowers == noOfFollowers) &&
+            (identical(other.lastSeen, lastSeen) ||
+                other.lastSeen == lastSeen) &&
             (identical(other.isVerified, isVerified) ||
                 other.isVerified == isVerified) &&
             (identical(other.shippingAddress, shippingAddress) ||
@@ -641,6 +659,7 @@ class _$UserModelImpl implements _UserModel {
         isVacationMode,
         isFollowing,
         noOfFollowers,
+        lastSeen,
         isVerified,
         shippingAddress,
         isMultibuyEnabled,
@@ -686,6 +705,7 @@ abstract class _UserModel implements UserModel {
       final bool? isVacationMode,
       final bool? isFollowing,
       final int? noOfFollowers,
+      final DateTime? lastSeen,
       final bool? isVerified,
       @JsonKey(
           fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
@@ -738,6 +758,8 @@ abstract class _UserModel implements UserModel {
   bool? get isFollowing;
   @override
   int? get noOfFollowers;
+  @override
+  DateTime? get lastSeen;
   @override
   bool? get isVerified;
   @override
