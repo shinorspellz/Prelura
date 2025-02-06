@@ -96,6 +96,18 @@
             "deprecationReason": null
           },
           {
+            "name": "userPaymentMethods",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PaymentMethodType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "conversation",
             "description": null,
             "args": [
@@ -2399,6 +2411,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "lastSeen",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4772,6 +4796,18 @@
             "deprecationReason": null
           },
           {
+            "name": "lastSeen",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isVacationMode",
             "description": null,
             "args": [],
@@ -6374,6 +6410,22 @@
           },
           {
             "name": "paymentType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "paymentMethodId",
             "description": null,
             "args": [],
             "type": {
@@ -10207,7 +10259,7 @@
           },
           {
             "name": "resendActivationEmail",
-            "description": "Sends activation email.\n\nIt is called resend because theoretically\nthe first activation email was sent when\nthe user registered.\n\nIf there is no user with the requested email,\na successful response is returned.",
+            "description": null,
             "args": [
               {
                 "name": "email",
@@ -10226,7 +10278,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "ResendActivationEmail",
+              "name": "CustomResendActivationEmail",
               "ofType": null
             },
             "isDeprecated": false,
@@ -11284,6 +11336,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "PaymentMethodType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "message",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -13048,8 +13112,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ResendActivationEmail",
-        "description": "Sends activation email.\n\nIt is called resend because theoretically\nthe first activation email was sent when\nthe user registered.\n\nIf there is no user with the requested email,\na successful response is returned.",
+        "name": "CustomResendActivationEmail",
+        "description": null,
         "fields": [
           {
             "name": "errors",
