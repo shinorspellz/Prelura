@@ -120,8 +120,6 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
   }
 
   Future<void> deletePaymentMethod() async {
-    prefs.setBool("paymentMethodIsAdded", false);
-
     try {
       var paymentMethodId = "";
 
