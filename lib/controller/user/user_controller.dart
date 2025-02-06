@@ -23,18 +23,35 @@ final userProvider = FutureProvider((ref) async {
   }
 });
 
-final FutureProvider refreshTokenSession = FutureProvider((ref) async {
-  final repo = ref.read(userRepo);
+final FutureProvider<void> refreshTokenSession = FutureProvider((ref) async {
+  final repo = ref.read(authRepo);
   final box = ref.read(hive).requireValue;
-  if (DateTime.now().difference(box.get('tokenTime')) < Duration(hours: 22)) {
+
+  final lastTokenTime = box.get('tokenTime') as DateTime?;
+  final tokenAge =
+      lastTokenTime != null ? DateTime.now().difference(lastTokenTime) : null;
+
+  // Avoid refreshing if the token is still valid
+  if (tokenAge != null && tokenAge < const Duration(minutes: 8)) {
     return;
   }
 
-  final result = await repo.refreshToken(box.get("REFRESH_TOKEN"));
+  try {
+    final result = await repo.refreshToken();
+    if (result == null) {
+      log(":::: Failed to refresh token, result is null ::::");
+      return;
+    }
 
-  log("::::The refresh token result is :::: ${result?.toJson()}");
-  box.put('AUTH_TOKEN', result!.token);
-  box.put('tokenTime', DateTime.now());
+    log(":::: The refresh token result is :::: ${result.toJson()}");
+
+    // Store the new token and update the timestamp
+    box.put('AUTH_TOKEN', result.token);
+    box.put('tokenTime', DateTime.now());
+  } catch (e, stackTrace) {
+    log(":::: Error refreshing token: $e ::::", name: 'AuthError');
+    log("StackTrace: $stackTrace", name: 'AuthError');
+  }
 });
 
 final searchUserProvider = FutureProvider.family((ref, String query) async {
@@ -158,7 +175,7 @@ class _UserController extends AsyncNotifier<void> {
     state = AsyncLoading();
 
     state = await AsyncValue.guard(() async {
-      await _repo.verifyEmail(code, email);
+      // await _repo.verifyEmail(code, email);
       await ref.refresh(userProvider.future);
     });
   }

@@ -18,61 +18,102 @@ import 'package:rxdart/rxdart.dart';
 class AuthRepo {
   final GraphqlCL _client;
   final GraphQLClient _client2;
+  final GraphQLClient normalClient;
   final Box _cacheBox;
   final Ref _ref;
 
-  AuthRepo(this._client, this._cacheBox, this._ref, this._client2);
+  AuthRepo(this._client, this._cacheBox, this._ref, this._client2,
+      this.normalClient);
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
     try {
-      final response = await _client.executeGraphQL(
-          operation: ClientOperation(
-        (cl) => cl.mutate$Login(Options$Mutation$Login(
+      final response = await normalClient.mutate$Login(
+        Options$Mutation$Login(
           variables: Variables$Mutation$Login(
             password: password,
             username: username,
           ),
-        )),
-      ));
-
-      // checks if any data is available in the mutation
-      if (response.login?.token == null) {
-        throw const CacheFailure();
-      }
-      log("token is ${response.login!.token}");
-      await _store(
-        token: response.login!.token,
-        username: response.login!.user!.username,
-        refreshToken: response.login!.refreshToken,
+        ),
       );
 
-      log('Bearer ${response.login?.token}', name: 'AuthMutation');
-      log('Rest ${response.login!.refreshToken}', name: 'AuthMutation');
-      log('Username ${response.login!.user!.username}', name: 'AuthMutation');
+      final loginData = response.parsedData?.login;
 
-      // invalidate graphql client to use the version with with a beare token
+      if (loginData?.token == null) {
+        throw const CacheFailure();
+      }
+
+      log("Token: ${loginData!.token}");
+
+      await _store(
+        token: loginData.token,
+        username: loginData.user?.username ?? 'Unknown',
+        refreshToken: loginData.refreshToken,
+      );
+
+      log('Bearer ${loginData.token}', name: 'AuthMutation');
+      log('Refresh Token ${loginData.refreshToken}', name: 'AuthMutation');
+      log('Username ${loginData.user?.username ?? 'Unknown'}',
+          name: 'AuthMutation');
+
+      // Invalidate GraphQL client to use the version with a bearer token
       _ref.invalidate(networkClient);
       _ref.invalidate(notificationProvider);
-    } catch (e) {
-      log("::::::From login error:::$e");
-      log("::::::From login error:::${_cacheBox.get("REFRESH_TOKEN")}");
+    } catch (e, stackTrace) {
+      log("Login error: $e", name: 'AuthError');
+      log("StackTrace: $stackTrace", name: 'AuthError');
+      log("Cached Refresh Token: ${_cacheBox.get("REFRESH_TOKEN")}",
+          name: 'AuthError');
     }
+  }
+
+  Future<Mutation$RefreashToken$refreshToken?>? refreshToken() async {
+    try {
+      final response = await normalClient.mutate$RefreashToken(
+        Options$Mutation$RefreashToken(
+            variables: Variables$Mutation$RefreashToken(
+          refreshToken: _cacheBox.get('REFRESH_TOKEN'),
+        )),
+      );
+
+      if (response.hasException) {
+        if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+          final error = response.exception!.graphqlErrors.first.message;
+          throw error;
+        }
+        log(response.exception.toString(), name: 'UserRepo');
+        throw 'An error occured';
+      }
+
+      if (response.parsedData == null) {
+        log('Missing response', name: 'UserRef-Token');
+        throw 'An error occurred';
+      }
+
+      log(' response gotten ${response.parsedData!.toJson()}');
+
+      return response.parsedData!.refreshToken;
+    } catch (e, stackTrace) {
+      log("Login error: $e", name: 'AuthError');
+      log("StackTrace: $stackTrace", name: 'AuthError');
+      log("Cached Refresh Token: ${_cacheBox.get("REFRESH_TOKEN")}",
+          name: 'AuthError');
+    }
+    return null;
   }
 
   /// Registration operation using generated [Variables$Mutation$Register] class as param for required
   /// variables for query. Lookup [AuthRepo] for explanation
   Future<void> register(Variables$Mutation$Register params) async {
-    final response = await _client.executeGraphQL(
-      operation:
-          ClientOperation((cl) => cl.mutate$Register(Options$Mutation$Register(
-                variables: params,
-              ))),
+    final response = await normalClient.mutate$Register(
+      Options$Mutation$Register(
+        variables: params,
+      ),
     );
-
+    final registerData = response.parsedData?.register;
     // if (response.parsedData != null) {
-    if (response.register?.errors != null) {
-      final errors = response.register?.errors;
+    if (registerData?.errors != null) {
+      final errors = registerData?.errors;
       if (errors?.containsKey('username') ?? false) {
         throw errors?['username'][0] ?? 'An error occured';
       }
@@ -178,11 +219,25 @@ class AuthRepo {
     return response.passwordReset!.message.toString();
   }
 
-  Future<bool> verifyAccount({required String token}) async {
+  Future<bool?> verifyAccount({required String code}) async {
     final response = await _client.executeGraphQL(
         operation: ClientOperation((cl) => cl.mutate$verifyAccount(
             Options$Mutation$verifyAccount(
-                variables: Variables$Mutation$verifyAccount(token: token)))));
-    return response.verifyAccount!.success!;
+                variables: Variables$Mutation$verifyAccount(code: code)))));
+
+    return response.verifyAccount!.success;
+  }
+
+  Future<void> resendActivationEmail({required String email}) async {
+    final response = await _client.executeGraphQL(
+        operation: ClientOperation((cl) => cl.mutate$resendActivationEmail(
+            Options$Mutation$resendActivationEmail(
+                variables:
+                    Variables$Mutation$resendActivationEmail(email: email)))));
+
+    if (response.resendActivationEmail?.errors != null) {
+      throw response.resendActivationEmail?.errors?['email'][0] ??
+          'An error occured';
+    }
   }
 }

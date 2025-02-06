@@ -606,9 +606,7 @@ type Mutation {
 
   """Change email address"""
   changeEmail(email: String): ChangeEmail
-
-  """Verify email address"""
-  verifyEmail(code: String!, email: String!): VerifyEmail
+  verifyAccount(code: String!): VerifyAccount
   deleteSearchHistory(clearAll: Boolean = false, searchId: ID): DeleteSearchHistory
   reportAccount(content: String, reason: String!, username: String!): ReportAccount
 
@@ -689,15 +687,6 @@ type Mutation {
   User must be verified and confirm password.
   """
   archiveAccount(password: String!): ArchiveAccount
-
-  """
-  Verify user account.
-  
-  Receive the token that was sent by email.
-  If the token is valid, make the user verified
-  by making the `user.status.verified` field true.
-  """
-  verifyAccount(token: String!): VerifyAccount
   verifyToken(token: String): Verify
   refreshToken(refreshToken: String): Refresh
 }
@@ -752,6 +741,8 @@ If allowed to not verified users login, return token.
 type NewRegister {
   errors: ExpectedErrorType
   success: Boolean
+  token: String
+  refreshToken: String
 }
 
 """An object with an ID"""
@@ -1820,6 +1811,7 @@ type UserType {
   fullName: String
   phone: PhoneType
   listing: Int
+  isVerified: Boolean
   isVacationMode: Boolean
   isFollowing: Boolean
   noOfFollowing: Int
@@ -1833,22 +1825,7 @@ type Verify {
   payload: GenericScalar!
 }
 
-"""
-Verify user account.
-
-Receive the token that was sent by email.
-If the token is valid, make the user verified
-by making the `user.status.verified` field true.
-"""
 type VerifyAccount {
-  errors: ExpectedErrorType
   success: Boolean
-}
-
-type VerifyEmail {
-  message: String
-  token: String
-  restToken: String
-  user: UserType
 }
 

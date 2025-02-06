@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +16,7 @@ import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+
 // import 'package:uni_links3/uni_links.dart';
 
 import 'controller/theme_notifier.dart';

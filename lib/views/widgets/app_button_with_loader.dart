@@ -16,23 +16,24 @@ class PreluraButtonWithLoader extends StatelessWidget {
   final double? borderRadius;
   final Widget? customChild;
   final double? elevation;
-  const PreluraButtonWithLoader({
-    super.key,
-    required this.onPressed,
-    this.buttonTitle,
-    this.enableButton = true,
-    this.buttonHeight,
-    this.buttonTitleTextStyle,
-    this.splashColor,
-    this.buttonColor,
-    this.butttonWidth,
-    this.borderRadius,
-    this.showLoadingIndicator = false,
-    this.isOutline = false,
-    this.customChild,
-    this.newButtonHeight,
-    this.elevation = 0,
-  });
+  final Color? borderColor;
+  const PreluraButtonWithLoader(
+      {super.key,
+      required this.onPressed,
+      this.buttonTitle,
+      this.enableButton = true,
+      this.buttonHeight,
+      this.buttonTitleTextStyle,
+      this.splashColor,
+      this.buttonColor,
+      this.butttonWidth,
+      this.borderRadius,
+      this.showLoadingIndicator = false,
+      this.isOutline = false,
+      this.customChild,
+      this.newButtonHeight,
+      this.elevation = 0,
+      this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,8 @@ class PreluraButtonWithLoader extends StatelessWidget {
               borderRadius:
                   BorderRadius.circular(5), // Rounded corners (optional)
               side: BorderSide(
-                color: buttonColor ??
+                color: borderColor ??
+                    buttonColor ??
                     Theme.of(context)
                         .buttonTheme
                         .colorScheme!
