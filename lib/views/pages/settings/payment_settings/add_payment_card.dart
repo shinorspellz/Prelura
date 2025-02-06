@@ -13,7 +13,6 @@ import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
@@ -46,9 +45,6 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   final controller = CardFormEditController();
   var stripe = Stripe.instance;
   CardFieldName? focusedField;
-
-//!================ Booleans ================\\
-  var isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +93,8 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 ),
                 40.toHeight,
                 PreluraButtonWithLoader(
-                  showLoadingIndicator: isLoading,
+                  showLoadingIndicator:
+                      ref.watch(paymentMethodNotifierProvider).isLoading,
                   onPressed: controller.details.complete ? saveCard : null,
                   buttonTitle: "Save",
                 ),
@@ -111,45 +108,36 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   //!================== Functions =================\\
 
   Future<void> saveCard() async {
+    final paymentMethod = await stripe.createPaymentMethod(
+      params: PaymentMethodParams.card(
+        paymentMethodData: PaymentMethodData(),
+      ),
+    );
+
+    // log(name: "Card Details", "${controller.details}");
+    log("Payment Method: ${paymentMethod.card}", name: "Stripe");
+    log("Payment Method ID: ${paymentMethod.id}", name: "Stripe");
+
     try {
-      setState(() {
-        isLoading = true;
-      });
-
-      final paymentMethod = await stripe.createPaymentMethod(
-        params: PaymentMethodParams.card(
-          paymentMethodData: PaymentMethodData(),
-        ),
-      );
-
-      // log(name: "Card Details", "${controller.details}");
-      log("Payment Method: ${paymentMethod.card}", name: "Stripe");
-      log("Payment Method ID: ${paymentMethod.id}", name: "Stripe");
-
       // Send Payment Method ID to backend to attach to the customer
-      ref
+      await ref
           .read(paymentMethodNotifierProvider.notifier)
           .addPaymentMethod(paymentMethodId: paymentMethod.id);
 
       ref.read(paymentMethodNotifierProvider).whenOrNull(
-        error: (e, _) {
+        error: (e, stackTrace) {
+          log(e.toString(), stackTrace: stackTrace);
           return context.alert('An error occurred: $e');
         },
         data: (_) async {
-          HelperFunction.context = context;
-          HelperFunction.showToast(message: "Payment Method saved");
-
           prefs.setBool("paymentMethodIsAdded", true);
-          await Future.delayed(const Duration(seconds: 2));
+          context.alert("Payment Method saved");
 
-          setState(() {
-            isLoading = false;
-          });
-          if (mounted) {
-            context.router.popForced();
-            context.router.popForced();
-            context.router.push(PaymentSettings());
-          }
+          Navigator.of(context)
+            ..pop()
+            ..pop()
+            ..pop();
+          context.router.push(PaymentSettings());
         },
       );
     } on SocketException {
@@ -166,10 +154,6 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
         name: "BACKEND",
         stackTrace: stackTrace,
       );
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
     }
   }
 }

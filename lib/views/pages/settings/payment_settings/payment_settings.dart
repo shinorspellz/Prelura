@@ -10,7 +10,6 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
@@ -54,7 +53,7 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
         appbarTitle: "Payment settings",
       ),
       body: SafeArea(
-        child: paymentMethodIsAdded == true
+        child: paymentMethodIsAdded
             ? Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -120,34 +119,31 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
   }
 
   Future<void> deletePaymentMethod() async {
+    prefs.setBool("paymentMethodIsAdded", false);
+
     try {
       var paymentMethodId = "";
+
       // Delete Payment Method ID from backend for the customer
-      ref
+      await ref
           .read(paymentMethodNotifierProvider.notifier)
           .deletePaymentMethod(paymentMethodId: paymentMethodId);
 
       ref.read(paymentMethodNotifierProvider).whenOrNull(error: (e, _) {
         return context.alert('An error occurred: $e');
       }, data: (_) async {
-        HelperFunction.context = context;
-        HelperFunction.showToast(message: "Payment Method saved");
-
-        prefs.setBool("paymentMethodIsAdded", false);
-        await Future.delayed(const Duration(seconds: 2));
-
         setState(() {
           paymentMethodIsAdded == false;
         });
+        prefs.setBool("paymentMethodIsAdded", false);
+
+        log("Payment method is added: $paymentMethodIsAdded");
         if (mounted) {
-          context.router.popForced();
-          context.router.popForced();
           if (context.mounted) {
             prefs.setBool("paymentMethodIsAdded", false);
             context.alert("Payment method deleted successfully");
+            context.router.popForced();
           }
-          log("Payment method is added: $paymentMethodIsAdded");
-          context.router.popForced();
         }
       });
     } on SocketException {
