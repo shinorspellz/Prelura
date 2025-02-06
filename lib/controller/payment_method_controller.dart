@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
+import 'package:prelura_app/model/user/payment_method/payment_method_response_model.dart';
 
 final paymentMethodNotifierProvider =
     AsyncNotifierProvider<_PaymentMethodController, void>(
@@ -41,3 +42,13 @@ class _PaymentMethodController extends AsyncNotifier<void> {
     }
   }
 }
+
+final paymentMethodProvider = FutureProvider<PaymentMethodModel>((ref) async {
+  final repo = ref.watch(userRepo);
+  try {
+    final result = repo.getUserPaymentMethod();
+    return result;
+  } catch (e) {
+    throw "An  error ocuured";
+  }
+});

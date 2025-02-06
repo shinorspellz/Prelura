@@ -8,11 +8,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/payment_method_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
+import 'package:prelura_app/views/widgets/error_placeholder.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 @RoutePage()
 class PaymentSettings extends ConsumerStatefulWidget {
@@ -23,20 +24,6 @@ class PaymentSettings extends ConsumerStatefulWidget {
 }
 
 class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
-  @override
-  void initState() {
-    super.initState();
-    paymentMethodIsAdded = prefs.getBool("paymentMethodIsAdded") ?? false;
-
-    log("Payment method is added: $paymentMethodIsAdded");
-  }
-
-  //!========== Variables ================\\
-  var stripe = Stripe.instance;
-  //!========== Booleans ================\\
-  late bool paymentMethodIsAdded;
-  var isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -53,76 +40,110 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
         appbarTitle: "Payment settings",
       ),
       body: SafeArea(
-        child: () {
-          if (paymentMethodIsAdded) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Active Payment method",
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).textTheme.bodyMedium?.color,
+        child: ref.watch(paymentMethodProvider).when(
+              data: (paymentMethod) {
+                return paymentMethod.paymentMethodId.isNotEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Active Payment method",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.color,
+                                  ),
+                            ),
+                            20.toHeight,
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              width: size.width,
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    color: PreluraColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              child: Text(
+                                "${paymentMethod.cardBrand} Card ending in ${paymentMethod.last4Digits}",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: PreluraColors.lightText,
+                                    ),
+                              ),
+                            ),
+                            40.toHeight,
+                            PreluraButtonWithLoader(
+                              buttonTitle: "Delete",
+                              buttonColor: PreluraColors.error,
+                              showLoadingIndicator: ref
+                                  .watch(paymentMethodNotifierProvider)
+                                  .isLoading,
+                              onPressed: () {
+                                deletePaymentMethod(
+                                  paymentMethodId:
+                                      paymentMethod.paymentMethodId,
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                  ),
-                  20.toHeight,
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    width: size.width,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        side: const BorderSide(
-                          width: 1,
-                          color: PreluraColors.primaryColor,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      "Card ending in ",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: PreluraColors.lightText,
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 40, horizontal: 20),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: PreluraButtonWithLoader(
+                            newButtonHeight: 80,
+                            buttonTitle: "Add a payment method",
+                            onPressed: () async {
+                              context.router.push(AddPaymentCard());
+                            },
                           ),
-                    ),
-                  ),
-                  40.toHeight,
-                  PreluraButtonWithLoader(
-                    buttonTitle: "Delete",
-                    buttonColor: PreluraColors.error,
-                    showLoadingIndicator: isLoading,
-                    onPressed: deletePaymentMethod,
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: PreluraButtonWithLoader(
-                  newButtonHeight: 80,
-                  buttonTitle: "Add a payment method",
-                  onPressed: () async {
-                    context.router.push(AddPaymentCard());
+                        ),
+                      );
+              },
+              error: (e, stackTrace) {
+                return ErrorPlaceholder(
+                  error: "An error occurred",
+                  onTap: () {
+                    log(e.toString(), stackTrace: stackTrace);
+                    ref.invalidate(paymentMethodProvider);
                   },
+                );
+              },
+              loading: () => Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LoadingWidget(),
+                  ],
                 ),
               ),
-            );
-          }
-        }(),
+            ),
       ),
     );
   }
 
-  Future<void> deletePaymentMethod() async {
+  Future<void> deletePaymentMethod({required String paymentMethodId}) async {
+    log(paymentMethodId, name: "Payment Method Id");
     try {
-      var paymentMethodId = "";
-
       // Delete Payment Method ID from backend for the customer
       await ref
           .read(paymentMethodNotifierProvider.notifier)
@@ -131,14 +152,8 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
       ref.read(paymentMethodNotifierProvider).whenOrNull(error: (e, _) {
         return context.alert('An error occurred: $e');
       }, data: (_) async {
-        setState(() {
-          paymentMethodIsAdded == false;
-        });
-        prefs.setBool("paymentMethodIsAdded", paymentMethodIsAdded);
-
-        log("Payment method is added: $paymentMethodIsAdded");
-
-        prefs.setBool("paymentMethodIsAdded", false);
+        ref.refresh(paymentMethodProvider);
+        // ref.refresh(paymentMethodNotifierProvider);
         context.alert("Payment method deleted successfully");
         context.router.popForced();
       });

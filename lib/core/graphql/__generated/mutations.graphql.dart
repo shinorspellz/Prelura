@@ -33997,7 +33997,7 @@ class Mutation$resendActivationEmail$resendActivationEmail {
   Mutation$resendActivationEmail$resendActivationEmail({
     this.errors,
     this.success,
-    this.$__typename = 'ResendActivationEmail',
+    this.$__typename = 'CustomResendActivationEmail',
   });
 
   factory Mutation$resendActivationEmail$resendActivationEmail.fromJson(

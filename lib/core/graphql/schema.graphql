@@ -31,6 +31,7 @@ enum AccountsUserPreferredCurrencyChoices {
 type AddPaymentMethod {
   success: Boolean
   paymentMethod: PaymentMethodType
+  message: String
 }
 
 type AdminBannerType {
@@ -242,6 +243,11 @@ enum CurrencyEnum {
   USD
   EUR
   GBP
+}
+
+type CustomResendActivationEmail {
+  errors: ExpectedErrorType
+  success: Boolean
 }
 
 """
@@ -647,18 +653,7 @@ type Mutation {
   """
   login(password: String!, email: String, username: String): NewObtainJSONWebToken
   logout(refreshToken: String): LogoutMutation
-
-  """
-  Sends activation email.
-  
-  It is called resend because theoretically
-  the first activation email was sent when
-  the user registered.
-  
-  If there is no user with the requested email,
-  a successful response is returned.
-  """
-  resendActivationEmail(email: String!): ResendActivationEmail
+  resendActivationEmail(email: String!): CustomResendActivationEmail
 
   """
   Change account password when user knows the old password.
@@ -899,6 +894,7 @@ type PaymentMethodType {
   id: ID!
   user: UserNode!
   paymentType: String!
+  paymentMethodId: String!
   last4Digits: String!
   cardBrand: String
   expMonth: String
@@ -1265,6 +1261,7 @@ type Query {
   banners: [AdminBannerType]
   payment(paymentId: Int!): [PaymentType]
   userEarnings(usernameId: Int): EarningType
+  userPaymentMethods: PaymentMethodType
   conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
   conversations: [ConversationType]
   archivedConversations: [ConversationType]
@@ -1477,21 +1474,6 @@ type ReportAccount {
 
 type ReportProduct {
   message: String
-}
-
-"""
-Sends activation email.
-
-It is called resend because theoretically
-the first activation email was sent when
-the user registered.
-
-If there is no user with the requested email,
-a successful response is returned.
-"""
-type ResendActivationEmail {
-  errors: ExpectedErrorType
-  success: Boolean
 }
 
 type ResetPassword {

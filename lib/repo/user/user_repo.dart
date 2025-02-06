@@ -8,6 +8,7 @@ import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/user/earnings/earnings_model.dart';
 import 'package:prelura_app/model/user/multi_buy_discounts/multi_buy_discounts_model.dart';
+import 'package:prelura_app/model/user/payment_method/payment_method_response_model.dart';
 import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/helper_function.dart';
@@ -28,7 +29,7 @@ class UserRepo {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
         if (error == "Signature has expired") {
-          log(":::: I am running from here :::: ${error}");
+          log(":::: I am running from here :::: $error");
           HelperFunction.genRef!.read(refreshTokenSession);
         }
         throw error;
@@ -424,6 +425,36 @@ class UserRepo {
       }
       log(response.exception.toString(), name: 'UserRepo');
       throw 'An error occured';
+    }
+  }
+
+  Future<PaymentMethodModel> getUserPaymentMethod() async {
+    try {
+      final response = await _client
+          .query$userPaymentMethods(Options$Query$userPaymentMethods());
+
+      if (response.hasException) {
+        if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+          final error = response.exception!.graphqlErrors.first.message;
+          log('GraphQL Error: $error', name: 'getUserPaymentMethod');
+          throw error;
+        }
+        log(response.exception.toString(), name: 'getUserPaymentMethod');
+        throw 'An error occurred';
+      }
+
+      if (response.parsedData == null) {
+        throw 'Invalid response';
+      }
+
+      final paymentMethod = PaymentMethodModel.fromJson(
+          response.parsedData!.userPaymentMethods!.toJson());
+
+      return paymentMethod;
+    } catch (e, stack) {
+      log('Error user payment method: $e',
+          name: 'User Payment Method', stackTrace: stack);
+      throw 'Failed to fetch user payment method';
     }
   }
 }

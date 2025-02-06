@@ -11,7 +11,6 @@ import 'package:prelura_app/controller/payment_method_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
@@ -130,13 +129,17 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
           return context.alert('An error occurred: $e');
         },
         data: (_) async {
-          prefs.setBool("paymentMethodIsAdded", true);
           context.alert("Payment Method saved");
 
-          Navigator.of(context)
-            ..pop()
-            ..pop();
-          context.router.push(PaymentSettings());
+          ref.refresh(paymentMethodProvider);
+
+          await Future.delayed(const Duration(seconds: 2));
+          if (mounted) {
+            Navigator.of(context)
+              ..pop()
+              ..pop();
+            context.router.push(PaymentSettings());
+          }
         },
       );
     } on SocketException {
