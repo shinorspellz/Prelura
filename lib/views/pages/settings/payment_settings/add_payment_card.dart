@@ -135,8 +135,8 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
 
           Navigator.of(context)
             ..pop()
-            ..pop()
             ..pop();
+          // ..pop();
           context.router.push(PaymentSettings());
         },
       );

@@ -53,67 +53,68 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
         appbarTitle: "Payment settings",
       ),
       body: SafeArea(
-        child: paymentMethodIsAdded
-            ? Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Active Payment method",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color:
-                                Theme.of(context).textTheme.bodyMedium?.color,
-                          ),
-                    ),
-                    20.toHeight,
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      width: size.width,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          side: const BorderSide(
-                            width: 1,
-                            color: PreluraColors.primaryColor,
-                          ),
+        child: () {
+          if (paymentMethodIsAdded) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Active Payment method",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).textTheme.bodyMedium?.color,
+                        ),
+                  ),
+                  20.toHeight,
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    width: size.width,
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        side: const BorderSide(
+                          width: 1,
+                          color: PreluraColors.primaryColor,
                         ),
                       ),
-                      child: Text(
-                        "Card ending in ",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: PreluraColors.lightText,
-                            ),
-                      ),
                     ),
-                    40.toHeight,
-                    PreluraButtonWithLoader(
-                      buttonTitle: "Delete",
-                      buttonColor: PreluraColors.error,
-                      showLoadingIndicator: isLoading,
-                      onPressed: deletePaymentMethod,
+                    child: Text(
+                      "Card ending in ",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: PreluraColors.lightText,
+                          ),
                     ),
-                  ],
-                ),
-              )
-            : Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: PreluraButtonWithLoader(
-                    newButtonHeight: 80,
-                    buttonTitle: "Add a payment method",
-                    onPressed: () async {
-                      context.router.push(AddPaymentCard());
-                    },
                   ),
+                  40.toHeight,
+                  PreluraButtonWithLoader(
+                    buttonTitle: "Delete",
+                    buttonColor: PreluraColors.error,
+                    showLoadingIndicator: isLoading,
+                    onPressed: deletePaymentMethod,
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: PreluraButtonWithLoader(
+                  newButtonHeight: 80,
+                  buttonTitle: "Add a payment method",
+                  onPressed: () async {
+                    context.router.push(AddPaymentCard());
+                  },
                 ),
               ),
+            );
+          }
+        }(),
       ),
     );
   }
@@ -135,16 +136,13 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
         setState(() {
           paymentMethodIsAdded == false;
         });
-        prefs.setBool("paymentMethodIsAdded", false);
+        prefs.setBool("paymentMethodIsAdded", paymentMethodIsAdded);
 
         log("Payment method is added: $paymentMethodIsAdded");
-        if (mounted) {
-          if (context.mounted) {
-            prefs.setBool("paymentMethodIsAdded", false);
-            context.alert("Payment method deleted successfully");
-            context.router.popForced();
-          }
-        }
+
+        prefs.setBool("paymentMethodIsAdded", false);
+        context.alert("Payment method deleted successfully");
+        context.router.popForced();
       });
     } on SocketException {
       if (mounted) context.alert("Please connect to the internet");
