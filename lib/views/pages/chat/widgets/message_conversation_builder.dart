@@ -223,8 +223,8 @@ class _MessageConversationBuilderState
         // }
         // log("::::: The bottomHeight:: ${MediaQuery.of(context).viewPadding.bottom}");
         return GestureDetector(
-          onHorizontalDragUpdate: (details) => _onHorizontalDragUpdate(details),
-          onHorizontalDragEnd: _onHorizontalDragEnd,
+          // onHorizontalDragUpdate: (details) => _onHorizontalDragUpdate(details),
+          // onHorizontalDragEnd: _onHorizontalDragEnd,
           child: Column(children: [
             if (chatState.state == ChatRoomActivity.loadingMoreMessages)
               Padding(
