@@ -90,7 +90,10 @@ class MessageCard extends ConsumerWidget {
                     ),
                     Text(
                       formatChatTime(model.lastModified!),
-                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                      ),
                     ),
                   ]),
                   if (model.isTyping ?? false) ...[
@@ -140,7 +143,11 @@ class MessageCard extends ConsumerWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
-                              ?.copyWith(fontWeight: FontWeight.w400),
+                              ?.copyWith(
+                                fontWeight: (model.lastMessage?.read ?? false)
+                                    ? FontWeight.w400
+                                    : FontWeight.w400,
+                              ),
                         ),
                       ])
                     ] else if (isLastMessageAnOffer) ...[
@@ -155,10 +162,11 @@ class MessageCard extends ConsumerWidget {
                         model.lastMessage!.text,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              fontWeight: (model.lastMessage?.read ?? false)
+                                  ? FontWeight.w400
+                                  : FontWeight.w500,
+                            ),
                       ),
                   ]
 
@@ -226,10 +234,11 @@ class BuildOfferRow extends ConsumerWidget {
         _buildOfferMessage(),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall
-            ?.copyWith(fontWeight: FontWeight.w400),
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              fontWeight: (offerInfo.updatedAt == null)
+                  ? FontWeight.w500
+                  : FontWeight.w400,
+            ),
       ),
     ]);
   }
