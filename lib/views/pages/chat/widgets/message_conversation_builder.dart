@@ -22,6 +22,7 @@ import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import 'chat_text_box.dart';
+import 'istyping_handler_box.dart';
 import 'message_helper.dart';
 import 'offer_product_card.dart';
 
@@ -260,9 +261,10 @@ class _MessageConversationBuilderState
               },
             ),
             addVerticalSpacing(15),
-            // TypingHandlerBox(
-            //   textController: widget.textController,
-            // ),
+            TypingHandlerBox(
+              textController: widget.textController,
+              conversationId: widget.conversationId.toString(),
+            ),
             // addVerticalSpacing(
             //     MediaQuery.of(context).viewPadding.bottom > 0 ? 85 : 0),
             // if (ref.watch(

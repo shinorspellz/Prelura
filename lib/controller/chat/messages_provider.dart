@@ -60,7 +60,7 @@ class _MessagesNotifier
 
   String? _conversationId;
 
-  SocketChannel? _channel;
+  SocketChannel? socketChannel;
 
   @override
   Stream<List<MessageModel>> build(String arg) async* {
@@ -68,14 +68,14 @@ class _MessagesNotifier
     _currentPage = 1;
 
     _conversationId = arg;
-    ref.onDispose(() => _channel?.close());
-    ref.onDispose(() => _channel = null);
+    ref.onDispose(() => socketChannel?.close());
+    ref.onDispose(() => socketChannel = null);
 
-    _channel = SocketChannel(
+    socketChannel = SocketChannel(
         'wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
 
     _initializeChatRoom();
-    await for (final event in _channel!.stream) {
+    await for (final event in socketChannel!.stream) {
       final newMessageData = event is String ? jsonDecode(event) : event;
       log("::::: The new messages:::$newMessageData");
       if (newMessageData["is_typing"] == null) {
@@ -175,10 +175,10 @@ class _MessagesNotifier
         .cacheMessage(_conversationId!, (state.value ?? []).take(25).toList());
   }
 
-  /// sends message to via [_channel]
+  /// sends message to via [socketChannel]
   Future<void> sendMessage(String message) async {
     final messageUUID = Uuid().v4();
-    _channel?.sendMessage(
+    socketChannel?.sendMessage(
         jsonEncode({'message': message.trim(), 'message_uuid': messageUUID}));
   }
 
@@ -263,7 +263,7 @@ class _MessagesNotifier
       final uploadedFiles = await _uploadMedia(files);
 
       final messageUUID = Uuid().v4();
-      _channel?.sendMessage(jsonEncode({
+      socketChannel?.sendMessage(jsonEncode({
         'image_urls': uploadedFiles,
         'message_uuid': messageUUID,
         'message': "",
