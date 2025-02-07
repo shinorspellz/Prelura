@@ -10568,12 +10568,14 @@ class Variables$Query$AllProducts {
     int? pageCount,
     int? pageNumber,
     Input$ProductFiltersInput? filters,
+    Enum$SortEnum? sort,
   }) =>
       Variables$Query$AllProducts._({
         if (search != null) r'search': search,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
         if (filters != null) r'filters': filters,
+        if (sort != null) r'sort': sort,
       });
 
   Variables$Query$AllProducts._(this._$data);
@@ -10599,6 +10601,11 @@ class Variables$Query$AllProducts {
           : Input$ProductFiltersInput.fromJson(
               (l$filters as Map<String, dynamic>));
     }
+    if (data.containsKey('sort')) {
+      final l$sort = data['sort'];
+      result$data['sort'] =
+          l$sort == null ? null : fromJson$Enum$SortEnum((l$sort as String));
+    }
     return Variables$Query$AllProducts._(result$data);
   }
 
@@ -10612,6 +10619,8 @@ class Variables$Query$AllProducts {
 
   Input$ProductFiltersInput? get filters =>
       (_$data['filters'] as Input$ProductFiltersInput?);
+
+  Enum$SortEnum? get sort => (_$data['sort'] as Enum$SortEnum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -10630,6 +10639,11 @@ class Variables$Query$AllProducts {
     if (_$data.containsKey('filters')) {
       final l$filters = filters;
       result$data['filters'] = l$filters?.toJson();
+    }
+    if (_$data.containsKey('sort')) {
+      final l$sort = sort;
+      result$data['sort'] =
+          l$sort == null ? null : toJson$Enum$SortEnum(l$sort);
     }
     return result$data;
   }
@@ -10683,6 +10697,14 @@ class Variables$Query$AllProducts {
     if (l$filters != lOther$filters) {
       return false;
     }
+    final l$sort = sort;
+    final lOther$sort = other.sort;
+    if (_$data.containsKey('sort') != other._$data.containsKey('sort')) {
+      return false;
+    }
+    if (l$sort != lOther$sort) {
+      return false;
+    }
     return true;
   }
 
@@ -10692,11 +10714,13 @@ class Variables$Query$AllProducts {
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
     final l$filters = filters;
+    final l$sort = sort;
     return Object.hashAll([
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
       _$data.containsKey('filters') ? l$filters : const {},
+      _$data.containsKey('sort') ? l$sort : const {},
     ]);
   }
 }
@@ -10715,6 +10739,7 @@ abstract class CopyWith$Variables$Query$AllProducts<TRes> {
     int? pageCount,
     int? pageNumber,
     Input$ProductFiltersInput? filters,
+    Enum$SortEnum? sort,
   });
 }
 
@@ -10736,6 +10761,7 @@ class _CopyWithImpl$Variables$Query$AllProducts<TRes>
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
     Object? filters = _undefined,
+    Object? sort = _undefined,
   }) =>
       _then(Variables$Query$AllProducts._({
         ..._instance._$data,
@@ -10744,6 +10770,7 @@ class _CopyWithImpl$Variables$Query$AllProducts<TRes>
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
         if (filters != _undefined)
           'filters': (filters as Input$ProductFiltersInput?),
+        if (sort != _undefined) 'sort': (sort as Enum$SortEnum?),
       }));
 }
 
@@ -10758,6 +10785,7 @@ class _CopyWithStubImpl$Variables$Query$AllProducts<TRes>
     int? pageCount,
     int? pageNumber,
     Input$ProductFiltersInput? filters,
+    Enum$SortEnum? sort,
   }) =>
       _res;
 }
@@ -10987,6 +11015,15 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'sort')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'SortEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -11005,6 +11042,10 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'pageNumber'),
             value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'sort'),
+            value: VariableNode(name: NameNode(value: 'sort')),
           ),
           ArgumentNode(
             name: NameNode(value: 'filters'),
@@ -39632,7 +39673,7 @@ const documentNodeQueryUserEarnings = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'completedPayments'),
+            name: NameNode(value: 'totalEarnings'),
             alias: null,
             arguments: [],
             directives: [],
@@ -39690,7 +39731,7 @@ const documentNodeQueryUserEarnings = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'totalEarnings'),
+            name: NameNode(value: 'completedPayments'),
             alias: null,
             arguments: [],
             directives: [],
@@ -39860,18 +39901,18 @@ class Query$UserEarnings$userEarnings {
   Query$UserEarnings$userEarnings({
     this.networth,
     this.pendingPayments,
-    this.completedPayments,
-    this.earningsInMonth,
     this.totalEarnings,
+    this.earningsInMonth,
+    this.completedPayments,
     this.$__typename = 'EarningType',
   });
 
   factory Query$UserEarnings$userEarnings.fromJson(Map<String, dynamic> json) {
     final l$networth = json['networth'];
     final l$pendingPayments = json['pendingPayments'];
-    final l$completedPayments = json['completedPayments'];
-    final l$earningsInMonth = json['earningsInMonth'];
     final l$totalEarnings = json['totalEarnings'];
+    final l$earningsInMonth = json['earningsInMonth'];
+    final l$completedPayments = json['completedPayments'];
     final l$$__typename = json['__typename'];
     return Query$UserEarnings$userEarnings(
       networth: (l$networth as num?)?.toDouble(),
@@ -39879,18 +39920,18 @@ class Query$UserEarnings$userEarnings {
           ? null
           : Query$UserEarnings$userEarnings$pendingPayments.fromJson(
               (l$pendingPayments as Map<String, dynamic>)),
-      completedPayments: l$completedPayments == null
-          ? null
-          : Query$UserEarnings$userEarnings$completedPayments.fromJson(
-              (l$completedPayments as Map<String, dynamic>)),
-      earningsInMonth: l$earningsInMonth == null
-          ? null
-          : Query$UserEarnings$userEarnings$earningsInMonth.fromJson(
-              (l$earningsInMonth as Map<String, dynamic>)),
       totalEarnings: l$totalEarnings == null
           ? null
           : Query$UserEarnings$userEarnings$totalEarnings.fromJson(
               (l$totalEarnings as Map<String, dynamic>)),
+      earningsInMonth: l$earningsInMonth == null
+          ? null
+          : Query$UserEarnings$userEarnings$earningsInMonth.fromJson(
+              (l$earningsInMonth as Map<String, dynamic>)),
+      completedPayments: l$completedPayments == null
+          ? null
+          : Query$UserEarnings$userEarnings$completedPayments.fromJson(
+              (l$completedPayments as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -39899,11 +39940,11 @@ class Query$UserEarnings$userEarnings {
 
   final Query$UserEarnings$userEarnings$pendingPayments? pendingPayments;
 
-  final Query$UserEarnings$userEarnings$completedPayments? completedPayments;
+  final Query$UserEarnings$userEarnings$totalEarnings? totalEarnings;
 
   final Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth;
 
-  final Query$UserEarnings$userEarnings$totalEarnings? totalEarnings;
+  final Query$UserEarnings$userEarnings$completedPayments? completedPayments;
 
   final String $__typename;
 
@@ -39913,12 +39954,12 @@ class Query$UserEarnings$userEarnings {
     _resultData['networth'] = l$networth;
     final l$pendingPayments = pendingPayments;
     _resultData['pendingPayments'] = l$pendingPayments?.toJson();
-    final l$completedPayments = completedPayments;
-    _resultData['completedPayments'] = l$completedPayments?.toJson();
-    final l$earningsInMonth = earningsInMonth;
-    _resultData['earningsInMonth'] = l$earningsInMonth?.toJson();
     final l$totalEarnings = totalEarnings;
     _resultData['totalEarnings'] = l$totalEarnings?.toJson();
+    final l$earningsInMonth = earningsInMonth;
+    _resultData['earningsInMonth'] = l$earningsInMonth?.toJson();
+    final l$completedPayments = completedPayments;
+    _resultData['completedPayments'] = l$completedPayments?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -39928,16 +39969,16 @@ class Query$UserEarnings$userEarnings {
   int get hashCode {
     final l$networth = networth;
     final l$pendingPayments = pendingPayments;
-    final l$completedPayments = completedPayments;
-    final l$earningsInMonth = earningsInMonth;
     final l$totalEarnings = totalEarnings;
+    final l$earningsInMonth = earningsInMonth;
+    final l$completedPayments = completedPayments;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$networth,
       l$pendingPayments,
-      l$completedPayments,
-      l$earningsInMonth,
       l$totalEarnings,
+      l$earningsInMonth,
+      l$completedPayments,
       l$$__typename,
     ]);
   }
@@ -39961,9 +40002,9 @@ class Query$UserEarnings$userEarnings {
     if (l$pendingPayments != lOther$pendingPayments) {
       return false;
     }
-    final l$completedPayments = completedPayments;
-    final lOther$completedPayments = other.completedPayments;
-    if (l$completedPayments != lOther$completedPayments) {
+    final l$totalEarnings = totalEarnings;
+    final lOther$totalEarnings = other.totalEarnings;
+    if (l$totalEarnings != lOther$totalEarnings) {
       return false;
     }
     final l$earningsInMonth = earningsInMonth;
@@ -39971,9 +40012,9 @@ class Query$UserEarnings$userEarnings {
     if (l$earningsInMonth != lOther$earningsInMonth) {
       return false;
     }
-    final l$totalEarnings = totalEarnings;
-    final lOther$totalEarnings = other.totalEarnings;
-    if (l$totalEarnings != lOther$totalEarnings) {
+    final l$completedPayments = completedPayments;
+    final lOther$completedPayments = other.completedPayments;
+    if (l$completedPayments != lOther$completedPayments) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -40006,19 +40047,19 @@ abstract class CopyWith$Query$UserEarnings$userEarnings<TRes> {
   TRes call({
     double? networth,
     Query$UserEarnings$userEarnings$pendingPayments? pendingPayments,
-    Query$UserEarnings$userEarnings$completedPayments? completedPayments,
-    Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth,
     Query$UserEarnings$userEarnings$totalEarnings? totalEarnings,
+    Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth,
+    Query$UserEarnings$userEarnings$completedPayments? completedPayments,
     String? $__typename,
   });
   CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes>
       get pendingPayments;
-  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
-      get completedPayments;
-  CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
-      get earningsInMonth;
   CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
       get totalEarnings;
+  CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
+      get earningsInMonth;
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
+      get completedPayments;
 }
 
 class _CopyWithImpl$Query$UserEarnings$userEarnings<TRes>
@@ -40037,9 +40078,9 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings<TRes>
   TRes call({
     Object? networth = _undefined,
     Object? pendingPayments = _undefined,
-    Object? completedPayments = _undefined,
-    Object? earningsInMonth = _undefined,
     Object? totalEarnings = _undefined,
+    Object? earningsInMonth = _undefined,
+    Object? completedPayments = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserEarnings$userEarnings(
@@ -40049,17 +40090,17 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings<TRes>
             ? _instance.pendingPayments
             : (pendingPayments
                 as Query$UserEarnings$userEarnings$pendingPayments?),
-        completedPayments: completedPayments == _undefined
-            ? _instance.completedPayments
-            : (completedPayments
-                as Query$UserEarnings$userEarnings$completedPayments?),
+        totalEarnings: totalEarnings == _undefined
+            ? _instance.totalEarnings
+            : (totalEarnings as Query$UserEarnings$userEarnings$totalEarnings?),
         earningsInMonth: earningsInMonth == _undefined
             ? _instance.earningsInMonth
             : (earningsInMonth
                 as Query$UserEarnings$userEarnings$earningsInMonth?),
-        totalEarnings: totalEarnings == _undefined
-            ? _instance.totalEarnings
-            : (totalEarnings as Query$UserEarnings$userEarnings$totalEarnings?),
+        completedPayments: completedPayments == _undefined
+            ? _instance.completedPayments
+            : (completedPayments
+                as Query$UserEarnings$userEarnings$completedPayments?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -40075,14 +40116,14 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings<TRes>
             local$pendingPayments, (e) => call(pendingPayments: e));
   }
 
-  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
-      get completedPayments {
-    final local$completedPayments = _instance.completedPayments;
-    return local$completedPayments == null
-        ? CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+      get totalEarnings {
+    final local$totalEarnings = _instance.totalEarnings;
+    return local$totalEarnings == null
+        ? CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(
             _then(_instance))
-        : CopyWith$Query$UserEarnings$userEarnings$completedPayments(
-            local$completedPayments, (e) => call(completedPayments: e));
+        : CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
+            local$totalEarnings, (e) => call(totalEarnings: e));
   }
 
   CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
@@ -40095,14 +40136,14 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings<TRes>
             local$earningsInMonth, (e) => call(earningsInMonth: e));
   }
 
-  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
-      get totalEarnings {
-    final local$totalEarnings = _instance.totalEarnings;
-    return local$totalEarnings == null
-        ? CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
+      get completedPayments {
+    final local$completedPayments = _instance.completedPayments;
+    return local$completedPayments == null
+        ? CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(
             _then(_instance))
-        : CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
-            local$totalEarnings, (e) => call(totalEarnings: e));
+        : CopyWith$Query$UserEarnings$userEarnings$completedPayments(
+            local$completedPayments, (e) => call(completedPayments: e));
   }
 }
 
@@ -40115,9 +40156,9 @@ class _CopyWithStubImpl$Query$UserEarnings$userEarnings<TRes>
   call({
     double? networth,
     Query$UserEarnings$userEarnings$pendingPayments? pendingPayments,
-    Query$UserEarnings$userEarnings$completedPayments? completedPayments,
-    Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth,
     Query$UserEarnings$userEarnings$totalEarnings? totalEarnings,
+    Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth,
+    Query$UserEarnings$userEarnings$completedPayments? completedPayments,
     String? $__typename,
   }) =>
       _res;
@@ -40126,17 +40167,17 @@ class _CopyWithStubImpl$Query$UserEarnings$userEarnings<TRes>
       get pendingPayments =>
           CopyWith$Query$UserEarnings$userEarnings$pendingPayments.stub(_res);
 
-  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
-      get completedPayments =>
-          CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(_res);
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+      get totalEarnings =>
+          CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(_res);
 
   CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
       get earningsInMonth =>
           CopyWith$Query$UserEarnings$userEarnings$earningsInMonth.stub(_res);
 
-  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
-      get totalEarnings =>
-          CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(_res);
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
+      get completedPayments =>
+          CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(_res);
 }
 
 class Query$UserEarnings$userEarnings$pendingPayments {
@@ -40284,19 +40325,19 @@ class _CopyWithStubImpl$Query$UserEarnings$userEarnings$pendingPayments<TRes>
       _res;
 }
 
-class Query$UserEarnings$userEarnings$completedPayments {
-  Query$UserEarnings$userEarnings$completedPayments({
+class Query$UserEarnings$userEarnings$totalEarnings {
+  Query$UserEarnings$userEarnings$totalEarnings({
     this.quantity,
     this.value,
     this.$__typename = 'QuantityValuePair',
   });
 
-  factory Query$UserEarnings$userEarnings$completedPayments.fromJson(
+  factory Query$UserEarnings$userEarnings$totalEarnings.fromJson(
       Map<String, dynamic> json) {
     final l$quantity = json['quantity'];
     final l$value = json['value'];
     final l$$__typename = json['__typename'];
-    return Query$UserEarnings$userEarnings$completedPayments(
+    return Query$UserEarnings$userEarnings$totalEarnings(
       quantity: (l$quantity as int?),
       value: (l$value as num?)?.toDouble(),
       $__typename: (l$$__typename as String),
@@ -40337,7 +40378,7 @@ class Query$UserEarnings$userEarnings$completedPayments {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$UserEarnings$userEarnings$completedPayments ||
+    if (other is! Query$UserEarnings$userEarnings$totalEarnings ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -40360,27 +40401,25 @@ class Query$UserEarnings$userEarnings$completedPayments {
   }
 }
 
-extension UtilityExtension$Query$UserEarnings$userEarnings$completedPayments
-    on Query$UserEarnings$userEarnings$completedPayments {
-  CopyWith$Query$UserEarnings$userEarnings$completedPayments<
-          Query$UserEarnings$userEarnings$completedPayments>
-      get copyWith =>
-          CopyWith$Query$UserEarnings$userEarnings$completedPayments(
+extension UtilityExtension$Query$UserEarnings$userEarnings$totalEarnings
+    on Query$UserEarnings$userEarnings$totalEarnings {
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<
+          Query$UserEarnings$userEarnings$totalEarnings>
+      get copyWith => CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$UserEarnings$userEarnings$completedPayments<
-    TRes> {
-  factory CopyWith$Query$UserEarnings$userEarnings$completedPayments(
-    Query$UserEarnings$userEarnings$completedPayments instance,
-    TRes Function(Query$UserEarnings$userEarnings$completedPayments) then,
-  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments;
+abstract class CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
+    Query$UserEarnings$userEarnings$totalEarnings instance,
+    TRes Function(Query$UserEarnings$userEarnings$totalEarnings) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings;
 
-  factory CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(
+  factory CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(
           TRes res) =
-      _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments;
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings;
 
   TRes call({
     int? quantity,
@@ -40389,17 +40428,16 @@ abstract class CopyWith$Query$UserEarnings$userEarnings$completedPayments<
   });
 }
 
-class _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
-    implements
-        CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes> {
-  _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments(
+class _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings(
     this._instance,
     this._then,
   );
 
-  final Query$UserEarnings$userEarnings$completedPayments _instance;
+  final Query$UserEarnings$userEarnings$totalEarnings _instance;
 
-  final TRes Function(Query$UserEarnings$userEarnings$completedPayments) _then;
+  final TRes Function(Query$UserEarnings$userEarnings$totalEarnings) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -40408,7 +40446,7 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
     Object? value = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$UserEarnings$userEarnings$completedPayments(
+      _then(Query$UserEarnings$userEarnings$totalEarnings(
         quantity:
             quantity == _undefined ? _instance.quantity : (quantity as int?),
         value: value == _undefined ? _instance.value : (value as double?),
@@ -40418,11 +40456,9 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
-    implements
-        CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes> {
-  _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments(
-      this._res);
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings(this._res);
 
   TRes _res;
 
@@ -40579,19 +40615,19 @@ class _CopyWithStubImpl$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
       _res;
 }
 
-class Query$UserEarnings$userEarnings$totalEarnings {
-  Query$UserEarnings$userEarnings$totalEarnings({
+class Query$UserEarnings$userEarnings$completedPayments {
+  Query$UserEarnings$userEarnings$completedPayments({
     this.quantity,
     this.value,
     this.$__typename = 'QuantityValuePair',
   });
 
-  factory Query$UserEarnings$userEarnings$totalEarnings.fromJson(
+  factory Query$UserEarnings$userEarnings$completedPayments.fromJson(
       Map<String, dynamic> json) {
     final l$quantity = json['quantity'];
     final l$value = json['value'];
     final l$$__typename = json['__typename'];
-    return Query$UserEarnings$userEarnings$totalEarnings(
+    return Query$UserEarnings$userEarnings$completedPayments(
       quantity: (l$quantity as int?),
       value: (l$value as num?)?.toDouble(),
       $__typename: (l$$__typename as String),
@@ -40632,7 +40668,7 @@ class Query$UserEarnings$userEarnings$totalEarnings {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$UserEarnings$userEarnings$totalEarnings ||
+    if (other is! Query$UserEarnings$userEarnings$completedPayments ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -40655,25 +40691,27 @@ class Query$UserEarnings$userEarnings$totalEarnings {
   }
 }
 
-extension UtilityExtension$Query$UserEarnings$userEarnings$totalEarnings
-    on Query$UserEarnings$userEarnings$totalEarnings {
-  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<
-          Query$UserEarnings$userEarnings$totalEarnings>
-      get copyWith => CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
+extension UtilityExtension$Query$UserEarnings$userEarnings$completedPayments
+    on Query$UserEarnings$userEarnings$completedPayments {
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<
+          Query$UserEarnings$userEarnings$completedPayments>
+      get copyWith =>
+          CopyWith$Query$UserEarnings$userEarnings$completedPayments(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
-  factory CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
-    Query$UserEarnings$userEarnings$totalEarnings instance,
-    TRes Function(Query$UserEarnings$userEarnings$totalEarnings) then,
-  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings;
+abstract class CopyWith$Query$UserEarnings$userEarnings$completedPayments<
+    TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings$completedPayments(
+    Query$UserEarnings$userEarnings$completedPayments instance,
+    TRes Function(Query$UserEarnings$userEarnings$completedPayments) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments;
 
-  factory CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(
+  factory CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(
           TRes res) =
-      _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings;
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments;
 
   TRes call({
     int? quantity,
@@ -40682,16 +40720,17 @@ abstract class CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
-    implements CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
-  _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings(
+class _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
+    implements
+        CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments(
     this._instance,
     this._then,
   );
 
-  final Query$UserEarnings$userEarnings$totalEarnings _instance;
+  final Query$UserEarnings$userEarnings$completedPayments _instance;
 
-  final TRes Function(Query$UserEarnings$userEarnings$totalEarnings) _then;
+  final TRes Function(Query$UserEarnings$userEarnings$completedPayments) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -40700,7 +40739,7 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
     Object? value = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$UserEarnings$userEarnings$totalEarnings(
+      _then(Query$UserEarnings$userEarnings$completedPayments(
         quantity:
             quantity == _undefined ? _instance.quantity : (quantity as int?),
         value: value == _undefined ? _instance.value : (value as double?),
@@ -40710,9 +40749,11 @@ class _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
-    implements CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
-  _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings(this._res);
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
+    implements
+        CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments(
+      this._res);
 
   TRes _res;
 

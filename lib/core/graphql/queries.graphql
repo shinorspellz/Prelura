@@ -244,12 +244,15 @@ query AllProducts(
   $pageCount: Int
   $pageNumber: Int
   $filters: ProductFiltersInput
+  $sort: SortEnum
 ) {
   allProducts(
     search: $search
     pageCount: $pageCount
     pageNumber: $pageNumber
+    sort: $sort
     filters: $filters
+    
   ) {
     id
     name
@@ -858,7 +861,7 @@ query UserEarnings {
       quantity
       value
     }
-    completedPayments {
+    totalEarnings {
       quantity
       value
     }
@@ -866,7 +869,7 @@ query UserEarnings {
       quantity
       value
     }
-    totalEarnings {
+    completedPayments {
       quantity
       value
     }

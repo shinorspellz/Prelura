@@ -60,7 +60,7 @@ class _MessagesNotifier
 
   String? _conversationId;
 
-  SocketChannel? _channel;
+  SocketChannel? socketChannel;
 
   @override
   Stream<List<MessageModel>> build(String arg) async* {
@@ -68,14 +68,16 @@ class _MessagesNotifier
     _currentPage = 1;
 
     _conversationId = arg;
-    ref.onDispose(() => _channel?.close());
-    ref.onDispose(() => _channel = null);
+    ref.onDispose(() => socketChannel?.close());
+    ref.onDispose(() => socketChannel = null);
 
-    _channel = SocketChannel(
+    if (arg.isEmpty) return;
+
+    socketChannel = SocketChannel(
         'wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
 
     _initializeChatRoom();
-    await for (final event in _channel!.stream) {
+    await for (final event in socketChannel!.stream) {
       final newMessageData = event is String ? jsonDecode(event) : event;
       log("::::: The new messages:::$newMessageData");
       if (newMessageData["is_typing"] == null) {
@@ -138,7 +140,7 @@ class _MessagesNotifier
     } else {
       log("From the cache fetching::: 2");
       // fetchPages = [];
-      var response = await _getMessages(id: arg, pageNumber: _currentPage);
+      var response = await getMessages(id: arg, pageNumber: _currentPage);
       state = AsyncData(response);
       _cacheMessages();
     }
@@ -147,7 +149,7 @@ class _MessagesNotifier
   Future<void> postMessageFetch(int id) async {
     // fetchPages = [];
     List<MessageModel> response =
-        await _getMessages(id: id.toString(), pageNumber: 0);
+        await getMessages(id: id.toString(), pageNumber: 0);
     if (response.isNotEmpty) {
       ref
           .read(messageCacheProvider.notifier)
@@ -175,15 +177,15 @@ class _MessagesNotifier
         .cacheMessage(_conversationId!, (state.value ?? []).take(25).toList());
   }
 
-  /// sends message to via [_channel]
+  /// sends message to via [socketChannel]
   Future<void> sendMessage(String message) async {
     final messageUUID = Uuid().v4();
-    _channel?.sendMessage(
+    socketChannel?.sendMessage(
         jsonEncode({'message': message.trim(), 'message_uuid': messageUUID}));
   }
 
   /// Retrieves the list of messages via api
-  Future<List<MessageModel>> _getMessages(
+  Future<List<MessageModel>> getMessages(
       {required String id, int? pageNumber}) async {
     log(":::::You called the get messages ::::");
     final result = await _repo.getMessages(
@@ -211,7 +213,7 @@ class _MessagesNotifier
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _messagesTotal;
 
     if (canLoadMore) {
-      await _getMessages(
+      await getMessages(
         id: _conversationId!,
         pageNumber: _currentPage + 1,
       );
@@ -263,7 +265,7 @@ class _MessagesNotifier
       final uploadedFiles = await _uploadMedia(files);
 
       final messageUUID = Uuid().v4();
-      _channel?.sendMessage(jsonEncode({
+      socketChannel?.sendMessage(jsonEncode({
         'image_urls': uploadedFiles,
         'message_uuid': messageUUID,
         'message': "",

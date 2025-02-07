@@ -173,6 +173,44 @@ class SearchScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
+
+                  GestureDetector(
+                    onTap: () {
+                      context.router.push(ProductsByStatusRoute(
+                        title: "Newest",
+                      ));
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 65.h,
+                          margin: EdgeInsets.all(16),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(PreluraIcons.newest_png),
+                                fit: BoxFit.cover,
+                                alignment: Alignment.topLeft),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(getDefaultBorderRadius())),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(42.0),
+                          child: Text("NEW \nIN",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium
+                                  ?.copyWith(
+                                      color: PreluraColors.primaryColor,
+                                      fontWeight: FontWeight.w800)),
+                        )
+                      ],
+                    ),
+                  ),
+
                   GestureDetector(
                     onTap: () {
                       ref.read(selectedFilteredProductProvider.notifier).state =
@@ -196,6 +234,7 @@ class SearchScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
+
                   SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 12),

@@ -201,11 +201,13 @@ class ProductRepo {
       String? search,
       int? pageCount,
       int? pageNumber,
+      Enum$SortEnum? sort,
       Input$ProductFiltersInput? filters}) async {
     final response = await _client.query$AllProducts(
       Options$Query$AllProducts(
           variables: Variables$Query$AllProducts(
               search: search,
+              sort: sort,
               pageCount: pageCount,
               pageNumber: pageNumber,
               filters: filters)),

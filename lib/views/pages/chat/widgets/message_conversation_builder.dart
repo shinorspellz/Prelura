@@ -3,9 +3,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
@@ -23,8 +21,8 @@ import 'package:sizer/sizer.dart';
 // import 'package:sticky_grouped_list_plus/sticky_grouped_list.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import 'chat_card_box.dart';
 import 'chat_text_box.dart';
+import 'istyping_handler_box.dart';
 import 'message_helper.dart';
 import 'offer_product_card.dart';
 
@@ -73,6 +71,7 @@ class _MessageConversationBuilderState
     final isLoadingMore = false;
     // ref.read(chatRoomStateProvider.notifier).state ==
     // ChatRoomActivity.loadingMoreMessages;
+    if (!widget.scrollController.hasClients) return;
 
     if (widget.scrollController.position.pixels >=
             widget.scrollController.position.maxScrollExtent - 200 &&
@@ -99,6 +98,8 @@ class _MessageConversationBuilderState
   // Build the message row with message bubbles and profile picture
   Widget _buildMessageRow(MessageModel chatInfo, bool isMe) {
     final canShowImage = MessageHelper.canShowImage(chatInfo);
+    double imageSize =
+        (widget.avatar == null || (widget.avatar?.isEmpty ?? true)) ? 21.5 : 25;
     // final messageType = MessageHelper.getMessageType(chatInfo);
     return Padding(
         padding: EdgeInsets.only(
@@ -114,88 +115,55 @@ class _MessageConversationBuilderState
                 Padding(
                     padding: EdgeInsets.only(
                       right: 8,
-                      left: 10,
+                      left: 14,
                     ),
                     child: ProfilePictureWidget(
                       profilePicture: widget.avatar,
-                      height: 25,
-                      width: 25,
+                      height: imageSize,
+                      width: imageSize,
                       username: chatInfo.sender.username,
                     ))
               else if (_listViewLeftPosition == 0)
                 addHorizontalSpacing(isMe ? 0 : 47)
               else
                 SizedBox.shrink(),
-              Stack(children: [
-                _buildMessageTimestamp(chatInfo),
-                _buildMessageBubble(chatInfo, isMe),
-              ]),
+              Expanded(
+                child: Stack(children: [
+                  _buildMessageTimestamp(chatInfo),
+                  _buildMessageBubble(chatInfo, isMe),
+                ]),
+              ),
             ]));
   }
 
   // Message bubble for different message types
   Widget _buildMessageBubble(MessageModel chatInfo, bool isMe) {
-    // final messageType = MessageHelper.getMessageType(chatInfo);
-    // final myNotifier = ref.watch(messagesNotifierProvider.notifier);
-    return Container(
-      constraints: BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width * 0.8, // Prevents overflow
-      ),
-      child: CupertinoContextMenu.builder(
-          enableHapticFeedback: true,
-          actions: [
-            CupertinoContextMenuAction(
-              onPressed: () {
-                Clipboard.setData(ClipboardData(text: chatInfo.text));
-                Navigator.pop(context);
-              },
-              trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
-              child: const Text('Copy'),
-            ),
-            if (isMe) // Only sender can delete their message
-              CupertinoContextMenuAction(
-                onPressed: () {
-                  ref
-                      .read(messagesProvider(widget.conversationId.toString())
-                          .notifier)
-                      .deleteMessage(chatInfo.id.toString());
-                  Navigator.pop(context);
-                },
-                isDestructiveAction: true,
-                trailingIcon: CupertinoIcons.delete,
-                child: const Text('Delete'),
-              ),
-          ],
-          builder: (context, animation) => VisibilityDetector(
-                key: Key(chatInfo.id.toString()),
-                onVisibilityChanged: (visibilityInfo) {
-                  if (visibilityInfo.visibleFraction > 0.9 &&
-                      !(chatInfo.read ?? false)) {
-                    // myNotifier.markMessageAsRead(
-                    //     chatInfo.senderName!, [chatInfo.id.toString()]);
-                  }
-                },
-                child: Transform.translate(
-                  offset: Offset(-_listViewLeftPosition, 0),
-                  child: Row(
-                      mainAxisAlignment: isMe
-                          ? MainAxisAlignment.end
-                          : MainAxisAlignment.start,
-                      children: [
-                        if (chatInfo.text.isNotEmpty)
-                          PlainMessageBox(
-                            isMe: isMe,
-                            chatInfo: chatInfo,
-                            currentUsername: currentUser?.username ?? "",
-                          ),
-                        if (chatInfo.imageUrls != null &&
-                            chatInfo.imageUrls.isNotEmpty)
-                          MessageImageBuilder(
-                            chatInfo: chatInfo,
-                          ),
-                      ]),
+    return VisibilityDetector(
+      key: Key(chatInfo.id.toString()),
+      onVisibilityChanged: (visibilityInfo) {
+        if (visibilityInfo.visibleFraction > 0.9 && !(chatInfo.read ?? false)) {
+          // myNotifier.markMessageAsRead(
+          //     chatInfo.senderName!, [chatInfo.id.toString()]);
+        }
+      },
+      child: Transform.translate(
+        offset: Offset(-_listViewLeftPosition, 0),
+        child: Row(
+            mainAxisAlignment:
+                isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            children: [
+              if (chatInfo.text.isNotEmpty)
+                PlainMessageBox(
+                  isMe: isMe,
+                  chatInfo: chatInfo,
+                  currentUsername: currentUser?.username ?? "",
                 ),
-              )),
+              if (chatInfo.imageUrls != null && chatInfo.imageUrls.isNotEmpty)
+                MessageImageBuilder(
+                  chatInfo: chatInfo,
+                ),
+            ]),
+      ),
     );
   }
 
@@ -246,21 +214,9 @@ class _MessageConversationBuilderState
           );
         }
         MessageHelper.messages = chatList;
-        // Scroll to bottom on first load
-        // if (isFirstTime) {
-        //   WidgetsBinding.instance.addPostFrameCallback((_) {
-        //     widget.scrollController.animateTo(
-        //       widget.scrollController.position.minScrollExtent,
-        //       duration: const Duration(milliseconds: 200),
-        //       curve: Curves.linear,
-        //     );
-        //   });
-        //   isFirstTime = false;
-        // }
-        // log("::::: The bottomHeight:: ${MediaQuery.of(context).viewPadding.bottom}");
         return GestureDetector(
-          // onHorizontalDragUpdate: (details) => _onHorizontalDragUpdate(details),
-          // onHorizontalDragEnd: _onHorizontalDragEnd,
+          onHorizontalDragUpdate: (details) => _onHorizontalDragUpdate(details),
+          onHorizontalDragEnd: _onHorizontalDragEnd,
           child: Column(children: [
             if (chatState.state == ChatRoomActivity.loadingMoreMessages)
               Padding(
@@ -304,16 +260,12 @@ class _MessageConversationBuilderState
                 final isMe = chatInfo.sender.username == currentUser?.username;
                 return _buildMessageRow(chatInfo, isMe);
               },
-            )
-            //     .paddingOnly(
-            //   left: 10,
-            //   right: 10,
-            // )
-            ,
+            ),
             addVerticalSpacing(15),
-            // TypingHandlerBox(
-            //   textController: widget.textController,
-            // ),
+            TypingHandlerBox(
+              textController: widget.textController,
+              conversationId: widget.conversationId.toString(),
+            ),
             // addVerticalSpacing(
             //     MediaQuery.of(context).viewPadding.bottom > 0 ? 85 : 0),
             // if (ref.watch(
@@ -355,7 +307,7 @@ class MessageImageBuilder extends StatelessWidget {
         : chatInfo.imageUrls[0]['url'];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.only(right: 12),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
@@ -129,7 +131,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                         .firstOrNull
                         ?.value
                     : null,
-                title: e.replaceAll("_", " "),
+                title: e.replaceAll("_", " ").capitalizeAndLowercase(),
                 isChecked: selectedOption == e,
                 onChanged: (value) {
                   if (selectedOption == e) {

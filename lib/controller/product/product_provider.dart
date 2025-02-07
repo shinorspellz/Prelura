@@ -854,7 +854,7 @@ class FilteredProductController
   Future<void> fetchMoreData(BuildContext context) async {
     log(":::The brand total ::: $_brandTotalItems");
     if ((state.valueOrNull?.length ?? 0) == _brandTotalItems) {
-      index == 0 ? context.alert("End of products") : 1;
+      index == 0 ? context.alert("No more products") : 1;
       index = 1;
       return;
     } else {
@@ -1452,5 +1452,87 @@ class _ReportProductNotifier extends AsyncNotifier<void> {
       state = AsyncValue.error(error, stackTrace);
       rethrow;
     }
+  }
+}
+
+final newestProductProvider = AsyncNotifierProvider.family
+    .autoDispose<_NewestProductController, List<ProductModel>, String?>(
+        _NewestProductController.new);
+
+class _NewestProductController
+    extends AutoDisposeFamilyAsyncNotifier<List<ProductModel>, String?> {
+  late final _repository = ref.read(productRepo);
+  // List<ServicePackageModel>? services;
+  final int _pageCount = 10;
+  int _currentPage = 1;
+  int _brandTotalItems = 900;
+  String? _query;
+
+  @override
+  Future<List<ProductModel>> build(String? query) async {
+    state = const AsyncLoading();
+    _currentPage = 1;
+    _query = query;
+    await _getProducts(query: query, pageNumber: _currentPage);
+    return state.value!;
+  }
+
+  Future<void> _getProducts({String? query, int? pageNumber}) async {
+    final result = await _repository.getAllProducts(
+      search: query,
+      pageCount: _pageCount,
+      pageNumber: pageNumber,
+      sort: Enum$SortEnum.NEWEST,
+    );
+
+    final newState = result.allProducts!
+        .map((e) => ProductModel.fromJson(e!.toJson()))
+        .toList();
+    newState.shuffle();
+    newState.shuffle();
+    final currentState = state.valueOrNull ?? [];
+    if (pageNumber == 1) {
+      state = AsyncData(newState.toList());
+    } else {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
+        return;
+      }
+
+      state = AsyncData([...currentState, ...newState]);
+    }
+    _currentPage = pageNumber!;
+  }
+
+  int counter = 0;
+  Future<void> fetchMoreData(BuildContext context) async {
+    log(
+        "length of current products : ${state.valueOrNull?.length.toString()}" ??
+            '',
+        name: 'fetchMoreData');
+    log("total available item ${_brandTotalItems.toString()}",
+        name: 'fetchMoreData');
+    log("current page : ${_currentPage.toString()}", name: 'fetchMoreData');
+    log("query is $_query", name: 'fetchMoreData');
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+
+    if (canLoadMore) {
+      counter = 0;
+      ref.read(paginatingHome.notifier).state = true;
+      await _getProducts(
+        query: _query,
+        pageNumber: _currentPage + 1,
+      );
+      ref.read(paginatingHome.notifier).state = false;
+    } else {
+      if (counter == 1) return;
+      counter = 1;
+      log("::::The. else session ran ::::");
+      context.alert("No more products");
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }

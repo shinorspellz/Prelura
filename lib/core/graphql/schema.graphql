@@ -652,7 +652,7 @@ type Mutation {
   return `unarchiving=True` on output.
   """
   login(password: String!, email: String, username: String): NewObtainJSONWebToken
-  logout(refreshToken: String): LogoutMutation
+  logout(fcmToken: String!, refreshToken: String!): LogoutMutation
   resendActivationEmail(email: String!): CustomResendActivationEmail
 
   """

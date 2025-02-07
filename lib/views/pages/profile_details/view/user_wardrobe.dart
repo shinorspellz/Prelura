@@ -257,19 +257,30 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 style: context.textTheme.bodyMedium?.copyWith(
                                   fontSize: getDefaultSize(),
                                   fontWeight: FontWeight.w500,
-                                  color: PreluraColors.error.withOpacity(0.7),
+                                  color: context.isDarkMode
+                                      ? PreluraColors.error.withOpacity(0.9)
+                                      : PreluraColors.error.withOpacity(0.7),
                                 ),
                               ),
-                              AppButton(
-                                  borderColor: Colors.transparent,
-                                  bgColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                              GestureDetector(
                                   onTap: () {
                                     context.router.push(VerifyUserRoute(
                                         inAppVerification: true,
                                         email: user.email ?? ""));
                                   },
-                                  text: "Activate")
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 8),
+                                    color:
+                                        context.theme.scaffoldBackgroundColor,
+                                    child: Text("Activate",
+                                        style: context.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getDefaultSize(),
+                                          color: PreluraColors.primaryColor,
+                                        )),
+                                  ))
                             ])),
                   Stack(clipBehavior: Clip.none, children: [
                     // if (widget.username != null)
@@ -380,7 +391,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildOtherInfo(context: context, user: user),
+                        _buildOtherInfo(
+                            context: context,
+                            user: user,
+                            isCurrentUser: isCurrentUser),
 
                         if (user.bio == null && isCurrentUser)
                           Padding(
@@ -1029,7 +1043,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   }
 
   Widget _buildOtherInfo(
-      {required BuildContext context, required UserModel user}) {
+      {required BuildContext context,
+      required UserModel user,
+      required bool isCurrentUser}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       margin: EdgeInsets.only(bottom: 8),
@@ -1054,8 +1070,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         5.verticalSpacing,
         _buildRow(
             svg: PreluraIcons.clock_circle_svg,
-            text:
-                "Last seen ${getUserLastSeen(user.lastSeen != null ? user.lastSeen.toString() : "")}"),
+            text: isCurrentUser
+                ? "online"
+                : "Last seen ${getUserLastSeen(user.lastSeen != null ? user.lastSeen.toString() : "")}"),
       ]),
     );
   }

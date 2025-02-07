@@ -255,6 +255,7 @@ class AppRouter extends RootStackRouter {
             page: ChristmasFilteredProductRoute.page,
             guards: [AuthGuard(_ref)]),
         AutoRoute(page: ProductByHashtagRoute.page),
+        AutoRoute(page: ProductsByStatusRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ReviewRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ShopValueRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: MultiBuyDiscountRoute.page, guards: [AuthGuard(_ref)]),

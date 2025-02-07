@@ -12,6 +12,7 @@ import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
+import 'istyping_handler_box.dart';
 import 'offer_card.dart';
 import 'offer_product_card.dart';
 import 'offer_subchild_box.dart';
@@ -157,9 +158,11 @@ List<String> offerType2 = ["rejected"];
 
 class OfferConversationBuilder extends ConsumerStatefulWidget {
   final String conversationId;
+  final TextEditingController textController;
   const OfferConversationBuilder({
     super.key,
     required this.conversationId,
+    required this.textController,
   });
 
   @override
@@ -210,9 +213,9 @@ class OfferConversationBuilderState
           messagesProvider(conversationInfo!.id.toString()), (previous, next) {
         next.when(
           data: (chatLog) {
-            if (previous?.value != chatLog) {
-              ref.read(offerProvider.notifier).analysisChatLog(chatLog);
-            }
+            // if (previous?.value != chatLog) {
+            ref.read(offerProvider.notifier).analysisChatLog(chatLog);
+            // }
           },
           error: (e, trace) {},
           loading: () {},
@@ -222,7 +225,7 @@ class OfferConversationBuilderState
       final appUserInfo = ref.read(userProvider).value;
       final offerChildren = offerInfo.children;
       final isSender =
-          offerInfo.buyer?.username != conversationInfo!.recipient.username;
+          offerInfo.buyer?.username != conversationInfo!.recipient?.username;
       final amTheSeller = appUserInfo?.username != offerInfo.buyer?.username;
 
       return Column(
@@ -276,6 +279,11 @@ class OfferConversationBuilderState
                     );
                   },
                   separatorBuilder: (_, __) => addVerticalSpacing(10),
+                ),
+                addVerticalSpacing(15),
+                TypingHandlerBox(
+                  textController: widget.textController,
+                  conversationId: widget.conversationId.toString(),
                 ),
               ]),
             ),

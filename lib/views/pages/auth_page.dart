@@ -76,6 +76,13 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                     padding: const EdgeInsets.only(top: 5, bottom: 15),
                     tabAlignment: TabAlignment.fill,
                     onTap: (index) {
+                      // if (index != 3) {
+                      //   ref
+                      //       .read(generalChatRoomProvider.notifier)
+                      //       .disposeChannel();
+                      // } else {
+                      //   ref.read(generalChatRoomProvider);
+                      // }
                       switch (index) {
                         case 0:
                           if (tabRouter.activeIndex == index) {

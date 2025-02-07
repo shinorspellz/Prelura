@@ -75,11 +75,13 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
                 controller: controller,
               ),
               Spacer(),
-              AppButton(
-                  bgColor: Theme.of(context).scaffoldBackgroundColor,
-                  borderColor: PreluraColors.primaryColor,
-                  width: MediaQuery.sizeOf(context).width,
-                  text: "Resend activation email",
+              GestureDetector(
+                  child: Text("Resend activation email",
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: getDefaultSize(),
+                        color: PreluraColors.primaryColor,
+                      )),
                   onTap: () async {
                     await ref
                         .read(authProvider.notifier)
