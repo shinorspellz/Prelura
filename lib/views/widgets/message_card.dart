@@ -93,7 +93,17 @@ class MessageCard extends ConsumerWidget {
                       style: const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ]),
-                  if (model.lastMessage?.text != null) ...[
+                  if (model.isTyping ?? false) ...[
+                    Text(
+                      "Typing...",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(fontWeight: FontWeight.w400),
+                    )
+                  ] else if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
                     if (model.lastMessage?.imageUrls.isNotEmpty) ...[
                       Row(children: [
