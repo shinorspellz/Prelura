@@ -71,6 +71,8 @@ class _MessagesNotifier
     ref.onDispose(() => socketChannel?.close());
     ref.onDispose(() => socketChannel = null);
 
+    if (arg.isEmpty) return;
+
     socketChannel = SocketChannel(
         'wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
 

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/controller/refresh_provider.dart';
 import 'package:prelura_app/core/notification_service.dart';
@@ -77,13 +76,13 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                     padding: const EdgeInsets.only(top: 5, bottom: 15),
                     tabAlignment: TabAlignment.fill,
                     onTap: (index) {
-                      if (index != 3) {
-                        ref
-                            .read(generalChatRoomProvider.notifier)
-                            .disposeChannel();
-                      } else {
-                        ref.invalidate(generalChatRoomProvider);
-                      }
+                      // if (index != 3) {
+                      //   ref
+                      //       .read(generalChatRoomProvider.notifier)
+                      //       .disposeChannel();
+                      // } else {
+                      //   ref.read(generalChatRoomProvider);
+                      // }
                       switch (index) {
                         case 0:
                           if (tabRouter.activeIndex == index) {
