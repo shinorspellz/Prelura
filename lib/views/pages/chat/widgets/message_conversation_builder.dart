@@ -96,6 +96,8 @@ class _MessageConversationBuilderState
   // Build the message row with message bubbles and profile picture
   Widget _buildMessageRow(MessageModel chatInfo, bool isMe) {
     final canShowImage = MessageHelper.canShowImage(chatInfo);
+    double imageSize =
+        (widget.avatar == null || (widget.avatar?.isEmpty ?? true)) ? 21.5 : 25;
     // final messageType = MessageHelper.getMessageType(chatInfo);
     return Padding(
         padding: EdgeInsets.only(
@@ -115,8 +117,8 @@ class _MessageConversationBuilderState
                     ),
                     child: ProfilePictureWidget(
                       profilePicture: widget.avatar,
-                      height: 25,
-                      width: 25,
+                      height: imageSize,
+                      width: imageSize,
                       username: chatInfo.sender.username,
                     ))
               else if (_listViewLeftPosition == 0)
@@ -134,8 +136,6 @@ class _MessageConversationBuilderState
 
   // Message bubble for different message types
   Widget _buildMessageBubble(MessageModel chatInfo, bool isMe) {
-    // final messageType = MessageHelper.getMessageType(chatInfo);
-    // final myNotifier = ref.watch(messagesNotifierProvider.notifier);
     return VisibilityDetector(
       key: Key(chatInfo.id.toString()),
       onVisibilityChanged: (visibilityInfo) {
@@ -212,18 +212,6 @@ class _MessageConversationBuilderState
           );
         }
         MessageHelper.messages = chatList;
-        // Scroll to bottom on first load
-        // if (isFirstTime) {
-        //   WidgetsBinding.instance.addPostFrameCallback((_) {
-        //     widget.scrollController.animateTo(
-        //       widget.scrollController.position.minScrollExtent,
-        //       duration: const Duration(milliseconds: 200),
-        //       curve: Curves.linear,
-        //     );
-        //   });
-        //   isFirstTime = false;
-        // }
-        // log("::::: The bottomHeight:: ${MediaQuery.of(context).viewPadding.bottom}");
         return GestureDetector(
           onHorizontalDragUpdate: (details) => _onHorizontalDragUpdate(details),
           onHorizontalDragEnd: _onHorizontalDragEnd,
@@ -270,12 +258,7 @@ class _MessageConversationBuilderState
                 final isMe = chatInfo.sender.username == currentUser?.username;
                 return _buildMessageRow(chatInfo, isMe);
               },
-            )
-            //     .paddingOnly(
-            //   left: 10,
-            //   right: 10,
-            // )
-            ,
+            ),
             addVerticalSpacing(15),
             // TypingHandlerBox(
             //   textController: widget.textController,
@@ -320,29 +303,32 @@ class MessageImageBuilder extends StatelessWidget {
         ? jsonDecode(chatInfo.imageUrls[0])["url"]
         : chatInfo.imageUrls[0]['url'];
 
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => FullScreenImage(
-              imageUrl: [
-                ProductBanners(
-                  url: imagePath,
-                  thumbnail: '',
-                ),
-              ],
-              initialIndex: 0,
-              isLocal: false,
+    return Padding(
+      padding: const EdgeInsets.only(right: 12),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => FullScreenImage(
+                imageUrl: [
+                  ProductBanners(
+                    url: imagePath,
+                    thumbnail: '',
+                  ),
+                ],
+                initialIndex: 0,
+                isLocal: false,
+              ),
             ),
+          );
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: ImageBuilder(
+            height: 200,
+            width: 70.w,
+            imageUrl: imagePath,
           ),
-        );
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: ImageBuilder(
-          height: 200,
-          width: 70.w,
-          imageUrl: imagePath,
         ),
       ),
     );
