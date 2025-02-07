@@ -76,7 +76,7 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
                                 ),
                               ),
                               child: Text(
-                                "${paymentMethod.cardBrand} Card ending in ${paymentMethod.last4Digits}",
+                                "${paymentMethod.cardBrand} card ending in ${paymentMethod.last4Digits}",
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
