@@ -144,8 +144,13 @@ class _SubCategoryScreenState extends ConsumerState<NewSubCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const order = ["Clothing", "Accessories", "Shoes"];
     final categoryState = ref.watch(categoryNotifierProvider);
     final subCategories = categoryState.categoriesLog[widget.parentId] ?? [];
+
+    final sortedCategories = List.of(subCategories)
+      ..sort((a, b) =>
+          order.indexOf(a.name ?? "").compareTo(order.indexOf(b.name ?? "")));
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -165,7 +170,7 @@ class _SubCategoryScreenState extends ConsumerState<NewSubCategoryScreen> {
           else if (isSearching && filter.isNotEmpty)
             buildCategoryList(filter)
           else if (!isSearching && subCategories.isNotEmpty)
-            buildCategoryList(subCategories)
+            buildCategoryList(sortedCategories)
           else
             const Expanded(
                 child: Center(child: Text("No Sub Categories Found"))),

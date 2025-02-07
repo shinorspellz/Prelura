@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 
 import 'colors.dart';
+import 'utils.dart';
 
 class HighlightUserName extends StatelessWidget {
   final String username;
@@ -11,14 +12,15 @@ class HighlightUserName extends StatelessWidget {
   final FontWeight? weight;
   final Color? highlightColor;
 
-  const HighlightUserName(
-      {super.key,
-      required this.username,
-      required this.message,
-      required this.isRead,
-      this.textSize,
-      this.weight,
-      this.highlightColor});
+  HighlightUserName({
+    super.key,
+    required this.username,
+    required this.message,
+    required this.isRead,
+    double? textSize,
+    this.weight,
+    this.highlightColor,
+  }) : textSize = textSize ?? getDefaultSize();
 
   @override
   Widget build(BuildContext context) {

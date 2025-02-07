@@ -257,19 +257,30 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 style: context.textTheme.bodyMedium?.copyWith(
                                   fontSize: getDefaultSize(),
                                   fontWeight: FontWeight.w500,
-                                  color: PreluraColors.error.withOpacity(0.7),
+                                  color: context.isDarkMode
+                                      ? PreluraColors.error.withOpacity(0.9)
+                                      : PreluraColors.error.withOpacity(0.7),
                                 ),
                               ),
-                              PreluraButtonWithLoader(
-                                  borderColor: Colors.transparent,
-                                  buttonColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  onPressed: () {
+                              GestureDetector(
+                                  onTap: () {
                                     context.router.push(VerifyUserRoute(
                                         inAppVerification: true,
                                         email: user.email ?? ""));
                                   },
-                                  buttonTitle: "Activate")
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 8),
+                                    color:
+                                        context.theme.scaffoldBackgroundColor,
+                                    child: Text("Activate",
+                                        style: context.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getDefaultSize(),
+                                          color: PreluraColors.primaryColor,
+                                        )),
+                                  ))
                             ])),
                   Stack(clipBehavior: Clip.none, children: [
                     // if (widget.username != null)

@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
 import '../../../../controller/product/brands_provider.dart';
@@ -470,7 +472,8 @@ void ShowFilteredProductFilterModal(
 
                               Navigator.pop(context);
                             },
-                            title: e.replaceAll("_", " "),
+                            title:
+                                e.replaceAll("_", " ").capitalizeAndLowercase(),
                           ))
                       .toList(),
                 ),

@@ -15,6 +15,8 @@ import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
+import 'red_dot.dart';
+
 class MessageCard extends ConsumerWidget {
   const MessageCard({
     super.key,
@@ -73,94 +75,110 @@ class MessageCard extends ConsumerWidget {
             ),
             const SizedBox(width: 15),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  Row(children: [
-                    Expanded(
-                      child: Text(
-                        model.recipient.username,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    Text(
-                      formatChatTime(model.lastModified),
-                      style: const TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                  ]),
-                  if (model.lastMessage?.text != null) ...[
-                    // const SizedBox(height: 5),
-                    if (model.lastMessage?.imageUrls.isNotEmpty) ...[
-                      Row(children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(2),
-                          child: SizedBox(
-                            height: 26,
-                            width: 23,
-                            child: CachedNetworkImage(
-                              errorWidget: (context, url, error) => Container(
-                                color: PreluraColors.grey,
-                              ),
-                              imageUrl: jsonDecode(
-                                  model.lastMessage?.imageUrls[0])["url"],
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) {
-                                return ShimmerBox(
-                                  height: 26,
-                                  width: 23,
-                                );
-                              },
-                              fadeInDuration: Duration.zero,
-                              fadeOutDuration: Duration.zero,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(children: [
+                          Expanded(
+                            child: Text(
+                              model.recipient.username,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.w600),
                             ),
                           ),
-                        ),
-                        addHorizontalSpacing(5),
-                        Text(
-                          model.lastMessage?.sender.username == user?.username
-                              ? "You sent a picture"
-                              : "${model.lastMessage?.sender.username} sent a picture",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(fontWeight: FontWeight.w400),
-                        ),
-                      ])
-                    ] else if (isLastMessageAnOffer) ...[
-                      addVerticalSpacing(5),
-                      BuildOfferRow(
-                        text: model.lastMessage!.text,
-                        recipient: model.recipient.username,
-                        offerInfo: model.offer!,
-                      )
-                    ] else
-                      Text(
-                        model.lastMessage!.text,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontWeight: FontWeight.w400),
-                      ),
-                  ]
+                          Text(
+                            formatChatTime(model.lastModified),
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 12),
+                          ),
+                        ]),
+                        if (model.lastMessage?.text != null) ...[
+                          // const SizedBox(height: 5),
+                          if (model.lastMessage?.imageUrls.isNotEmpty) ...[
+                            Row(children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(2),
+                                child: SizedBox(
+                                  height: 26,
+                                  width: 23,
+                                  child: CachedNetworkImage(
+                                    errorWidget: (context, url, error) =>
+                                        Container(
+                                      color: PreluraColors.grey,
+                                    ),
+                                    imageUrl: jsonDecode(
+                                        model.lastMessage?.imageUrls[0])["url"],
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) {
+                                      return ShimmerBox(
+                                        height: 26,
+                                        width: 23,
+                                      );
+                                    },
+                                    fadeInDuration: Duration.zero,
+                                    fadeOutDuration: Duration.zero,
+                                  ),
+                                ),
+                              ),
+                              addHorizontalSpacing(5),
+                              Text(
+                                model.lastMessage?.sender.username ==
+                                        user?.username
+                                    ? "You sent a picture"
+                                    : "${model.lastMessage?.sender.username} sent a picture",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(fontWeight: FontWeight.w400),
+                              ),
+                            ])
+                          ] else if (isLastMessageAnOffer) ...[
+                            addVerticalSpacing(5),
+                            BuildOfferRow(
+                              text: model.lastMessage!.text,
+                              recipient: model.recipient.username,
+                              offerInfo: model.offer!,
+                            )
+                          ] else
+                            Text(
+                              model.lastMessage!.text,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(fontWeight: FontWeight.w400),
+                            ),
+                        ]
 
-                  // const SizedBox(height: 5),
-                  // ClipRRect(
-                  //   borderRadius: BorderRadius.circular(6),
-                  //   child: Image.asset(
-                  //     itemImageUrl,
-                  //     width: 40,
-                  //     height: 40,
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
+                        // const SizedBox(height: 5),
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(6),
+                        //   child: Image.asset(
+                        //     itemImageUrl,
+                        //     width: 40,
+                        //     height: 40,
+                        //     fit: BoxFit.cover,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                  if (model.unreadMessagesCount > 0)
+                    Positioned(
+                      top: -10,
+                      right: 0,
+                      child: RedDot(),
+                    )
                 ],
               ),
             ),
