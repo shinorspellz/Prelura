@@ -138,7 +138,7 @@ class _MessagesNotifier
     } else {
       log("From the cache fetching::: 2");
       // fetchPages = [];
-      var response = await _getMessages(id: arg, pageNumber: _currentPage);
+      var response = await getMessages(id: arg, pageNumber: _currentPage);
       state = AsyncData(response);
       _cacheMessages();
     }
@@ -147,7 +147,7 @@ class _MessagesNotifier
   Future<void> postMessageFetch(int id) async {
     // fetchPages = [];
     List<MessageModel> response =
-        await _getMessages(id: id.toString(), pageNumber: 0);
+        await getMessages(id: id.toString(), pageNumber: 0);
     if (response.isNotEmpty) {
       ref
           .read(messageCacheProvider.notifier)
@@ -183,7 +183,7 @@ class _MessagesNotifier
   }
 
   /// Retrieves the list of messages via api
-  Future<List<MessageModel>> _getMessages(
+  Future<List<MessageModel>> getMessages(
       {required String id, int? pageNumber}) async {
     log(":::::You called the get messages ::::");
     final result = await _repo.getMessages(
@@ -211,7 +211,7 @@ class _MessagesNotifier
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _messagesTotal;
 
     if (canLoadMore) {
-      await _getMessages(
+      await getMessages(
         id: _conversationId!,
         pageNumber: _currentPage + 1,
       );

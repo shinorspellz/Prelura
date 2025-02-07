@@ -34,6 +34,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
     _tabController = TabController(length: 2, vsync: this);
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
       (_) {
+        ref.refresh(generalChatRoomProvider);
         ref.refresh(messageCacheProvider);
       },
     );

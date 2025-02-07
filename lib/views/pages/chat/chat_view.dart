@@ -47,6 +47,9 @@ import '../../widgets/app_bar.dart';
 final inChatRoom = StateProvider(
   (_) => false,
 );
+final currentChatRoomId = StateProvider<int?>(
+  (_) => null,
+);
 
 @RoutePage()
 class ChatScreen extends ConsumerStatefulWidget {
@@ -72,6 +75,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   void initState() {
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       ref.read(inChatRoom.notifier).state = true;
+      ref.read(currentChatRoomId.notifier).state = int.parse(widget.id);
     });
 
     super.initState();
@@ -83,6 +87,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       HelperFunction.genRef!.read(inChatRoom.notifier).state = false;
       HelperFunction.genRef!.invalidate(offerProvider);
       HelperFunction.genRef!.invalidate(messageImageProvider);
+      HelperFunction.genRef!.invalidate(currentChatRoomId);
     });
     super.dispose();
   }

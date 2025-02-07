@@ -27,6 +27,7 @@ mixin _$ConversationModel {
   DateTime get lastModified => throw _privateConstructorUsedError;
   int get unreadMessagesCount => throw _privateConstructorUsedError;
   UserModel get recipient => throw _privateConstructorUsedError;
+  bool? get isTyping => throw _privateConstructorUsedError;
   OfferInfo? get offer => throw _privateConstructorUsedError;
   MessageModel? get lastMessage => throw _privateConstructorUsedError;
 
@@ -54,6 +55,7 @@ abstract class $ConversationModelCopyWith<$Res> {
       DateTime lastModified,
       int unreadMessagesCount,
       UserModel recipient,
+      bool? isTyping,
       OfferInfo? offer,
       MessageModel? lastMessage});
 
@@ -83,6 +85,7 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
     Object? lastModified = null,
     Object? unreadMessagesCount = null,
     Object? recipient = null,
+    Object? isTyping = freezed,
     Object? offer = freezed,
     Object? lastMessage = freezed,
   }) {
@@ -115,6 +118,10 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
           ? _value.recipient
           : recipient // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      isTyping: freezed == isTyping
+          ? _value.isTyping
+          : isTyping // ignore: cast_nullable_to_non_nullable
+              as bool?,
       offer: freezed == offer
           ? _value.offer
           : offer // ignore: cast_nullable_to_non_nullable
@@ -167,6 +174,7 @@ abstract class _$$ConversationModelImplCopyWith<$Res>
       DateTime lastModified,
       int unreadMessagesCount,
       UserModel recipient,
+      bool? isTyping,
       OfferInfo? offer,
       MessageModel? lastMessage});
 
@@ -196,6 +204,7 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
     Object? lastModified = null,
     Object? unreadMessagesCount = null,
     Object? recipient = null,
+    Object? isTyping = freezed,
     Object? offer = freezed,
     Object? lastMessage = freezed,
   }) {
@@ -228,6 +237,10 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
           ? _value.recipient
           : recipient // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      isTyping: freezed == isTyping
+          ? _value.isTyping
+          : isTyping // ignore: cast_nullable_to_non_nullable
+              as bool?,
       offer: freezed == offer
           ? _value.offer
           : offer // ignore: cast_nullable_to_non_nullable
@@ -251,6 +264,7 @@ class _$ConversationModelImpl implements _ConversationModel {
       required this.lastModified,
       required this.unreadMessagesCount,
       required this.recipient,
+      this.isTyping,
       this.offer,
       this.lastMessage});
 
@@ -272,13 +286,15 @@ class _$ConversationModelImpl implements _ConversationModel {
   @override
   final UserModel recipient;
   @override
+  final bool? isTyping;
+  @override
   final OfferInfo? offer;
   @override
   final MessageModel? lastMessage;
 
   @override
   String toString() {
-    return 'ConversationModel(id: $id, name: $name, disableResponse: $disableResponse, createdAt: $createdAt, lastModified: $lastModified, unreadMessagesCount: $unreadMessagesCount, recipient: $recipient, offer: $offer, lastMessage: $lastMessage)';
+    return 'ConversationModel(id: $id, name: $name, disableResponse: $disableResponse, createdAt: $createdAt, lastModified: $lastModified, unreadMessagesCount: $unreadMessagesCount, recipient: $recipient, isTyping: $isTyping, offer: $offer, lastMessage: $lastMessage)';
   }
 
   @override
@@ -298,6 +314,8 @@ class _$ConversationModelImpl implements _ConversationModel {
                 other.unreadMessagesCount == unreadMessagesCount) &&
             (identical(other.recipient, recipient) ||
                 other.recipient == recipient) &&
+            (identical(other.isTyping, isTyping) ||
+                other.isTyping == isTyping) &&
             (identical(other.offer, offer) || other.offer == offer) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage));
@@ -314,6 +332,7 @@ class _$ConversationModelImpl implements _ConversationModel {
       lastModified,
       unreadMessagesCount,
       recipient,
+      isTyping,
       offer,
       lastMessage);
 
@@ -343,6 +362,7 @@ abstract class _ConversationModel implements ConversationModel {
       required final DateTime lastModified,
       required final int unreadMessagesCount,
       required final UserModel recipient,
+      final bool? isTyping,
       final OfferInfo? offer,
       final MessageModel? lastMessage}) = _$ConversationModelImpl;
 
@@ -363,6 +383,8 @@ abstract class _ConversationModel implements ConversationModel {
   int get unreadMessagesCount;
   @override
   UserModel get recipient;
+  @override
+  bool? get isTyping;
   @override
   OfferInfo? get offer;
   @override
