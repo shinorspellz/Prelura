@@ -108,7 +108,8 @@ class MessageCard extends ConsumerWidget {
                     )
                   ] else if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
-                    if (model.lastMessage?.imageUrls.isNotEmpty) ...[
+                    if (model.lastMessage?.imageUrls.isNotEmpty &&
+                        !isLastMessageAnOffer) ...[
                       Row(children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(2),
@@ -156,6 +157,7 @@ class MessageCard extends ConsumerWidget {
                         text: model.lastMessage!.text,
                         recipient: model.recipient?.username ?? "",
                         offerInfo: model.offer!,
+                        lastImageUrl: model.lastMessage?.imageUrls,
                       )
                     ] else
                       Text(
@@ -196,11 +198,13 @@ class BuildOfferRow extends ConsumerWidget {
   final String text;
   final OfferInfo offerInfo;
   final String recipient;
+  final dynamic lastImageUrl;
 
   const BuildOfferRow({
     super.key,
     required this.text,
     required this.recipient,
+    this.lastImageUrl,
     required this.offerInfo,
   });
 
@@ -231,7 +235,7 @@ class BuildOfferRow extends ConsumerWidget {
       ),
       addHorizontalSpacing(5),
       Text(
-        _buildOfferMessage(),
+        _buildOfferMessage(lastImageUrl != null),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -243,8 +247,8 @@ class BuildOfferRow extends ConsumerWidget {
     ]);
   }
 
-  String _buildOfferMessage() {
-    if (!text.contains("offer_id")) {
+  String _buildOfferMessage(bool isImage) {
+    if (!text.contains("offer_id") && !isImage) {
       return text;
     }
 
