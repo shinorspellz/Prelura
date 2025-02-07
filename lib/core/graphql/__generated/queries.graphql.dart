@@ -270,6 +270,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'lastSeen'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'location'),
             alias: null,
             arguments: [],
@@ -508,6 +515,7 @@ class Query$ViewMe$viewMe {
     this.shippingAddress,
     this.listing,
     this.isVerified,
+    this.lastSeen,
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
@@ -534,6 +542,7 @@ class Query$ViewMe$viewMe {
     final l$shippingAddress = json['shippingAddress'];
     final l$listing = json['listing'];
     final l$isVerified = json['isVerified'];
+    final l$lastSeen = json['lastSeen'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
@@ -561,6 +570,8 @@ class Query$ViewMe$viewMe {
       shippingAddress: (l$shippingAddress as String?),
       listing: (l$listing as int?),
       isVerified: (l$isVerified as bool?),
+      lastSeen:
+          l$lastSeen == null ? null : DateTime.parse((l$lastSeen as String)),
       location: l$location == null
           ? null
           : Query$ViewMe$viewMe$location.fromJson(
@@ -610,6 +621,8 @@ class Query$ViewMe$viewMe {
 
   final bool? isVerified;
 
+  final DateTime? lastSeen;
+
   final Query$ViewMe$viewMe$location? location;
 
   final int? noOfFollowing;
@@ -658,6 +671,8 @@ class Query$ViewMe$viewMe {
     _resultData['listing'] = l$listing;
     final l$isVerified = isVerified;
     _resultData['isVerified'] = l$isVerified;
+    final l$lastSeen = lastSeen;
+    _resultData['lastSeen'] = l$lastSeen?.toIso8601String();
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
     final l$noOfFollowing = noOfFollowing;
@@ -692,6 +707,7 @@ class Query$ViewMe$viewMe {
     final l$shippingAddress = shippingAddress;
     final l$listing = listing;
     final l$isVerified = isVerified;
+    final l$lastSeen = lastSeen;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
@@ -716,6 +732,7 @@ class Query$ViewMe$viewMe {
       l$shippingAddress,
       l$listing,
       l$isVerified,
+      l$lastSeen,
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
@@ -818,6 +835,11 @@ class Query$ViewMe$viewMe {
     if (l$isVerified != lOther$isVerified) {
       return false;
     }
+    final l$lastSeen = lastSeen;
+    final lOther$lastSeen = other.lastSeen;
+    if (l$lastSeen != lOther$lastSeen) {
+      return false;
+    }
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
@@ -887,6 +909,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     String? shippingAddress,
     int? listing,
     bool? isVerified,
+    DateTime? lastSeen,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -929,6 +952,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? shippingAddress = _undefined,
     Object? listing = _undefined,
     Object? isVerified = _undefined,
+    Object? lastSeen = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
@@ -973,6 +997,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
         isVerified: isVerified == _undefined
             ? _instance.isVerified
             : (isVerified as bool?),
+        lastSeen: lastSeen == _undefined
+            ? _instance.lastSeen
+            : (lastSeen as DateTime?),
         location: location == _undefined
             ? _instance.location
             : (location as Query$ViewMe$viewMe$location?),
@@ -1034,6 +1061,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     String? shippingAddress,
     int? listing,
     bool? isVerified,
+    DateTime? lastSeen,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -2836,6 +2864,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'lastSeen'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'isMultibuyEnabled'),
             alias: null,
             arguments: [],
@@ -3107,6 +3142,7 @@ class Query$GetUser$getUser {
     this.lastLogin,
     this.fullName,
     this.listing,
+    this.lastSeen,
     this.isMultibuyEnabled,
     this.shippingAddress,
     this.location,
@@ -3133,6 +3169,7 @@ class Query$GetUser$getUser {
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
+    final l$lastSeen = json['lastSeen'];
     final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$shippingAddress = json['shippingAddress'];
     final l$location = json['location'];
@@ -3160,6 +3197,8 @@ class Query$GetUser$getUser {
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
       listing: (l$listing as int?),
+      lastSeen:
+          l$lastSeen == null ? null : DateTime.parse((l$lastSeen as String)),
       isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       shippingAddress: (l$shippingAddress as String?),
       location: l$location == null
@@ -3205,6 +3244,8 @@ class Query$GetUser$getUser {
   final String? fullName;
 
   final int? listing;
+
+  final DateTime? lastSeen;
 
   final bool? isMultibuyEnabled;
 
@@ -3254,6 +3295,8 @@ class Query$GetUser$getUser {
     _resultData['fullName'] = l$fullName;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
+    final l$lastSeen = lastSeen;
+    _resultData['lastSeen'] = l$lastSeen?.toIso8601String();
     final l$isMultibuyEnabled = isMultibuyEnabled;
     _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
     final l$shippingAddress = shippingAddress;
@@ -3291,6 +3334,7 @@ class Query$GetUser$getUser {
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
     final l$listing = listing;
+    final l$lastSeen = lastSeen;
     final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$shippingAddress = shippingAddress;
     final l$location = location;
@@ -3315,6 +3359,7 @@ class Query$GetUser$getUser {
       l$lastLogin,
       l$fullName,
       l$listing,
+      l$lastSeen,
       l$isMultibuyEnabled,
       l$shippingAddress,
       l$location,
@@ -3405,6 +3450,11 @@ class Query$GetUser$getUser {
     if (l$listing != lOther$listing) {
       return false;
     }
+    final l$lastSeen = lastSeen;
+    final lOther$lastSeen = other.lastSeen;
+    if (l$lastSeen != lOther$lastSeen) {
+      return false;
+    }
     final l$isMultibuyEnabled = isMultibuyEnabled;
     final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
     if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
@@ -3486,6 +3536,7 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    DateTime? lastSeen,
     bool? isMultibuyEnabled,
     String? shippingAddress,
     Query$GetUser$getUser$location? location,
@@ -3528,6 +3579,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
     Object? listing = _undefined,
+    Object? lastSeen = _undefined,
     Object? isMultibuyEnabled = _undefined,
     Object? shippingAddress = _undefined,
     Object? location = _undefined,
@@ -3566,6 +3618,9 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
+        lastSeen: lastSeen == _undefined
+            ? _instance.lastSeen
+            : (lastSeen as DateTime?),
         isMultibuyEnabled: isMultibuyEnabled == _undefined
             ? _instance.isMultibuyEnabled
             : (isMultibuyEnabled as bool?),
@@ -3633,6 +3688,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    DateTime? lastSeen,
     bool? isMultibuyEnabled,
     String? shippingAddress,
     Query$GetUser$getUser$location? location,

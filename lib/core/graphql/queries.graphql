@@ -17,6 +17,7 @@ query ViewMe {
     shippingAddress
     listing
     isVerified
+    lastSeen
     location {
       latitude
       longitude
@@ -70,6 +71,7 @@ query GetUser($username: String!) {
     lastLogin
     fullName
     listing
+    lastSeen
     isMultibuyEnabled
     shippingAddress
     location {

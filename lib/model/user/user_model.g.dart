@@ -40,6 +40,9 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       isVacationMode: json['isVacationMode'] as bool?,
       isFollowing: json['isFollowing'] as bool?,
       noOfFollowers: (json['noOfFollowers'] as num?)?.toInt(),
+      lastSeen: json['lastSeen'] == null
+          ? null
+          : DateTime.parse(json['lastSeen'] as String),
       isVerified: json['isVerified'] as bool?,
       shippingAddress: _shippingAddressFromJson(json['shippingAddress']),
       isMultibuyEnabled: json['isMultibuyEnabled'] as bool?,
@@ -69,6 +72,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'isVacationMode': instance.isVacationMode,
       'isFollowing': instance.isFollowing,
       'noOfFollowers': instance.noOfFollowers,
+      'lastSeen': instance.lastSeen?.toIso8601String(),
       'isVerified': instance.isVerified,
       'shippingAddress': _shippingAddressToJson(instance.shippingAddress),
       'isMultibuyEnabled': instance.isMultibuyEnabled,
