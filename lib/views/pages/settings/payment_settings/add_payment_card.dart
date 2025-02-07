@@ -68,7 +68,8 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 CardFormField(
                   controller: controller,
                   enablePostalCode: true,
-                  countryCode: "US",
+                  dangerouslyGetFullCardDetails: true,
+                  countryCode: "GB",
                   onCardChanged: (details) {},
                   onFocus: (CardFieldName? field) {
                     setState(() {
