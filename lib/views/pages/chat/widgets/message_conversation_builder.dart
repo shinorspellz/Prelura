@@ -123,10 +123,12 @@ class _MessageConversationBuilderState
                 addHorizontalSpacing(isMe ? 0 : 47)
               else
                 SizedBox.shrink(),
-              Stack(children: [
-                _buildMessageTimestamp(chatInfo),
-                _buildMessageBubble(chatInfo, isMe),
-              ]),
+              Expanded(
+                child: Stack(children: [
+                  _buildMessageTimestamp(chatInfo),
+                  _buildMessageBubble(chatInfo, isMe),
+                ]),
+              ),
             ]));
   }
 
