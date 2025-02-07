@@ -1585,32 +1585,38 @@ class _CopyWithStubImpl$Mutation$Register$register<TRes>
 }
 
 class Variables$Mutation$Logout {
-  factory Variables$Mutation$Logout({String? refreshToken}) =>
+  factory Variables$Mutation$Logout({
+    required String refreshToken,
+    required String fcmToken,
+  }) =>
       Variables$Mutation$Logout._({
-        if (refreshToken != null) r'refreshToken': refreshToken,
+        r'refreshToken': refreshToken,
+        r'fcmToken': fcmToken,
       });
 
   Variables$Mutation$Logout._(this._$data);
 
   factory Variables$Mutation$Logout.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('refreshToken')) {
-      final l$refreshToken = data['refreshToken'];
-      result$data['refreshToken'] = (l$refreshToken as String?);
-    }
+    final l$refreshToken = data['refreshToken'];
+    result$data['refreshToken'] = (l$refreshToken as String);
+    final l$fcmToken = data['fcmToken'];
+    result$data['fcmToken'] = (l$fcmToken as String);
     return Variables$Mutation$Logout._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get refreshToken => (_$data['refreshToken'] as String?);
+  String get refreshToken => (_$data['refreshToken'] as String);
+
+  String get fcmToken => (_$data['fcmToken'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('refreshToken')) {
-      final l$refreshToken = refreshToken;
-      result$data['refreshToken'] = l$refreshToken;
-    }
+    final l$refreshToken = refreshToken;
+    result$data['refreshToken'] = l$refreshToken;
+    final l$fcmToken = fcmToken;
+    result$data['fcmToken'] = l$fcmToken;
     return result$data;
   }
 
@@ -1631,11 +1637,12 @@ class Variables$Mutation$Logout {
     }
     final l$refreshToken = refreshToken;
     final lOther$refreshToken = other.refreshToken;
-    if (_$data.containsKey('refreshToken') !=
-        other._$data.containsKey('refreshToken')) {
+    if (l$refreshToken != lOther$refreshToken) {
       return false;
     }
-    if (l$refreshToken != lOther$refreshToken) {
+    final l$fcmToken = fcmToken;
+    final lOther$fcmToken = other.fcmToken;
+    if (l$fcmToken != lOther$fcmToken) {
       return false;
     }
     return true;
@@ -1644,8 +1651,11 @@ class Variables$Mutation$Logout {
   @override
   int get hashCode {
     final l$refreshToken = refreshToken;
-    return Object.hashAll(
-        [_$data.containsKey('refreshToken') ? l$refreshToken : const {}]);
+    final l$fcmToken = fcmToken;
+    return Object.hashAll([
+      l$refreshToken,
+      l$fcmToken,
+    ]);
   }
 }
 
@@ -1658,7 +1668,10 @@ abstract class CopyWith$Variables$Mutation$Logout<TRes> {
   factory CopyWith$Variables$Mutation$Logout.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$Logout;
 
-  TRes call({String? refreshToken});
+  TRes call({
+    String? refreshToken,
+    String? fcmToken,
+  });
 }
 
 class _CopyWithImpl$Variables$Mutation$Logout<TRes>
@@ -1674,11 +1687,16 @@ class _CopyWithImpl$Variables$Mutation$Logout<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? refreshToken = _undefined}) =>
+  TRes call({
+    Object? refreshToken = _undefined,
+    Object? fcmToken = _undefined,
+  }) =>
       _then(Variables$Mutation$Logout._({
         ..._instance._$data,
-        if (refreshToken != _undefined)
-          'refreshToken': (refreshToken as String?),
+        if (refreshToken != _undefined && refreshToken != null)
+          'refreshToken': (refreshToken as String),
+        if (fcmToken != _undefined && fcmToken != null)
+          'fcmToken': (fcmToken as String),
       }));
 }
 
@@ -1688,7 +1706,11 @@ class _CopyWithStubImpl$Variables$Mutation$Logout<TRes>
 
   TRes _res;
 
-  call({String? refreshToken}) => _res;
+  call({
+    String? refreshToken,
+    String? fcmToken,
+  }) =>
+      _res;
 }
 
 class Mutation$Logout {
@@ -1836,11 +1858,20 @@ const documentNodeMutationLogout = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'refreshToken')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
-          isNonNull: false,
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'fcmToken')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -1851,7 +1882,11 @@ const documentNodeMutationLogout = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'refreshToken'),
             value: VariableNode(name: NameNode(value: 'refreshToken')),
-          )
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'fcmToken'),
+            value: VariableNode(name: NameNode(value: 'fcmToken')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -1891,7 +1926,7 @@ typedef OnMutationCompleted$Mutation$Logout = FutureOr<void> Function(
 class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
   Options$Mutation$Logout({
     String? operationName,
-    Variables$Mutation$Logout? variables,
+    required Variables$Mutation$Logout variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1903,7 +1938,7 @@ class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1937,7 +1972,7 @@ class WatchOptions$Mutation$Logout
     extends graphql.WatchQueryOptions<Mutation$Logout> {
   WatchOptions$Mutation$Logout({
     String? operationName,
-    Variables$Mutation$Logout? variables,
+    required Variables$Mutation$Logout variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1949,7 +1984,7 @@ class WatchOptions$Mutation$Logout
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -1967,11 +2002,11 @@ class WatchOptions$Mutation$Logout
 
 extension ClientExtension$Mutation$Logout on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$Logout>> mutate$Logout(
-          [Options$Mutation$Logout? options]) async =>
-      await this.mutate(options ?? Options$Mutation$Logout());
+          Options$Mutation$Logout options) async =>
+      await this.mutate(options);
   graphql.ObservableQuery<Mutation$Logout> watchMutation$Logout(
-          [WatchOptions$Mutation$Logout? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$Logout());
+          WatchOptions$Mutation$Logout options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$Logout$logout {
@@ -33997,7 +34032,7 @@ class Mutation$resendActivationEmail$resendActivationEmail {
   Mutation$resendActivationEmail$resendActivationEmail({
     this.errors,
     this.success,
-    this.$__typename = 'ResendActivationEmail',
+    this.$__typename = 'CustomResendActivationEmail',
   });
 
   factory Mutation$resendActivationEmail$resendActivationEmail.fromJson(

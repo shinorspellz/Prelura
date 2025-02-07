@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
@@ -136,13 +137,16 @@ class AuthRepo {
   Future<void> logout() async {
     String token = _cacheBox.get("REFRESH_TOKEN");
     String token2 = _cacheBox.get("AUTH_TOKEN");
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
     log("The token is::: $token");
     log("The token is::: $token2");
+    log("The token is::: $fcmToken");
     try {
       await _client2.mutate$Logout(
         Options$Mutation$Logout(
             variables: Variables$Mutation$Logout(
           refreshToken: token,
+          fcmToken: fcmToken!,
         )),
       );
 

@@ -34,8 +34,8 @@ mutation Register(
   }
 }
 
-mutation Logout($refreshToken: String) {
-  logout(refreshToken: $refreshToken) {
+mutation Logout($refreshToken: String!, $fcmToken: String!) {
+  logout(refreshToken: $refreshToken, fcmToken: $fcmToken) {
     message
   }
 }
