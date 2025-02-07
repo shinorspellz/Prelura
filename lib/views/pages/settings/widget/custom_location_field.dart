@@ -30,6 +30,7 @@ class _CustomLocationFieldState extends State<CustomLocationField> {
       "input": query,
       "key": apiKey,
     });
+
     String? response = await NetworkUtility.fetchUrl(uri);
 
     if (response != null) {
@@ -37,12 +38,44 @@ class _CustomLocationFieldState extends State<CustomLocationField> {
           PlaceAutocompleteResponse.parseAutocompleteResult(response);
 
       if (result.predictions != null) {
-        setState(() {
-          placePredictions = result.predictions!;
-        });
+        if (widget.title != null && widget.title!.contains("Shipping")) {
+          // Filter out results containing postcodes (assuming postcodes are numeric and at least 4 digits long)
+          List<AutocompletePrediction> filteredPredictions = result.predictions!
+              .where(
+                  (p) => !RegExp(r'\b\d{4,}\b').hasMatch(p.description ?? ""))
+              .toList();
+
+          setState(() {
+            placePredictions = filteredPredictions;
+          });
+        } else {
+          setState(() {
+            placePredictions = result.predictions!;
+          });
+        }
       }
     }
   }
+
+  // void placeAutoComplete(String query) async {
+  //   Uri uri =
+  //       Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
+  //     "input": query,
+  //     "key": apiKey,
+  //   });
+  //   String? response = await NetworkUtility.fetchUrl(uri);
+  //
+  //   if (response != null) {
+  //     PlaceAutocompleteResponse result =
+  //         PlaceAutocompleteResponse.parseAutocompleteResult(response);
+  //
+  //     if (result.predictions != null) {
+  //       setState(() {
+  //         placePredictions = result.predictions!;
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
