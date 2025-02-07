@@ -213,9 +213,9 @@ class OfferConversationBuilderState
           messagesProvider(conversationInfo!.id.toString()), (previous, next) {
         next.when(
           data: (chatLog) {
-            if (previous?.value != chatLog) {
-              ref.read(offerProvider.notifier).analysisChatLog(chatLog);
-            }
+            // if (previous?.value != chatLog) {
+            ref.read(offerProvider.notifier).analysisChatLog(chatLog);
+            // }
           },
           error: (e, trace) {},
           loading: () {},
