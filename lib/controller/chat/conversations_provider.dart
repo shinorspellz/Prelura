@@ -154,7 +154,7 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
       state = AsyncData(updatedList);
     }
     if (conversation.id != chatRoomId) {
-      updateUserChatCache(conversation.id!);
+      updateUserChatCache(conversation.id!.toString());
     }
   }
 
@@ -223,6 +223,7 @@ class GeneralChatRoomNotifier extends StreamNotifier<List<ConversationModel>> {
           var data = ConversationsResponse.fromJson(newMessageData);
           if (data.conversations != null && data.conversations!.isNotEmpty) {}
           if (data.conversation != null) {
+            log("::::Entered the conversation last room ::: 1");
             genRoom.updateConversation(
               data.conversation!,
             );
