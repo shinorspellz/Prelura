@@ -44,36 +44,50 @@ class _ListOfContactsState extends State<ListOfContacts> {
       body: SafeArea(
         child: isLoading
             ? const Center(child: LoadingWidget())
-            : Scrollbar(
-                child: ListView.builder(
-                  controller: scrollController,
-                  itemCount:
-                      displayedContacts.length + (hasMoreContacts ? 1 : 0),
-                  itemBuilder: (context, index) {
-                    // Show loading indicator at the bottom when loading more
-                    if (index >= displayedContacts.length) {
-                      return const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Center(child: LoadingWidget()),
-                      );
-                    }
+            : contacts.isEmpty
+                ? Center(
+                    child: Text(
+                      "You do not have any contacts",
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color:
+                                Theme.of(context).textTheme.bodyMedium?.color,
+                          ),
+                    ),
+                  )
+                : Scrollbar(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      controller: scrollController,
+                      itemCount:
+                          displayedContacts.length + (hasMoreContacts ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        // Show loading indicator at the bottom when loading more
+                        if (index >= displayedContacts.length) {
+                          return const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(child: LoadingWidget()),
+                          );
+                        }
 
-                    final contact = displayedContacts[index];
-                    final phoneNumber = contact.phones.isNotEmpty
-                        ? contact.phones.first.number
-                        : null;
-                    final isSelected = selectedContacts.contains(phoneNumber);
-                    return PreluraCheckBox(
-                      isChecked: isSelected,
-                      onChanged: phoneNumber?.isNotEmpty == true
-                          ? (value) => toggleSelection(contact)
-                          : (value) {},
-                      title: contact.structuredName?.displayName ??
-                          contact.displayName,
-                    );
-                  },
-                ),
-              ),
+                        final contact = displayedContacts[index];
+                        final phoneNumber = contact.phones.isNotEmpty
+                            ? contact.phones.first.number
+                            : null;
+                        final isSelected =
+                            selectedContacts.contains(phoneNumber);
+                        return PreluraCheckBox(
+                          isChecked: isSelected,
+                          onChanged: phoneNumber?.isNotEmpty == true
+                              ? (value) => toggleSelection(contact)
+                              : (value) {},
+                          title: contact.structuredName?.displayName ??
+                              contact.displayName,
+                        );
+                      },
+                    ),
+                  ),
       ),
       bottomNavigationBar: selectedContacts.isEmpty
           ? Container(height: 0)
@@ -97,10 +111,13 @@ class _ListOfContactsState extends State<ListOfContacts> {
 
   _buildAppBar(ColorScheme colorScheme) {
     return PreluraAppBar(
-      leadingIcon: Container(),
-      centerTitle: true,
-      backgroundColor: colorScheme.surface,
-      elevation: 0,
+      leadingIcon: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Theme.of(context).iconTheme.color,
+        ),
+        onPressed: () => context.router.popForced(),
+      ),
       appbarTitle: "Contacts",
     );
   }
