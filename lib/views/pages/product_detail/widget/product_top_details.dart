@@ -291,12 +291,12 @@ class ProductTopDetails extends ConsumerWidget {
                       data: (conv) {
                         log('$conv');
                         final currentConv = conv.firstWhere((e) =>
-                            e.recipient.username == product.seller.username);
+                            e.recipient?.username == product.seller.username);
                         context.pushRoute(
                           ChatRoute(
-                            id: currentConv.id,
-                            username: currentConv.recipient.username,
-                            avatarUrl: currentConv.recipient.profilePictureUrl,
+                            id: currentConv.id!,
+                            username: currentConv.recipient?.username ?? "",
+                            avatarUrl: currentConv.recipient?.profilePictureUrl,
                             isOffer: false,
                           ),
                         );

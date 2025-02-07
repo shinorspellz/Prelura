@@ -171,7 +171,7 @@ class ChatsTab extends ConsumerWidget {
                       onPressed: (context) {
                         ref
                             .read(conversationProvider.notifier)
-                            .deleteConversation(conv.id);
+                            .deleteConversation(conv.id!);
                       },
                       backgroundColor: Color(0xFFFE4A49),
                       foregroundColor: Colors.white,

@@ -222,7 +222,7 @@ class OfferConversationBuilderState
       final appUserInfo = ref.read(userProvider).value;
       final offerChildren = offerInfo.children;
       final isSender =
-          offerInfo.buyer?.username != conversationInfo!.recipient.username;
+          offerInfo.buyer?.username != conversationInfo!.recipient?.username;
       final amTheSeller = appUserInfo?.username != offerInfo.buyer?.username;
 
       return Column(

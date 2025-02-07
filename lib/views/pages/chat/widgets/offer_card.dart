@@ -102,7 +102,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
           actionType: Enum$OfferActionEnum.COUNTER,
         );
     isSendingOffer = false;
-    ref.refresh(messagesProvider(widget.conversationInfo.id));
+    ref.refresh(messagesProvider(widget.conversationInfo.id!));
     setState(() {});
   }
 
@@ -113,7 +113,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
     await ref
         .read(offerProvider.notifier)
         .respondToOffer(context, actionType: actionType);
-    ref.refresh(messagesProvider(widget.conversationInfo.id));
+    ref.refresh(messagesProvider(widget.conversationInfo.id!));
     setLoading();
     setState(() {});
   }

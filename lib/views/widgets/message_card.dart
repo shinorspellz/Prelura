@@ -40,9 +40,9 @@ class MessageCard extends ConsumerWidget {
           );
         }
         context.router.push(ChatRoute(
-          id: model.id,
-          username: model.recipient.username,
-          avatarUrl: model.recipient.profilePictureUrl,
+          id: model.id!,
+          username: model.recipient?.username ?? "",
+          avatarUrl: model.recipient?.profilePictureUrl,
           isOffer: isLastMessageAnOffer,
         ));
       },
@@ -62,13 +62,14 @@ class MessageCard extends ConsumerWidget {
           children: [
             // User Avatar
             GestureDetector(
-              onTap: () => context.router.push(
-                  ProfileDetailsRoute(username: model.recipient.username)),
+              onTap: () => context.router.push(ProfileDetailsRoute(
+                username: model.recipient?.username ?? "",
+              )),
               child: ProfilePictureWidget(
                 height: 40,
                 width: 40,
-                profilePicture: model.recipient.profilePictureUrl,
-                username: model.recipient.username,
+                profilePicture: model.recipient?.profilePictureUrl,
+                username: model.recipient?.username,
               ),
             ),
             const SizedBox(width: 15),
@@ -80,7 +81,7 @@ class MessageCard extends ConsumerWidget {
                   Row(children: [
                     Expanded(
                       child: Text(
-                        model.recipient.username,
+                        model.recipient?.username ?? "",
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -88,7 +89,7 @@ class MessageCard extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      formatChatTime(model.lastModified),
+                      formatChatTime(model.lastModified!),
                       style: const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ]),
@@ -136,7 +137,7 @@ class MessageCard extends ConsumerWidget {
                       addVerticalSpacing(5),
                       BuildOfferRow(
                         text: model.lastMessage!.text,
-                        recipient: model.recipient.username,
+                        recipient: model.recipient?.username ?? "",
                         offerInfo: model.offer!,
                       )
                     ] else

@@ -154,7 +154,7 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
       state = AsyncData(updatedList);
     }
     if (conversation.id != chatRoomId) {
-      updateUserChatCache(conversation.id);
+      updateUserChatCache(conversation.id!);
     }
   }
 
@@ -174,8 +174,8 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
     log("::::This is the cache handling of a thing");
     if (conversations.isNotEmpty) {
       for (ConversationModel conversation in conversations) {
-        if (conversation.unreadMessagesCount > 0) {
-          updateUserChatCache(conversation.id);
+        if ((conversation.unreadMessagesCount ?? 0) > 0) {
+          updateUserChatCache(conversation.id!);
         }
       }
     }
