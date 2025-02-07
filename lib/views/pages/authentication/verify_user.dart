@@ -75,12 +75,12 @@ class _VerifyUserScreenState extends ConsumerState<VerifyUserScreen> {
                 controller: controller,
               ),
               Spacer(),
-              AppButton(
-                  bgColor: Theme.of(context).scaffoldBackgroundColor,
+              PreluraButtonWithLoader(
+                  buttonColor: Theme.of(context).scaffoldBackgroundColor,
                   borderColor: PreluraColors.primaryColor,
-                  width: MediaQuery.sizeOf(context).width,
-                  text: "Resend activation email",
-                  onTap: () async {
+                  butttonWidth: MediaQuery.sizeOf(context).width,
+                  buttonTitle: "Resend activation email",
+                  onPressed: () async {
                     await ref
                         .read(authProvider.notifier)
                         .resendActivationEmail(email: widget.email);

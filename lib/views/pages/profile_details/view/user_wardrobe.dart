@@ -260,16 +260,16 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   color: PreluraColors.error.withOpacity(0.7),
                                 ),
                               ),
-                              AppButton(
+                              PreluraButtonWithLoader(
                                   borderColor: Colors.transparent,
-                                  bgColor:
+                                  buttonColor:
                                       Theme.of(context).scaffoldBackgroundColor,
-                                  onTap: () {
+                                  onPressed: () {
                                     context.router.push(VerifyUserRoute(
                                         inAppVerification: true,
                                         email: user.email ?? ""));
                                   },
-                                  text: "Activate")
+                                  buttonTitle: "Activate")
                             ])),
                   Stack(clipBehavior: Clip.none, children: [
                     // if (widget.username != null)
@@ -380,7 +380,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildOtherInfo(context: context, user: user),
+                        _buildOtherInfo(
+                            context: context,
+                            user: user,
+                            isCurrentUser: isCurrentUser),
 
                         if (user.bio == null && isCurrentUser)
                           Padding(
@@ -1029,7 +1032,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   }
 
   Widget _buildOtherInfo(
-      {required BuildContext context, required UserModel user}) {
+      {required BuildContext context,
+      required UserModel user,
+      required bool isCurrentUser}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       margin: EdgeInsets.only(bottom: 8),
@@ -1054,8 +1059,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         5.verticalSpacing,
         _buildRow(
             svg: PreluraIcons.clock_circle_svg,
-            text:
-                "Last seen ${getUserLastSeen(user.lastSeen != null ? user.lastSeen.toString() : "")}"),
+            text: isCurrentUser
+                ? "online"
+                : "Last seen ${getUserLastSeen(user.lastSeen != null ? user.lastSeen.toString() : "")}"),
       ]),
     );
   }
