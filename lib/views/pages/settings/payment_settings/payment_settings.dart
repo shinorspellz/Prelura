@@ -152,10 +152,13 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
       ref.read(paymentMethodNotifierProvider).whenOrNull(error: (e, _) {
         return context.alert('An error occurred: $e');
       }, data: (_) async {
-        await ref.refresh(paymentMethodProvider.future);
+        await ref.refresh(paymentMethodProvider.future).then((value) {
+          if (mounted) {
+            context.alert("Payment method deleted successfully");
+            context.router.popForced();
+          }
+        });
         // ref.refresh(paymentMethodNotifierProvider);
-        context.alert("Payment method deleted successfully");
-        context.router.popForced();
       });
     } on SocketException {
       if (mounted) context.alert("Please connect to the internet");

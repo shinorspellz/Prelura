@@ -443,7 +443,7 @@ class UserRepo {
         throw 'An error occurred';
       }
 
-      log(response.parsedData.toString(), name: "Parsed Data");
+      // log(response.parsedData.toString(), name: "Parsed Data");
 
       if (response.parsedData?.userPaymentMethods == null) {
         log('Null response', name: 'User Payment Method');

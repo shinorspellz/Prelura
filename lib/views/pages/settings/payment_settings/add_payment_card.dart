@@ -131,14 +131,14 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
         data: (_) async {
           context.alert("Payment Method saved");
 
-          await ref.refresh(paymentMethodProvider.future);
-
-          if (mounted) {
-            Navigator.of(context)
-              ..pop()
-              ..pop();
-            context.router.push(PaymentSettings());
-          }
+          await ref.refresh(paymentMethodProvider.future).then((value) {
+            if (mounted) {
+              Navigator.of(context)
+                ..pop()
+                ..pop();
+              context.router.push(PaymentSettings());
+            }
+          });
         },
       );
     } on SocketException {
