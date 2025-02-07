@@ -161,6 +161,8 @@ class AuthRepo {
       await _cacheBox.delete('REFRESH_TOKEN');
       await _cacheBox.delete('tokenTime');
       await _cacheBox.delete('USERNAME');
+      await _cacheBox.delete('cachedMessages');
+      await _cacheBox.delete('cachedConversations');
     } catch (_) {
       throw const CacheFailure(message: 'An error occured removing user data');
     }

@@ -239,6 +239,7 @@ class GeneralChatRoomNotifier extends StreamNotifier<List<ConversationModel>> {
   }
 
   void disposeChannel() {
+    log(":::: You are dispossing us ::: ");
     _socketChannel?.close();
     _socketChannel = null;
   }

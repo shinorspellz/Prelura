@@ -258,6 +258,9 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                         if (showSend || ref.watch(showSendButtonProvider))
                           GestureDetector(
                             onTap: () async {
+                              if (widget.textController.text.trim().isEmpty) {
+                                return;
+                              }
                               ref
                                   .read(messagesProvider(widget.id).notifier)
                                   .sendMessage(
