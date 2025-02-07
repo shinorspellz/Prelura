@@ -1744,6 +1744,7 @@ type UserNode implements Node {
   use2fa: Boolean!
   dateJoined: DateTime!
   lastLogin: DateTime
+  lastSeen: DateTime
   isVacationMode: Boolean!
   inWaitlist: Boolean!
   useGoogleAuthenticator: Boolean!
@@ -1782,6 +1783,7 @@ type UserType {
   username: String
   email: String
   bio: String
+  lastSeen: DateTime
   location: LocationType
   profilePictureUrl: String
   thumbnailUrl: String
