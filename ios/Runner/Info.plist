@@ -51,6 +51,8 @@
 	<string>Your app needs access to microphone.</string>
 	<key>NFCReaderUsageDescription</key>
     <string>This app requires access to the NFC.</string>
+    <key>NSContactsUsageDescription</key>
+    <string>Description of why you need the contacts permission.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Your app needs access to the photo library to select photos and videos.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

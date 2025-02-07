@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -11,6 +13,7 @@ import 'package:prelura_app/core/utils/utils.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/context_entension.dart';
 import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/shared/image_service.dart';
 import 'package:prelura_app/views/widgets/brand_text_widget.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
@@ -288,15 +291,20 @@ class ProductTopDetails extends ConsumerWidget {
                   ref.read(conversationProvider).whenOrNull(
                       error: (e, _) => context.alert(
                           'Failed to message ${product.seller.username}'),
-                      data: (conv) {
+                      data: (conv) async {
                         log('$conv');
                         final currentConv = conv.firstWhere((e) =>
-                            e.recipient.username == product.seller.username);
+                            e.recipient?.username == product.seller.username);
+                        List<XFile> images = await ImageService.downloadImages(
+                            [product.imagesUrl.first.url]);
+                        ref.read(messageImageProvider.notifier).state =
+                            images.firstOrNull;
+
                         context.pushRoute(
                           ChatRoute(
-                            id: currentConv.id,
-                            username: currentConv.recipient.username,
-                            avatarUrl: currentConv.recipient.profilePictureUrl,
+                            id: currentConv.id!,
+                            username: currentConv.recipient?.username ?? "",
+                            avatarUrl: currentConv.recipient?.profilePictureUrl,
                             isOffer: false,
                           ),
                         );

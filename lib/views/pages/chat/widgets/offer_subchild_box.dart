@@ -105,7 +105,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     await ref
         .read(offerProvider.notifier)
         .respondToOffer(context, actionType: actionType);
-    ref.refresh(messagesProvider(ref.read(offerProvider).activeOffer!.id));
+    ref.refresh(messagesProvider(ref.read(offerProvider).activeOffer!.id!));
     setLoading();
     setState(() {});
   }
@@ -120,7 +120,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           actionType: Enum$OfferActionEnum.COUNTER,
         );
     isSendingOffer = false;
-    ref.refresh(messagesProvider(ref.read(offerProvider).activeOffer!.id));
+    ref.refresh(messagesProvider(ref.read(offerProvider).activeOffer!.id!));
     setState(() {});
   }
 

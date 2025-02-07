@@ -65,7 +65,6 @@ abstract class $OfferTypeCopyWith<$Res> {
   $UserModelCopyWith<$Res>? get buyer;
   $OfferTypeCopyWith<$Res>? get parent;
   $OfferTypeCopyWith<$Res>? get children;
-  $ConversationModelCopyWith<$Res>? get conversation;
 }
 
 /// @nodoc
@@ -189,20 +188,6 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
       return _then(_value.copyWith(children: value) as $Val);
     });
   }
-
-  /// Create a copy of OfferType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConversationModelCopyWith<$Res>? get conversation {
-    if (_value.conversation == null) {
-      return null;
-    }
-
-    return $ConversationModelCopyWith<$Res>(_value.conversation!, (value) {
-      return _then(_value.copyWith(conversation: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -233,8 +218,6 @@ abstract class _$$OfferTypeImplCopyWith<$Res>
   $OfferTypeCopyWith<$Res>? get parent;
   @override
   $OfferTypeCopyWith<$Res>? get children;
-  @override
-  $ConversationModelCopyWith<$Res>? get conversation;
 }
 
 /// @nodoc

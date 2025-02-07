@@ -15,8 +15,6 @@ import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
-import 'red_dot.dart';
-
 class MessageCard extends ConsumerWidget {
   const MessageCard({
     super.key,
@@ -42,9 +40,9 @@ class MessageCard extends ConsumerWidget {
           );
         }
         context.router.push(ChatRoute(
-          id: model.id,
-          username: model.recipient.username,
-          avatarUrl: model.recipient.profilePictureUrl,
+          id: model.id!,
+          username: model.recipient?.username ?? "",
+          avatarUrl: model.recipient?.profilePictureUrl,
           isOffer: isLastMessageAnOffer,
         ));
       },
@@ -64,13 +62,14 @@ class MessageCard extends ConsumerWidget {
           children: [
             // User Avatar
             GestureDetector(
-              onTap: () => context.router.push(
-                  ProfileDetailsRoute(username: model.recipient.username)),
+              onTap: () => context.router.push(ProfileDetailsRoute(
+                username: model.recipient?.username ?? "",
+              )),
               child: ProfilePictureWidget(
                 height: 40,
                 width: 40,
-                profilePicture: model.recipient.profilePictureUrl,
-                username: model.recipient.username,
+                profilePicture: model.recipient?.profilePictureUrl,
+                username: model.recipient?.username,
               ),
             ),
             const SizedBox(width: 15),
@@ -86,7 +85,7 @@ class MessageCard extends ConsumerWidget {
                         Row(children: [
                           Expanded(
                             child: Text(
-                              model.recipient.username,
+                              model.recipient?.username ?? "",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -94,14 +93,27 @@ class MessageCard extends ConsumerWidget {
                             ),
                           ),
                           Text(
-                            formatChatTime(model.lastModified),
+                            formatChatTime(model.lastModified!),
                             style: const TextStyle(
-                                color: Colors.grey, fontSize: 12),
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
                           ),
                         ]),
-                        if (model.lastMessage?.text != null) ...[
+                        if (model.isTyping ?? false) ...[
+                          Text(
+                            "Typing...",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(fontWeight: FontWeight.w400),
+                          )
+                        ] else if (model.lastMessage?.text != null) ...[
                           // const SizedBox(height: 5),
-                          if (model.lastMessage?.imageUrls.isNotEmpty) ...[
+                          if (model.lastMessage?.imageUrls.isNotEmpty &&
+                              !isLastMessageAnOffer) ...[
                             Row(children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(2),
@@ -138,15 +150,21 @@ class MessageCard extends ConsumerWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
-                                    ?.copyWith(fontWeight: FontWeight.w400),
+                                    ?.copyWith(
+                                      fontWeight:
+                                          (model.lastMessage?.read ?? false)
+                                              ? FontWeight.w400
+                                              : FontWeight.w400,
+                                    ),
                               ),
                             ])
                           ] else if (isLastMessageAnOffer) ...[
                             addVerticalSpacing(5),
                             BuildOfferRow(
                               text: model.lastMessage!.text,
-                              recipient: model.recipient.username,
+                              recipient: model.recipient?.username ?? "",
                               offerInfo: model.offer!,
+                              lastImageUrl: model.lastMessage?.imageUrls,
                             )
                           ] else
                             Text(
@@ -156,7 +174,12 @@ class MessageCard extends ConsumerWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
-                                  ?.copyWith(fontWeight: FontWeight.w400),
+                                  ?.copyWith(
+                                    fontWeight:
+                                        (model.lastMessage?.read ?? false)
+                                            ? FontWeight.w400
+                                            : FontWeight.w500,
+                                  ),
                             ),
                         ]
 
@@ -173,12 +196,11 @@ class MessageCard extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  if (model.unreadMessagesCount > 0)
-                    Positioned(
-                      top: -10,
-                      right: 0,
-                      child: RedDot(),
-                    )
+                  // Positioned(
+                  //   top: -10,
+                  //   right: 0,
+                  //   child: RedDot(),
+                  // )
                 ],
               ),
             ),
@@ -195,11 +217,13 @@ class BuildOfferRow extends ConsumerWidget {
   final String text;
   final OfferInfo offerInfo;
   final String recipient;
+  final dynamic lastImageUrl;
 
   const BuildOfferRow({
     super.key,
     required this.text,
     required this.recipient,
+    this.lastImageUrl,
     required this.offerInfo,
   });
 
@@ -230,19 +254,20 @@ class BuildOfferRow extends ConsumerWidget {
       ),
       addHorizontalSpacing(5),
       Text(
-        _buildOfferMessage(),
+        _buildOfferMessage(lastImageUrl != null),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall
-            ?.copyWith(fontWeight: FontWeight.w400),
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              fontWeight: (offerInfo.updatedAt == null)
+                  ? FontWeight.w500
+                  : FontWeight.w400,
+            ),
       ),
     ]);
   }
 
-  String _buildOfferMessage() {
-    if (!text.contains("offer_id")) {
+  String _buildOfferMessage(bool isImage) {
+    if (!text.contains("offer_id") && !isImage) {
       return text;
     }
 

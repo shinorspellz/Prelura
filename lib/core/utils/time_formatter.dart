@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 String formatChatTime(DateTime dateTime) {
   final now = DateTime.now();
   final difference = now.difference(dateTime);
@@ -15,14 +13,17 @@ String formatChatTime(DateTime dateTime) {
     }
   } else if (difference.inDays == 1) {
     // Yesterday
-    return "Yesterday";
+    return "1 day ago";
   } else {
-    // Older dates
-    final day = DateFormat('d').format(dateTime);
-    final suffix = _getDaySuffix(dateTime.day);
-    final monthYear = DateFormat('MMM, yy').format(dateTime);
-    return "$day$suffix $monthYear";
+    return "${difference.inDays} days ago";
   }
+  // else {
+  //   // Older dates
+  //   final day = DateFormat('d').format(dateTime);
+  //   final suffix = _getDaySuffix(dateTime.day);
+  //   final monthYear = DateFormat('MMM, yy').format(dateTime);
+  //   return "$day$suffix $monthYear";
+  // }
 }
 
 String _getDaySuffix(int day) {

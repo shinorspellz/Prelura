@@ -856,7 +856,7 @@ query UserEarnings {
       quantity
       value
     }
-    completedPayments {
+    totalEarnings {
       quantity
       value
     }
@@ -864,7 +864,7 @@ query UserEarnings {
       quantity
       value
     }
-    totalEarnings {
+    completedPayments {
       quantity
       value
     }
