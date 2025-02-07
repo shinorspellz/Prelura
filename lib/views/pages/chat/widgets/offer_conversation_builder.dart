@@ -12,6 +12,7 @@ import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
+import 'istyping_handler_box.dart';
 import 'offer_card.dart';
 import 'offer_product_card.dart';
 import 'offer_subchild_box.dart';
@@ -157,9 +158,11 @@ List<String> offerType2 = ["rejected"];
 
 class OfferConversationBuilder extends ConsumerStatefulWidget {
   final String conversationId;
+  final TextEditingController textController;
   const OfferConversationBuilder({
     super.key,
     required this.conversationId,
+    required this.textController,
   });
 
   @override
@@ -276,6 +279,11 @@ class OfferConversationBuilderState
                     );
                   },
                   separatorBuilder: (_, __) => addVerticalSpacing(10),
+                ),
+                addVerticalSpacing(15),
+                TypingHandlerBox(
+                  textController: widget.textController,
+                  conversationId: widget.conversationId.toString(),
                 ),
               ]),
             ),

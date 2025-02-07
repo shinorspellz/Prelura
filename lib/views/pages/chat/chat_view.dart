@@ -122,6 +122,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       body: widget.isOffer
           ? OfferConversationBuilder(
               conversationId: widget.id,
+              textController: textController,
             )
           : ListView(
               reverse: true,

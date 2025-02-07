@@ -71,6 +71,7 @@ class _MessageConversationBuilderState
     final isLoadingMore = false;
     // ref.read(chatRoomStateProvider.notifier).state ==
     // ChatRoomActivity.loadingMoreMessages;
+    if (!widget.scrollController.hasClients) return;
 
     if (widget.scrollController.position.pixels >=
             widget.scrollController.position.maxScrollExtent - 200 &&
