@@ -173,29 +173,6 @@ class SearchScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      ref.read(selectedFilteredProductProvider.notifier).state =
-                          Input$ProductFiltersInput(discountPrice: true);
-                      context.router
-                          .push(DiscountedProductsView(title: "", id: 0));
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 20.h,
-                      margin: EdgeInsets.all(16),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(PreluraIcons.webp_xmas),
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topLeft),
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(getDefaultBorderRadius())),
-                      ),
-                    ),
-                  ),
 
                   GestureDetector(
                     onTap: () {
@@ -231,6 +208,30 @@ class SearchScreen extends ConsumerWidget {
                                       fontWeight: FontWeight.w800)),
                         )
                       ],
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap: () {
+                      ref.read(selectedFilteredProductProvider.notifier).state =
+                          Input$ProductFiltersInput(discountPrice: true);
+                      context.router
+                          .push(DiscountedProductsView(title: "", id: 0));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 20.h,
+                      margin: EdgeInsets.all(16),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(PreluraIcons.webp_xmas),
+                            fit: BoxFit.cover,
+                            alignment: Alignment.topLeft),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(getDefaultBorderRadius())),
+                      ),
                     ),
                   ),
 
