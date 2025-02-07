@@ -155,10 +155,8 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
         await ref.refresh(paymentMethodProvider.future).then((value) {
           if (mounted) {
             context.alert("Payment method deleted successfully");
-            context.router.popForced();
           }
         });
-        // ref.refresh(paymentMethodNotifierProvider);
       });
     } on SocketException {
       if (mounted) context.alert("Please connect to the internet");
