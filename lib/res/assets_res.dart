@@ -16,4 +16,7 @@ class AssetsRes {
   static const String PHONE_BOOK = 'assets/icons/phone-book.svg';
   static const String LOGO = 'assets/images/logo.png';
   static const String SPLASH = 'assets/images/splash.png';
+  static const String CHECK_CIRCLE = 'assets/svgs/check_circle.svg';
+  static const String CLOCK_CIRCLE = 'assets/svgs/clock_circle.svg';
+  static const String FAST_DELIVERY = 'assets/svgs/fast_delivery.svg';
 }

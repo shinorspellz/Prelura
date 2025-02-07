@@ -34,6 +34,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
     _tabController = TabController(length: 2, vsync: this);
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
       (_) {
+        ref.refresh(generalChatRoomProvider);
         ref.refresh(messageCacheProvider);
       },
     );
@@ -170,7 +171,7 @@ class ChatsTab extends ConsumerWidget {
                       onPressed: (context) {
                         ref
                             .read(conversationProvider.notifier)
-                            .deleteConversation(conv.id);
+                            .deleteConversation(conv.id!);
                       },
                       backgroundColor: Color(0xFFFE4A49),
                       foregroundColor: Colors.white,
