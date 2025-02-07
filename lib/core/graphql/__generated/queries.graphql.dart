@@ -10568,12 +10568,14 @@ class Variables$Query$AllProducts {
     int? pageCount,
     int? pageNumber,
     Input$ProductFiltersInput? filters,
+    Enum$SortEnum? sort,
   }) =>
       Variables$Query$AllProducts._({
         if (search != null) r'search': search,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
         if (filters != null) r'filters': filters,
+        if (sort != null) r'sort': sort,
       });
 
   Variables$Query$AllProducts._(this._$data);
@@ -10599,6 +10601,11 @@ class Variables$Query$AllProducts {
           : Input$ProductFiltersInput.fromJson(
               (l$filters as Map<String, dynamic>));
     }
+    if (data.containsKey('sort')) {
+      final l$sort = data['sort'];
+      result$data['sort'] =
+          l$sort == null ? null : fromJson$Enum$SortEnum((l$sort as String));
+    }
     return Variables$Query$AllProducts._(result$data);
   }
 
@@ -10612,6 +10619,8 @@ class Variables$Query$AllProducts {
 
   Input$ProductFiltersInput? get filters =>
       (_$data['filters'] as Input$ProductFiltersInput?);
+
+  Enum$SortEnum? get sort => (_$data['sort'] as Enum$SortEnum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -10630,6 +10639,11 @@ class Variables$Query$AllProducts {
     if (_$data.containsKey('filters')) {
       final l$filters = filters;
       result$data['filters'] = l$filters?.toJson();
+    }
+    if (_$data.containsKey('sort')) {
+      final l$sort = sort;
+      result$data['sort'] =
+          l$sort == null ? null : toJson$Enum$SortEnum(l$sort);
     }
     return result$data;
   }
@@ -10683,6 +10697,14 @@ class Variables$Query$AllProducts {
     if (l$filters != lOther$filters) {
       return false;
     }
+    final l$sort = sort;
+    final lOther$sort = other.sort;
+    if (_$data.containsKey('sort') != other._$data.containsKey('sort')) {
+      return false;
+    }
+    if (l$sort != lOther$sort) {
+      return false;
+    }
     return true;
   }
 
@@ -10692,11 +10714,13 @@ class Variables$Query$AllProducts {
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
     final l$filters = filters;
+    final l$sort = sort;
     return Object.hashAll([
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
       _$data.containsKey('filters') ? l$filters : const {},
+      _$data.containsKey('sort') ? l$sort : const {},
     ]);
   }
 }
@@ -10715,6 +10739,7 @@ abstract class CopyWith$Variables$Query$AllProducts<TRes> {
     int? pageCount,
     int? pageNumber,
     Input$ProductFiltersInput? filters,
+    Enum$SortEnum? sort,
   });
 }
 
@@ -10736,6 +10761,7 @@ class _CopyWithImpl$Variables$Query$AllProducts<TRes>
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
     Object? filters = _undefined,
+    Object? sort = _undefined,
   }) =>
       _then(Variables$Query$AllProducts._({
         ..._instance._$data,
@@ -10744,6 +10770,7 @@ class _CopyWithImpl$Variables$Query$AllProducts<TRes>
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
         if (filters != _undefined)
           'filters': (filters as Input$ProductFiltersInput?),
+        if (sort != _undefined) 'sort': (sort as Enum$SortEnum?),
       }));
 }
 
@@ -10758,6 +10785,7 @@ class _CopyWithStubImpl$Variables$Query$AllProducts<TRes>
     int? pageCount,
     int? pageNumber,
     Input$ProductFiltersInput? filters,
+    Enum$SortEnum? sort,
   }) =>
       _res;
 }
@@ -10987,6 +11015,15 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'sort')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'SortEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -11005,6 +11042,10 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'pageNumber'),
             value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'sort'),
+            value: VariableNode(name: NameNode(value: 'sort')),
           ),
           ArgumentNode(
             name: NameNode(value: 'filters'),

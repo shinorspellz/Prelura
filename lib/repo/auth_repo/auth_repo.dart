@@ -11,6 +11,8 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../controller/user/user_controller.dart';
+
 /// Authentication Repository for all auth operation like [login], [register] & [login]
 /// and depends on the [GraphQLClient] via dependency injection.
 ///
@@ -60,6 +62,7 @@ class AuthRepo {
       // Invalidate GraphQL client to use the version with a bearer token
       _ref.invalidate(networkClient);
       _ref.invalidate(notificationProvider);
+      _ref.invalidate(userProvider);
     } catch (e, stackTrace) {
       log("Login error: $e", name: 'AuthError');
       log("StackTrace: $stackTrace", name: 'AuthError');

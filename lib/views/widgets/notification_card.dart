@@ -7,6 +7,10 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/notification/notification_model.dart';
 import 'package:prelura_app/res/date_time_extension.dart';
 import 'package:prelura_app/res/username.dart';
+import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
+
+import 'red_dot.dart';
 
 class NotificationCard extends ConsumerWidget {
   const NotificationCard({
@@ -120,43 +124,23 @@ class NotificationCard extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                          child: HighlightUserName(
-                              isRead: notification.isRead ?? false,
-                              username: notification.sender?.username ??"",
-                              message: notification.message)
-
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       notification.message.split(" ").first,
-                          //       overflow: TextOverflow.ellipsis,
-                          //       maxLines: 2,
-                          //       style: Theme.of(context)
-                          //           .textTheme
-                          //           .bodyMedium
-                          //           ?.copyWith(
-                          //               fontWeight: notification.isRead!
-                          //                   ? FontWeight.w500
-                          //                   : FontWeight.w700),
-                          //     ),
-                          //     Text(
-                          //       extractMessageWithoutUsername(
-                          //           notification.sender.username,
-                          //           notification.message),
-                          //       overflow: TextOverflow.ellipsis,
-                          //       maxLines: 2,
-                          //       style: Theme.of(context)
-                          //           .textTheme
-                          //           .bodyMedium
-                          //           ?.copyWith(
-                          //               fontWeight: notification.isRead!
-                          //                   ? FontWeight.w200
-                          //                   : FontWeight.w400),
-                          //     ),
-                          //   ],
-                          // ),
-                          ),
-                      const SizedBox(width: 10), // Add spacing before time
+                        child: Stack(
+                          children: [
+                            HighlightUserName(
+                                isRead: notification.isRead ?? false,
+                                username: notification.sender?.username ?? "",
+                                message: notification.message),
+                            if (notification.isRead == false)
+                              Positioned(
+                                top: 4,
+                                right: 20,
+                                child: RedDot(),
+                              )
+                          ],
+                        ),
+                      ),
+                      2.horizontalSpacing,
+                      const SizedBox(width: 24), // Add spacing before time
                       // Time
                       Text(
                         notification.createdAt!.timeAgo(),
