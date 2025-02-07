@@ -47705,3 +47705,495 @@ class _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller
   }) =>
       _res;
 }
+
+class Query$userPaymentMethods {
+  Query$userPaymentMethods({
+    this.userPaymentMethods,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$userPaymentMethods.fromJson(Map<String, dynamic> json) {
+    final l$userPaymentMethods = json['userPaymentMethods'];
+    final l$$__typename = json['__typename'];
+    return Query$userPaymentMethods(
+      userPaymentMethods: l$userPaymentMethods == null
+          ? null
+          : Query$userPaymentMethods$userPaymentMethods.fromJson(
+              (l$userPaymentMethods as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$userPaymentMethods$userPaymentMethods? userPaymentMethods;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userPaymentMethods = userPaymentMethods;
+    _resultData['userPaymentMethods'] = l$userPaymentMethods?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userPaymentMethods = userPaymentMethods;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$userPaymentMethods,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$userPaymentMethods ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userPaymentMethods = userPaymentMethods;
+    final lOther$userPaymentMethods = other.userPaymentMethods;
+    if (l$userPaymentMethods != lOther$userPaymentMethods) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$userPaymentMethods
+    on Query$userPaymentMethods {
+  CopyWith$Query$userPaymentMethods<Query$userPaymentMethods> get copyWith =>
+      CopyWith$Query$userPaymentMethods(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$userPaymentMethods<TRes> {
+  factory CopyWith$Query$userPaymentMethods(
+    Query$userPaymentMethods instance,
+    TRes Function(Query$userPaymentMethods) then,
+  ) = _CopyWithImpl$Query$userPaymentMethods;
+
+  factory CopyWith$Query$userPaymentMethods.stub(TRes res) =
+      _CopyWithStubImpl$Query$userPaymentMethods;
+
+  TRes call({
+    Query$userPaymentMethods$userPaymentMethods? userPaymentMethods,
+    String? $__typename,
+  });
+  CopyWith$Query$userPaymentMethods$userPaymentMethods<TRes>
+      get userPaymentMethods;
+}
+
+class _CopyWithImpl$Query$userPaymentMethods<TRes>
+    implements CopyWith$Query$userPaymentMethods<TRes> {
+  _CopyWithImpl$Query$userPaymentMethods(
+    this._instance,
+    this._then,
+  );
+
+  final Query$userPaymentMethods _instance;
+
+  final TRes Function(Query$userPaymentMethods) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userPaymentMethods = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$userPaymentMethods(
+        userPaymentMethods: userPaymentMethods == _undefined
+            ? _instance.userPaymentMethods
+            : (userPaymentMethods
+                as Query$userPaymentMethods$userPaymentMethods?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$userPaymentMethods$userPaymentMethods<TRes>
+      get userPaymentMethods {
+    final local$userPaymentMethods = _instance.userPaymentMethods;
+    return local$userPaymentMethods == null
+        ? CopyWith$Query$userPaymentMethods$userPaymentMethods.stub(
+            _then(_instance))
+        : CopyWith$Query$userPaymentMethods$userPaymentMethods(
+            local$userPaymentMethods, (e) => call(userPaymentMethods: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$userPaymentMethods<TRes>
+    implements CopyWith$Query$userPaymentMethods<TRes> {
+  _CopyWithStubImpl$Query$userPaymentMethods(this._res);
+
+  TRes _res;
+
+  call({
+    Query$userPaymentMethods$userPaymentMethods? userPaymentMethods,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$userPaymentMethods$userPaymentMethods<TRes>
+      get userPaymentMethods =>
+          CopyWith$Query$userPaymentMethods$userPaymentMethods.stub(_res);
+}
+
+const documentNodeQueryuserPaymentMethods = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'userPaymentMethods'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userPaymentMethods'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'paymentMethodId'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'last4Digits'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'cardBrand'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$userPaymentMethods _parserFn$Query$userPaymentMethods(
+        Map<String, dynamic> data) =>
+    Query$userPaymentMethods.fromJson(data);
+typedef OnQueryComplete$Query$userPaymentMethods = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$userPaymentMethods?,
+);
+
+class Options$Query$userPaymentMethods
+    extends graphql.QueryOptions<Query$userPaymentMethods> {
+  Options$Query$userPaymentMethods({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$userPaymentMethods? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$userPaymentMethods? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$userPaymentMethods(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryuserPaymentMethods,
+          parserFn: _parserFn$Query$userPaymentMethods,
+        );
+
+  final OnQueryComplete$Query$userPaymentMethods? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$userPaymentMethods
+    extends graphql.WatchQueryOptions<Query$userPaymentMethods> {
+  WatchOptions$Query$userPaymentMethods({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$userPaymentMethods? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryuserPaymentMethods,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$userPaymentMethods,
+        );
+}
+
+class FetchMoreOptions$Query$userPaymentMethods
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$userPaymentMethods(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryuserPaymentMethods,
+        );
+}
+
+extension ClientExtension$Query$userPaymentMethods on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$userPaymentMethods>>
+      query$userPaymentMethods(
+              [Options$Query$userPaymentMethods? options]) async =>
+          await this.query(options ?? Options$Query$userPaymentMethods());
+  graphql.ObservableQuery<Query$userPaymentMethods>
+      watchQuery$userPaymentMethods(
+              [WatchOptions$Query$userPaymentMethods? options]) =>
+          this.watchQuery(options ?? WatchOptions$Query$userPaymentMethods());
+  void writeQuery$userPaymentMethods({
+    required Query$userPaymentMethods data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryuserPaymentMethods)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$userPaymentMethods? readQuery$userPaymentMethods(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryuserPaymentMethods)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$userPaymentMethods.fromJson(result);
+  }
+}
+
+class Query$userPaymentMethods$userPaymentMethods {
+  Query$userPaymentMethods$userPaymentMethods({
+    required this.paymentMethodId,
+    required this.last4Digits,
+    this.cardBrand,
+    this.$__typename = 'PaymentMethodType',
+  });
+
+  factory Query$userPaymentMethods$userPaymentMethods.fromJson(
+      Map<String, dynamic> json) {
+    final l$paymentMethodId = json['paymentMethodId'];
+    final l$last4Digits = json['last4Digits'];
+    final l$cardBrand = json['cardBrand'];
+    final l$$__typename = json['__typename'];
+    return Query$userPaymentMethods$userPaymentMethods(
+      paymentMethodId: (l$paymentMethodId as String),
+      last4Digits: (l$last4Digits as String),
+      cardBrand: (l$cardBrand as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String paymentMethodId;
+
+  final String last4Digits;
+
+  final String? cardBrand;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$paymentMethodId = paymentMethodId;
+    _resultData['paymentMethodId'] = l$paymentMethodId;
+    final l$last4Digits = last4Digits;
+    _resultData['last4Digits'] = l$last4Digits;
+    final l$cardBrand = cardBrand;
+    _resultData['cardBrand'] = l$cardBrand;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$paymentMethodId = paymentMethodId;
+    final l$last4Digits = last4Digits;
+    final l$cardBrand = cardBrand;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$paymentMethodId,
+      l$last4Digits,
+      l$cardBrand,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$userPaymentMethods$userPaymentMethods ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$paymentMethodId = paymentMethodId;
+    final lOther$paymentMethodId = other.paymentMethodId;
+    if (l$paymentMethodId != lOther$paymentMethodId) {
+      return false;
+    }
+    final l$last4Digits = last4Digits;
+    final lOther$last4Digits = other.last4Digits;
+    if (l$last4Digits != lOther$last4Digits) {
+      return false;
+    }
+    final l$cardBrand = cardBrand;
+    final lOther$cardBrand = other.cardBrand;
+    if (l$cardBrand != lOther$cardBrand) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$userPaymentMethods$userPaymentMethods
+    on Query$userPaymentMethods$userPaymentMethods {
+  CopyWith$Query$userPaymentMethods$userPaymentMethods<
+          Query$userPaymentMethods$userPaymentMethods>
+      get copyWith => CopyWith$Query$userPaymentMethods$userPaymentMethods(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$userPaymentMethods$userPaymentMethods<TRes> {
+  factory CopyWith$Query$userPaymentMethods$userPaymentMethods(
+    Query$userPaymentMethods$userPaymentMethods instance,
+    TRes Function(Query$userPaymentMethods$userPaymentMethods) then,
+  ) = _CopyWithImpl$Query$userPaymentMethods$userPaymentMethods;
+
+  factory CopyWith$Query$userPaymentMethods$userPaymentMethods.stub(TRes res) =
+      _CopyWithStubImpl$Query$userPaymentMethods$userPaymentMethods;
+
+  TRes call({
+    String? paymentMethodId,
+    String? last4Digits,
+    String? cardBrand,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$userPaymentMethods$userPaymentMethods<TRes>
+    implements CopyWith$Query$userPaymentMethods$userPaymentMethods<TRes> {
+  _CopyWithImpl$Query$userPaymentMethods$userPaymentMethods(
+    this._instance,
+    this._then,
+  );
+
+  final Query$userPaymentMethods$userPaymentMethods _instance;
+
+  final TRes Function(Query$userPaymentMethods$userPaymentMethods) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? paymentMethodId = _undefined,
+    Object? last4Digits = _undefined,
+    Object? cardBrand = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$userPaymentMethods$userPaymentMethods(
+        paymentMethodId:
+            paymentMethodId == _undefined || paymentMethodId == null
+                ? _instance.paymentMethodId
+                : (paymentMethodId as String),
+        last4Digits: last4Digits == _undefined || last4Digits == null
+            ? _instance.last4Digits
+            : (last4Digits as String),
+        cardBrand: cardBrand == _undefined
+            ? _instance.cardBrand
+            : (cardBrand as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$userPaymentMethods$userPaymentMethods<TRes>
+    implements CopyWith$Query$userPaymentMethods$userPaymentMethods<TRes> {
+  _CopyWithStubImpl$Query$userPaymentMethods$userPaymentMethods(this._res);
+
+  TRes _res;
+
+  call({
+    String? paymentMethodId,
+    String? last4Digits,
+    String? cardBrand,
+    String? $__typename,
+  }) =>
+      _res;
+}

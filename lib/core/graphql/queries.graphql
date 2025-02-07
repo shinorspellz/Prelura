@@ -108,7 +108,7 @@ query Product($id: Int!) {
     }
     condition
     discountPrice
-    size{
+    size {
       id
       name
     }
@@ -299,13 +299,11 @@ query AllProducts(
   allProductsTotalNumber
 }
 
-
-
 query Categories($parentId: Int) {
-  categories (parentId: $parentId){
+  categories(parentId: $parentId) {
     id
     name
-        hasChildren
+    hasChildren
     fullPath
     parent {
       id
@@ -326,7 +324,7 @@ query Categories($parentId: Int) {
 # }
 
 query Sizes($path: String!) {
-  sizes (path: $path){
+  sizes(path: $path) {
     id
     name
   }
@@ -579,8 +577,16 @@ query PopularBrands($top: Int!) {
   }
 }
 
-query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int) {
-  userOrders(filters: $filters, pageCount: $pageCount, pageNumber: $pageNumber,) {
+query UserOrders(
+  $filters: OrderFiltersInput
+  $pageCount: Int
+  $pageNumber: Int
+) {
+  userOrders(
+    filters: $filters
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+  ) {
     createdAt
     discountPrice
     id
@@ -638,8 +644,7 @@ query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int)
     }
   }
   userOrdersTotalNumber
-  }
-
+}
 
 query Conversation($id: ID!, $pageCount: Int, $pageNumber: Int) {
   conversation(id: $id, pageCount: $pageCount, pageNumber: $pageNumber) {
@@ -909,53 +914,51 @@ query RecommendedSearchHistory(
   }
 }
 
-
 query SearchHistory($searchType: SearchTypeEnum!, $searchTerm: String!) {
   searchHistory(searchType: $searchType, searchTerm: $searchTerm)
 }
 
 query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
   recommendedSellers(pageCount: $pageCount, pageNumber: $pageNumber) {
-    seller{
-       id
-    firstName
-    lastName
-    username
-    email
-    bio
-    profilePictureUrl
-    thumbnailUrl
-    gender
-    displayName
-    dob
-    dateJoined
-    lastLogin
-    fullName
-    listing
-    location {
-      latitude
-      longitude
-      locationName
+    seller {
+      id
+      firstName
+      lastName
+      username
+      email
+      bio
+      profilePictureUrl
+      thumbnailUrl
+      gender
+      displayName
+      dob
+      dateJoined
+      lastLogin
+      fullName
+      listing
+      location {
+        latitude
+        longitude
+        locationName
+      }
+      noOfFollowing
+      noOfFollowers
+      phone {
+        number
+        countryCode
+      }
     }
-    noOfFollowing
-    noOfFollowers
-    phone {
-      number
-      countryCode
-    }
-    }
-     totalSales
-  totalShopValue
-  productViews
-  sellerScore
-  activeListings 
+    totalSales
+    totalShopValue
+    productViews
+    sellerScore
+    activeListings
   }
 }
 
-
-query FavoriteBrandProducts($topCount: Int!){
-  favoriteBrandProducts(top: $topCount){
-     id
+query FavoriteBrandProducts($topCount: Int!) {
+  favoriteBrandProducts(top: $topCount) {
+    id
     name
     description
     isFeatured
@@ -970,7 +973,7 @@ query FavoriteBrandProducts($topCount: Int!){
     }
     condition
     discountPrice
-    size{
+    size {
       id
       name
     }
@@ -996,14 +999,13 @@ query FavoriteBrandProducts($topCount: Int!){
   }
 }
 
-
-query userMultibuyDiscounts{
-  userMultibuyDiscounts{
+query userMultibuyDiscounts {
+  userMultibuyDiscounts {
     discountValue
     id
     isActive
     minItems
-    seller{
+    seller {
       id
       username
       profilePictureUrl
@@ -1011,3 +1013,10 @@ query userMultibuyDiscounts{
   }
 }
 
+query userPaymentMethods {
+  userPaymentMethods {
+    paymentMethodId
+    last4Digits
+    cardBrand
+  }
+}
