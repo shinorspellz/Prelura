@@ -43,6 +43,7 @@ class PreluraIcons {
       "assets/icons/check-mark-circle-thick.svg";
   static const String removeIcon = "assets/svgs/remove.svg";
   static const String mastercardIcon = "assets/icons/mastercard.svg";
+  static const String visaIcon = "assets/icons/visa.svg";
   static const String copyIcon = "assets/icons/copy-icon.svg";
   static const String phoneBookIcon = "assets/icons/phone-book.svg";
 
