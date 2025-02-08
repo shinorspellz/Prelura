@@ -263,7 +263,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     errorWidget: (context, url, error) => Container(
                       color: PreluraColors.grey,
                     ),
-                    imageUrl: widget.product.imagesUrl.first.thumbnail,
+                    imageUrl: widget.product.imagesUrl.first.url,
                     height: 27.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
