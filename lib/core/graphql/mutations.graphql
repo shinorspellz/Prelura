@@ -41,7 +41,7 @@ mutation Logout($refreshToken: String!, $fcmToken: String!) {
 }
 
 mutation RefreashToken($refreshToken: String!) {
-  refreshToken(refreshToken: $refreshToken ) {
+  refreshToken(refreshToken: $refreshToken) {
     token
     payload
     refreshExpiresIn
@@ -620,45 +620,43 @@ mutation DeleteAccount($password: String!) {
   }
 }
 
-mutation reportAccount(
-  $reason: String!,
-  $username: String!,
-  $content: String
-){
-  reportAccount(
-    reason:$reason,
-    username: $username,
-    content:$content
-  ){
+mutation reportAccount($reason: String!, $username: String!, $content: String) {
+  reportAccount(reason: $reason, username: $username, content: $content) {
     message
   }
 }
 
-
-mutation reportProduct(
-  $reason: String!,
-  $productId: ID!,
-  $content: String
-){
-  reportProduct(
-    reason:$reason,
-    productId: $productId,
-    content:$content
-  ){
+mutation reportProduct($reason: String!, $productId: ID!, $content: String) {
+  reportProduct(reason: $reason, productId: $productId, content: $content) {
     message
   }
 }
 
-mutation verifyAccount($code : String!){
-  verifyAccount(code: $code){
-
+mutation verifyAccount($code: String!) {
+  verifyAccount(code: $code) {
     success
   }
 }
 
-mutation resendActivationEmail($email: String!){
-  resendActivationEmail(email: $email){
+mutation resendActivationEmail($email: String!) {
+  resendActivationEmail(email: $email) {
     errors
     success
+  }
+}
+
+mutation AddPaymentMethod($paymentMethodID: String!) {
+  addPaymentMethod(paymentMethodId: $paymentMethodID) {
+    paymentMethod {
+      last4Digits
+    }
+    success
+  }
+}
+
+mutation DeletePaymentMethod($paymentMethodID: String!) {
+  deletePaymentMethod(paymentMethodId: $paymentMethodID) {
+    success
+    error
   }
 }

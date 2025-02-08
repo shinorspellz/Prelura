@@ -35,7 +35,7 @@ class InviteFriend extends StatelessWidget {
           child: SingleChildScrollView(
             // controller: controller.scrollController,
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -44,7 +44,6 @@ class InviteFriend extends StatelessWidget {
                     goToListContacts(context);
                   },
                   child: Container(
-                    width: size.width - 60,
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
