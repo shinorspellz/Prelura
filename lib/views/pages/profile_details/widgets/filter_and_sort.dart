@@ -18,9 +18,13 @@ import 'show_filter_modal.dart';
 
 class FilterAndSort extends ConsumerWidget {
   const FilterAndSort(
-      {super.key, required this.userId, required this.username});
+      {super.key,
+      required this.userId,
+      required this.username,
+      required this.isBrandActive});
   final int? userId;
   final String? username;
+  final bool isBrandActive;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,75 +44,84 @@ class FilterAndSort extends ConsumerWidget {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
-            onTap: () {
-              VBottomSheetComponent.actionBottomSheet(
-                customHeader: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Filter",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
+            onTap: isBrandActive
+                ? () {}
+                : () {
+                    VBottomSheetComponent.actionBottomSheet(
+                      customHeader: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Filter",
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
-                  ),
-                ),
-                customFooter: (context) => AppButton(
-                  width: MediaQuery.sizeOf(context).width,
-                  isDisabled: ref.watch(filterUserProductProvider).isEmpty,
-                  onTap: ref.watch(filterUserProductProvider).isNotEmpty
-                      ? () {
-                          ref.read(isBrandActiveProvider.notifier).state =
-                              false;
-                          ref
-                              .read(filterUserProductProvider.notifier)
-                              .clearFilter();
-                          Navigator.pop(context);
-                        }
-                      : null,
-                  text: 'Clear',
-                ),
-                context: context,
-                actions: [
-                  ...FilterTypes.values
-                      .where((e) =>
-                          e.simpleName.toLowerCase() != "category" &&
-                          e.simpleName.toLowerCase() != "brand")
-                      .map((e) {
-                    return VBottomSheetItem(
-                      onTap: (context) {
-                        Navigator.pop(context);
-                        showFilterModal(context, e, ref, userId, username);
-                      },
-                      title: e.simpleName,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        color:
-                            ref.watch(filterUserProductProvider).containsKey(e)
-                                ? selectedColor
-                                : color,
-                        fontWeight:
-                            ref.watch(filterUserProductProvider).containsKey(e)
-                                ? selectedFontWeight
-                                : fontWeight,
                       ),
-                    );
-                  }),
-                  VBottomSheetItem(
-                    onTap: (context) {},
-                    title: "Material",
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: color,
-                      fontWeight: fontWeight,
-                    ),
-                  ),
+                      customFooter: (context) => AppButton(
+                        width: MediaQuery.sizeOf(context).width,
+                        isDisabled:
+                            ref.watch(filterUserProductProvider).isEmpty,
+                        onTap: ref.watch(filterUserProductProvider).isNotEmpty
+                            ? () {
+                                ref.read(isBrandActiveProvider.notifier).state =
+                                    false;
+                                ref
+                                    .read(filterUserProductProvider.notifier)
+                                    .clearFilter();
+                                Navigator.pop(context);
+                              }
+                            : null,
+                        text: 'Clear',
+                      ),
+                      context: context,
+                      actions: [
+                        ...FilterTypes.values
+                            .where((e) =>
+                                e.simpleName.toLowerCase() != "category" &&
+                                e.simpleName.toLowerCase() != "brand")
+                            .map((e) {
+                          return VBottomSheetItem(
+                            onTap: (context) {
+                              Navigator.pop(context);
+                              showFilterModal(
+                                  context, e, ref, userId, username);
+                            },
+                            title: e.simpleName,
+                            style: context.textTheme.bodyLarge?.copyWith(
+                              color: ref
+                                      .watch(filterUserProductProvider)
+                                      .containsKey(e)
+                                  ? selectedColor
+                                  : color,
+                              fontWeight: ref
+                                      .watch(filterUserProductProvider)
+                                      .containsKey(e)
+                                  ? selectedFontWeight
+                                  : fontWeight,
+                            ),
+                          );
+                        }),
+                        VBottomSheetItem(
+                          onTap: (context) {},
+                          title: "Material",
+                          style: context.textTheme.bodyLarge?.copyWith(
+                            color: color,
+                            fontWeight: fontWeight,
+                          ),
+                        ),
 
-                  // VBottomSheetItem(onTap: (context){}, title: "Category"),
-                ],
-              );
-            },
+                        // VBottomSheetItem(onTap: (context){}, title: "Category"),
+                      ],
+                    );
+                  },
             child: Row(children: [
               Text(
                 "Filter",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: PreluraColors.grey,
+                      color: isBrandActive
+                          ? PreluraColors.grey.withOpacity(0.6)
+                          : PreluraColors.grey,
                       fontWeight: FontWeight.w600,
                       fontSize: getDefaultSize(),
                     ),

@@ -12,7 +12,7 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
 
   _HomeRefreshNotfier(this.ref) : super(false);
 
-  void refreshHome(String name, String searchQuery) {
+  void refreshHome(String name, String searchQuery) async {
     state = true;
     ref.refresh(allProductProvider(null).future).then((_) => state = false);
     ref.refresh(filterProductByPriceProvider(15).future);
@@ -20,7 +20,7 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     ref.refresh(notificationProvider.future);
     ref.refresh(recommendedSellersProvider.future);
     ref.refresh(favoriteBrandProductsProvider.future);
-    
+    ref.refresh(favoriteBrandProductsProvider.future);
 
     final category = ref.watch(categoryProvider).valueOrNull;
     if (category != null) {

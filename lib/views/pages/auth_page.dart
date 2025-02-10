@@ -33,6 +33,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     // inits the notification provider and register all neccesary
     // data for notfication
     ref.read(notificationServiceProvider);
+    ref.read(notificationServiceProvider.notifier).init();
     super.initState();
   }
 

@@ -41,9 +41,13 @@ class _AuthController extends AsyncNotifier<void> {
   Future<void> login(String username, String password) async {
     state = const AsyncLoading();
 
-    state = await AsyncValue.guard(() async {
-      await _repo.login(username, password);
-    });
+    try {
+      state = await AsyncValue.guard(() async {
+        await _repo.login(username, password);
+      });
+    } catch (e,_) {
+      state = AsyncError(e,_);
+    }
   }
 
   Future<void> register(String email, String firstName, String lastName,

@@ -21,6 +21,8 @@ class MenuPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = MenuPage.menuScrollController;
     final user = ref.read(userProvider).valueOrNull;
+    final color =
+        context.isDarkMode ? PreluraColors.white : PreluraColors.black;
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -70,7 +72,7 @@ class MenuPage extends ConsumerWidget {
                     title: "Shop Value",
                     icon: Icon(
                       Icons.show_chart_sharp,
-                      color: PreluraColors.grey,
+                      color: color,
                     ),
                     rightArrow: false,
                     onTap: () {
@@ -88,10 +90,7 @@ class MenuPage extends ConsumerWidget {
               // const LiveCard(),
               MenuCard(
                   title: "Orders",
-                  icon: Icon(
-                    Icons.info_outlined,
-                    color: PreluraColors.grey,
-                  ),
+                  icon: Icon(Icons.info_outlined, color: color),
                   rightArrow: false,
                   onTap: () {
                     context.router.push(const MyOrderRoute());
@@ -100,7 +99,7 @@ class MenuPage extends ConsumerWidget {
                   title: "Favourites",
                   icon: Icon(
                     Icons.favorite_border_outlined,
-                    color: PreluraColors.grey,
+                    color: color,
                   ),
                   rightArrow: false,
                   onTap: () {
@@ -110,7 +109,7 @@ class MenuPage extends ConsumerWidget {
                   title: "Settings",
                   icon: Icon(
                     Icons.settings,
-                    color: PreluraColors.grey,
+                    color: color,
                   ),
                   rightArrow: false,
                   onTap: () {
@@ -126,8 +125,7 @@ class MenuPage extends ConsumerWidget {
                   subtitleColor: PreluraColors.primaryColor,
                   rightArrow: false,
                   icon: RenderSvg(
-                      svgPath: PreluraIcons.discount_svg,
-                      color: PreluraColors.grey),
+                      svgPath: PreluraIcons.discount_svg, color: color),
                   onTap: () {
                     context.router.push(MultiBuyDiscountRoute());
                   }),
@@ -141,7 +139,7 @@ class MenuPage extends ConsumerWidget {
                   subtitleColor: PreluraColors.primaryColor,
                   icon: RenderSvg(
                     svgPath: PreluraIcons.vacation_mode_svg,
-                    color: PreluraColors.grey,
+                    color: color,
                   ),
                   onTap: () {
                     context.router.push(HolidayModeRoute());
@@ -150,7 +148,7 @@ class MenuPage extends ConsumerWidget {
                   title: "Invite Friend",
                   icon: Icon(
                     Icons.person_add_sharp,
-                    color: PreluraColors.grey,
+                    color: color,
                   ),
                   rightArrow: false,
                   onTap: () {
@@ -167,7 +165,7 @@ class MenuPage extends ConsumerWidget {
                 title: "Help Centre",
                 icon: Icon(
                   Icons.question_mark_rounded,
-                  color: PreluraColors.grey,
+                  color: color,
                 ),
                 rightArrow: false,
                 onTap: () {},
@@ -176,7 +174,7 @@ class MenuPage extends ConsumerWidget {
                   title: "About Prelura",
                   icon: Icon(
                     Icons.info_outlined,
-                    color: PreluraColors.grey,
+                    color: color,
                   ),
                   rightArrow: false,
                   onTap: () {

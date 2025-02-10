@@ -61,7 +61,7 @@ class UserRepo {
         log(error.toString());
         throw error;
       }
-      log(response.exception.toString(), name: 'getUser in UserRepo');
+      log(response.exception.toString(), name: 'getUser in AuthRepo');
       throw 'An error occured';
     }
 

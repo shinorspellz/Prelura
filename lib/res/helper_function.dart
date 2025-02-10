@@ -22,11 +22,11 @@ class HelperFunction {
       backgroundColor: PreluraColors.primaryColor,
       barrierColor: Colors.transparent,
       builder: (context) {
-        // Future.delayed(Duration(seconds: 2), () {
-        //   if (Navigator.of(context).canPop()) {
-        //     Navigator.of(context).pop();
-        //   }
-        // });
+        Future.delayed(Duration(seconds: 2), () {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
+        });
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
           child: Row(children: [

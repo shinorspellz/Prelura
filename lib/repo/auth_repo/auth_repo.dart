@@ -30,45 +30,48 @@ class AuthRepo {
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
-    try {
-      final response = await normalClient.mutate$Login(
-        Options$Mutation$Login(
-          variables: Variables$Mutation$Login(
-            password: password,
-            username: username,
-          ),
+    final response = await normalClient.mutate$Login(
+      Options$Mutation$Login(
+        variables: Variables$Mutation$Login(
+          password: password,
+          username: username,
         ),
-      );
+      ),
+    );
 
-      final loginData = response.parsedData?.login;
+    final loginData = response.parsedData?.login;
 
-      if (loginData?.token == null) {
-        throw const CacheFailure();
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error.toString());
+        throw error;
       }
-
-      log("Token: ${loginData!.token}");
-
-      await _store(
-        token: loginData.token,
-        username: loginData.user?.username ?? 'Unknown',
-        refreshToken: loginData.refreshToken,
-      );
-
-      log('Bearer ${loginData.token}', name: 'AuthMutation');
-      log('Refresh Token ${loginData.refreshToken}', name: 'AuthMutation');
-      log('Username ${loginData.user?.username ?? 'Unknown'}',
-          name: 'AuthMutation');
-
-      // Invalidate GraphQL client to use the version with a bearer token
-      _ref.invalidate(networkClient);
-      _ref.invalidate(notificationProvider);
-      _ref.invalidate(userProvider);
-    } catch (e, stackTrace) {
-      log("Login error: $e", name: 'AuthError');
-      log("StackTrace: $stackTrace", name: 'AuthError');
-      log("Cached Refresh Token: ${_cacheBox.get("REFRESH_TOKEN")}",
-          name: 'AuthError');
+      log(response.exception.toString(), name: 'getUser in UserRepo');
+      throw 'An error occured';
     }
+
+    if (loginData?.token == null) {
+      throw const CacheFailure();
+    }
+
+    log("Token: ${loginData!.token}");
+
+    await _store(
+      token: loginData.token,
+      username: loginData.user?.username ?? 'Unknown',
+      refreshToken: loginData.refreshToken,
+    );
+
+    log('Bearer ${loginData.token}', name: 'AuthMutation');
+    log('Refresh Token ${loginData.refreshToken}', name: 'AuthMutation');
+    log('Username ${loginData.user?.username ?? 'Unknown'}',
+        name: 'AuthMutation');
+
+    // Invalidate GraphQL client to use the version with a bearer token
+    _ref.invalidate(networkClient);
+    _ref.invalidate(notificationProvider);
+    _ref.invalidate(userProvider);
   }
 
   Future<Mutation$RefreashToken$refreshToken?>? refreshToken() async {
@@ -141,9 +144,9 @@ class AuthRepo {
     String token = _cacheBox.get("REFRESH_TOKEN");
     String token2 = _cacheBox.get("AUTH_TOKEN");
     String? fcmToken = await FirebaseMessaging.instance.getToken();
-    log("The token is::: $token");
-    log("The token is::: $token2");
-    log("The token is::: $fcmToken");
+    log("The refresh token is::: $token");
+    log("The auth token is::: $token2");
+    log("The fcm token is::: $fcmToken");
     try {
       await _client2.mutate$Logout(
         Options$Mutation$Logout(
