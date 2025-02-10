@@ -121,8 +121,8 @@ class ProductDescription extends ConsumerWidget {
         if (product.condition != null)
           _buildInfoRow("Condition", product.condition!.simpleName, context),
         _buildInfoRow("Views", product.views.toString(), context),
-        _buildInfoRow("Uploaded",
-            DateFormat.yMMMMEEEEd().format(product.createdAt), context),
+        _buildInfoRow(
+            "Uploaded", getUserLastSeen(product.createdAt.toString()), context),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
           decoration: BoxDecoration(

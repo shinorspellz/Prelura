@@ -617,7 +617,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     ),
                     MenuCard(
                       title: 'Price',
-                      subtitle: "£ ${formatDynamicString(state.price) ?? 0}",
+                      subtitle: "${state.price != null && state.price!.isNotEmpty ? "£ ${formatDynamicString(state.price) ?? 0}" :"" }",
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () async {
                         dismissKeyboard();

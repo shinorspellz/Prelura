@@ -42,6 +42,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     controller.addListener(() {
+      if (!mounted) return;
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.sizeOf(context).height * 0.2;
@@ -50,8 +51,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ref.read(allProductProvider(null).notifier).fetchMoreData(context);
         final selectedCategory = ref.watch(selectedCategoryProvider);
 
-        if (ref.watch(selectedTabProvider) != 0 &&
-            ref.watch(selectedTabProvider) != 1) {
+        if (ref.read(selectedTabProvider) != 0 &&
+            ref.read(selectedTabProvider) != 1) {
           ref
               .read(filteredProductProvider(searchQuery).notifier)
               .fetchMoreData(context);

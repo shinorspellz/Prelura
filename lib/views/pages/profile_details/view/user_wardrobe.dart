@@ -103,15 +103,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref.read(multiProducts.notifier).clearProducts();
-    });
     final user = ref
         .read((widget.username != null
             ? otherUserProfile(widget.username!)
             : userProvider))
         .valueOrNull;
     Future.microtask(() {
+      ref.read(multiProducts.notifier).clearProducts();
       ref.read(isBrandActiveProvider.notifier).state = false;
       ref
           .read(filterUserProductProvider.notifier)
@@ -199,6 +197,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         : userProvider));
 
     final isCurrentUser = widget.username == null;
+    final userProducts = ref.watch(userProduct(user.valueOrNull?.username));
 
     final productLength = user.valueOrNull?.listing;
     log(productLength.toString(), name: "Profile details");
@@ -737,7 +736,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           ],
                           10.verticalSpacing,
                           FilterAndSort(
-                              userId: user.id, username: user.username),
+                              isBrandActive: isBrandActive,
+                              userId: user.id,
+                              username: user.username),
 
                           20.verticalSpacing,
                           if (ref
@@ -807,13 +808,19 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     if (products.isEmpty) {
                                       return NoProductWidget();
                                     }
-                                    return DisplaySection(
-                                      products: products,
-                                      isInProduct: false,
-                                      isSelectable:
-                                          !ref.watch(buyerMultiBuyDiscount),
-                                      isMultiSelect:
-                                          ref.watch(buyerMultiBuyDiscount),
+                                    return Column(
+                                      children: [
+                                        DisplaySection(
+                                          products: products,
+                                          isInProduct: false,
+                                          isSelectable:
+                                              !ref.watch(buyerMultiBuyDiscount),
+                                          isMultiSelect:
+                                              ref.watch(buyerMultiBuyDiscount),
+                                        ),
+                                        if (ref.watch(multiProducts).isNotEmpty)
+                                          200.verticalSpacing
+                                      ],
                                     );
                                   },
                                   error: (e, _) {

@@ -237,13 +237,58 @@ final userBrandProvider =
   return uniqueBrands.toList();
 });
 
-final favoriteBrandProductsProvider = FutureProvider.autoDispose((ref) async {
-  final repo = ref.watch(productRepo);
+final favoriteBrandProductsProvider =
+    AsyncNotifierProvider<_FavouriteBrandProductController, List<ProductModel>>(
+        _FavouriteBrandProductController.new);
 
-  final result = await repo.getFavoriteBrandProducts();
+class _FavouriteBrandProductController
+    extends AsyncNotifier<List<ProductModel>> {
+  late final _repository = ref.read(productRepo);
+  // List<ServicePackageModel>? services;
+  final int _pageCount = 20;
+  int _currentPage = 1;
+  int _brandTotalItems = 0;
 
-  return result.reversed.toList();
-});
+  @override
+  Future<List<ProductModel>> build() async {
+    state = const AsyncLoading();
+    _currentPage = 1;
+    await _getProducts(pageNumber: _currentPage);
+    return state.value!;
+  }
+
+  Future<void> _getProducts({int? pageNumber}) async {
+    // final sort = ref.watch(sortAllServiceProvider);
+    final result = await _repository.getFavoriteBrandProducts();
+
+    _brandTotalItems = result.length;
+
+    ;
+
+    state = AsyncData(result);
+  }
+
+  Future<void> fetchMoreData() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+
+    if (canLoadMore) {
+      await _getProducts(
+        pageNumber: _currentPage + 1,
+      );
+    }
+  }
+
+  Future<void> fetchMoreHandler() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+    if (canLoadMore) {
+      await fetchMoreData();
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  }
+}
 
 final categoryProvider = FutureProvider((ref) async {
   final repo = ref.watch(productRepo);
