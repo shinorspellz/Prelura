@@ -2634,54 +2634,6 @@ Enum$ParentCategoryEnum fromJson$Enum$ParentCategoryEnum(String value) {
   }
 }
 
-enum Enum$PaymentMethodEnum {
-  BANK_TRANSFER,
-  CARD,
-  STRIPE,
-  APPLE_PAY,
-  GOOGLE_PAY,
-  $unknown;
-
-  factory Enum$PaymentMethodEnum.fromJson(String value) =>
-      fromJson$Enum$PaymentMethodEnum(value);
-
-  String toJson() => toJson$Enum$PaymentMethodEnum(this);
-}
-
-String toJson$Enum$PaymentMethodEnum(Enum$PaymentMethodEnum e) {
-  switch (e) {
-    case Enum$PaymentMethodEnum.BANK_TRANSFER:
-      return r'BANK_TRANSFER';
-    case Enum$PaymentMethodEnum.CARD:
-      return r'CARD';
-    case Enum$PaymentMethodEnum.STRIPE:
-      return r'STRIPE';
-    case Enum$PaymentMethodEnum.APPLE_PAY:
-      return r'APPLE_PAY';
-    case Enum$PaymentMethodEnum.GOOGLE_PAY:
-      return r'GOOGLE_PAY';
-    case Enum$PaymentMethodEnum.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$PaymentMethodEnum fromJson$Enum$PaymentMethodEnum(String value) {
-  switch (value) {
-    case r'BANK_TRANSFER':
-      return Enum$PaymentMethodEnum.BANK_TRANSFER;
-    case r'CARD':
-      return Enum$PaymentMethodEnum.CARD;
-    case r'STRIPE':
-      return Enum$PaymentMethodEnum.STRIPE;
-    case r'APPLE_PAY':
-      return Enum$PaymentMethodEnum.APPLE_PAY;
-    case r'GOOGLE_PAY':
-      return Enum$PaymentMethodEnum.GOOGLE_PAY;
-    default:
-      return Enum$PaymentMethodEnum.$unknown;
-  }
-}
-
 enum Enum$PaymentsPaymentPaymentMethodChoices {
   BANK_TRANSFER,
   CARD,

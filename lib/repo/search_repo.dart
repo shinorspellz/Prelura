@@ -15,13 +15,13 @@ class SearchHistoryRepo {
       String searchTerm, Enum$SearchTypeEnum type) async {
     final response = await _client.executeGraphQL(
         operation: ClientOperation(
-      (cl) => cl.query$SearchHistory(Options$Query$SearchHistory(
-        variables: Variables$Query$SearchHistory(
+      (cl) => cl.query$autoComplete(Options$Query$autoComplete(
+        variables: Variables$Query$autoComplete(
             searchType: type, searchTerm: searchTerm),
       )),
     ));
 
-    return response.searchHistory!;
+    return response.autoComplete!.map((e) => e!.name).toList();
   }
 
   Future<List<SearchHistoryModel>> recommendedSearchHostory(

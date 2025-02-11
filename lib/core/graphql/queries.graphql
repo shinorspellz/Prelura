@@ -914,8 +914,12 @@ query RecommendedSearchHistory(
   }
 }
 
-query SearchHistory($searchType: SearchTypeEnum!, $searchTerm: String!) {
-  searchHistory(searchType: $searchType, searchTerm: $searchTerm)
+query autoComplete($searchType: SearchTypeEnum!, $searchTerm: String!) {
+  autoComplete(searchType: $searchType, searchTerm: $searchTerm){
+    id
+    name
+    thumbnailUrl
+  }
 }
 
 query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
@@ -1020,3 +1024,5 @@ query userPaymentMethods {
     cardBrand
   }
 }
+
+

@@ -42419,26 +42419,26 @@ class _CopyWithStubImpl$Query$RecommendedSearchHistory$recommendedSearchHistory<
       _res;
 }
 
-class Variables$Query$SearchHistory {
-  factory Variables$Query$SearchHistory({
+class Variables$Query$autoComplete {
+  factory Variables$Query$autoComplete({
     required Enum$SearchTypeEnum searchType,
     required String searchTerm,
   }) =>
-      Variables$Query$SearchHistory._({
+      Variables$Query$autoComplete._({
         r'searchType': searchType,
         r'searchTerm': searchTerm,
       });
 
-  Variables$Query$SearchHistory._(this._$data);
+  Variables$Query$autoComplete._(this._$data);
 
-  factory Variables$Query$SearchHistory.fromJson(Map<String, dynamic> data) {
+  factory Variables$Query$autoComplete.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$searchType = data['searchType'];
     result$data['searchType'] =
         fromJson$Enum$SearchTypeEnum((l$searchType as String));
     final l$searchTerm = data['searchTerm'];
     result$data['searchTerm'] = (l$searchTerm as String);
-    return Variables$Query$SearchHistory._(result$data);
+    return Variables$Query$autoComplete._(result$data);
   }
 
   Map<String, dynamic> _$data;
@@ -42457,8 +42457,8 @@ class Variables$Query$SearchHistory {
     return result$data;
   }
 
-  CopyWith$Variables$Query$SearchHistory<Variables$Query$SearchHistory>
-      get copyWith => CopyWith$Variables$Query$SearchHistory(
+  CopyWith$Variables$Query$autoComplete<Variables$Query$autoComplete>
+      get copyWith => CopyWith$Variables$Query$autoComplete(
             this,
             (i) => i,
           );
@@ -42468,7 +42468,7 @@ class Variables$Query$SearchHistory {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Query$SearchHistory ||
+    if (other is! Variables$Query$autoComplete ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -42496,14 +42496,14 @@ class Variables$Query$SearchHistory {
   }
 }
 
-abstract class CopyWith$Variables$Query$SearchHistory<TRes> {
-  factory CopyWith$Variables$Query$SearchHistory(
-    Variables$Query$SearchHistory instance,
-    TRes Function(Variables$Query$SearchHistory) then,
-  ) = _CopyWithImpl$Variables$Query$SearchHistory;
+abstract class CopyWith$Variables$Query$autoComplete<TRes> {
+  factory CopyWith$Variables$Query$autoComplete(
+    Variables$Query$autoComplete instance,
+    TRes Function(Variables$Query$autoComplete) then,
+  ) = _CopyWithImpl$Variables$Query$autoComplete;
 
-  factory CopyWith$Variables$Query$SearchHistory.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Query$SearchHistory;
+  factory CopyWith$Variables$Query$autoComplete.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$autoComplete;
 
   TRes call({
     Enum$SearchTypeEnum? searchType,
@@ -42511,16 +42511,16 @@ abstract class CopyWith$Variables$Query$SearchHistory<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Query$SearchHistory<TRes>
-    implements CopyWith$Variables$Query$SearchHistory<TRes> {
-  _CopyWithImpl$Variables$Query$SearchHistory(
+class _CopyWithImpl$Variables$Query$autoComplete<TRes>
+    implements CopyWith$Variables$Query$autoComplete<TRes> {
+  _CopyWithImpl$Variables$Query$autoComplete(
     this._instance,
     this._then,
   );
 
-  final Variables$Query$SearchHistory _instance;
+  final Variables$Query$autoComplete _instance;
 
-  final TRes Function(Variables$Query$SearchHistory) _then;
+  final TRes Function(Variables$Query$autoComplete) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -42528,7 +42528,7 @@ class _CopyWithImpl$Variables$Query$SearchHistory<TRes>
     Object? searchType = _undefined,
     Object? searchTerm = _undefined,
   }) =>
-      _then(Variables$Query$SearchHistory._({
+      _then(Variables$Query$autoComplete._({
         ..._instance._$data,
         if (searchType != _undefined && searchType != null)
           'searchType': (searchType as Enum$SearchTypeEnum),
@@ -42537,9 +42537,9 @@ class _CopyWithImpl$Variables$Query$SearchHistory<TRes>
       }));
 }
 
-class _CopyWithStubImpl$Variables$Query$SearchHistory<TRes>
-    implements CopyWith$Variables$Query$SearchHistory<TRes> {
-  _CopyWithStubImpl$Variables$Query$SearchHistory(this._res);
+class _CopyWithStubImpl$Variables$Query$autoComplete<TRes>
+    implements CopyWith$Variables$Query$autoComplete<TRes> {
+  _CopyWithStubImpl$Variables$Query$autoComplete(this._res);
 
   TRes _res;
 
@@ -42550,31 +42550,35 @@ class _CopyWithStubImpl$Variables$Query$SearchHistory<TRes>
       _res;
 }
 
-class Query$SearchHistory {
-  Query$SearchHistory({
-    this.searchHistory,
+class Query$autoComplete {
+  Query$autoComplete({
+    this.autoComplete,
     this.$__typename = 'Query',
   });
 
-  factory Query$SearchHistory.fromJson(Map<String, dynamic> json) {
-    final l$searchHistory = json['searchHistory'];
+  factory Query$autoComplete.fromJson(Map<String, dynamic> json) {
+    final l$autoComplete = json['autoComplete'];
     final l$$__typename = json['__typename'];
-    return Query$SearchHistory(
-      searchHistory: (l$searchHistory as List<dynamic>?)
-          ?.map((e) => (e as String?))
+    return Query$autoComplete(
+      autoComplete: (l$autoComplete as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$autoComplete$autoComplete.fromJson(
+                  (e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<String?>? searchHistory;
+  final List<Query$autoComplete$autoComplete?>? autoComplete;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$searchHistory = searchHistory;
-    _resultData['searchHistory'] = l$searchHistory?.map((e) => e).toList();
+    final l$autoComplete = autoComplete;
+    _resultData['autoComplete'] =
+        l$autoComplete?.map((e) => e?.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -42582,12 +42586,12 @@ class Query$SearchHistory {
 
   @override
   int get hashCode {
-    final l$searchHistory = searchHistory;
+    final l$autoComplete = autoComplete;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$searchHistory == null
+      l$autoComplete == null
           ? null
-          : Object.hashAll(l$searchHistory.map((v) => v)),
+          : Object.hashAll(l$autoComplete.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -42597,23 +42601,23 @@ class Query$SearchHistory {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$SearchHistory || runtimeType != other.runtimeType) {
+    if (other is! Query$autoComplete || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$searchHistory = searchHistory;
-    final lOther$searchHistory = other.searchHistory;
-    if (l$searchHistory != null && lOther$searchHistory != null) {
-      if (l$searchHistory.length != lOther$searchHistory.length) {
+    final l$autoComplete = autoComplete;
+    final lOther$autoComplete = other.autoComplete;
+    if (l$autoComplete != null && lOther$autoComplete != null) {
+      if (l$autoComplete.length != lOther$autoComplete.length) {
         return false;
       }
-      for (int i = 0; i < l$searchHistory.length; i++) {
-        final l$searchHistory$entry = l$searchHistory[i];
-        final lOther$searchHistory$entry = lOther$searchHistory[i];
-        if (l$searchHistory$entry != lOther$searchHistory$entry) {
+      for (int i = 0; i < l$autoComplete.length; i++) {
+        final l$autoComplete$entry = l$autoComplete[i];
+        final lOther$autoComplete$entry = lOther$autoComplete[i];
+        if (l$autoComplete$entry != lOther$autoComplete$entry) {
           return false;
         }
       }
-    } else if (l$searchHistory != lOther$searchHistory) {
+    } else if (l$autoComplete != lOther$autoComplete) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -42625,73 +42629,95 @@ class Query$SearchHistory {
   }
 }
 
-extension UtilityExtension$Query$SearchHistory on Query$SearchHistory {
-  CopyWith$Query$SearchHistory<Query$SearchHistory> get copyWith =>
-      CopyWith$Query$SearchHistory(
+extension UtilityExtension$Query$autoComplete on Query$autoComplete {
+  CopyWith$Query$autoComplete<Query$autoComplete> get copyWith =>
+      CopyWith$Query$autoComplete(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Query$SearchHistory<TRes> {
-  factory CopyWith$Query$SearchHistory(
-    Query$SearchHistory instance,
-    TRes Function(Query$SearchHistory) then,
-  ) = _CopyWithImpl$Query$SearchHistory;
+abstract class CopyWith$Query$autoComplete<TRes> {
+  factory CopyWith$Query$autoComplete(
+    Query$autoComplete instance,
+    TRes Function(Query$autoComplete) then,
+  ) = _CopyWithImpl$Query$autoComplete;
 
-  factory CopyWith$Query$SearchHistory.stub(TRes res) =
-      _CopyWithStubImpl$Query$SearchHistory;
+  factory CopyWith$Query$autoComplete.stub(TRes res) =
+      _CopyWithStubImpl$Query$autoComplete;
 
   TRes call({
-    List<String?>? searchHistory,
+    List<Query$autoComplete$autoComplete?>? autoComplete,
     String? $__typename,
   });
+  TRes autoComplete(
+      Iterable<Query$autoComplete$autoComplete?>? Function(
+              Iterable<
+                  CopyWith$Query$autoComplete$autoComplete<
+                      Query$autoComplete$autoComplete>?>?)
+          _fn);
 }
 
-class _CopyWithImpl$Query$SearchHistory<TRes>
-    implements CopyWith$Query$SearchHistory<TRes> {
-  _CopyWithImpl$Query$SearchHistory(
+class _CopyWithImpl$Query$autoComplete<TRes>
+    implements CopyWith$Query$autoComplete<TRes> {
+  _CopyWithImpl$Query$autoComplete(
     this._instance,
     this._then,
   );
 
-  final Query$SearchHistory _instance;
+  final Query$autoComplete _instance;
 
-  final TRes Function(Query$SearchHistory) _then;
+  final TRes Function(Query$autoComplete) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? searchHistory = _undefined,
+    Object? autoComplete = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$SearchHistory(
-        searchHistory: searchHistory == _undefined
-            ? _instance.searchHistory
-            : (searchHistory as List<String?>?),
+      _then(Query$autoComplete(
+        autoComplete: autoComplete == _undefined
+            ? _instance.autoComplete
+            : (autoComplete as List<Query$autoComplete$autoComplete?>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  TRes autoComplete(
+          Iterable<Query$autoComplete$autoComplete?>? Function(
+                  Iterable<
+                      CopyWith$Query$autoComplete$autoComplete<
+                          Query$autoComplete$autoComplete>?>?)
+              _fn) =>
+      call(
+          autoComplete: _fn(_instance.autoComplete?.map((e) => e == null
+              ? null
+              : CopyWith$Query$autoComplete$autoComplete(
+                  e,
+                  (i) => i,
+                )))?.toList());
 }
 
-class _CopyWithStubImpl$Query$SearchHistory<TRes>
-    implements CopyWith$Query$SearchHistory<TRes> {
-  _CopyWithStubImpl$Query$SearchHistory(this._res);
+class _CopyWithStubImpl$Query$autoComplete<TRes>
+    implements CopyWith$Query$autoComplete<TRes> {
+  _CopyWithStubImpl$Query$autoComplete(this._res);
 
   TRes _res;
 
   call({
-    List<String?>? searchHistory,
+    List<Query$autoComplete$autoComplete?>? autoComplete,
     String? $__typename,
   }) =>
       _res;
+
+  autoComplete(_fn) => _res;
 }
 
-const documentNodeQuerySearchHistory = DocumentNode(definitions: [
+const documentNodeQueryautoComplete = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.query,
-    name: NameNode(value: 'SearchHistory'),
+    name: NameNode(value: 'autoComplete'),
     variableDefinitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'searchType')),
@@ -42715,7 +42741,7 @@ const documentNodeQuerySearchHistory = DocumentNode(definitions: [
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'searchHistory'),
+        name: NameNode(value: 'autoComplete'),
         alias: null,
         arguments: [
           ArgumentNode(
@@ -42728,7 +42754,36 @@ const documentNodeQuerySearchHistory = DocumentNode(definitions: [
           ),
         ],
         directives: [],
-        selectionSet: null,
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'thumbnailUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -42740,26 +42795,26 @@ const documentNodeQuerySearchHistory = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Query$SearchHistory _parserFn$Query$SearchHistory(Map<String, dynamic> data) =>
-    Query$SearchHistory.fromJson(data);
-typedef OnQueryComplete$Query$SearchHistory = FutureOr<void> Function(
+Query$autoComplete _parserFn$Query$autoComplete(Map<String, dynamic> data) =>
+    Query$autoComplete.fromJson(data);
+typedef OnQueryComplete$Query$autoComplete = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Query$SearchHistory?,
+  Query$autoComplete?,
 );
 
-class Options$Query$SearchHistory
-    extends graphql.QueryOptions<Query$SearchHistory> {
-  Options$Query$SearchHistory({
+class Options$Query$autoComplete
+    extends graphql.QueryOptions<Query$autoComplete> {
+  Options$Query$autoComplete({
     String? operationName,
-    required Variables$Query$SearchHistory variables,
+    required Variables$Query$autoComplete variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$SearchHistory? typedOptimisticResult,
+    Query$autoComplete? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$SearchHistory? onComplete,
+    OnQueryComplete$Query$autoComplete? onComplete,
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
@@ -42775,14 +42830,14 @@ class Options$Query$SearchHistory
               ? null
               : (data) => onComplete(
                     data,
-                    data == null ? null : _parserFn$Query$SearchHistory(data),
+                    data == null ? null : _parserFn$Query$autoComplete(data),
                   ),
           onError: onError,
-          document: documentNodeQuerySearchHistory,
-          parserFn: _parserFn$Query$SearchHistory,
+          document: documentNodeQueryautoComplete,
+          parserFn: _parserFn$Query$autoComplete,
         );
 
-  final OnQueryComplete$Query$SearchHistory? onCompleteWithParsed;
+  final OnQueryComplete$Query$autoComplete? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -42793,16 +42848,16 @@ class Options$Query$SearchHistory
       ];
 }
 
-class WatchOptions$Query$SearchHistory
-    extends graphql.WatchQueryOptions<Query$SearchHistory> {
-  WatchOptions$Query$SearchHistory({
+class WatchOptions$Query$autoComplete
+    extends graphql.WatchQueryOptions<Query$autoComplete> {
+  WatchOptions$Query$autoComplete({
     String? operationName,
-    required Variables$Query$SearchHistory variables,
+    required Variables$Query$autoComplete variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$SearchHistory? typedOptimisticResult,
+    Query$autoComplete? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -42816,60 +42871,220 @@ class WatchOptions$Query$SearchHistory
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeQuerySearchHistory,
+          document: documentNodeQueryautoComplete,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Query$SearchHistory,
+          parserFn: _parserFn$Query$autoComplete,
         );
 }
 
-class FetchMoreOptions$Query$SearchHistory extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$SearchHistory({
+class FetchMoreOptions$Query$autoComplete extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$autoComplete({
     required graphql.UpdateQuery updateQuery,
-    required Variables$Query$SearchHistory variables,
+    required Variables$Query$autoComplete variables,
   }) : super(
           updateQuery: updateQuery,
           variables: variables.toJson(),
-          document: documentNodeQuerySearchHistory,
+          document: documentNodeQueryautoComplete,
         );
 }
 
-extension ClientExtension$Query$SearchHistory on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$SearchHistory>> query$SearchHistory(
-          Options$Query$SearchHistory options) async =>
+extension ClientExtension$Query$autoComplete on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$autoComplete>> query$autoComplete(
+          Options$Query$autoComplete options) async =>
       await this.query(options);
-  graphql.ObservableQuery<Query$SearchHistory> watchQuery$SearchHistory(
-          WatchOptions$Query$SearchHistory options) =>
+  graphql.ObservableQuery<Query$autoComplete> watchQuery$autoComplete(
+          WatchOptions$Query$autoComplete options) =>
       this.watchQuery(options);
-  void writeQuery$SearchHistory({
-    required Query$SearchHistory data,
-    required Variables$Query$SearchHistory variables,
+  void writeQuery$autoComplete({
+    required Query$autoComplete data,
+    required Variables$Query$autoComplete variables,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
-          operation:
-              graphql.Operation(document: documentNodeQuerySearchHistory),
+          operation: graphql.Operation(document: documentNodeQueryautoComplete),
           variables: variables.toJson(),
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
-  Query$SearchHistory? readQuery$SearchHistory({
-    required Variables$Query$SearchHistory variables,
+  Query$autoComplete? readQuery$autoComplete({
+    required Variables$Query$autoComplete variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
-        operation: graphql.Operation(document: documentNodeQuerySearchHistory),
+        operation: graphql.Operation(document: documentNodeQueryautoComplete),
         variables: variables.toJson(),
       ),
       optimistic: optimistic,
     );
-    return result == null ? null : Query$SearchHistory.fromJson(result);
+    return result == null ? null : Query$autoComplete.fromJson(result);
   }
+}
+
+class Query$autoComplete$autoComplete {
+  Query$autoComplete$autoComplete({
+    this.id,
+    this.name,
+    this.thumbnailUrl,
+    this.$__typename = 'SearchSuggestion',
+  });
+
+  factory Query$autoComplete$autoComplete.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$autoComplete$autoComplete(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String? thumbnailUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$thumbnailUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$autoComplete$autoComplete ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$autoComplete$autoComplete
+    on Query$autoComplete$autoComplete {
+  CopyWith$Query$autoComplete$autoComplete<Query$autoComplete$autoComplete>
+      get copyWith => CopyWith$Query$autoComplete$autoComplete(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$autoComplete$autoComplete<TRes> {
+  factory CopyWith$Query$autoComplete$autoComplete(
+    Query$autoComplete$autoComplete instance,
+    TRes Function(Query$autoComplete$autoComplete) then,
+  ) = _CopyWithImpl$Query$autoComplete$autoComplete;
+
+  factory CopyWith$Query$autoComplete$autoComplete.stub(TRes res) =
+      _CopyWithStubImpl$Query$autoComplete$autoComplete;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? thumbnailUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$autoComplete$autoComplete<TRes>
+    implements CopyWith$Query$autoComplete$autoComplete<TRes> {
+  _CopyWithImpl$Query$autoComplete$autoComplete(
+    this._instance,
+    this._then,
+  );
+
+  final Query$autoComplete$autoComplete _instance;
+
+  final TRes Function(Query$autoComplete$autoComplete) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$autoComplete$autoComplete(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$autoComplete$autoComplete<TRes>
+    implements CopyWith$Query$autoComplete$autoComplete<TRes> {
+  _CopyWithStubImpl$Query$autoComplete$autoComplete(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? thumbnailUrl,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Variables$Query$RecommendedSellers {

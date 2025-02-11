@@ -100,7 +100,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
-                      ),
+                      ),  
                     ],
                   ),
                   addVerticalSpacing(40),

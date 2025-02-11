@@ -536,9 +536,9 @@ mutation CancelOrder($orderId: Int!) {
 
 mutation CreatePaymentIntent(
   $orderId: Int!
-  $paymentMethod: PaymentMethodEnum!
+  $paymentMethodId: String!
 ) {
-  createPaymentIntent(orderId: $orderId, paymentMethod: $paymentMethod) {
+  createPaymentIntent(orderId: $orderId, paymentMethodId: $paymentMethodId) {
     clientSecret
     paymentRef
   }

@@ -14,7 +14,6 @@ import '../../widgets/app_button.dart';
 import '../../widgets/card.dart';
 import 'all_tabs.dart';
 
-
 class RecentlyViewedProductsHome extends ConsumerWidget {
   const RecentlyViewedProductsHome({super.key});
 
@@ -112,61 +111,6 @@ class RecentlyViewedProductsHome extends ConsumerWidget {
                 ),
               ],
             ),
-        orElse: () => Column(
-              children: [
-                16.verticalSpacing,
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                  child: CustomShimmer(
-                      child: Container(
-                          height: 40,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            // color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              16.horizontalSpacing,
-                              Container(
-                                height: 40,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ],
-                          ))),
-                ),
-                16.verticalSpacing,
-                AspectRatio(
-                  aspectRatio: 1.1,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      mockData.length,
-                      (_) => Container(
-                        // height: 220,
-                        width: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child:
-                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ));
+        orElse: () => SizedBox.shrink());
   }
 }

@@ -22,10 +22,6 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     ref.refresh(favoriteBrandProductsProvider.future);
     ref.refresh(favoriteBrandProductsProvider.future);
 
-    final category = ref.watch(categoryProvider).valueOrNull;
-    if (category != null) {
-      final matchingCategory = category.firstWhere((e) => e.name == name);
-      ref.read(filteredProductProvider(searchQuery));
-    }
+    ref.read(filteredProductProvider(searchQuery));
   }
 }
