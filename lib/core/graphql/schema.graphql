@@ -57,7 +57,6 @@ type AdminObtainJSONWebToken {
   success: Boolean
   user: AdminUserType
   unarchiving: Boolean
-  restToken: String
   use2fa: Boolean
   useGoogleAuthenticator: Boolean
   token: String!
@@ -723,7 +722,6 @@ type NewObtainJSONWebToken {
   success: Boolean
   user: UserNode
   unarchiving: Boolean
-  restToken: String
   use2fa: Boolean
   useGoogleAuthenticator: Boolean
   token: String!
@@ -1445,7 +1443,7 @@ type Query {
   blockedUsers(search: String, pageCount: Int, pageNumber: Int): [BlockedUserType]
   userSearchHistory(searchType: SearchTypeEnum, pageCount: Int, pageNumber: Int): [SearchHistoryType]
   recommendedSearchHistory(searchType: SearchTypeEnum!, pageCount: Int, pageNumber: Int): [SearchHistoryType]
-  searchHistory(searchTerm: String!, searchType: SearchTypeEnum!): [String]
+  autoComplete(searchTerm: String!, searchType: SearchTypeEnum!): [SearchSuggestion]
   followingTotalNumber: Int
   followersTotalNumber: Int
   blockedUsersTotalNumber: Int
@@ -1502,6 +1500,12 @@ type SearchHistoryType {
   searchType: String
   searchCount: Int!
   lastSearched: DateTime!
+}
+
+type SearchSuggestion {
+  id: Int
+  name: String
+  thumbnailUrl: String
 }
 
 enum SearchTypeEnum {

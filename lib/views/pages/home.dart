@@ -207,6 +207,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 if (showSearchInfoField)
                   SliverToBoxAdapter(
                     child: SearchHelperBox(
+                      type: Enum$SearchTypeEnum.PRODUCT,
                       onItemSelected: () {
                         showSearchInfoField = false;
                         searchQuery = ref.read(searchTextController).text;

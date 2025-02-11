@@ -384,7 +384,10 @@ class SearchScreen extends ConsumerWidget {
                     ],
                   ),
                 ] else ...[
-                  if (!showProducts) SearchHelperBox() else LiveSearchPage(),
+                  if (!showProducts)
+                    SearchHelperBox(type: Enum$SearchTypeEnum.USER)
+                  else
+                    LiveSearchPage(),
                 ]
               ],
             ),

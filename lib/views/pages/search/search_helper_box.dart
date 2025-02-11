@@ -7,12 +7,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/views/pages/authentication/sign_in.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 class SearchHelperBox extends HookConsumerWidget {
   final Function? onItemSelected;
-  const SearchHelperBox({super.key, this.onItemSelected});
+  final Enum$SearchTypeEnum type;
+  const SearchHelperBox({super.key, this.onItemSelected, required this.type});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +25,7 @@ class SearchHelperBox extends HookConsumerWidget {
         log("::::You called used 1");
         ref.invalidate(
           userSearchHistoryProvider(
-            Enum$SearchTypeEnum.PRODUCT,
+            type,
           ),
         );
       });
@@ -30,13 +33,13 @@ class SearchHelperBox extends HookConsumerWidget {
     }, []);
     final searchHistories = ref.watch(
       userSearchHistoryProvider(
-        Enum$SearchTypeEnum.PRODUCT,
+        type,
       ),
     );
     log(":::::${searchHistories.value?.length}");
     final searchSuggestions = ref.watch(
       searchHistoryProvider(
-        Enum$SearchTypeEnum.PRODUCT,
+        type,
       ),
     );
     final searchQuery = ref.watch(searchHistoryQueryProvider);
@@ -164,14 +167,20 @@ class SearchHintItemBox extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                label,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: PreluraColors.greyColor,
+              Expanded(
+                child: Text(
+                  label,
+                  softWrap: true,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: PreluraColors.greyColor,
+                  ),
                 ),
               ),
+              24.horizontalSpacing,
               if (showCloseIcon)
                 GestureDetector(
                   onTap: () async {
