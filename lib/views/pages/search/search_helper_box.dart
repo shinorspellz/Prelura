@@ -115,6 +115,7 @@ class SearchHelperBox extends HookConsumerWidget {
                   return SearchHintItemBox(
                     label: searches[index] ?? "",
                     showCloseIcon: false,
+                    onItemSelected: onItemSelected,
                   );
                 },
               );
@@ -154,6 +155,7 @@ class SearchHintItemBox extends ConsumerWidget {
       onTap: () {
         ref.read(searchTextController.notifier).state.text = label;
         ref.read(showSearchProducts.notifier).state = true;
+        onItemSelected?.call();
         // ref
         //     .read(searchFilterProvider.notifier)
         //     .updateFilter(FilterTypes.category, label);
