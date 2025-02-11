@@ -181,14 +181,15 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
     }
   }
 
-  updateUserChatCache(String chatRoomId) async {
-    List<MessageModel> response = await ref
+  Future<void> updateUserChatCache(String chatRoomId) async {
+    final response = await ref
         .read(messagesProvider("").notifier)
-        .getMessages(id: chatRoomId.toString(), pageNumber: 0);
+        .getMessages(id: chatRoomId, pageNumber: 0);
+
     if (response.isNotEmpty) {
       ref
           .read(messageCacheProvider.notifier)
-          .cacheMessage(chatRoomId.toString(), response);
+          .cacheMessage(chatRoomId, response);
     }
   }
 }

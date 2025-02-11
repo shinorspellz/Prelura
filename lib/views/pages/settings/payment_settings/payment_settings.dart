@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/payment_method_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
@@ -13,6 +14,7 @@ import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
 import 'package:prelura_app/views/widgets/error_placeholder.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 @RoutePage()
@@ -75,16 +77,28 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
                                   ),
                                 ),
                               ),
-                              child: Text(
-                                "${paymentMethod.cardBrand} card ending in ${paymentMethod.last4Digits}",
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      color: PreluraColors.lightText,
-                                    ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: paymentMethod.cardBrand.isNotEmpty
+                                        ? SvgPicture.asset(detectCardBrand(
+                                            paymentMethod.cardBrand)!)
+                                        : SizedBox.shrink(),
+                                  ),
+                                  32.horizontalSpacing,
+                                  Text(
+                                    "${paymentMethod.cardBrand} card ending in ${paymentMethod.last4Digits}",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w500,
+                                          color: PreluraColors.lightText,
+                                        ),
+                                  ),
+                                ],
                               ),
                             ),
                             40.toHeight,

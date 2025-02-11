@@ -46,10 +46,22 @@ type AdminBannerType {
   updatedAt: DateTime
 }
 
-type AdminLogin {
+"""
+A specialized login mutation for admin users with additional permission checks.
+Performs admin permission validation before authentication.
+"""
+type AdminObtainJSONWebToken {
+  payload: GenericScalar
+  refreshExpiresIn: Int
+  errors: ExpectedErrorType
+  success: Boolean
   user: AdminUserType
-  message: String
-  token: String
+  unarchiving: Boolean
+  restToken: String
+  use2fa: Boolean
+  useGoogleAuthenticator: Boolean
+  token: String!
+  refreshToken: String!
 }
 
 type AdminUserType {
@@ -499,13 +511,12 @@ type Mutation {
   ): SendSmsOtp
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
   deleteMediaFiles(fileUrls: [String], filetype: FileTypeEnum!): DeleteMediaFiles
-  adminLogin(password: String!, username: String!): AdminLogin
   createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
   updateBanner(banner: BannerInputType, id: ID!, isActive: Boolean, season: SeasonEnum, title: String): UpdateBanner
   deleteBanner(id: ID!): DeleteBanner
   flagProduct(flagType: ProductFlagTypeEnum!, id: ID!, notes: String, reason: ProductFlagReasonEnum!): FlagProduct
   flagUser(id: ID!, notes: String, reason: FlagUserReasonEnum!): FlagUser
-  createPaymentIntent(orderId: Int!, paymentMethod: PaymentMethodEnum!): CreatePaymentIntent
+  createPaymentIntent(orderId: Int!, paymentMethodId: String!): CreatePaymentIntent
 
   """Confirm a payment"""
   confirmPayment(paymentRef: String!): ConfirmPayment
@@ -652,7 +663,13 @@ type Mutation {
   return `unarchiving=True` on output.
   """
   login(password: String!, email: String, username: String): NewObtainJSONWebToken
-  logout(fcmToken: String!, refreshToken: String!): LogoutMutation
+
+  """
+  A specialized login mutation for admin users with additional permission checks.
+  Performs admin permission validation before authentication.
+  """
+  adminLogin(password: String!, email: String, username: String): AdminObtainJSONWebToken
+  logout(fcmToken: String, refreshToken: String!): LogoutMutation
   resendActivationEmail(email: String!): CustomResendActivationEmail
 
   """
@@ -880,14 +897,6 @@ type PasswordReset {
   token: String
   restToken: String
   user: UserType
-}
-
-enum PaymentMethodEnum {
-  BANK_TRANSFER
-  CARD
-  STRIPE
-  APPLE_PAY
-  GOOGLE_PAY
 }
 
 type PaymentMethodType {

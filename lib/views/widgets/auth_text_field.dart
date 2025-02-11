@@ -162,6 +162,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               maxLines: widget.maxLines,
               onSaved: widget.onSaved,
               enabled: widget.enabled,
+
               cursorHeight: 15,
               textCapitalization:
                   widget.textCapitalization ?? TextCapitalization.none,

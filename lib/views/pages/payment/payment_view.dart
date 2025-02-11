@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,9 +7,12 @@ import 'package:prelura_app/controller/product/order_provider.dart';
 import 'package:prelura_app/controller/product/payment_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/views/pages/payment/paymentMethod.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
@@ -15,6 +20,7 @@ import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../controller/payment_method_controller.dart';
 import '../../../res/utils.dart';
 import '../../widgets/profile_picture.dart';
 
@@ -268,7 +274,7 @@ class PaymentScreen extends ConsumerWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
-              child: Text("Payment", style: TextStyle(color: Colors.white)),
+              child: Text("Payment", style: context.theme.textTheme.bodyMedium),
             ),
             MenuCard(
               icon: Icon(Icons.apple, color: Colors.white),
@@ -280,13 +286,22 @@ class PaymentScreen extends ConsumerWidget {
               ),
               onTap: () {},
             ),
+
+            SizedBox(height: 16),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+              child: Text("Active Payment Method",
+                  style: context.theme.textTheme.bodyMedium),
+            ),
+            PaymentMethod(),
             SizedBox(height: 16),
           ],
         ),
       ),
       bottomNavigationBar: Container(
         width: 100.w,
-        height: 150,
+        height: 155,
         padding: EdgeInsets.only(
           left: 16,
           right: 16,
@@ -312,19 +327,29 @@ class PaymentScreen extends ConsumerWidget {
                     ref.watch(paymentProvider).isLoading,
                 width: double.infinity,
                 onTap: () async {
-                  await ref.read(orderProvider.notifier).createOrder(
-                        context,
-                        productId: products.length == 1
-                            ? int.parse(productInfo.id)
-                            : null,
-                        productIds: products.length == 1
-                            ? null
-                            : products
-                                .map((product) => int.parse(
-                                      product.id,
-                                    ))
-                                .toList(),
-                      );
+                  final userPaymentMethodId =
+                      await ref.read(paymentMethodProvider).valueOrNull;
+
+                  if (userPaymentMethodId == null) {
+                    context.alert("Add a payment method");
+                    return;
+                  }
+                  log(userPaymentMethodId.toString());
+                  await ref.read(orderProvider.notifier).createOrder(context,
+                      productId: products.length == 1
+                          ? int.parse(productInfo.id)
+                          : null,
+                      productIds: products.length == 1
+                          ? null
+                          : products
+                              .map((product) => int.parse(
+                                    product.id,
+                                  ))
+                              .toList(),
+                      paymentMethodId:
+                          userPaymentMethodId?.paymentMethodId != null
+                              ? userPaymentMethodId!.paymentMethodId
+                              : "");
 
                   ///
                   ///
@@ -359,7 +384,7 @@ class PaymentScreen extends ConsumerWidget {
                 },
                 centerText: true,
                 text: "Pay by card"),
-            addVerticalSpacing(5),
+            addVerticalSpacing(16),
             AppButton(
                 height: 50,
                 // loading: ref.watch(orderProvider).isLoading ||

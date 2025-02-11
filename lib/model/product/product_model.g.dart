@@ -102,7 +102,7 @@ Map<String, dynamic> _$$ProductBannersImplToJson(
     };
 
 _$BrandImpl _$$BrandImplFromJson(Map<String, dynamic> json) => _$BrandImpl(
-      id: (json['id'] as num).toInt(),
+      id: json['id'],
       name: json['name'] as String,
     );
 
@@ -114,7 +114,7 @@ Map<String, dynamic> _$$BrandImplToJson(_$BrandImpl instance) =>
 
 _$SizeTypeImpl _$$SizeTypeImplFromJson(Map<String, dynamic> json) =>
     _$SizeTypeImpl(
-      id: (json['id'] as num).toInt(),
+      id: json['id'],
       name: json['name'] as String,
     );
 

@@ -129,7 +129,7 @@ enum ConditionsEnum {
 @freezed
 class Brand with _$Brand {
   const factory Brand({
-    required int id,
+    required dynamic id,
     required String name,
   }) = _Brand;
 
@@ -139,7 +139,7 @@ class Brand with _$Brand {
 @freezed
 class SizeType with _$SizeType {
   const factory SizeType({
-    required int id,
+    required dynamic id,
     required String name,
   }) = _SizeType;
 

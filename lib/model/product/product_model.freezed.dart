@@ -953,7 +953,7 @@ Brand _$BrandFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Brand {
-  int get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   /// Serializes this Brand to a JSON map.
@@ -970,7 +970,7 @@ abstract class $BrandCopyWith<$Res> {
   factory $BrandCopyWith(Brand value, $Res Function(Brand) then) =
       _$BrandCopyWithImpl<$Res, Brand>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({dynamic id, String name});
 }
 
 /// @nodoc
@@ -988,14 +988,14 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1011,7 +1011,7 @@ abstract class _$$BrandImplCopyWith<$Res> implements $BrandCopyWith<$Res> {
       __$$BrandImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({dynamic id, String name});
 }
 
 /// @nodoc
@@ -1027,14 +1027,14 @@ class __$$BrandImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
   }) {
     return _then(_$BrandImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1052,7 +1052,7 @@ class _$BrandImpl implements _Brand {
       _$$BrandImplFromJson(json);
 
   @override
-  final int id;
+  final dynamic id;
   @override
   final String name;
 
@@ -1066,13 +1066,14 @@ class _$BrandImpl implements _Brand {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BrandImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id), name);
 
   /// Create a copy of Brand
   /// with the given fields replaced by the non-null parameter values.
@@ -1091,13 +1092,13 @@ class _$BrandImpl implements _Brand {
 }
 
 abstract class _Brand implements Brand {
-  const factory _Brand({required final int id, required final String name}) =
-      _$BrandImpl;
+  const factory _Brand(
+      {required final dynamic id, required final String name}) = _$BrandImpl;
 
   factory _Brand.fromJson(Map<String, dynamic> json) = _$BrandImpl.fromJson;
 
   @override
-  int get id;
+  dynamic get id;
   @override
   String get name;
 
@@ -1115,7 +1116,7 @@ SizeType _$SizeTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SizeType {
-  int get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   /// Serializes this SizeType to a JSON map.
@@ -1133,7 +1134,7 @@ abstract class $SizeTypeCopyWith<$Res> {
   factory $SizeTypeCopyWith(SizeType value, $Res Function(SizeType) then) =
       _$SizeTypeCopyWithImpl<$Res, SizeType>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({dynamic id, String name});
 }
 
 /// @nodoc
@@ -1151,14 +1152,14 @@ class _$SizeTypeCopyWithImpl<$Res, $Val extends SizeType>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1175,7 +1176,7 @@ abstract class _$$SizeTypeImplCopyWith<$Res>
       __$$SizeTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({dynamic id, String name});
 }
 
 /// @nodoc
@@ -1191,14 +1192,14 @@ class __$$SizeTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
   }) {
     return _then(_$SizeTypeImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1216,7 +1217,7 @@ class _$SizeTypeImpl implements _SizeType {
       _$$SizeTypeImplFromJson(json);
 
   @override
-  final int id;
+  final dynamic id;
   @override
   final String name;
 
@@ -1230,13 +1231,14 @@ class _$SizeTypeImpl implements _SizeType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SizeTypeImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id), name);
 
   /// Create a copy of SizeType
   /// with the given fields replaced by the non-null parameter values.
@@ -1255,14 +1257,14 @@ class _$SizeTypeImpl implements _SizeType {
 }
 
 abstract class _SizeType implements SizeType {
-  const factory _SizeType({required final int id, required final String name}) =
-      _$SizeTypeImpl;
+  const factory _SizeType(
+      {required final dynamic id, required final String name}) = _$SizeTypeImpl;
 
   factory _SizeType.fromJson(Map<String, dynamic> json) =
       _$SizeTypeImpl.fromJson;
 
   @override
-  int get id;
+  dynamic get id;
   @override
   String get name;
 

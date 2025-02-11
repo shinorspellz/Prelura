@@ -9,12 +9,13 @@ class PaymentRepo {
 
   PaymentRepo(this._client);
 
-  Future<(String, String)> createPaymentIntent(int orderId, Enum$PaymentMethodEnum paymentMethod) async {
+  Future<(String, String)> createPaymentIntent(
+      int orderId, String paymentMethodId) async {
     final response = await _client.mutate$CreatePaymentIntent(
       Options$Mutation$CreatePaymentIntent(
         variables: Variables$Mutation$CreatePaymentIntent(
           orderId: orderId,
-          paymentMethod: paymentMethod,
+          paymentMethodId: paymentMethodId,
         ),
       ),
     );

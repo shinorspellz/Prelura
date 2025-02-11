@@ -13,6 +13,8 @@ import 'package:prelura_app/model/product/order/user_order.dart';
 // import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
+import '../payment_method_controller.dart';
+
 final activeTabProvider = StateProvider<String>((ref) => 'Sold');
 final orderProvider = StateNotifierProvider<OrderNotifier, OrderState>((ref) {
   final repoProvider = ref.read(offerRepoProvider);
@@ -70,17 +72,17 @@ class OrderNotifier extends StateNotifier<OrderState> {
     );
   }
 
-  createOrder(
-    BuildContext context, {
-    int? productId,
-    List<int>? productIds,
-    double? shippingFee,
-  }) async {
+  createOrder(BuildContext context,
+      {int? productId,
+      List<int>? productIds,
+      double? shippingFee,
+      required String paymentMethodId}) async {
     try {
       updateOrderState({
         "processingType": "createOrder",
         "isProcessing": true,
       });
+      log(paymentMethodId, name: "payment method");
 
       final Mutation$CreateOrder$createOrder? response =
           await orderRepo.createOrder(
@@ -91,13 +93,14 @@ class OrderNotifier extends StateNotifier<OrderState> {
       if (response != null && response.success!) {
         CreateOrderInfo orderInfo = CreateOrderInfo.fromJson(response.toJson());
         await ref.read(paymentProvider.notifier).createPaymentIntent(
-              int.parse(orderInfo.order!.id!),
-              Enum$PaymentMethodEnum.CARD,
-            );
+            int.parse(orderInfo.order!.id!), paymentMethodId);
 
         ref.read(paymentProvider).whenOrNull(
-              error: (e, _) =>
-                  context.alert('An error occured while creating order'),
+              error: (e, _) {
+                log(e.toString(), name: "Create order");
+                log(_.toString(), name: "create Order ");
+                context.alert('An error occured while creating order');
+              },
               data: (_) => context.router.popForced(),
             );
       }

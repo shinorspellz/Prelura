@@ -26510,11 +26510,11 @@ class _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder<TRes>
 class Variables$Mutation$CreatePaymentIntent {
   factory Variables$Mutation$CreatePaymentIntent({
     required int orderId,
-    required Enum$PaymentMethodEnum paymentMethod,
+    required String paymentMethodId,
   }) =>
       Variables$Mutation$CreatePaymentIntent._({
         r'orderId': orderId,
-        r'paymentMethod': paymentMethod,
+        r'paymentMethodId': paymentMethodId,
       });
 
   Variables$Mutation$CreatePaymentIntent._(this._$data);
@@ -26524,9 +26524,8 @@ class Variables$Mutation$CreatePaymentIntent {
     final result$data = <String, dynamic>{};
     final l$orderId = data['orderId'];
     result$data['orderId'] = (l$orderId as int);
-    final l$paymentMethod = data['paymentMethod'];
-    result$data['paymentMethod'] =
-        fromJson$Enum$PaymentMethodEnum((l$paymentMethod as String));
+    final l$paymentMethodId = data['paymentMethodId'];
+    result$data['paymentMethodId'] = (l$paymentMethodId as String);
     return Variables$Mutation$CreatePaymentIntent._(result$data);
   }
 
@@ -26534,16 +26533,14 @@ class Variables$Mutation$CreatePaymentIntent {
 
   int get orderId => (_$data['orderId'] as int);
 
-  Enum$PaymentMethodEnum get paymentMethod =>
-      (_$data['paymentMethod'] as Enum$PaymentMethodEnum);
+  String get paymentMethodId => (_$data['paymentMethodId'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$orderId = orderId;
     result$data['orderId'] = l$orderId;
-    final l$paymentMethod = paymentMethod;
-    result$data['paymentMethod'] =
-        toJson$Enum$PaymentMethodEnum(l$paymentMethod);
+    final l$paymentMethodId = paymentMethodId;
+    result$data['paymentMethodId'] = l$paymentMethodId;
     return result$data;
   }
 
@@ -26568,9 +26565,9 @@ class Variables$Mutation$CreatePaymentIntent {
     if (l$orderId != lOther$orderId) {
       return false;
     }
-    final l$paymentMethod = paymentMethod;
-    final lOther$paymentMethod = other.paymentMethod;
-    if (l$paymentMethod != lOther$paymentMethod) {
+    final l$paymentMethodId = paymentMethodId;
+    final lOther$paymentMethodId = other.paymentMethodId;
+    if (l$paymentMethodId != lOther$paymentMethodId) {
       return false;
     }
     return true;
@@ -26579,10 +26576,10 @@ class Variables$Mutation$CreatePaymentIntent {
   @override
   int get hashCode {
     final l$orderId = orderId;
-    final l$paymentMethod = paymentMethod;
+    final l$paymentMethodId = paymentMethodId;
     return Object.hashAll([
       l$orderId,
-      l$paymentMethod,
+      l$paymentMethodId,
     ]);
   }
 }
@@ -26598,7 +26595,7 @@ abstract class CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
 
   TRes call({
     int? orderId,
-    Enum$PaymentMethodEnum? paymentMethod,
+    String? paymentMethodId,
   });
 }
 
@@ -26617,14 +26614,14 @@ class _CopyWithImpl$Variables$Mutation$CreatePaymentIntent<TRes>
 
   TRes call({
     Object? orderId = _undefined,
-    Object? paymentMethod = _undefined,
+    Object? paymentMethodId = _undefined,
   }) =>
       _then(Variables$Mutation$CreatePaymentIntent._({
         ..._instance._$data,
         if (orderId != _undefined && orderId != null)
           'orderId': (orderId as int),
-        if (paymentMethod != _undefined && paymentMethod != null)
-          'paymentMethod': (paymentMethod as Enum$PaymentMethodEnum),
+        if (paymentMethodId != _undefined && paymentMethodId != null)
+          'paymentMethodId': (paymentMethodId as String),
       }));
 }
 
@@ -26636,7 +26633,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent<TRes>
 
   call({
     int? orderId,
-    Enum$PaymentMethodEnum? paymentMethod,
+    String? paymentMethodId,
   }) =>
       _res;
 }
@@ -26801,9 +26798,9 @@ const documentNodeMutationCreatePaymentIntent = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'paymentMethod')),
+        variable: VariableNode(name: NameNode(value: 'paymentMethodId')),
         type: NamedTypeNode(
-          name: NameNode(value: 'PaymentMethodEnum'),
+          name: NameNode(value: 'String'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -26821,8 +26818,8 @@ const documentNodeMutationCreatePaymentIntent = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'orderId')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'paymentMethod'),
-            value: VariableNode(name: NameNode(value: 'paymentMethod')),
+            name: NameNode(value: 'paymentMethodId'),
+            value: VariableNode(name: NameNode(value: 'paymentMethodId')),
           ),
         ],
         directives: [],

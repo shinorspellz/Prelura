@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:prelura_app/res/images.dart';
 
 void dismissKeyboard() {
   FocusManager.instance.primaryFocus?.unfocus();
@@ -227,4 +228,13 @@ String getUserLastSeen(String lastSeen) {
     log("Error parsing date: $e");
     return "moments ago";
   }
+}
+
+String? detectCardBrand(String cardNumber) {
+  if (cardNumber.toLowerCase() == "master") {
+    return PreluraIcons.mastercardIcon;
+  } else if (cardNumber.toLowerCase() == "visa") {
+    return PreluraIcons.visaIcon;
+  }
+  return null;
 }
