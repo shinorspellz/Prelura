@@ -344,11 +344,14 @@ class PaymentScreen extends ConsumerWidget {
             ),
 
             SizedBox(height: 16),
-            Text("Item(s)",
-                style: context.theme.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  fontSize: getDefaultSize(size: 17),
-                )),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text("Item(s)",
+                  style: context.theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: getDefaultSize(size: 17),
+                  )),
+            ),
             SizedBox(height: 16),
 
             Container(
