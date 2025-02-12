@@ -105,6 +105,7 @@ query Product($id: Int!) {
       id
       username
       profilePictureUrl
+      isMultibuyEnabled
     }
     condition
     discountPrice
@@ -213,6 +214,7 @@ query UserProducts(
     seller {
       id
       username
+isMultibuyEnabled
     }
     condition
     discountPrice
@@ -1003,8 +1005,8 @@ query FavoriteBrandProducts($topCount: Int!) {
   }
 }
 
-query userMultibuyDiscounts {
-  userMultibuyDiscounts {
+query userMultibuyDiscounts($userId : Int) {
+  userMultibuyDiscounts(userId: $userId) {
     discountValue
     id
     isActive

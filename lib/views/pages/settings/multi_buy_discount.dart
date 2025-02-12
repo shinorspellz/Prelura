@@ -55,7 +55,7 @@ class _MultiBuyDiscountScreenState
     log("Fetching discount values...");
 
     final multiBuyDiscounts =
-        await ref.read(userMultiBuyDiscountProvider.future);
+        await ref.read(userMultiBuyDiscountProvider(null).future);
     if (multiBuyDiscounts == null) return;
 
     log("Fetched discounts: $multiBuyDiscounts");
@@ -93,7 +93,7 @@ class _MultiBuyDiscountScreenState
     }
     ref.refresh(userProvider);
     setState(() => isEditing = isEnabled);
-    ref.refresh(userMultiBuyDiscountProvider.future);
+    ref.refresh(userMultiBuyDiscountProvider(null).future);
   }
 
   Future<void> _saveDiscounts(
@@ -140,7 +140,7 @@ class _MultiBuyDiscountScreenState
             log("error occured $e");
           },
           loading: () {});
-      ref.refresh(userMultiBuyDiscountProvider.future);
+      ref.refresh(userMultiBuyDiscountProvider(null).future);
 
       return;
     } else {
@@ -150,7 +150,7 @@ class _MultiBuyDiscountScreenState
             HelperFunction.context = context;
             HelperFunction.showToast(message: "Saved");
             ref.refresh(userProvider.future);
-            ref.refresh(userMultiBuyDiscountProvider.future);
+            ref.refresh(userMultiBuyDiscountProvider(null).future);
 
             setState(() {
               isEditing = !isEditing;
@@ -191,7 +191,7 @@ class _MultiBuyDiscountScreenState
           log("error occured $e");
         },
         loading: () {});
-    ref.refresh(userMultiBuyDiscountProvider.future);
+    ref.refresh(userMultiBuyDiscountProvider(null).future);
   }
 
   Future<void> _createDiscounts() async {
@@ -251,7 +251,7 @@ class _MultiBuyDiscountScreenState
   @override
   Widget build(BuildContext context) {
     final multiBuyDiscounts =
-        ref.watch(userMultiBuyDiscountProvider).valueOrNull;
+        ref.watch(userMultiBuyDiscountProvider(null)).valueOrNull;
     final isEnabled = ref.watch(isSelectedProvider);
 
     return Scaffold(
@@ -265,7 +265,7 @@ class _MultiBuyDiscountScreenState
         centerTitle: true,
       ),
       body: RefreshIndicator(
-        onRefresh: () => ref.refresh(userMultiBuyDiscountProvider.future),
+        onRefresh: () => ref.refresh(userMultiBuyDiscountProvider(null).future),
         child: SingleChildScrollView(
           child: Column(
             children: [

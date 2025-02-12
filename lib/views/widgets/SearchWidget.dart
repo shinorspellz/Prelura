@@ -185,6 +185,7 @@ class _SearchwidgetState extends State<Searchwidget> {
               ),
               child: TextFormField(
                 autofocus: widget.autofocus,
+                scrollPadding: EdgeInsets.zero,
                 autocorrect: false,
                 enableSuggestions: false,
                 minLines: widget.minLines ?? 1,
@@ -192,6 +193,8 @@ class _SearchwidgetState extends State<Searchwidget> {
                 maxLength: widget.maxLength,
                 onSaved: widget.onSaved,
                 enabled: widget.enabled,
+                textAlignVertical: TextAlignVertical.center,
+                textInputAction: TextInputAction.search,
                 textCapitalization:
                     widget.textCapitalization ?? TextCapitalization.none,
                 onTap: widget.onTap,
@@ -248,31 +251,25 @@ class _SearchwidgetState extends State<Searchwidget> {
                   //Ternary switch is important. It prevents a subtle bug where
                   // sometimes after tapping on cancel and tapping again the
                   // field is not activated
-                  suffix: _hasText
-                      ? InkResponse(
+                  suffixIcon: _hasText
+                      ? GestureDetector(
                           onTap: () {
                             if (showCancel) clearText();
                           },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(100)),
-                              padding: const EdgeInsets.all(3),
-                              child: const Icon(
-                                Icons.close_rounded,
-                                color: Colors.white,
-                                size: 16,
-                              )),
+                          child: const Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 16,
+                          ),
                         )
                       : const SizedBox.shrink(),
                   // suffixIcon: _hasText ? suffixIconII : null,
-                  suffixIconConstraints:
-                      const BoxConstraints(maxHeight: 20, maxWidth: 24),
 
                   prefixIcon: widget.hidePrefix
                       ? null
                       : Icon(
                           Icons.search,
+                          size: 16,
                           color: Theme.of(context).iconTheme.color,
                         ), //widget.prefixIcon,
                   suffixStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
@@ -289,7 +286,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                               Theme.of(context).primaryColor.withOpacity(0.5),
                           fontSize: 11.sp,
                           overflow: TextOverflow.clip),
-                  contentPadding: const EdgeInsets.fromLTRB(10, 13, 14.5, 8),
+                  contentPadding: const EdgeInsets.fromLTRB(10, 8, 14.5, 8),
                 ),
               ),
             ),

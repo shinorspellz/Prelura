@@ -6,12 +6,14 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/model/search_history_model.dart';
 
+import '../model/search_suggestion_model.dart';
+
 class SearchHistoryRepo {
   final GraphqlCL _client;
 
   SearchHistoryRepo(this._client);
 
-  Future<List<String?>> searchHistory(
+  Future<List<SearchSuggestionModel>> searchHistory(
       String searchTerm, Enum$SearchTypeEnum type) async {
     final response = await _client.executeGraphQL(
         operation: ClientOperation(
@@ -21,7 +23,9 @@ class SearchHistoryRepo {
       )),
     ));
 
-    return response.autoComplete!.map((e) => e!.name).toList();
+    return response.autoComplete!
+        .map((e) => SearchSuggestionModel.fromJson(e!.toJson()))
+        .toList();
   }
 
   Future<List<SearchHistoryModel>> recommendedSearchHostory(

@@ -58,7 +58,7 @@ final appStartUpProvider = FutureProvider((ref) async {
       ref.read(brandsProvider.future),
       ref.read(categoryProvider.future),
       ref.read(notificationProvider.future),
-      ref.read(userMultiBuyDiscountProvider.future),
+      ref.read(userMultiBuyDiscountProvider(null).future),
     ]);
     ref.read(conversationProvider.future);
 

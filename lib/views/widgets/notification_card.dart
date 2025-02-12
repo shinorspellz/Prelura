@@ -124,20 +124,10 @@ class NotificationCard extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: Stack(
-                          children: [
-                            HighlightUserName(
-                                isRead: notification.isRead ?? false,
-                                username: notification.sender?.username ?? "",
-                                message: notification.message),
-                            if (notification.isRead == false)
-                              Positioned(
-                                top: 4,
-                                right: 20,
-                                child: RedDot(),
-                              )
-                          ],
-                        ),
+                        child: HighlightUserName(
+                            isRead: notification.isRead ?? false,
+                            username: notification.sender?.username ?? "",
+                            message: notification.message),
                       ),
                       2.horizontalSpacing,
                       const SizedBox(width: 24), // Add spacing before time

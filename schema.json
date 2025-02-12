@@ -990,7 +990,18 @@
           {
             "name": "userMultibuyDiscounts",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "userId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "LIST",
               "name": null,

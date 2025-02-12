@@ -120,7 +120,12 @@ class MultiDiscountBottomView extends ConsumerWidget {
                       child: AppButton(
                         text:
                             "Buy now (£${formatDynamicString(total.toString())})",
-                        onTap: () {},
+                        onTap: () {
+                          context.router.push(PaymentRoute(
+                            products: products,
+                            totalPrice: total,
+                          ));
+                        },
                       ),
                     ),
                     18.horizontalSpacing,

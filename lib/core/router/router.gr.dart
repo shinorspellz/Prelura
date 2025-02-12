@@ -18,8 +18,9 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart'
 import 'package:prelura_app/core/router/app_startup.dart' as _i5;
 import 'package:prelura_app/model/chat/offer_info.dart' as _i95;
 import 'package:prelura_app/model/product/categories/category_model.dart'
-    as _i97;
+    as _i98;
 import 'package:prelura_app/model/product/product_model.dart' as _i96;
+import 'package:prelura_app/model/user/user_model.dart' as _i97;
 import 'package:prelura_app/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/views/pages/auth_page.dart' as _i7;
 import 'package:prelura_app/views/pages/authentication/email_sent_screen.dart'
@@ -1615,12 +1616,16 @@ class PaymentRoute extends _i90.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute({
     _i91.Key? key,
     required List<_i96.ProductModel> products,
+    double? totalPrice,
+    _i97.UserModel? user,
     List<_i90.PageRouteInfo>? children,
   }) : super(
           PaymentRoute.name,
           args: PaymentRouteArgs(
             key: key,
             products: products,
+            totalPrice: totalPrice,
+            user: user,
           ),
           initialChildren: children,
         );
@@ -1634,6 +1639,8 @@ class PaymentRoute extends _i90.PageRouteInfo<PaymentRouteArgs> {
       return _i50.PaymentScreen(
         key: args.key,
         products: args.products,
+        totalPrice: args.totalPrice,
+        user: args.user,
       );
     },
   );
@@ -1643,15 +1650,21 @@ class PaymentRouteArgs {
   const PaymentRouteArgs({
     this.key,
     required this.products,
+    this.totalPrice,
+    this.user,
   });
 
   final _i91.Key? key;
 
   final List<_i96.ProductModel> products;
 
+  final double? totalPrice;
+
+  final _i97.UserModel? user;
+
   @override
   String toString() {
-    return 'PaymentRouteArgs{key: $key, products: $products}';
+    return 'PaymentRouteArgs{key: $key, products: $products, totalPrice: $totalPrice, user: $user}';
   }
 }
 
@@ -2622,7 +2635,7 @@ class SubCategoryProductRoute extends _i90.PageRouteInfo<void> {
 class SubCategoryRoute extends _i90.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
     _i91.Key? key,
-    required List<_i97.CategoryModel> subCategories,
+    required List<_i98.CategoryModel> subCategories,
     required String categoryName,
     List<_i90.PageRouteInfo>? children,
   }) : super(
@@ -2659,7 +2672,7 @@ class SubCategoryRouteArgs {
 
   final _i91.Key? key;
 
-  final List<_i97.CategoryModel> subCategories;
+  final List<_i98.CategoryModel> subCategories;
 
   final String categoryName;
 

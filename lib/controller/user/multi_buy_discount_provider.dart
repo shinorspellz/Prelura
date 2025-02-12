@@ -6,10 +6,11 @@ import 'package:prelura_app/core/di.dart';
 import '../../model/user/multi_buy_discounts/multi_buy_discounts_model.dart';
 
 final userMultiBuyDiscountProvider =
-    FutureProvider<List<MultiBuyDiscountModel>>((ref) async {
+    FutureProvider.family<List<MultiBuyDiscountModel>, int?>(
+        (ref, userId) async {
   final repo = ref.watch(userRepo);
 
-  final result = await repo.getUserMultiBuyDiscounts();
+  final result = await repo.getUserMultiBuyDiscounts(userId: userId);
 
   return result;
 });

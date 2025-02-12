@@ -7,6 +7,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/chat_cache_handler.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
@@ -98,7 +99,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                               bottom: BorderSide(
                                 color: _tabController.index == entry.key
                                     ? PreluraColors.activeColor
-                                    : PreluraColors.greyColor.withOpacity(0.5),
+                                    : context.theme.dividerColor,
                                 width: _tabController.index == entry.key
                                     ? 2.0
                                     : 1.0,

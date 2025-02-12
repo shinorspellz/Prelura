@@ -5,10 +5,12 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/search_history_model.dart';
 
+import '../model/search_suggestion_model.dart';
+
 final searchHistoryQueryProvider = StateProvider<String?>((ref) => null);
 
 final searchHistoryProvider =
-    FutureProvider.family<List<String?>, Enum$SearchTypeEnum>(
+    FutureProvider.family<List<SearchSuggestionModel>, Enum$SearchTypeEnum>(
         (ref, params) async {
   final repo = ref.watch(searchHistoryRepo);
 

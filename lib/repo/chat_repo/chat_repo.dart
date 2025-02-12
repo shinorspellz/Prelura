@@ -136,7 +136,7 @@ class ChatRepo {
     }
   }
 
-  Future<void> readMessages(List<int> ids) async {
+  Future<bool> readMessages(List<int> ids) async {
     final response = await _client.mutate$UpdateReadMessages(
       Options$Mutation$UpdateReadMessages(
           variables: Variables$Mutation$UpdateReadMessages(
@@ -157,5 +157,7 @@ class ChatRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
+
+    return response.parsedData!.updateReadMessages!.success!;
   }
 }

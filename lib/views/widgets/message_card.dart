@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
@@ -15,6 +17,8 @@ import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
+import 'red_dot.dart';
+
 class MessageCard extends ConsumerWidget {
   const MessageCard({
     super.key,
@@ -24,10 +28,19 @@ class MessageCard extends ConsumerWidget {
   final ConversationModel model;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // log("The last message::: ${model.lastMessage?.toJson()}");
+    log("The last message::: ${model.lastMessage?.toJson()}",
+        name: "MessageCard");
     bool isLastMessageAnOffer = model.offer != null;
     // log("The last message an offer::: $isLastMessageAnOffer");
     final user = ref.watch(userProvider).value;
+    final isCurrentUserLastMessage =
+        user?.username == model.lastMessage?.sender.username;
+    final bool read = model.lastMessage == null
+        ? true
+        : isCurrentUserLastMessage
+            ? true
+            : model.lastMessage!.read!;
+
     return GestureDetector(
       onTap: () {
         if (isLastMessageAnOffer) {
@@ -38,6 +51,11 @@ class MessageCard extends ConsumerWidget {
               .updateOfferState(
             {"activeOffer": model},
           );
+        }
+        if (model.lastMessage != null) {
+          ref
+              .read(updateCReadMessageProvider.notifier)
+              .updateReadMessage(model.lastMessage!.id.toString());
         }
         context.router.push(ChatRoute(
           id: model.id!,
@@ -80,12 +98,17 @@ class MessageCard extends ConsumerWidget {
                 children: [
                   Row(children: [
                     Expanded(
-                      child: Text(
-                        model.recipient?.username ?? "",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w600),
+                      child: Row(
+                        children: [
+                          Text(
+                            model.recipient?.username ?? "",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.w600),
+                          ),
+                          if (!read) RedDot()
+                        ],
                       ),
                     ),
                     Text(
