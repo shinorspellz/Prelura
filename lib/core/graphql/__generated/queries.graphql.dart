@@ -4359,6 +4359,13 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'isMultibuyEnabled'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -5512,6 +5519,7 @@ class Query$Product$product$seller {
     this.id,
     this.username,
     this.profilePictureUrl,
+    this.isMultibuyEnabled,
     this.$__typename = 'UserType',
   });
 
@@ -5519,11 +5527,13 @@ class Query$Product$product$seller {
     final l$id = json['id'];
     final l$username = json['username'];
     final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$$__typename = json['__typename'];
     return Query$Product$product$seller(
       id: (l$id as int?),
       username: (l$username as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
+      isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5533,6 +5543,8 @@ class Query$Product$product$seller {
   final String? username;
 
   final String? profilePictureUrl;
+
+  final bool? isMultibuyEnabled;
 
   final String $__typename;
 
@@ -5544,6 +5556,8 @@ class Query$Product$product$seller {
     _resultData['username'] = l$username;
     final l$profilePictureUrl = profilePictureUrl;
     _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -5554,11 +5568,13 @@ class Query$Product$product$seller {
     final l$id = id;
     final l$username = username;
     final l$profilePictureUrl = profilePictureUrl;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$username,
       l$profilePictureUrl,
+      l$isMultibuyEnabled,
       l$$__typename,
     ]);
   }
@@ -5585,6 +5601,11 @@ class Query$Product$product$seller {
     final l$profilePictureUrl = profilePictureUrl;
     final lOther$profilePictureUrl = other.profilePictureUrl;
     if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
+    if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -5618,6 +5639,7 @@ abstract class CopyWith$Query$Product$product$seller<TRes> {
     int? id,
     String? username,
     String? profilePictureUrl,
+    bool? isMultibuyEnabled,
     String? $__typename,
   });
 }
@@ -5639,6 +5661,7 @@ class _CopyWithImpl$Query$Product$product$seller<TRes>
     Object? id = _undefined,
     Object? username = _undefined,
     Object? profilePictureUrl = _undefined,
+    Object? isMultibuyEnabled = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Product$product$seller(
@@ -5648,6 +5671,9 @@ class _CopyWithImpl$Query$Product$product$seller<TRes>
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
+        isMultibuyEnabled: isMultibuyEnabled == _undefined
+            ? _instance.isMultibuyEnabled
+            : (isMultibuyEnabled as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -5664,6 +5690,7 @@ class _CopyWithStubImpl$Query$Product$product$seller<TRes>
     int? id,
     String? username,
     String? profilePictureUrl,
+    bool? isMultibuyEnabled,
     String? $__typename,
   }) =>
       _res;
@@ -8863,6 +8890,13 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'isMultibuyEnabled'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -10136,6 +10170,7 @@ class Query$UserProducts$userProducts$seller {
   Query$UserProducts$userProducts$seller({
     this.id,
     this.username,
+    this.isMultibuyEnabled,
     this.$__typename = 'UserType',
   });
 
@@ -10143,10 +10178,12 @@ class Query$UserProducts$userProducts$seller {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$username = json['username'];
+    final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$$__typename = json['__typename'];
     return Query$UserProducts$userProducts$seller(
       id: (l$id as int?),
       username: (l$username as String?),
+      isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -10154,6 +10191,8 @@ class Query$UserProducts$userProducts$seller {
   final int? id;
 
   final String? username;
+
+  final bool? isMultibuyEnabled;
 
   final String $__typename;
 
@@ -10163,6 +10202,8 @@ class Query$UserProducts$userProducts$seller {
     _resultData['id'] = l$id;
     final l$username = username;
     _resultData['username'] = l$username;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -10172,10 +10213,12 @@ class Query$UserProducts$userProducts$seller {
   int get hashCode {
     final l$id = id;
     final l$username = username;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$username,
+      l$isMultibuyEnabled,
       l$$__typename,
     ]);
   }
@@ -10197,6 +10240,11 @@ class Query$UserProducts$userProducts$seller {
     final l$username = username;
     final lOther$username = other.username;
     if (l$username != lOther$username) {
+      return false;
+    }
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
+    if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -10230,6 +10278,7 @@ abstract class CopyWith$Query$UserProducts$userProducts$seller<TRes> {
   TRes call({
     int? id,
     String? username,
+    bool? isMultibuyEnabled,
     String? $__typename,
   });
 }
@@ -10250,12 +10299,16 @@ class _CopyWithImpl$Query$UserProducts$userProducts$seller<TRes>
   TRes call({
     Object? id = _undefined,
     Object? username = _undefined,
+    Object? isMultibuyEnabled = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserProducts$userProducts$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
+        isMultibuyEnabled: isMultibuyEnabled == _undefined
+            ? _instance.isMultibuyEnabled
+            : (isMultibuyEnabled as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -10271,6 +10324,7 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts$seller<TRes>
   call({
     int? id,
     String? username,
+    bool? isMultibuyEnabled,
     String? $__typename,
   }) =>
       _res;
@@ -47116,6 +47170,112 @@ class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<
       _res;
 }
 
+class Variables$Query$userMultibuyDiscounts {
+  factory Variables$Query$userMultibuyDiscounts({int? userId}) =>
+      Variables$Query$userMultibuyDiscounts._({
+        if (userId != null) r'userId': userId,
+      });
+
+  Variables$Query$userMultibuyDiscounts._(this._$data);
+
+  factory Variables$Query$userMultibuyDiscounts.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = (l$userId as int?);
+    }
+    return Variables$Query$userMultibuyDiscounts._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get userId => (_$data['userId'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$userMultibuyDiscounts<
+          Variables$Query$userMultibuyDiscounts>
+      get copyWith => CopyWith$Variables$Query$userMultibuyDiscounts(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$userMultibuyDiscounts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([_$data.containsKey('userId') ? l$userId : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$userMultibuyDiscounts<TRes> {
+  factory CopyWith$Variables$Query$userMultibuyDiscounts(
+    Variables$Query$userMultibuyDiscounts instance,
+    TRes Function(Variables$Query$userMultibuyDiscounts) then,
+  ) = _CopyWithImpl$Variables$Query$userMultibuyDiscounts;
+
+  factory CopyWith$Variables$Query$userMultibuyDiscounts.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$userMultibuyDiscounts;
+
+  TRes call({int? userId});
+}
+
+class _CopyWithImpl$Variables$Query$userMultibuyDiscounts<TRes>
+    implements CopyWith$Variables$Query$userMultibuyDiscounts<TRes> {
+  _CopyWithImpl$Variables$Query$userMultibuyDiscounts(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$userMultibuyDiscounts _instance;
+
+  final TRes Function(Variables$Query$userMultibuyDiscounts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? userId = _undefined}) =>
+      _then(Variables$Query$userMultibuyDiscounts._({
+        ..._instance._$data,
+        if (userId != _undefined) 'userId': (userId as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$userMultibuyDiscounts<TRes>
+    implements CopyWith$Variables$Query$userMultibuyDiscounts<TRes> {
+  _CopyWithStubImpl$Variables$Query$userMultibuyDiscounts(this._res);
+
+  TRes _res;
+
+  call({int? userId}) => _res;
+}
+
 class Query$userMultibuyDiscounts {
   Query$userMultibuyDiscounts({
     this.userMultibuyDiscounts,
@@ -47295,13 +47455,28 @@ const documentNodeQueryuserMultibuyDiscounts = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.query,
     name: NameNode(value: 'userMultibuyDiscounts'),
-    variableDefinitions: [],
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'userId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
         name: NameNode(value: 'userMultibuyDiscounts'),
         alias: null,
-        arguments: [],
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'userId'),
+            value: VariableNode(name: NameNode(value: 'userId')),
+          )
+        ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
@@ -47399,6 +47574,7 @@ class Options$Query$userMultibuyDiscounts
     extends graphql.QueryOptions<Query$userMultibuyDiscounts> {
   Options$Query$userMultibuyDiscounts({
     String? operationName,
+    Variables$Query$userMultibuyDiscounts? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -47410,6 +47586,7 @@ class Options$Query$userMultibuyDiscounts
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -47445,6 +47622,7 @@ class WatchOptions$Query$userMultibuyDiscounts
     extends graphql.WatchQueryOptions<Query$userMultibuyDiscounts> {
   WatchOptions$Query$userMultibuyDiscounts({
     String? operationName,
+    Variables$Query$userMultibuyDiscounts? variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -47456,6 +47634,7 @@ class WatchOptions$Query$userMultibuyDiscounts
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+          variables: variables?.toJson() ?? {},
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -47473,10 +47652,12 @@ class WatchOptions$Query$userMultibuyDiscounts
 
 class FetchMoreOptions$Query$userMultibuyDiscounts
     extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$userMultibuyDiscounts(
-      {required graphql.UpdateQuery updateQuery})
-      : super(
+  FetchMoreOptions$Query$userMultibuyDiscounts({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$userMultibuyDiscounts? variables,
+  }) : super(
           updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
           document: documentNodeQueryuserMultibuyDiscounts,
         );
 }
@@ -47492,21 +47673,28 @@ extension ClientExtension$Query$userMultibuyDiscounts on graphql.GraphQLClient {
       this.watchQuery(options ?? WatchOptions$Query$userMultibuyDiscounts());
   void writeQuery$userMultibuyDiscounts({
     required Query$userMultibuyDiscounts data,
+    Variables$Query$userMultibuyDiscounts? variables,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
-            operation: graphql.Operation(
-                document: documentNodeQueryuserMultibuyDiscounts)),
+          operation: graphql.Operation(
+              document: documentNodeQueryuserMultibuyDiscounts),
+          variables: variables?.toJson() ?? const {},
+        ),
         data: data.toJson(),
         broadcast: broadcast,
       );
-  Query$userMultibuyDiscounts? readQuery$userMultibuyDiscounts(
-      {bool optimistic = true}) {
+  Query$userMultibuyDiscounts? readQuery$userMultibuyDiscounts({
+    Variables$Query$userMultibuyDiscounts? variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
       graphql.Request(
-          operation: graphql.Operation(
-              document: documentNodeQueryuserMultibuyDiscounts)),
+        operation:
+            graphql.Operation(document: documentNodeQueryuserMultibuyDiscounts),
+        variables: variables?.toJson() ?? const {},
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : Query$userMultibuyDiscounts.fromJson(result);

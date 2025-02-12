@@ -25,7 +25,7 @@ class PaymentMethod extends ConsumerWidget {
                     onTap: () {},
                     rightArrow: false,
                     title:
-                        "${paymentMethod.cardBrand} card ending in ${paymentMethod.last4Digits}",
+                        "${paymentMethod.cardBrand} card ending with ${paymentMethod.last4Digits}",
                     icon: Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: paymentMethod.cardBrand.isNotEmpty

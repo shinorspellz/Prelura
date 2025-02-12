@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/order_provider.dart';
 import 'package:prelura_app/controller/product/payment_provider.dart';
+import 'package:prelura_app/controller/user/multi_buy_discount_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -22,7 +24,9 @@ import 'package:sizer/sizer.dart';
 
 import '../../../controller/payment_method_controller.dart';
 import '../../../res/utils.dart';
+import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/profile_picture.dart';
+import '../search/search_screen.dart';
 
 // State provider from earlier
 final selectedDeliveryOptionProvider = StateProvider<int>((ref) => 1);
@@ -30,9 +34,13 @@ final selectedDeliveryOptionProvider = StateProvider<int>((ref) => 1);
 @RoutePage()
 class PaymentScreen extends ConsumerWidget {
   final List<ProductModel> products;
+  final double? totalPrice;
+  final UserModel? user;
   const PaymentScreen({
     super.key,
     required this.products,
+    this.totalPrice,
+    this.user,
   });
 
   @override
@@ -41,6 +49,53 @@ class PaymentScreen extends ConsumerWidget {
     // Read the current delivery option
     final selectedDeliveryOption = ref.watch(selectedDeliveryOptionProvider);
     final UserModel? user = ref.watch(userProvider).value;
+    final sellerDiscount =
+        ref.watch(userMultiBuyDiscountProvider(user?.id)).valueOrNull;
+
+    log("sellerDiscoun: ${sellerDiscount}", name: "Payment view");
+
+    int updateCalculatedDiscount() {
+      if (sellerDiscount != null && sellerDiscount!.isNotEmpty) {
+        int result = 0;
+        if (products.length > 10) {
+          result = double.parse(sellerDiscount!
+                  .firstWhere((discount) => discount.minItems == 10)
+                  .discountValue
+                  .toString())
+              .toInt();
+          return result;
+        }
+        if (products.length > 4) {
+          result = double.parse(sellerDiscount!
+                  .firstWhere((discount) => discount.minItems == 5)
+                  .discountValue
+                  .toString())
+              .toInt();
+
+          return result;
+        }
+        if (products.length <= 4) {
+          result = double.parse(sellerDiscount!
+                  .firstWhere((discount) => discount.minItems == 2)
+                  .discountValue
+                  .toString())
+              .toInt();
+          return result;
+        }
+        return result;
+      } else {
+        return 0;
+      }
+    }
+
+    int calculatedDiscount = updateCalculatedDiscount();
+    double calculateTotalPrice() {
+      return totalPrice! - (totalPrice! * (calculatedDiscount / 100));
+    }
+
+    double calculateMultiBuyDiscountPrice() {
+      return (totalPrice! * (calculatedDiscount / 100));
+    }
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -78,6 +133,7 @@ class PaymentScreen extends ConsumerWidget {
               ),
               onTap: () {
                 // Handle edit address logic
+                context.router.push(AccountSettingRoute());
               },
             ),
             SizedBox(height: 16),
@@ -288,6 +344,68 @@ class PaymentScreen extends ConsumerWidget {
             ),
 
             SizedBox(height: 16),
+            Text("Item(s)",
+                style: context.theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  fontSize: getDefaultSize(size: 17),
+                )),
+            SizedBox(height: 16),
+
+            Container(
+                child: Column(
+              children: [
+                SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(left: 16.0, bottom: 12),
+                    child: Row(
+                      children: [
+                        ...products.map((product) => Container(
+                              margin: const EdgeInsets.only(right: 8),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                    getDefaultBorderRadius()),
+                                child: SizedBox(
+                                  height: 100,
+                                  width: 80,
+                                  child: CachedNetworkImage(
+                                    imageUrl: product.imagesUrl.first.url ?? "",
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        const ShimmerBox(
+                                      height: 70,
+                                      width: 70,
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Container(
+                                      color: PreluraColors.grey,
+                                    ),
+                                    fadeInDuration: Duration.zero,
+                                    fadeOutDuration: Duration.zero,
+                                  ),
+                                ),
+                              ),
+                            ))
+                      ],
+                    )),
+                _buildInfoRow("Order", "£${totalPrice}", context),
+                _buildInfoRow("Postage", "£3.5", context),
+                if (productInfo.seller.isMultibuyEnabled == true)
+                  _buildInfoRow(
+                      "Multi-buy discount (${calculatedDiscount}%)",
+                      "-£${formatDynamicString(calculateMultiBuyDiscountPrice().toString())}",
+                      context,
+                      color: PreluraColors.primaryColor),
+                SizedBox(height: 16),
+                _buildInfoRow(
+                  "Total ",
+                  "£${formatDynamicString(calculateTotalPrice().toString())}",
+                  context,
+                  style: context.theme.textTheme.bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w500),
+                ),
+              ],
+            )),
+            SizedBox(height: 16),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
@@ -403,6 +521,35 @@ class PaymentScreen extends ConsumerWidget {
           ],
         ),
       ), // Ensure proper contrast
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value, BuildContext context,
+      {TextStyle? style, Color? color}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontSize: getDefaultSize(size: 16),
+                fontWeight: FontWeight.w500,
+                color: color ?? context.theme.textTheme.bodyMedium?.color),
+          ),
+          Text(
+            value,
+            style: style ??
+                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(size: 16),
+                    color: color ?? PreluraColors.greyColor),
+          ),
+        ],
+      ),
     );
   }
 }

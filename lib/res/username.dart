@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:sizer/sizer.dart';
 
+import '../views/widgets/red_dot.dart';
 import 'colors.dart';
 import 'utils.dart';
 
@@ -44,10 +46,10 @@ class HighlightUserName extends StatelessWidget {
     );
   }
 
-  List<TextSpan> _highlightUsernameInMessage(
+  List<InlineSpan> _highlightUsernameInMessage(
       String username, String message, BuildContext context,
       {double? textSize, FontWeight? weight}) {
-    final List<TextSpan> spans = [];
+    final List<InlineSpan> spans = [];
     final pattern = RegExp(username, caseSensitive: false);
 
     int start = 0;
@@ -76,7 +78,10 @@ class HighlightUserName extends StatelessWidget {
     if (start < message.length) {
       spans.add(TextSpan(text: message.substring(start)));
     }
-
+    if (!isRead) {
+      spans.add(
+          WidgetSpan(alignment: PlaceholderAlignment.middle, child: RedDot()));
+    }
     return spans;
   }
 }

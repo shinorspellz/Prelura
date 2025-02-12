@@ -22,6 +22,7 @@ import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../../core/utils/utils.dart';
 import '../../../res/colors.dart';
 import '../../../res/helper_function.dart';
 import '../../../res/utils.dart';
@@ -257,8 +258,20 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               child: AppButton(
                                 onTap: () {
                                   context.router.push(PaymentRoute(
-                                    products: [product],
-                                  ));
+                                      products: [product],
+                                      totalPrice: product.discountPrice !=
+                                                  null &&
+                                              double.parse(
+                                                      product.discountPrice!) !=
+                                                  0.00
+                                          ? double.parse(formatDynamicString(
+                                              calculateDiscountedAmount(
+                                              price: product.price,
+                                              discount: num.parse(
+                                                      product.discountPrice!)
+                                                  .toInt(),
+                                            ).toString()))
+                                          : product.price));
                                 },
                                 text: "Buy now",
                                 textColor: PreluraColors.white,

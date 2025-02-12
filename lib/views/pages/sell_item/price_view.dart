@@ -180,7 +180,7 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
                     loading: () => DisplaySection()),
 
               // Done Button
-              const SizedBox(height: 16),
+              const SizedBox(height: 110),
             ],
           ),
         ),

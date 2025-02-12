@@ -256,3 +256,26 @@ class GeneralChatRoomNotifier extends StreamNotifier<List<ConversationModel>> {
     }
   }
 }
+
+final updateCReadMessageProvider =
+    AsyncNotifierProvider<UpdateReadMessageNotifier, void>(
+        UpdateReadMessageNotifier.new);
+
+class UpdateReadMessageNotifier extends AsyncNotifier<void> {
+  late final _repo = ref.read(chatRepo);
+
+  @override
+  FutureOr<void> build() {}
+
+  Future<void> updateReadMessage(String conversationId) async {
+    state = AsyncLoading();
+    try {
+      final result = await _repo.readMessages([int.parse(conversationId)]);
+      if (result) {
+        state = AsyncValue.data(result);
+      }
+    } catch (e, _) {
+      state = AsyncError(e, _);
+    }
+  }
+}

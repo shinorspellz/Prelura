@@ -1411,7 +1411,7 @@ type Query {
   filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
   favoriteBrandProducts(top: Int!): [ProductType]
   userOrders(filters: OrderFiltersInput, pageCount: Int, pageNumber: Int): [OrderType]
-  userMultibuyDiscounts: [MultibuyDiscountType]
+  userMultibuyDiscounts(userId: Int): [MultibuyDiscountType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
   filterProductsByPriceTotalNumber: Int
