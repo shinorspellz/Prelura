@@ -25,7 +25,7 @@ class AppearanceMenuScreen extends ConsumerWidget {
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
+          onPressed: () => context.router.popForced(),
         ),
         appbarTitle: "Appearance",
         centerTitle: true,

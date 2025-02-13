@@ -148,6 +148,25 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
         appRouter.push(ProfileDetailsRoute(username: data['object_id']));
         break;
       case 'CONVERSATION':
+        if (HelperFunction.genRef!.read(inChatRoom)) {
+          appRouter.replace(
+            ChatRoute(
+              id: data['object_id'],
+              username: data['title'].toString().toLowerCase(),
+              avatarUrl: null,
+              isOffer: data["is_offer"].toString().toLowerCase() == "true",
+            ),
+          );
+        } else {
+          appRouter.push(
+            ChatRoute(
+              id: data['object_id'],
+              username: data['title'].toString().toLowerCase(),
+              avatarUrl: null,
+              isOffer: data["is_offer"].toString().toLowerCase() == "true",
+            ),
+          );
+        }
         appRouter.push(
           ChatRoute(
             id: data['object_id'],

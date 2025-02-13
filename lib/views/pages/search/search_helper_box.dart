@@ -49,7 +49,7 @@ class SearchHelperBox extends HookConsumerWidget {
     );
     final searchQuery = ref.watch(searchHistoryQueryProvider);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(children: [
         if (searchQuery?.isEmpty ?? true)
           searchHistories.when(

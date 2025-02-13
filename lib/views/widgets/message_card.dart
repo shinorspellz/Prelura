@@ -56,6 +56,7 @@ class MessageCard extends ConsumerWidget {
           ref
               .read(updateCReadMessageProvider.notifier)
               .updateReadMessage(model.lastMessage!.id.toString());
+          ref.refresh(conversationProvider.future);
         }
         context.router.push(ChatRoute(
           id: model.id!,

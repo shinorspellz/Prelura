@@ -273,6 +273,7 @@ class UpdateReadMessageNotifier extends AsyncNotifier<void> {
       final result = await _repo.readMessages([int.parse(conversationId)]);
       if (result) {
         state = AsyncValue.data(result);
+        ref.refresh(conversationProvider.future);
       }
     } catch (e, _) {
       state = AsyncError(e, _);
