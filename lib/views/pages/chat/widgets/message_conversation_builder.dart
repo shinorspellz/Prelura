@@ -23,6 +23,7 @@ import 'package:sizer/sizer.dart';
 // import 'package:sticky_grouped_list_plus/sticky_grouped_list.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../../../controller/chat/conversations_provider.dart';
 import 'chat_text_box.dart';
 import 'istyping_handler_box.dart';
 import 'message_helper.dart';
@@ -177,8 +178,9 @@ class _MessageConversationBuilderState
                 onVisibilityChanged: (visibilityInfo) {
                   if (visibilityInfo.visibleFraction > 0.9 &&
                       !(chatInfo.read ?? false)) {
-                    // myNotifier.markMessageAsRead(
-                    //     chatInfo.senderName!, [chatInfo.id.toString()]);
+                    ref
+                        .read(updateCReadMessageProvider.notifier)
+                        .updateReadMessage(chatInfo.id.toString());
                   }
                 },
                 child: Transform.translate(

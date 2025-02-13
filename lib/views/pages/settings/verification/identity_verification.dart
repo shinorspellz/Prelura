@@ -3,7 +3,11 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:persona_flutter/persona_flutter.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/colors.dart';
+
+import '../../../widgets/app_bar.dart';
+import '../../../widgets/app_button.dart';
 
 @RoutePage()
 class VerifyYourIdentity extends StatefulWidget {
@@ -79,18 +83,25 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          color: Colors.grey[200],
-          child: Center(
-            child: ElevatedButton(
-              onPressed: () {
-                PersonaInquiry.init(configuration: _configuration);
-                PersonaInquiry.start();
-              },
-              child: Text("Start Inquiry"),
-            ),
+    return Scaffold(
+      appBar: PreluraAppBar(
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
+        ),
+        appbarTitle: "Identity Verification",
+        centerTitle: true,
+      ),
+      body: Container(
+        color: context.theme.scaffoldBackgroundColor,
+        child: Center(
+          child: AppButton(
+            onTap: () {
+              PersonaInquiry.init(configuration: _configuration);
+              PersonaInquiry.start();
+            },
+            text: "Start Inquiry",
           ),
         ),
       ),

@@ -134,7 +134,7 @@ class _MessagesNotifier
       //   //running a post fetch in-order to keep the list in sync
       //   //with the server
       //
-      postMessageFetch(int.parse(_conversationId!));
+      await postMessageFetch(int.parse(_conversationId!));
       log("From the cache fetching::: 1", name: "From the cache room");
       log("$state");
     } else {
@@ -149,11 +149,13 @@ class _MessagesNotifier
   Future<void> postMessageFetch(int id) async {
     // fetchPages = [];
     List<MessageModel> response =
-        await getMessages(id: id.toString(), pageNumber: 0);
+        await getMessages(id: id.toString(), pageNumber: 1);
+    log("the response from database : ${response}");
     if (response.isNotEmpty) {
       ref
           .read(messageCacheProvider.notifier)
           .cacheMessage(id.toString(), response);
+      log("From the database fetching::: ${response}");
       state = AsyncData(response);
     }
   }
@@ -241,6 +243,7 @@ class _MessagesNotifier
 
       return newState;
     });
+    postMessageFetch(int.parse(_conversationId!));
   }
 
   pickImage() async {
