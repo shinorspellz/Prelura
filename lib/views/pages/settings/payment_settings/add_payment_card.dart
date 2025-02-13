@@ -170,7 +170,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     CardNumberTextInputFormatter(),
                   ],
                 ),
-                40.toHeight,
+                24.toHeight,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -332,7 +332,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     ),
                   ],
                 ),
-                40.toHeight,
+                24.toHeight,
                 Text(
                   "Billing Address",
                   textAlign: TextAlign.start,
@@ -343,7 +343,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 ),
                 10.toHeight,
                 CustomLocationField(
-                  title: "Billing Address",
+                  showHeader: false,
                   locationController: addressController,
                   onChanged: () {
                     postalCodeEC.clear();
@@ -375,7 +375,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     return null;
                   },
                 ),
-                40.toHeight,
+                24.toHeight,
                 Text(
                   "Postal Code",
                   textAlign: TextAlign.start,
@@ -387,7 +387,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 10.toHeight,
                 PreluraAuthTextField(
                   controller: postalCodeEC,
-                  enabled: false,
+                  // enabled: false,
                   focusNode: postalCodeFN,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -401,31 +401,19 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                   formatter: [
                     FilteringTextInputFormatter.allow(RegExp(r"[A-Za-z0-9 ]")),
                   ],
-                  // validator: (p0) {
-                  //   if (p0!.isEmpty) {
-                  //     WidgetsFlutterBinding.ensureInitialized()
-                  //         .addPostFrameCallback((_) {
-                  //       setState(() {
-                  //         postCodeError = "Postal code is required";
-                  //       });
-                  //     });
-                  //     return "Postal Code is required";
-                  //   }
-                  //   final regex = RegExp(r"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$");
-                  //   if (!regex.hasMatch(p0.toUpperCase())) {
-                  //     // log("Validation Failed: Invalid Postal Code Format",
-                  //     //     name: "Validator");
-                  //     WidgetsFlutterBinding.ensureInitialized()
-                  //         .addPostFrameCallback((_) {
-                  //       setState(() {
-                  //         postCodeError = "Invalid Postal Code Format";
-                  //       });
-                  //     });
-                  //     return "Invalid Postal Code Format";
-                  //   }
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      WidgetsFlutterBinding.ensureInitialized()
+                          .addPostFrameCallback((_) {
+                        setState(() {
+                          postCodeError = "Postal code is required";
+                        });
+                      });
+                      return "Postal Code is required";
+                    }
 
-                  //   return null;
-                  // },
+                    return null;
+                  },
                 ),
                 40.toHeight,
                 PreluraButtonWithLoader(
@@ -448,6 +436,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     if (cardError == null &&
                         dateError == null &&
                         cvcError == null &&
+                        postCodeError == null &&
                         billingAddress.postalCode!.isNotEmpty &&
                         billingAddress.line1!.isNotEmpty) {
                       log("form is $isValid");
