@@ -346,7 +346,8 @@ class PaymentScreen extends ConsumerWidget {
             SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
-              child: Text("Item(s)",
+              child: Text(
+                  "${products.length} ${products.length > 1 ? "Items" : "Item"}",
                   style: context.theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: getDefaultSize(size: 17),
@@ -357,39 +358,39 @@ class PaymentScreen extends ConsumerWidget {
             Container(
                 child: Column(
               children: [
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.only(left: 16.0, bottom: 12),
-                    child: Row(
-                      children: [
-                        ...products.map((product) => Container(
-                              margin: const EdgeInsets.only(right: 8),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                    getDefaultBorderRadius()),
-                                child: SizedBox(
-                                  height: 100,
-                                  width: 80,
-                                  child: CachedNetworkImage(
-                                    imageUrl: product.imagesUrl.first.url ?? "",
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) =>
-                                        const ShimmerBox(
-                                      height: 70,
-                                      width: 70,
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        Container(
-                                      color: PreluraColors.grey,
-                                    ),
-                                    fadeInDuration: Duration.zero,
-                                    fadeOutDuration: Duration.zero,
-                                  ),
-                                ),
-                              ),
-                            ))
-                      ],
-                    )),
+                // SingleChildScrollView(
+                //     scrollDirection: Axis.horizontal,
+                //     padding: const EdgeInsets.only(left: 16.0, bottom: 12),
+                //     child: Row(
+                //       children: [
+                //         ...products.map((product) => Container(
+                //               margin: const EdgeInsets.only(right: 8),
+                //               child: ClipRRect(
+                //                 borderRadius: BorderRadius.circular(
+                //                     getDefaultBorderRadius()),
+                //                 child: SizedBox(
+                //                   height: 100,
+                //                   width: 80,
+                //                   child: CachedNetworkImage(
+                //                     imageUrl: product.imagesUrl.first.url ?? "",
+                //                     fit: BoxFit.cover,
+                //                     placeholder: (context, url) =>
+                //                         const ShimmerBox(
+                //                       height: 70,
+                //                       width: 70,
+                //                     ),
+                //                     errorWidget: (context, url, error) =>
+                //                         Container(
+                //                       color: PreluraColors.grey,
+                //                     ),
+                //                     fadeInDuration: Duration.zero,
+                //                     fadeOutDuration: Duration.zero,
+                //                   ),
+                //                 ),
+                //               ),
+                //             ))
+                //       ],
+                //     )),
                 _buildInfoRow("Order", "£${totalPrice}", context),
                 _buildInfoRow("Postage", "£3.5", context),
                 if (productInfo.seller.isMultibuyEnabled == true)
@@ -450,7 +451,10 @@ class PaymentScreen extends ConsumerWidget {
                 onTap: () async {
                   final userPaymentMethodId =
                       await ref.read(paymentMethodProvider).valueOrNull;
-
+                  if (user?.location == null) {
+                    context.alert("Add your address");
+                    return;
+                  }
                   if (userPaymentMethodId == null) {
                     context.alert("Add a payment method");
                     return;
@@ -533,6 +537,11 @@ class PaymentScreen extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
+        border: Border(
+            bottom: BorderSide(
+          color: Theme.of(context).dividerColor,
+          width: 1.0,
+        )),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
