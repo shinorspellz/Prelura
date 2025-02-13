@@ -3,7 +3,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
@@ -61,7 +63,7 @@ class _MessageConversationBuilderState
   @override
   void dispose() {
     widget.scrollController.removeListener(fetchMoreMessages);
-    widget.scrollController.dispose();
+    // widget.scrollController.dispose();
     super.dispose();
   }
 
@@ -138,33 +140,86 @@ class _MessageConversationBuilderState
 
   // Message bubble for different message types
   Widget _buildMessageBubble(MessageModel chatInfo, bool isMe) {
-    return VisibilityDetector(
-      key: Key(chatInfo.id.toString()),
-      onVisibilityChanged: (visibilityInfo) {
-        if (visibilityInfo.visibleFraction > 0.9 && !(chatInfo.read ?? false)) {
-          // myNotifier.markMessageAsRead(
-          //     chatInfo.senderName!, [chatInfo.id.toString()]);
-        }
-      },
-      child: Transform.translate(
-        offset: Offset(-_listViewLeftPosition, 0),
-        child: Row(
-            mainAxisAlignment:
-                isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-            children: [
-              if (chatInfo.text.isNotEmpty)
-                PlainMessageBox(
-                  isMe: isMe,
-                  chatInfo: chatInfo,
-                  currentUsername: currentUser?.username ?? "",
+    return Container(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width, // Prevents overflow
+        ),
+        child: CupertinoContextMenu.builder(
+            enableHapticFeedback: true,
+            actions: [
+              CupertinoContextMenuAction(
+                onPressed: () {
+                  Clipboard.setData(ClipboardData(text: chatInfo.text));
+                  Navigator.pop(context);
+                },
+                trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
+                child: const Text('Copy'),
+              ),
+              if (isMe)
+                CupertinoContextMenuAction(
+                  onPressed: () {
+                    ref
+                        .read(messagesProvider(widget.conversationId.toString())
+                            .notifier)
+                        .deleteMessage(chatInfo.id.toString());
+                    Navigator.pop(context);
+                  },
+                  isDestructiveAction: true,
+                  trailingIcon: CupertinoIcons.delete,
+                  child: const Text('Delete'),
                 ),
-              if (chatInfo.imageUrls != null && chatInfo.imageUrls.isNotEmpty)
-                MessageImageBuilder(
-                  chatInfo: chatInfo,
+            ],
+            builder: (context, animation) {
+              double imageSize = isMe ? 21.5 : 25;
+              final canShowImage = MessageHelper.canShowImage(chatInfo);
+              return VisibilityDetector(
+                key: Key(chatInfo.id.toString()),
+                onVisibilityChanged: (visibilityInfo) {
+                  if (visibilityInfo.visibleFraction > 0.9 &&
+                      !(chatInfo.read ?? false)) {
+                    // myNotifier.markMessageAsRead(
+                    //     chatInfo.senderName!, [chatInfo.id.toString()]);
+                  }
+                },
+                child: Transform.translate(
+                  offset: Offset(-_listViewLeftPosition, 0),
+                  child: Row(
+                      mainAxisAlignment: isMe
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        if (chatInfo.text.isNotEmpty)
+                          PlainMessageBox(
+                            isMe: isMe,
+                            chatInfo: chatInfo,
+                            currentUsername: currentUser?.username ?? "",
+                          ),
+                        if (chatInfo.text.isNotEmpty &&
+                            isMe &&
+                            canShowImage) ...[
+                          Padding(
+                            padding: EdgeInsets.only(
+                              right: 14,
+                            ),
+                            child: ProfilePictureWidget(
+                              profilePicture: chatInfo.sender.profilePictureUrl,
+                              height: imageSize,
+                              width: imageSize,
+                              username: chatInfo.sender.username,
+                            ),
+                          ),
+                        ] else ...[
+                          (imageSize + 17.0).horizontalSpacing,
+                        ],
+                        if (chatInfo.imageUrls != null &&
+                            chatInfo.imageUrls.isNotEmpty)
+                          MessageImageBuilder(
+                            chatInfo: chatInfo,
+                          ),
+                      ]),
                 ),
-            ]),
-      ),
-    );
+              );
+            }));
   }
 
   // Timestamp display on horizontal drag

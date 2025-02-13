@@ -28,8 +28,8 @@ class MessageCard extends ConsumerWidget {
   final ConversationModel model;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    log("The last message::: ${model.lastMessage?.toJson()}",
-        name: "MessageCard");
+    // log("The last message::: ${model.lastMessage?.toJson()}",
+    //     name: "MessageCard");
     bool isLastMessageAnOffer = model.offer != null;
     // log("The last message an offer::: $isLastMessageAnOffer");
     final user = ref.watch(userProvider).value;
