@@ -8,10 +8,14 @@ import 'package:prelura_app/views/pages/settings/profile_setting_view.dart';
 class CustomLocationField extends StatefulWidget {
   final TextEditingController locationController;
   final String? title;
+  final Function? onChanged;
+  final String? Function(String?)? validator;
   const CustomLocationField({
     super.key,
     required this.locationController,
     required this.onDescriptionSelected,
+    this.onChanged,
+    this.validator,
     this.title,
   });
   final Function(String?) onDescriptionSelected;
@@ -86,8 +90,10 @@ class _CustomLocationFieldState extends State<CustomLocationField> {
         maxLines: 1,
         hintText: 'e.g. Exter, United Kingdom',
         controller: widget.locationController,
+        validator: widget.validator,
         onChanged: (value) {
           placeAutoComplete(value);
+          widget.onChanged?.call();
         },
       ),
       if (placePredictions.isNotEmpty) ...[

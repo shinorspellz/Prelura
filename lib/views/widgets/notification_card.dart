@@ -60,7 +60,7 @@ class NotificationCard extends ConsumerWidget {
         }
       },
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
