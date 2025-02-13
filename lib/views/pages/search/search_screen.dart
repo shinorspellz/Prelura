@@ -184,7 +184,7 @@ class SearchScreen extends ConsumerWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 65.h,
+                          height: 45.h,
                           margin: EdgeInsets.all(16),
                           padding: EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),

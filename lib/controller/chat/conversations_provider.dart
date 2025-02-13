@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
+import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';

@@ -101,7 +101,7 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
               PersonaInquiry.init(configuration: _configuration);
               PersonaInquiry.start();
             },
-            text: "Start Inquiry",
+            text: "Start Verification",
           ),
         ),
       ),

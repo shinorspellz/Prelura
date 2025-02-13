@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +12,9 @@ import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/home.dart';
 import 'package:prelura_app/views/pages/profile_details_copy/view/profile_details.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/red_dot.dart';
 
+import '../../controller/chat/conversations_provider.dart';
 import '../../controller/user/user_controller.dart';
 import '../../core/router/router.dart';
 import '../widgets/profile_picture.dart';
@@ -18,6 +22,39 @@ import '../widgets/profile_picture.dart';
 final routePathProvider = StateProvider<int>(
   (_) => 0,
 );
+
+final unreadStatusProvider = Provider<bool>((ref) {
+  final notifications = ref.watch(notificationProvider).valueOrNull ?? [];
+  final conversations = ref.watch(conversationProvider).valueOrNull ?? [];
+  final user = ref.watch(userProvider).valueOrNull;
+
+  final hasUnreadNotifications =
+      notifications.any((notification) => notification.isRead == false);
+
+  final hasUnreadMessages = conversations.any((conversation) =>
+      conversation.lastMessage?.read == false &&
+      conversation.lastMessage?.sender.username != user?.username);
+
+  log("hasUnreadNotifications: $hasUnreadNotifications", name: "Auth page");
+  log("hasUnreadMessages: $hasUnreadMessages", name: "Auth page ");
+  log("username: ${user?.username}", name: "Auth page");
+  final unreadConversations = conversations
+      .where((conversation) =>
+          conversation.lastMessage?.read == false &&
+          conversation.lastMessage?.sender.username != user?.username)
+      .toList();
+
+  log(
+      "Unread Conversations: ${unreadConversations.map((c) => {
+            "id": c.id,
+            "name": c.name,
+            "lastMessage": c.lastMessage,
+            "isRead": c.lastMessage?.read
+          }).toList()}",
+      name: "Auth Page");
+
+  return hasUnreadNotifications || hasUnreadMessages;
+});
 
 @RoutePage()
 class AuthPage extends ConsumerStatefulWidget {
@@ -42,6 +79,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     final showBottomNavBar = ref.watch(showBottomNavBarProvider);
 
     ref.watch(notificationProvider);
+    final hasUnread = ref.watch(unreadStatusProvider);
+    log("hasUnread: $hasUnread", name: "Auth page");
 
     return DefaultTabController(
       length: 5,
@@ -178,14 +217,40 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                       TabItem(
                         isActive: tabRouter.activeIndex == 2,
                         // onChanged: () => tabRouter.setActiveIndex(2),
-                        icon: const Icon(
-                          Icons.email_outlined,
-                          size: 24,
+                        icon: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            const Icon(
+                              Icons.email_outlined,
+                              size: 24,
+                            ),
+                            if (hasUnread)
+                              Positioned(
+                                right: -7,
+                                top: -7,
+                                child: RedDot(
+                                  size: 10,
+                                ),
+                              ),
+                          ],
                         ),
-                        activeIcon: const Icon(
-                          Icons.email_outlined,
-                          color: PreluraColors.activeColor,
-                          size: 24,
+                        activeIcon: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            const Icon(
+                              Icons.email_outlined,
+                              color: PreluraColors.activeColor,
+                              size: 24,
+                            ),
+                            if (hasUnread)
+                              Positioned(
+                                right: -7,
+                                top: -7,
+                                child: RedDot(
+                                  size: 10,
+                                ),
+                              )
+                          ],
                         ),
                         label: 'Inbox',
                       ),

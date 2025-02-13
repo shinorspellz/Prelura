@@ -196,23 +196,6 @@ class _MessageConversationBuilderState
                             chatInfo: chatInfo,
                             currentUsername: currentUser?.username ?? "",
                           ),
-                        if (chatInfo.text.isNotEmpty &&
-                            isMe &&
-                            canShowImage) ...[
-                          Padding(
-                            padding: EdgeInsets.only(
-                              right: 14,
-                            ),
-                            child: ProfilePictureWidget(
-                              profilePicture: chatInfo.sender.profilePictureUrl,
-                              height: imageSize,
-                              width: imageSize,
-                              username: chatInfo.sender.username,
-                            ),
-                          ),
-                        ] else ...[
-                          (imageSize + 17.0).horizontalSpacing,
-                        ],
                         if (chatInfo.imageUrls != null &&
                             chatInfo.imageUrls.isNotEmpty)
                           MessageImageBuilder(

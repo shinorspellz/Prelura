@@ -313,6 +313,7 @@ Widget buildAuthTextField(
   void Function(String)? onChanged,
   TextEditingController? controller,
   Function(String?)? onSaved,
+  String? Function(String?)? validator,
   Function()? onTap,
   bool enabled = true,
   isDescription = false,
@@ -339,6 +340,7 @@ Widget buildAuthTextField(
     keyboardType: keyboardType,
     showBorder: showBorder,
     isDescription: isDescription,
+    validator: validator,
     onSaved: (value) {
       dismissKeyboard();
     },

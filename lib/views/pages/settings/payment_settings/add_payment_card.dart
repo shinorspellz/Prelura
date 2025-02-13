@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -9,9 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:prelura_app/controller/payment_method_controller.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:http/http.dart' as http;
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/input_formatters/card_number_text_input_formatter.dart';
 import 'package:prelura_app/model/user/user_model.dart';
@@ -22,6 +24,7 @@ import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 
 import '../../../../res/colors.dart';
+import '../widget/custom_location_field.dart';
 
 @RoutePage()
 class AddPaymentCard extends ConsumerStatefulWidget {
@@ -33,20 +36,72 @@ class AddPaymentCard extends ConsumerStatefulWidget {
 
 class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   final formKey = GlobalKey<FormState>();
+  final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   String? cardError = "";
   String? dateError = "";
   String? cvcError = "";
   String? postCodeError = "";
+  String? addressError = "";
+  TextEditingController addressController = TextEditingController();
+  Address billingAddress = Address(
+    line1: null,
+    line2: null,
+    city: null,
+    state: null,
+    postalCode: "",
+    country: null,
+  );
   @override
   void initState() {
     super.initState();
     userInfo = ref.read(userProvider).valueOrNull;
 
     userEmail = userInfo?.email ?? "";
-    userAddress = userInfo?.location!.locationName ?? "";
+    userAddress = userInfo?.location?.locationName ?? "";
+    // userPostalCode = userInfo?. ?? "";
     userPhoneNumber =
         "${userInfo?.phone?.countryCode}${userInfo?.phone?.number}";
     log("$userEmail, $userAddress, $userPhoneNumber", name: "User Details");
+  }
+
+  Future<Address> getPlaceDetails(String placeId) async {
+    final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&key=$apiKey'));
+
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body)['result'];
+      List<dynamic> addressComponents = result['address_components'];
+
+      String city = '';
+      String country = '';
+      String postcode = '';
+
+      for (var component in addressComponents) {
+        log("component : $component");
+        if (component['types'].contains('locality') ||
+            component["types"].contains("administrative_area_level_3")) {
+          city = component['long_name'];
+        } else if (component['types'].contains('country')) {
+          country = component['short_name'];
+        } else if (component['types'].contains('postal_code') ||
+            component['types'].contains('zip_code')) {
+          postcode = component['long_name'];
+        }
+      }
+      log("${'city:  $city, country: $country, postcode: $postcode'}");
+      if (postcode.isEmpty) {
+        context.alert("No postal code found, please choose another address.");
+      }
+      return Address(
+          city: city,
+          state: "",
+          line1: addressController.text,
+          line2: null,
+          country: country,
+          postalCode: postcode);
+    } else {
+      throw Exception('Failed to load place details');
+    }
   }
 
   @override
@@ -70,35 +125,6 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Text(
-                //   "Full name",
-                //   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                //         fontWeight: FontWeight.w500,
-                //         color: Theme.of(context).textTheme.bodyMedium?.color,
-                //       ),
-                // ),
-                // 10.toHeight,
-                // PreluraAuthTextField(
-                //   hintText: "",
-                //   controller: fullNameEC,
-                //   focusNode: fullNameFN,
-                //   keyboardType: TextInputType.name,
-                //   textInputAction: TextInputAction.next,
-                //   textCapitalization: TextCapitalization.words,
-                //   onSaved: (value) => fullNameEC.text = value ?? "",
-                //   onChanged: (val) {
-                //     setState(() {
-                //       _card = _card.copyWith(: val);
-                //     });
-                //   },
-                //   validator: (p0) {
-                //     if (p0!.isEmpty) {
-                //       return "Full name is required";
-                //     }
-                //     return null;
-                //   },
-                // ),
-                // 40.toHeight,
                 Text(
                   "Card Number",
                   textAlign: TextAlign.start,
@@ -144,7 +170,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     CardNumberTextInputFormatter(),
                   ],
                 ),
-                40.toHeight,
+                24.toHeight,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -306,8 +332,50 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     ),
                   ],
                 ),
+                24.toHeight,
+                Text(
+                  "Billing Address",
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                      ),
+                ),
+                10.toHeight,
+                CustomLocationField(
+                  showHeader: false,
+                  locationController: addressController,
+                  onChanged: () {
+                    postalCodeEC.clear();
+                  },
+                  onDescriptionSelected: (value) {
+                    final places = getPlaceDetails(value!);
+                    log(places.toString());
+                    places.then((value) {
+                      if (mounted) {
+                        setState(() {
+                          billingAddress = value;
+                          postalCodeEC.text = value
+                              .postalCode!; // Update the postal code field manually
+                        });
+                      }
+                    });
+                  },
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      WidgetsFlutterBinding.ensureInitialized()
+                          .addPostFrameCallback((_) {
+                        setState(() {
+                          postCodeError = "Address is required";
+                        });
+                      });
+                      return "Address is required";
+                    }
 
-                40.toHeight,
+                    return null;
+                  },
+                ),
+                24.toHeight,
                 Text(
                   "Postal Code",
                   textAlign: TextAlign.start,
@@ -319,6 +387,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 10.toHeight,
                 PreluraAuthTextField(
                   controller: postalCodeEC,
+                  // enabled: false,
                   focusNode: postalCodeFN,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -333,8 +402,6 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     FilteringTextInputFormatter.allow(RegExp(r"[A-Za-z0-9 ]")),
                   ],
                   validator: (p0) {
-                    log("Validating Postal Code: $p0",
-                        name: "Postal Code Validator");
                     if (p0!.isEmpty) {
                       WidgetsFlutterBinding.ensureInitialized()
                           .addPostFrameCallback((_) {
@@ -344,19 +411,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                       });
                       return "Postal Code is required";
                     }
-                    final regex = RegExp(r"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$");
-                    if (!regex.hasMatch(p0.toUpperCase())) {
-                      // log("Validation Failed: Invalid Postal Code Format",
-                      //     name: "Validator");
-                      WidgetsFlutterBinding.ensureInitialized()
-                          .addPostFrameCallback((_) {
-                        setState(() {
-                          postCodeError = "Invalid Postal Code Format";
-                        });
-                      });
-                      return "Invalid Postal Code Format";
-                    }
-                    log("i got here");
+
                     return null;
                   },
                 ),
@@ -381,7 +436,9 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     if (cardError == null &&
                         dateError == null &&
                         cvcError == null &&
-                        postCodeError == null) {
+                        postCodeError == null &&
+                        billingAddress.postalCode!.isNotEmpty &&
+                        billingAddress.line1!.isNotEmpty) {
                       log("form is $isValid");
                       if (isValid) {
                         saveCard();
@@ -528,6 +585,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   String? userCountry;
   String? userAddress;
   String? userState;
+  String? userPostalCode;
 
   Future<void> saveCard() async {
     if (formKey.currentState == null || !formKey.currentState!.validate()) {
@@ -539,14 +597,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
     final billingDetails = BillingDetails(
       email: userEmail,
       phone: userPhoneNumber ?? "",
-      address: Address(
-        city: userCity ?? "",
-        country: userCountry ?? "",
-        line1: userAddress ?? "",
-        line2: '',
-        state: userState ?? "",
-        postalCode: postalCodeEC.text,
-      ),
+      address: billingAddress,
     );
 
     log(billingDetails.toString(), name: "Billing Details");

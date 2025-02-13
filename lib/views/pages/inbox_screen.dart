@@ -11,6 +11,7 @@ import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
+import '../../controller/notification_provider.dart';
 import '../../res/colors.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/empty_screen_placeholder.dart';
