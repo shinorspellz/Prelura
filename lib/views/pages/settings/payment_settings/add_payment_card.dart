@@ -44,6 +44,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
 
     userEmail = userInfo?.email ?? "";
     userAddress = userInfo?.location!.locationName ?? "";
+    // userPostalCode = userInfo?. ?? "";
     userPhoneNumber =
         "${userInfo?.phone?.countryCode}${userInfo?.phone?.number}";
     log("$userEmail, $userAddress, $userPhoneNumber", name: "User Details");
@@ -333,8 +334,6 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     FilteringTextInputFormatter.allow(RegExp(r"[A-Za-z0-9 ]")),
                   ],
                   validator: (p0) {
-                    log("Validating Postal Code: $p0",
-                        name: "Postal Code Validator");
                     if (p0!.isEmpty) {
                       WidgetsFlutterBinding.ensureInitialized()
                           .addPostFrameCallback((_) {
@@ -356,7 +355,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                       });
                       return "Invalid Postal Code Format";
                     }
-                    log("i got here");
+
                     return null;
                   },
                 ),
@@ -528,6 +527,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   String? userCountry;
   String? userAddress;
   String? userState;
+  String? userPostalCode;
 
   Future<void> saveCard() async {
     if (formKey.currentState == null || !formKey.currentState!.validate()) {
@@ -539,14 +539,14 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
     final billingDetails = BillingDetails(
       email: userEmail,
       phone: userPhoneNumber ?? "",
-      address: Address(
-        city: userCity ?? "",
-        country: userCountry ?? "",
-        line1: userAddress ?? "",
-        line2: '',
-        state: userState ?? "",
-        postalCode: postalCodeEC.text,
-      ),
+      // address: Address(
+      //   city: "",
+      //   country: "",
+      //   line1: "",
+      //   line2: "",
+      //   state: "",
+      //   postalCode: postalCodeEC.text,
+      // ),
     );
 
     log(billingDetails.toString(), name: "Billing Details");
