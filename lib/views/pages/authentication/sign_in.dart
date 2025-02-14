@@ -10,6 +10,7 @@ import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_text_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 
+import '../../../core/notification_service.dart';
 import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/gap.dart';
 
@@ -100,7 +101,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
-                      ),  
+                      ),
                     ],
                   ),
                   addVerticalSpacing(40),
@@ -128,6 +129,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         },
                         data: (_) {
                           if (widget.onLoginResult == null) {
+                            ref.read(notificationServiceProvider);
                             context.router.replaceAll([const AuthRoute()]);
                             log('auth with login result');
                             return;

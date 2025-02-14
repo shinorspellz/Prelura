@@ -79,7 +79,7 @@ class _MessagesNotifier
     _initializeChatRoom();
     await for (final event in socketChannel!.stream) {
       final newMessageData = event is String ? jsonDecode(event) : event;
-      log("::::: The new messages:::$newMessageData");
+      // log("::::: The new messages:::$newMessageData");
       if (newMessageData["is_typing"] == null) {
         final MessageModel newMessage = MessageModel.fromSocket(newMessageData);
         if (ref.read(chatScrollController).hasClients) {
@@ -127,7 +127,7 @@ class _MessagesNotifier
       messageCacheProvider,
     )[_conversationId];
 
-    log("From the cache fetching: :$_conversationId: $userMessages");
+    // log("From the cache fetching: :$_conversationId: $userMessages");
     if (userMessages != null && userMessages.isNotEmpty) {
       log("From the cache fetching::: 0");
       state = AsyncData(userMessages);
@@ -155,7 +155,7 @@ class _MessagesNotifier
       ref
           .read(messageCacheProvider.notifier)
           .cacheMessage(id.toString(), response);
-      log("From the database fetching::: ${response}");
+      // log("From the database fetching::: ${response}");
       state = AsyncData(response);
     }
   }
@@ -237,12 +237,8 @@ class _MessagesNotifier
     state =
         AsyncData((state.valueOrNull ?? [])..removeWhere((x) => x.id == id));
 
-    state = await AsyncValue.guard(() async {
-      await _repo.deleteMessage(int.parse(id));
-      final newState = await future;
+    await _repo.deleteMessage(int.parse(id));
 
-      return newState;
-    });
     postMessageFetch(int.parse(_conversationId!));
   }
 
@@ -307,7 +303,7 @@ class _MessssageActionNotifier extends AsyncNotifier<void> {
     state = AsyncLoading();
 
     state = await AsyncValue.guard(() async {
-      await _repo.readMessages(ids);
+      _repo.readMessages(ids);
     });
   }
 }

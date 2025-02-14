@@ -10,6 +10,7 @@ import 'package:prelura_app/res/username.dart';
 import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import 'profile_picture.dart';
 import 'red_dot.dart';
 
 class NotificationCard extends ConsumerWidget {
@@ -26,7 +27,7 @@ class NotificationCard extends ConsumerWidget {
     return GestureDetector(
       onTap: () async {
         if (!notification.isRead!) {
-          await ref
+          ref
               .read(readNotificationProvider.notifier)
               .readNotification(int.parse(notification.id));
           ref.invalidate(notificationProvider);
@@ -38,6 +39,7 @@ class NotificationCard extends ConsumerWidget {
             avatarUrl: notification.sender?.profilePictureUrl,
             isOffer: notification.meta["is_offer"] ?? false,
           ));
+          return;
         }
         if (notification.modelGroup == "Offer") {
           context.router.push(ChatRoute(
@@ -46,17 +48,20 @@ class NotificationCard extends ConsumerWidget {
             avatarUrl: notification.sender?.profilePictureUrl,
             isOffer: true,
           ));
+          return;
         }
         if (notification.modelGroup == "UserProfile") {
           context.router.push(ProfileDetailsRoute(
             username: notification.sender?.username ?? "",
           ));
+          return;
         }
 
         if (notification.modelGroup == "Product") {
           context.router.push(ProductDetailRoute(
             productId: int.parse(notification.modelId!),
           ));
+          return;
         }
       },
       child: Container(
@@ -76,32 +81,12 @@ class NotificationCard extends ConsumerWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             // Image
-            if (notification.sender?.profilePictureUrl == null) ...[
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: CircleAvatar(
-                  radius: 20,
-                  child: Text(notification.sender?.username
-                          .split('')
-                          .first
-                          .toUpperCase() ??
-                      '--'),
-                ),
-              )
-            ],
-            if (notification.sender?.profilePictureUrl != null) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: CachedNetworkImage(
-                  imageUrl: notification.sender?.profilePictureUrl ?? "",
-                  fit: BoxFit.cover,
-                  height: 40,
-                  width: 40,
-                ),
-              ),
-            ],
+            ProfilePictureWidget(
+              height: 40,
+              width: 40,
+              profilePicture: notification.sender?.profilePictureUrl,
+              username: notification.sender?.username,
+            ),
             const SizedBox(width: 15),
 
             // Message and Time Row

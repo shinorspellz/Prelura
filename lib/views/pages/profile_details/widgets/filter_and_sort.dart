@@ -130,7 +130,9 @@ class FilterAndSort extends ConsumerWidget {
               // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
               RenderSvg(
                   svgPath: PreluraIcons.filter_icon_svg,
-                  color: PreluraColors.activeColor,
+                  color: isBrandActive
+                      ? PreluraColors.grey.withOpacity(0.6)
+                      : PreluraColors.activeColor,
                   svgHeight: 16,
                   svgWidth: 16)
             ]),

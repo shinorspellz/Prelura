@@ -12,7 +12,7 @@ class RedDot extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      margin: const EdgeInsets.all(6),
+      margin: const EdgeInsets.all(3),
       decoration: BoxDecoration(
         color: PreluraColors.error,
         shape: BoxShape.circle,
