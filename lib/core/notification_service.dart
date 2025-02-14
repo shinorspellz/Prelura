@@ -134,6 +134,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
 
   _handleMessage(String message) async {
     final appRouter = ref.read(router);
+    ref.refresh(notificationProvider);
 
     final data = jsonDecode(message);
     log("::::The notification data :::::: ${jsonEncode(data)}");
@@ -149,6 +150,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
         break;
       case 'CONVERSATION':
         if (HelperFunction.genRef!.read(inChatRoom)) {
+          log("i am in the chat room");
           appRouter.replace(
             ChatRoute(
               id: data['object_id'],
@@ -167,14 +169,6 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
             ),
           );
         }
-        appRouter.push(
-          ChatRoute(
-            id: data['object_id'],
-            username: data['title'].toString().toLowerCase(),
-            avatarUrl: null,
-            isOffer: data["is_offer"].toString().toLowerCase() == "true",
-          ),
-        );
         break;
       case 'OFFER':
         {

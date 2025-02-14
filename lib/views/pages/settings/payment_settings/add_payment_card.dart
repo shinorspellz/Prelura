@@ -38,6 +38,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
   final formKey = GlobalKey<FormState>();
   final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   String? cardError = "";
+  String? nameError = "";
   String? dateError = "";
   String? cvcError = "";
   String? postCodeError = "";
@@ -125,6 +126,43 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  "Full name",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                      ),
+                ),
+                10.toHeight,
+                PreluraAuthTextField(
+                  hintText: "",
+                  controller: fullNameEC,
+                  focusNode: fullNameFN,
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  onSaved: (value) => fullNameEC.text = value ?? "",
+                  onChanged: (val) {
+                    setState(() {
+                      log("i am here");
+                      nameError = null;
+                      fullNameEC.text = val;
+                    });
+                  },
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      WidgetsFlutterBinding.ensureInitialized()
+                          .addPostFrameCallback((_) {
+                        setState(() {
+                          nameError = "Full name is required";
+                        });
+                      });
+                      return "Full name is required";
+                    }
+                    return null;
+                  },
+                ),
+                24.toHeight,
                 Text(
                   "Card Number",
                   textAlign: TextAlign.start,
@@ -354,6 +392,10 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     places.then((value) {
                       if (mounted) {
                         setState(() {
+                          addressError = null;
+                          if (value.postalCode!.isNotEmpty) {
+                            postCodeError = null;
+                          }
                           billingAddress = value;
                           postalCodeEC.text = value
                               .postalCode!; // Update the postal code field manually
@@ -366,7 +408,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                       WidgetsFlutterBinding.ensureInitialized()
                           .addPostFrameCallback((_) {
                         setState(() {
-                          postCodeError = "Address is required";
+                          addressError = "Address is required";
                         });
                       });
                       return "Address is required";
@@ -434,6 +476,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     log(cvcError.toString());
                     log(postCodeError.toString());
                     if (cardError == null &&
+                        nameError == null &&
                         dateError == null &&
                         cvcError == null &&
                         postCodeError == null &&
@@ -595,6 +638,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
     await Stripe.instance.dangerouslyUpdateCardDetails(_card);
 
     final billingDetails = BillingDetails(
+      name: fullNameEC.text,
       email: userEmail,
       phone: userPhoneNumber ?? "",
       address: billingAddress,

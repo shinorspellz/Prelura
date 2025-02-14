@@ -134,7 +134,7 @@ class _MessagesNotifier
       //   //running a post fetch in-order to keep the list in sync
       //   //with the server
       //
-      await postMessageFetch(int.parse(_conversationId!));
+      postMessageFetch(int.parse(_conversationId!));
       log("From the cache fetching::: 1", name: "From the cache room");
       log("$state");
     } else {
