@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -68,7 +70,7 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
         return cat.hasChildren == false
             ? PreluraCheckBox(
                 title: cat.name!,
-                isChecked: false,
+                isChecked: cat.name == ref.read(selectedParentCategory),
                 onChanged: (value) {
                   if (cat.hasChildren ?? false) {
                     context.router.push(NewSubCategoryRoute(
@@ -87,6 +89,7 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                         color: PreluraColors.activeColor),
                 onTap: () {
                   if (cat.hasChildren ?? false) {
+                    log("selected parent category id :${cat.id}");
                     context.router.push(NewSubCategoryRoute(
                       parentId: cat.id!,
                       parentName: cat.name!,

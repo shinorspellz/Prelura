@@ -88,7 +88,7 @@ class _PaymentSettingsState extends ConsumerState<PaymentSettings> {
                                   ),
                                   32.horizontalSpacing,
                                   Text(
-                                    "${paymentMethod.cardBrand} card ending in ${paymentMethod.last4Digits}",
+                                    "${paymentMethod.cardBrand} card ending with ${paymentMethod.last4Digits}",
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
