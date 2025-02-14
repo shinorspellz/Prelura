@@ -177,7 +177,9 @@ class _MessageConversationBuilderState
                 key: Key(chatInfo.id.toString()),
                 onVisibilityChanged: (visibilityInfo) {
                   if (visibilityInfo.visibleFraction > 0.9 &&
-                      !(chatInfo.read ?? false)) {
+                      !(chatInfo.read ?? false) &&
+                      !isMe) {
+                    log("chat info : ${chatInfo.toJson().toString()}");
                     ref
                         .read(updateCReadMessageProvider.notifier)
                         .updateReadMessage(chatInfo.id.toString());

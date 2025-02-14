@@ -28,6 +28,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
 
   final StreamController<String?> _tappedNotificationStream =
       StreamController<String?>.broadcast();
+  bool _onMessageOpenedAppInitialized = false;
 
 //initialize local settings
   Future<void> init() async {
@@ -50,6 +51,8 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
         _tappedNotificationStream.add(notificationResponse.payload);
       },
     );
+
+    log("i got here before inintiating the firbase Messaging");
 
     await initFirebaseMessaging();
 
@@ -105,10 +108,14 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
         await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
+      log("🔥 getInitialMessage() fired!", name: "NotificationService");
       _handleMessage(jsonEncode(initialMessage.data));
     }
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      log("🚀 onMessageOpenedApp fired!", name: "NotificationService");
+      log("🚀 onMessageOpenedAppInitialized : ${_onMessageOpenedAppInitialized}",
+          name: "NotificationService");
       _handleMessage(jsonEncode(message.data));
     });
 
@@ -139,6 +146,10 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
     final data = jsonDecode(message);
     log("::::The notification data :::::: ${jsonEncode(data)}");
     final page = data['page'];
+
+    if (page == 'CONVERSATION' && HelperFunction.genRef!.read(inChatRoom)) {
+      log("i am in the chat room");
+    }
 
     switch (page) {
       case 'PRODUCT':
@@ -222,10 +233,10 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
   }
 
   _handleTappedNotification(Function(String payload) action) {
+    log("Setting up tapped notification listener...");
     _tappedNotificationStream.stream.listen((event) {
       action(event ?? '');
       log('Notification tapped: $event');
-      ref.refresh(notificationProvider.future);
     });
   }
 
@@ -235,6 +246,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
 
   @override
   Future<void> build() {
+    log("NotificationService build() called");
     return init();
   }
 }

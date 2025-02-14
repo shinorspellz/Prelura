@@ -65,16 +65,13 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                     data: (notifications) {
                       log("notification length is ${notifications.length}");
                       return notifications.isNotEmpty
-                          ? SliverPadding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              sliver: SliverList.builder(
-                                itemCount: notifications.length,
-                                itemBuilder: (context, index) {
-                                  return NotificationCard(
-                                      key: ValueKey(notifications[index].id),
-                                      notification: notifications[index]);
-                                },
-                              ),
+                          ? SliverList.builder(
+                              itemCount: notifications.length,
+                              itemBuilder: (context, index) {
+                                return NotificationCard(
+                                    key: ValueKey(notifications[index].id),
+                                    notification: notifications[index]);
+                              },
                             )
                           : SliverFillRemaining(
                               child: EmptyScreenPlaceholder(
