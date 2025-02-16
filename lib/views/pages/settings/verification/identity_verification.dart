@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:persona_flutter/persona_flutter.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../../res/utils.dart';
 import '../../../widgets/app_bar.dart';
 import '../../../widgets/app_button.dart';
 
@@ -31,20 +33,27 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
     super.initState();
 
     _configuration = TemplateIdConfiguration(
-      templateId: "itmpl_Q6ymLRwKfY8PGEjqsCjhUUfu",
-      environment: InquiryEnvironment.sandbox,
-      // locale: "pt-BR",
-      // Client theming is deprecated and will be removed in the future.
-      theme: InquiryTheme(
-        source: InquiryThemeSource.client,
-        accentColor: PreluraColors.primaryColor,
-        primaryColor: PreluraColors.primaryColor,
-        buttonBackgroundColor: PreluraColors.primaryColor,
-        darkPrimaryColor: PreluraColors.primaryColorOld,
-        buttonCornerRadius: 8,
-        textFieldCornerRadius: 0,
-      ),
-    );
+        templateId: "itmpl_fHkEmxaeUFrAU1eBG4zuL28x7pCs",
+        environment: InquiryEnvironment.sandbox,
+        // environmentId: "persona_sandbox_b4f81280-4e6b-4f13-8575-41f4c036d55b",
+        routingCountry: "Uk",
+        locale: "en-US",
+        fields: {
+          "selected_country_code": null,
+          "name_first": "",
+          "name_last": "",
+          "birthdate": "",
+          "address_street_1": "",
+          "address_city": "",
+          "address_subdivision": "",
+          "address_postal_code": "",
+          "address_country_code": "GB",
+          "phone_number": "",
+          "email_address": "",
+          // "customAttribute": "hello",
+        },
+        // Client theming is deprecated and will be removed in the future.
+        theme: InquiryTheme(source: InquiryThemeSource.server));
 
     _streamCanceled = PersonaInquiry.onCanceled.listen(_onCanceled);
     _streamError = PersonaInquiry.onError.listen(_onError);
@@ -66,8 +75,8 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
   }
 
   void _onError(InquiryError event) {
-    print("InquiryError");
-    print("- error: ${event.error}");
+    log("InquiryError");
+    log("- error: ${event.error}");
   }
 
   void _onComplete(InquiryComplete event) {
