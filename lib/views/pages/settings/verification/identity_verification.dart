@@ -35,7 +35,6 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
     _configuration = TemplateIdConfiguration(
         templateId: "itmpl_fHkEmxaeUFrAU1eBG4zuL28x7pCs",
         environment: InquiryEnvironment.sandbox,
-        // environmentId: "persona_sandbox_b4f81280-4e6b-4f13-8575-41f4c036d55b",
         routingCountry: "Uk",
         locale: "en-US",
         fields: {
