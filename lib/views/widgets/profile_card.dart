@@ -92,46 +92,52 @@ class ProfileCardWidget extends ConsumerWidget {
               const SizedBox(
                 width: 10,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    user != null
-                        ? user?.username ?? '--'
-                        : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).textTheme.bodyMedium?.color),
-                  ),
-                  3.verticalSpacing,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Ratings(),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "(300)",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: PreluraColors.activeColor),
-                      ),
-                    ],
-                  ),
-                  3.verticalSpacing,
-                  Text(user?.location?.locationName ?? "",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: fontWeight,
-                          )),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      user != null
+                          ? user?.username ?? '--'
+                          : ref.watch(userProvider).valueOrNull?.username ??
+                              '--',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).textTheme.bodyMedium?.color),
+                    ),
+                    3.verticalSpacing,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Ratings(),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          "(300)",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: PreluraColors.activeColor),
+                        ),
+                      ],
+                    ),
+                    3.verticalSpacing,
+                    Text(user?.location?.locationName ?? "",
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: fontWeight,
+                            )),
+                  ],
+                ),
               ),
               if (context.router.current.name == UserProfileDetailsRoute.name ||
                   context.router.current.name == ProfileDetailsRoute.name) ...[
-                Spacer(),
+                24.horizontalSpacing,
                 if (user?.isFollowing != null) ...[
                   if (user?.isFollowing == true) ...[
                     ref.watch(unFollowUserProvider).when(

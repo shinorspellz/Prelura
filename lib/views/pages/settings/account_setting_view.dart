@@ -111,7 +111,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
       for (var component in addressComponents) {
         log("component : $component");
         if (component['types'].contains('locality') ||
-            component["types"].contains("administrative_area_level_3")) {
+            component["types"].contains("administrative_area_level_3") ||
+            component["types"].contains("postal_town")) {
           city = component['long_name'];
         } else if (component['types'].contains('country')) {
           country = component['long_name'];

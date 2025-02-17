@@ -76,6 +76,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
       {int? productId,
       List<int>? productIds,
       double? shippingFee,
+      required Input$DeliveryDetailsInputType deliveryDetails,
       required String paymentMethodId}) async {
     try {
       updateOrderState({
@@ -89,6 +90,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
         productId: productId,
         productIds: productIds,
         shippingFee: shippingFee,
+        deliveryDetails: deliveryDetails,
       );
       if (response != null && response.success!) {
         CreateOrderInfo orderInfo = CreateOrderInfo.fromJson(response.toJson());

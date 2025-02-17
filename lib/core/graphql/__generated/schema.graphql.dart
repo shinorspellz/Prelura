@@ -131,6 +131,380 @@ class _CopyWithStubImpl$Input$BannerInputType<TRes>
       _res;
 }
 
+class Input$DeliveryAddressInputType {
+  factory Input$DeliveryAddressInputType({
+    required String address,
+    required String city,
+    required String state,
+    required String country,
+    required String postalCode,
+    required String phoneNumber,
+  }) =>
+      Input$DeliveryAddressInputType._({
+        r'address': address,
+        r'city': city,
+        r'state': state,
+        r'country': country,
+        r'postalCode': postalCode,
+        r'phoneNumber': phoneNumber,
+      });
+
+  Input$DeliveryAddressInputType._(this._$data);
+
+  factory Input$DeliveryAddressInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$address = data['address'];
+    result$data['address'] = (l$address as String);
+    final l$city = data['city'];
+    result$data['city'] = (l$city as String);
+    final l$state = data['state'];
+    result$data['state'] = (l$state as String);
+    final l$country = data['country'];
+    result$data['country'] = (l$country as String);
+    final l$postalCode = data['postalCode'];
+    result$data['postalCode'] = (l$postalCode as String);
+    final l$phoneNumber = data['phoneNumber'];
+    result$data['phoneNumber'] = (l$phoneNumber as String);
+    return Input$DeliveryAddressInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get address => (_$data['address'] as String);
+
+  String get city => (_$data['city'] as String);
+
+  String get state => (_$data['state'] as String);
+
+  String get country => (_$data['country'] as String);
+
+  String get postalCode => (_$data['postalCode'] as String);
+
+  String get phoneNumber => (_$data['phoneNumber'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$address = address;
+    result$data['address'] = l$address;
+    final l$city = city;
+    result$data['city'] = l$city;
+    final l$state = state;
+    result$data['state'] = l$state;
+    final l$country = country;
+    result$data['country'] = l$country;
+    final l$postalCode = postalCode;
+    result$data['postalCode'] = l$postalCode;
+    final l$phoneNumber = phoneNumber;
+    result$data['phoneNumber'] = l$phoneNumber;
+    return result$data;
+  }
+
+  CopyWith$Input$DeliveryAddressInputType<Input$DeliveryAddressInputType>
+      get copyWith => CopyWith$Input$DeliveryAddressInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$DeliveryAddressInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$address = address;
+    final lOther$address = other.address;
+    if (l$address != lOther$address) {
+      return false;
+    }
+    final l$city = city;
+    final lOther$city = other.city;
+    if (l$city != lOther$city) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (l$state != lOther$state) {
+      return false;
+    }
+    final l$country = country;
+    final lOther$country = other.country;
+    if (l$country != lOther$country) {
+      return false;
+    }
+    final l$postalCode = postalCode;
+    final lOther$postalCode = other.postalCode;
+    if (l$postalCode != lOther$postalCode) {
+      return false;
+    }
+    final l$phoneNumber = phoneNumber;
+    final lOther$phoneNumber = other.phoneNumber;
+    if (l$phoneNumber != lOther$phoneNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$address = address;
+    final l$city = city;
+    final l$state = state;
+    final l$country = country;
+    final l$postalCode = postalCode;
+    final l$phoneNumber = phoneNumber;
+    return Object.hashAll([
+      l$address,
+      l$city,
+      l$state,
+      l$country,
+      l$postalCode,
+      l$phoneNumber,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$DeliveryAddressInputType<TRes> {
+  factory CopyWith$Input$DeliveryAddressInputType(
+    Input$DeliveryAddressInputType instance,
+    TRes Function(Input$DeliveryAddressInputType) then,
+  ) = _CopyWithImpl$Input$DeliveryAddressInputType;
+
+  factory CopyWith$Input$DeliveryAddressInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$DeliveryAddressInputType;
+
+  TRes call({
+    String? address,
+    String? city,
+    String? state,
+    String? country,
+    String? postalCode,
+    String? phoneNumber,
+  });
+}
+
+class _CopyWithImpl$Input$DeliveryAddressInputType<TRes>
+    implements CopyWith$Input$DeliveryAddressInputType<TRes> {
+  _CopyWithImpl$Input$DeliveryAddressInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$DeliveryAddressInputType _instance;
+
+  final TRes Function(Input$DeliveryAddressInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? address = _undefined,
+    Object? city = _undefined,
+    Object? state = _undefined,
+    Object? country = _undefined,
+    Object? postalCode = _undefined,
+    Object? phoneNumber = _undefined,
+  }) =>
+      _then(Input$DeliveryAddressInputType._({
+        ..._instance._$data,
+        if (address != _undefined && address != null)
+          'address': (address as String),
+        if (city != _undefined && city != null) 'city': (city as String),
+        if (state != _undefined && state != null) 'state': (state as String),
+        if (country != _undefined && country != null)
+          'country': (country as String),
+        if (postalCode != _undefined && postalCode != null)
+          'postalCode': (postalCode as String),
+        if (phoneNumber != _undefined && phoneNumber != null)
+          'phoneNumber': (phoneNumber as String),
+      }));
+}
+
+class _CopyWithStubImpl$Input$DeliveryAddressInputType<TRes>
+    implements CopyWith$Input$DeliveryAddressInputType<TRes> {
+  _CopyWithStubImpl$Input$DeliveryAddressInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? address,
+    String? city,
+    String? state,
+    String? country,
+    String? postalCode,
+    String? phoneNumber,
+  }) =>
+      _res;
+}
+
+class Input$DeliveryDetailsInputType {
+  factory Input$DeliveryDetailsInputType({
+    required Input$DeliveryAddressInputType deliveryAddress,
+    required Enum$DeliveryProviderEnum deliveryProvider,
+    required Enum$DeliveryTypeEnum deliveryType,
+  }) =>
+      Input$DeliveryDetailsInputType._({
+        r'deliveryAddress': deliveryAddress,
+        r'deliveryProvider': deliveryProvider,
+        r'deliveryType': deliveryType,
+      });
+
+  Input$DeliveryDetailsInputType._(this._$data);
+
+  factory Input$DeliveryDetailsInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$deliveryAddress = data['deliveryAddress'];
+    result$data['deliveryAddress'] = Input$DeliveryAddressInputType.fromJson(
+        (l$deliveryAddress as Map<String, dynamic>));
+    final l$deliveryProvider = data['deliveryProvider'];
+    result$data['deliveryProvider'] =
+        fromJson$Enum$DeliveryProviderEnum((l$deliveryProvider as String));
+    final l$deliveryType = data['deliveryType'];
+    result$data['deliveryType'] =
+        fromJson$Enum$DeliveryTypeEnum((l$deliveryType as String));
+    return Input$DeliveryDetailsInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$DeliveryAddressInputType get deliveryAddress =>
+      (_$data['deliveryAddress'] as Input$DeliveryAddressInputType);
+
+  Enum$DeliveryProviderEnum get deliveryProvider =>
+      (_$data['deliveryProvider'] as Enum$DeliveryProviderEnum);
+
+  Enum$DeliveryTypeEnum get deliveryType =>
+      (_$data['deliveryType'] as Enum$DeliveryTypeEnum);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$deliveryAddress = deliveryAddress;
+    result$data['deliveryAddress'] = l$deliveryAddress.toJson();
+    final l$deliveryProvider = deliveryProvider;
+    result$data['deliveryProvider'] =
+        toJson$Enum$DeliveryProviderEnum(l$deliveryProvider);
+    final l$deliveryType = deliveryType;
+    result$data['deliveryType'] = toJson$Enum$DeliveryTypeEnum(l$deliveryType);
+    return result$data;
+  }
+
+  CopyWith$Input$DeliveryDetailsInputType<Input$DeliveryDetailsInputType>
+      get copyWith => CopyWith$Input$DeliveryDetailsInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$DeliveryDetailsInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deliveryAddress = deliveryAddress;
+    final lOther$deliveryAddress = other.deliveryAddress;
+    if (l$deliveryAddress != lOther$deliveryAddress) {
+      return false;
+    }
+    final l$deliveryProvider = deliveryProvider;
+    final lOther$deliveryProvider = other.deliveryProvider;
+    if (l$deliveryProvider != lOther$deliveryProvider) {
+      return false;
+    }
+    final l$deliveryType = deliveryType;
+    final lOther$deliveryType = other.deliveryType;
+    if (l$deliveryType != lOther$deliveryType) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$deliveryAddress = deliveryAddress;
+    final l$deliveryProvider = deliveryProvider;
+    final l$deliveryType = deliveryType;
+    return Object.hashAll([
+      l$deliveryAddress,
+      l$deliveryProvider,
+      l$deliveryType,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$DeliveryDetailsInputType<TRes> {
+  factory CopyWith$Input$DeliveryDetailsInputType(
+    Input$DeliveryDetailsInputType instance,
+    TRes Function(Input$DeliveryDetailsInputType) then,
+  ) = _CopyWithImpl$Input$DeliveryDetailsInputType;
+
+  factory CopyWith$Input$DeliveryDetailsInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$DeliveryDetailsInputType;
+
+  TRes call({
+    Input$DeliveryAddressInputType? deliveryAddress,
+    Enum$DeliveryProviderEnum? deliveryProvider,
+    Enum$DeliveryTypeEnum? deliveryType,
+  });
+  CopyWith$Input$DeliveryAddressInputType<TRes> get deliveryAddress;
+}
+
+class _CopyWithImpl$Input$DeliveryDetailsInputType<TRes>
+    implements CopyWith$Input$DeliveryDetailsInputType<TRes> {
+  _CopyWithImpl$Input$DeliveryDetailsInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$DeliveryDetailsInputType _instance;
+
+  final TRes Function(Input$DeliveryDetailsInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deliveryAddress = _undefined,
+    Object? deliveryProvider = _undefined,
+    Object? deliveryType = _undefined,
+  }) =>
+      _then(Input$DeliveryDetailsInputType._({
+        ..._instance._$data,
+        if (deliveryAddress != _undefined && deliveryAddress != null)
+          'deliveryAddress':
+              (deliveryAddress as Input$DeliveryAddressInputType),
+        if (deliveryProvider != _undefined && deliveryProvider != null)
+          'deliveryProvider': (deliveryProvider as Enum$DeliveryProviderEnum),
+        if (deliveryType != _undefined && deliveryType != null)
+          'deliveryType': (deliveryType as Enum$DeliveryTypeEnum),
+      }));
+
+  CopyWith$Input$DeliveryAddressInputType<TRes> get deliveryAddress {
+    final local$deliveryAddress = _instance.deliveryAddress;
+    return CopyWith$Input$DeliveryAddressInputType(
+        local$deliveryAddress, (e) => call(deliveryAddress: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$DeliveryDetailsInputType<TRes>
+    implements CopyWith$Input$DeliveryDetailsInputType<TRes> {
+  _CopyWithStubImpl$Input$DeliveryDetailsInputType(this._res);
+
+  TRes _res;
+
+  call({
+    Input$DeliveryAddressInputType? deliveryAddress,
+    Enum$DeliveryProviderEnum? deliveryProvider,
+    Enum$DeliveryTypeEnum? deliveryType,
+  }) =>
+      _res;
+
+  CopyWith$Input$DeliveryAddressInputType<TRes> get deliveryAddress =>
+      CopyWith$Input$DeliveryAddressInputType.stub(_res);
+}
+
 class Input$ImagesInputType {
   factory Input$ImagesInputType({
     required String url,
@@ -2328,6 +2702,82 @@ Enum$CurrencyEnum fromJson$Enum$CurrencyEnum(String value) {
   }
 }
 
+enum Enum$DeliveryProviderEnum {
+  DPD,
+  EVRI,
+  UDEL,
+  ROYAL_MAIL,
+  $unknown;
+
+  factory Enum$DeliveryProviderEnum.fromJson(String value) =>
+      fromJson$Enum$DeliveryProviderEnum(value);
+
+  String toJson() => toJson$Enum$DeliveryProviderEnum(this);
+}
+
+String toJson$Enum$DeliveryProviderEnum(Enum$DeliveryProviderEnum e) {
+  switch (e) {
+    case Enum$DeliveryProviderEnum.DPD:
+      return r'DPD';
+    case Enum$DeliveryProviderEnum.EVRI:
+      return r'EVRI';
+    case Enum$DeliveryProviderEnum.UDEL:
+      return r'UDEL';
+    case Enum$DeliveryProviderEnum.ROYAL_MAIL:
+      return r'ROYAL_MAIL';
+    case Enum$DeliveryProviderEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$DeliveryProviderEnum fromJson$Enum$DeliveryProviderEnum(String value) {
+  switch (value) {
+    case r'DPD':
+      return Enum$DeliveryProviderEnum.DPD;
+    case r'EVRI':
+      return Enum$DeliveryProviderEnum.EVRI;
+    case r'UDEL':
+      return Enum$DeliveryProviderEnum.UDEL;
+    case r'ROYAL_MAIL':
+      return Enum$DeliveryProviderEnum.ROYAL_MAIL;
+    default:
+      return Enum$DeliveryProviderEnum.$unknown;
+  }
+}
+
+enum Enum$DeliveryTypeEnum {
+  HOME_DELIVERY,
+  LOCAL_PICKUP,
+  $unknown;
+
+  factory Enum$DeliveryTypeEnum.fromJson(String value) =>
+      fromJson$Enum$DeliveryTypeEnum(value);
+
+  String toJson() => toJson$Enum$DeliveryTypeEnum(this);
+}
+
+String toJson$Enum$DeliveryTypeEnum(Enum$DeliveryTypeEnum e) {
+  switch (e) {
+    case Enum$DeliveryTypeEnum.HOME_DELIVERY:
+      return r'HOME_DELIVERY';
+    case Enum$DeliveryTypeEnum.LOCAL_PICKUP:
+      return r'LOCAL_PICKUP';
+    case Enum$DeliveryTypeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$DeliveryTypeEnum fromJson$Enum$DeliveryTypeEnum(String value) {
+  switch (value) {
+    case r'HOME_DELIVERY':
+      return Enum$DeliveryTypeEnum.HOME_DELIVERY;
+    case r'LOCAL_PICKUP':
+      return Enum$DeliveryTypeEnum.LOCAL_PICKUP;
+    default:
+      return Enum$DeliveryTypeEnum.$unknown;
+  }
+}
+
 enum Enum$FileTypeEnum {
   BANNER,
   PRODUCT,
@@ -2501,7 +2951,7 @@ enum Enum$OrderStatusEnum {
   SHIPPED,
   DELIVERED,
   CANCELLED,
-  REFUNDED,
+  RETURNED,
   $unknown;
 
   factory Enum$OrderStatusEnum.fromJson(String value) =>
@@ -2522,8 +2972,8 @@ String toJson$Enum$OrderStatusEnum(Enum$OrderStatusEnum e) {
       return r'DELIVERED';
     case Enum$OrderStatusEnum.CANCELLED:
       return r'CANCELLED';
-    case Enum$OrderStatusEnum.REFUNDED:
-      return r'REFUNDED';
+    case Enum$OrderStatusEnum.RETURNED:
+      return r'RETURNED';
     case Enum$OrderStatusEnum.$unknown:
       return r'$unknown';
   }
@@ -2541,8 +2991,8 @@ Enum$OrderStatusEnum fromJson$Enum$OrderStatusEnum(String value) {
       return Enum$OrderStatusEnum.DELIVERED;
     case r'CANCELLED':
       return Enum$OrderStatusEnum.CANCELLED;
-    case r'REFUNDED':
-      return Enum$OrderStatusEnum.REFUNDED;
+    case r'RETURNED':
+      return Enum$OrderStatusEnum.RETURNED;
     default:
       return Enum$OrderStatusEnum.$unknown;
   }

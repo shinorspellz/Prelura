@@ -23251,11 +23251,13 @@ class Variables$Mutation$CreateOrder {
     int? productId,
     List<int?>? productIds,
     double? shippingFee,
+    required Input$DeliveryDetailsInputType deliveryDetails,
   }) =>
       Variables$Mutation$CreateOrder._({
         if (productId != null) r'productId': productId,
         if (productIds != null) r'productIds': productIds,
         if (shippingFee != null) r'shippingFee': shippingFee,
+        r'deliveryDetails': deliveryDetails,
       });
 
   Variables$Mutation$CreateOrder._(this._$data);
@@ -23275,6 +23277,9 @@ class Variables$Mutation$CreateOrder {
       final l$shippingFee = data['shippingFee'];
       result$data['shippingFee'] = (l$shippingFee as num?)?.toDouble();
     }
+    final l$deliveryDetails = data['deliveryDetails'];
+    result$data['deliveryDetails'] = Input$DeliveryDetailsInputType.fromJson(
+        (l$deliveryDetails as Map<String, dynamic>));
     return Variables$Mutation$CreateOrder._(result$data);
   }
 
@@ -23285,6 +23290,9 @@ class Variables$Mutation$CreateOrder {
   List<int?>? get productIds => (_$data['productIds'] as List<int?>?);
 
   double? get shippingFee => (_$data['shippingFee'] as double?);
+
+  Input$DeliveryDetailsInputType get deliveryDetails =>
+      (_$data['deliveryDetails'] as Input$DeliveryDetailsInputType);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -23300,6 +23308,8 @@ class Variables$Mutation$CreateOrder {
       final l$shippingFee = shippingFee;
       result$data['shippingFee'] = l$shippingFee;
     }
+    final l$deliveryDetails = deliveryDetails;
+    result$data['deliveryDetails'] = l$deliveryDetails.toJson();
     return result$data;
   }
 
@@ -23356,6 +23366,11 @@ class Variables$Mutation$CreateOrder {
     if (l$shippingFee != lOther$shippingFee) {
       return false;
     }
+    final l$deliveryDetails = deliveryDetails;
+    final lOther$deliveryDetails = other.deliveryDetails;
+    if (l$deliveryDetails != lOther$deliveryDetails) {
+      return false;
+    }
     return true;
   }
 
@@ -23364,6 +23379,7 @@ class Variables$Mutation$CreateOrder {
     final l$productId = productId;
     final l$productIds = productIds;
     final l$shippingFee = shippingFee;
+    final l$deliveryDetails = deliveryDetails;
     return Object.hashAll([
       _$data.containsKey('productId') ? l$productId : const {},
       _$data.containsKey('productIds')
@@ -23372,6 +23388,7 @@ class Variables$Mutation$CreateOrder {
               : Object.hashAll(l$productIds.map((v) => v))
           : const {},
       _$data.containsKey('shippingFee') ? l$shippingFee : const {},
+      l$deliveryDetails,
     ]);
   }
 }
@@ -23389,6 +23406,7 @@ abstract class CopyWith$Variables$Mutation$CreateOrder<TRes> {
     int? productId,
     List<int?>? productIds,
     double? shippingFee,
+    Input$DeliveryDetailsInputType? deliveryDetails,
   });
 }
 
@@ -23409,12 +23427,16 @@ class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes>
     Object? productId = _undefined,
     Object? productIds = _undefined,
     Object? shippingFee = _undefined,
+    Object? deliveryDetails = _undefined,
   }) =>
       _then(Variables$Mutation$CreateOrder._({
         ..._instance._$data,
         if (productId != _undefined) 'productId': (productId as int?),
         if (productIds != _undefined) 'productIds': (productIds as List<int?>?),
         if (shippingFee != _undefined) 'shippingFee': (shippingFee as double?),
+        if (deliveryDetails != _undefined && deliveryDetails != null)
+          'deliveryDetails':
+              (deliveryDetails as Input$DeliveryDetailsInputType),
       }));
 }
 
@@ -23428,6 +23450,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateOrder<TRes>
     int? productId,
     List<int?>? productIds,
     double? shippingFee,
+    Input$DeliveryDetailsInputType? deliveryDetails,
   }) =>
       _res;
 }
@@ -23605,6 +23628,15 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'deliveryDetails')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'DeliveryDetailsInputType'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -23623,6 +23655,10 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'shippingFee'),
             value: VariableNode(name: NameNode(value: 'shippingFee')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'deliveryDetails'),
+            value: VariableNode(name: NameNode(value: 'deliveryDetails')),
           ),
         ],
         directives: [],
@@ -24035,7 +24071,7 @@ class Options$Mutation$CreateOrder
     extends graphql.MutationOptions<Mutation$CreateOrder> {
   Options$Mutation$CreateOrder({
     String? operationName,
-    Variables$Mutation$CreateOrder? variables,
+    required Variables$Mutation$CreateOrder variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -24047,7 +24083,7 @@ class Options$Mutation$CreateOrder
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -24081,7 +24117,7 @@ class WatchOptions$Mutation$CreateOrder
     extends graphql.WatchQueryOptions<Mutation$CreateOrder> {
   WatchOptions$Mutation$CreateOrder({
     String? operationName,
-    Variables$Mutation$CreateOrder? variables,
+    required Variables$Mutation$CreateOrder variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -24093,7 +24129,7 @@ class WatchOptions$Mutation$CreateOrder
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -24111,11 +24147,11 @@ class WatchOptions$Mutation$CreateOrder
 
 extension ClientExtension$Mutation$CreateOrder on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$CreateOrder>> mutate$CreateOrder(
-          [Options$Mutation$CreateOrder? options]) async =>
-      await this.mutate(options ?? Options$Mutation$CreateOrder());
+          Options$Mutation$CreateOrder options) async =>
+      await this.mutate(options);
   graphql.ObservableQuery<Mutation$CreateOrder> watchMutation$CreateOrder(
-          [WatchOptions$Mutation$CreateOrder? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$CreateOrder());
+          WatchOptions$Mutation$CreateOrder options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$CreateOrder$createOrder {

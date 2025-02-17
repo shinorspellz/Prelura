@@ -85,6 +85,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
       child: Scaffold(
         body: ref.watch(getProductProvider(widget.productId)).when(
               data: (product) {
+                log("product : ${product}");
+                print(product.discountPrice.runtimeType);
                 String? appUsername =
                     ref.read(userProvider).valueOrNull?.username;
                 bool isCurrentUser = product.seller.username == appUsername;

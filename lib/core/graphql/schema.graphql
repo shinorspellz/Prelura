@@ -331,6 +331,33 @@ type DeleteSearchHistory {
   message: String
 }
 
+input DeliveryAddressInputType {
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  postalCode: String!
+  phoneNumber: String!
+}
+
+input DeliveryDetailsInputType {
+  deliveryAddress: DeliveryAddressInputType!
+  deliveryProvider: DeliveryProviderEnum!
+  deliveryType: DeliveryTypeEnum!
+}
+
+enum DeliveryProviderEnum {
+  DPD
+  EVRI
+  UDEL
+  ROYAL_MAIL
+}
+
+enum DeliveryTypeEnum {
+  HOME_DELIVERY
+  LOCAL_PICKUP
+}
+
 type EarningType {
   networth: Float
   pendingPayments: QuantityValuePair
@@ -541,7 +568,7 @@ type Mutation {
   updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, imagesUrl: ImageUpdateInputType, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: Int, style: StyleEnum): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
-  createOrder(productId: Int, productIds: [Int], shippingFee: Float): CreateOrder
+  createOrder(deliveryDetails: DeliveryDetailsInputType!, productId: Int, productIds: [Int], shippingFee: Float): CreateOrder
   cancelOrder(orderId: Int!): CancelOrder
   createOffer(message: String, offerPrice: Float!, productIds: [Int]!): CreateOffer
   createMultibuyDiscount(inputs: [MultibuyInputType]!): CreateOrUpdateMultibuyDiscount
@@ -617,7 +644,7 @@ type Mutation {
   followUser(followedId: Int!): FollowUser
   blockUnblock(blockUser: Boolean!, userId: Int!): BlockUserMutation
   unfollowUser(followedId: Int!): UnfollowUser
-  rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
+  rateUser(comment: String!, orderId: Int!, rating: Int!, userId: Int!): RateUser
   resetPassword(email: String): ResetPassword
 
   """Change email address"""
@@ -831,12 +858,13 @@ enum OrderStatusEnum {
   SHIPPED
   DELIVERED
   CANCELLED
-  REFUNDED
+  RETURNED
 }
 
 type OrderType {
   id: ID!
   user: UserType
+  seller: UserNode
   priceTotal: Decimal!
   discountPrice: Decimal!
   shippingFee: Decimal!
@@ -1771,7 +1799,8 @@ type UserNode implements Node {
   searchhistorySet: [SearchHistoryType!]!
   socialAuth(offset: Int, before: String, after: String, first: Int, last: Int, uid: String, uid_In: [String], provider: String, provider_In: [String]): SocialNodeConnection!
   products: [ProductType!]!
-  orders: [OrderType!]!
+  buyerOrders: [OrderType!]!
+  sellerOrders: [OrderType!]!
   multibuyDiscounts: [MultibuyDiscountType!]!
   madeOffers: [OfferType!]!
   createdOffers: [OfferType!]!
