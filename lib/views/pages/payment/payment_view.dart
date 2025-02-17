@@ -8,6 +8,7 @@ import 'package:prelura_app/controller/product/order_provider.dart';
 import 'package:prelura_app/controller/product/payment_provider.dart';
 import 'package:prelura_app/controller/user/multi_buy_discount_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
@@ -29,7 +30,8 @@ import '../../widgets/profile_picture.dart';
 import '../search/search_screen.dart';
 
 // State provider from earlier
-final selectedDeliveryOptionProvider = StateProvider<int>((ref) => 1);
+final selectedDeliveryOptionProvider = StateProvider<Enum$DeliveryTypeEnum>(
+    (ref) => Enum$DeliveryTypeEnum.HOME_DELIVERY);
 
 @RoutePage()
 class PaymentScreen extends ConsumerWidget {
@@ -57,30 +59,32 @@ class PaymentScreen extends ConsumerWidget {
     int updateCalculatedDiscount() {
       if (sellerDiscount != null && sellerDiscount!.isNotEmpty) {
         int result = 0;
-        if (products.length > 10) {
-          result = double.parse(sellerDiscount!
-                  .firstWhere((discount) => discount.minItems == 10)
-                  .discountValue
-                  .toString())
-              .toInt();
-          return result;
-        }
-        if (products.length > 4) {
-          result = double.parse(sellerDiscount!
-                  .firstWhere((discount) => discount.minItems == 5)
-                  .discountValue
-                  .toString())
-              .toInt();
+        if (products.length > 1) {
+          if (products.length > 10) {
+            result = double.parse(sellerDiscount!
+                    .firstWhere((discount) => discount.minItems == 10)
+                    .discountValue
+                    .toString())
+                .toInt();
+            return result;
+          }
+          if (products.length > 4) {
+            result = double.parse(sellerDiscount!
+                    .firstWhere((discount) => discount.minItems == 5)
+                    .discountValue
+                    .toString())
+                .toInt();
 
-          return result;
-        }
-        if (products.length <= 4) {
-          result = double.parse(sellerDiscount!
-                  .firstWhere((discount) => discount.minItems == 2)
-                  .discountValue
-                  .toString())
-              .toInt();
-          return result;
+            return result;
+          }
+          if (products.length <= 4) {
+            result = double.parse(sellerDiscount!
+                    .firstWhere((discount) => discount.minItems == 2)
+                    .discountValue
+                    .toString())
+                .toInt();
+            return result;
+          }
         }
         return result;
       } else {
@@ -111,7 +115,7 @@ class PaymentScreen extends ConsumerWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(bottom: 130),
+        padding: EdgeInsets.only(bottom: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -140,32 +144,41 @@ class PaymentScreen extends ConsumerWidget {
 
             // Delivery Options
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
-              child: Text("Delivery Option",
-                  style: TextStyle(color: Colors.white)),
-            ),
-            PreluraCheckBox(
-              icon: const Icon(
-                Icons.location_on_outlined,
-                size: 16,
-              ),
-              isChecked: selectedDeliveryOption == 1,
-              onChanged: (value) {
-                ref.read(selectedDeliveryOptionProvider.notifier).state = 1;
-              },
-              title: "Ship to pick-up point",
-              subtitle: "£2.29",
-            ),
-            PreluraCheckBox(
-              isChecked: selectedDeliveryOption == 2,
-              icon: Icon(Icons.home, size: 16),
-              onChanged: (value) {
-                ref.read(selectedDeliveryOptionProvider.notifier).state = 2;
-              },
-              title: "Ship to home",
-              subtitle: "£2.99",
-            ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                child: Text("Delivery Option",
+                    style: context.theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w300,
+                      fontSize: getDefaultSize(),
+                    ))),
+            ...Enum$DeliveryTypeEnum.values.map((deliveryOption) {
+              if (deliveryOption == Enum$DeliveryTypeEnum.$unknown) {
+                return SizedBox.shrink();
+              }
+              return PreluraCheckBox(
+                isChecked: selectedDeliveryOption == deliveryOption,
+                icon: Icon(
+                    deliveryOption.name.replaceAll("_", " ").toLowerCase() ==
+                            "home delivery"
+                        ? Icons.home
+                        : Icons.location_on_outlined,
+                    size: 16),
+                onChanged: (value) {
+                  ref.read(selectedDeliveryOptionProvider.notifier).state =
+                      deliveryOption;
+                },
+                title: deliveryOption.name
+                    .replaceAll("_", " ")
+                    .toLowerCase()
+                    .capitalize(),
+                subtitle:
+                    deliveryOption.name.replaceAll("_", " ").toLowerCase() ==
+                            "home delivery"
+                        ? "£2.29"
+                        : "£2.99",
+              );
+            }).toList(),
+
             SizedBox(height: 16),
 
             // Delivery Details
@@ -252,16 +265,19 @@ class PaymentScreen extends ConsumerWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(user?.location?.locationName ?? "One Stop",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  fontSize: getDefaultSize(),
-                                )),
+                        Expanded(
+                          child: Text(
+                              user?.location?.locationName ?? "One Stop",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontSize: getDefaultSize(),
+                                  )),
+                        ),
                       ],
                     ),
-                    SizedBox(height: 2),
+                    SizedBox(height: 4),
                     Row(
                       children: [
                         const Icon(
@@ -269,18 +285,20 @@ class PaymentScreen extends ConsumerWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                            user?.location?.locationName ??
-                                "30 New Bank Road, BB2 6JW, Blackburn",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  fontSize: getDefaultSize(),
-                                )),
+                        Expanded(
+                          child: Text(
+                              user?.location?.locationName ??
+                                  "30 New Bank Road, BB2 6JW, Blackburn",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontSize: getDefaultSize(),
+                                  )),
+                        ),
                       ],
                     ),
-                    SizedBox(height: 2),
+                    SizedBox(height: 4),
                     Row(
                       children: [
                         const Icon(
@@ -288,15 +306,17 @@ class PaymentScreen extends ConsumerWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                            user?.location?.locationName ??
-                                "At pick-up point in 3 - 5 business days",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  fontSize: getDefaultSize(),
-                                )),
+                        Expanded(
+                          child: Text(
+                              user?.location?.locationName ??
+                                  "At pick-up point in 3 - 5 business days",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontSize: getDefaultSize(),
+                                  )),
+                        ),
                       ],
                     ),
                   ],
@@ -319,7 +339,7 @@ class PaymentScreen extends ConsumerWidget {
               title: "+447445965697",
               trailingIcon: Icon(
                 Icons.edit,
-                color: Colors.white,
+                color: context.theme.iconTheme.color,
                 size: 18,
               ),
               onTap: () {},
@@ -333,11 +353,14 @@ class PaymentScreen extends ConsumerWidget {
               child: Text("Payment", style: context.theme.textTheme.bodyMedium),
             ),
             MenuCard(
-              icon: Icon(Icons.apple, color: Colors.white),
+              icon: Icon(
+                Icons.apple,
+                color: context.theme.iconTheme.color,
+              ),
               title: "Apple Pay",
               trailingIcon: Icon(
                 Icons.edit,
-                color: Colors.white,
+                color: context.theme.iconTheme.color,
                 size: 18,
               ),
               onTap: () {},
@@ -392,8 +415,12 @@ class PaymentScreen extends ConsumerWidget {
                 //       ],
                 //     )),
                 _buildInfoRow("Order", "£${totalPrice}", context),
-                _buildInfoRow("Postage", "£3.5", context),
-                if (productInfo.seller.isMultibuyEnabled == true)
+                _buildInfoRow(
+                    "Postage",
+                    "£${selectedDeliveryOption.name.replaceAll("_", " ").toLowerCase() == " home delivery" ? 2.29 : 2.99}",
+                    context),
+                if (productInfo.seller.isMultibuyEnabled == true &&
+                    products.length > 1)
                   _buildInfoRow(
                       "Multi-buy discount (${calculatedDiscount}%)",
                       "-£${formatDynamicString(calculateMultiBuyDiscountPrice().toString())}",
@@ -451,10 +478,11 @@ class PaymentScreen extends ConsumerWidget {
                 onTap: () async {
                   final userPaymentMethodId =
                       await ref.read(paymentMethodProvider).valueOrNull;
-                  if (user?.location == null) {
-                    context.alert("Add your address");
+                  if (user?.shippingAddress == null) {
+                    context.alert("Add your shipping address");
                     return;
                   }
+
                   if (userPaymentMethodId == null) {
                     context.alert("Add a payment method");
                     return;
@@ -471,9 +499,19 @@ class PaymentScreen extends ConsumerWidget {
                                     product.id,
                                   ))
                               .toList(),
+                      deliveryDetails: Input$DeliveryDetailsInputType(
+                          deliveryAddress: Input$DeliveryAddressInputType(
+                              address: user?.shippingAddress?.address,
+                              city: user?.shippingAddress?.city,
+                              state: "",
+                              country: user?.shippingAddress?.country,
+                              postalCode: user?.shippingAddress?.postcode,
+                              phoneNumber: ""),
+                          deliveryProvider: Enum$DeliveryProviderEnum.DPD,
+                          deliveryType: selectedDeliveryOption),
                       paymentMethodId:
                           userPaymentMethodId?.paymentMethodId != null
-                              ? userPaymentMethodId!.paymentMethodId
+                              ? userPaymentMethodId.paymentMethodId
                               : "");
 
                   ///
@@ -534,7 +572,7 @@ class PaymentScreen extends ConsumerWidget {
   Widget _buildInfoRow(String label, String value, BuildContext context,
       {TextStyle? style, Color? color}) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(

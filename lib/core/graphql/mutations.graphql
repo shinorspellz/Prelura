@@ -466,11 +466,12 @@ mutation UpdateNotificationPreference(
   }
 }
 
-mutation CreateOrder($productId: Int, $productIds: [Int], $shippingFee: Float) {
+mutation CreateOrder($productId: Int, $productIds: [Int], $shippingFee: Float, $deliveryDetails: DeliveryDetailsInputType!) {
   createOrder(
     productId: $productId
     productIds: $productIds
     shippingFee: $shippingFee
+    deliveryDetails: $deliveryDetails
   ) {
     order {
       createdAt

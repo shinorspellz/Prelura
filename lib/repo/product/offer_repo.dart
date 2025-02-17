@@ -52,13 +52,17 @@ class OfferRepo {
     int? productId,
     List<int>? productIds,
     double? shippingFee,
+    required Input$DeliveryDetailsInputType deliveryDetails,
   }) async {
+    log("::::Order creationInfo::: ${deliveryDetails.toJson().toString()}");
+    log("::::Order creationInfo::: ${productId.toString()}");
     final response = await _client.mutate$CreateOrder(
       Options$Mutation$CreateOrder(
         variables: Variables$Mutation$CreateOrder(
           productId: productId,
           productIds: productIds,
           shippingFee: shippingFee,
+          deliveryDetails: deliveryDetails,
         ),
       ),
     );

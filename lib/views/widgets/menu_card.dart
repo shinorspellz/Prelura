@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../res/images.dart';
 
@@ -98,55 +99,62 @@ class MenuCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        title,
+                                        softWrap: true,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: textColor ??
+                                                  Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.color,
+                                            ),
+                                      ),
+                                    ),
+                                    6.horizontalSpacing,
+                                    if (sideText != null)
+                                      Text(
+                                        sideText ?? "",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                fontWeight: FontWeight.w600,
+                                                color: sideTextColor ??
+                                                    Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium
+                                                        ?.color),
+                                      )
+                                  ],
+                                ),
+                                widget ?? const SizedBox.shrink(),
+                                if (additionalText != null)
                                   Text(
-                                    title,
+                                    additionalText ?? "",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: textColor ??
-                                              Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium
-                                                  ?.color,
+                                          fontWeight: FontWeight.w400,
                                         ),
-                                  ),
-                                  6.horizontalSpacing,
-                                  if (sideText != null)
-                                    Text(
-                                      sideText ?? "",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                              color: sideTextColor ??
-                                                  Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium
-                                                      ?.color),
-                                    )
-                                ],
-                              ),
-                              widget ?? const SizedBox.shrink(),
-                              if (additionalText != null)
-                                Text(
-                                  additionalText ?? "",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                )
-                            ],
+                                  )
+                              ],
+                            ),
                           ),
                           Row(
                             children: [
