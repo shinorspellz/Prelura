@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/helper_function.dart';
+import 'package:prelura_app/views/pages/filtered_products/filters.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
@@ -13,6 +14,7 @@ import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
+import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 import 'products_by_brand.dart';
 
@@ -29,6 +31,7 @@ class ProductPriceFilterPage extends ConsumerStatefulWidget {
 class _ProductPriceFilterPageState
     extends ConsumerState<ProductPriceFilterPage> {
   final controller = ScrollController();
+  Input$ProductFiltersInput _filter = Input$ProductFiltersInput();
 
   @override
   void initState() {
@@ -36,10 +39,12 @@ class _ProductPriceFilterPageState
 
     Future.microtask(() async {
       if (!mounted) return;
-      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
-      ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(maxPrice: 15);
-      await ref.refresh(filteredProductProvider(("")).future);
+      final filters = ref.read(productFilterProvider);
+      _filter = getFilters(
+          excludedFilter: FilterTypes.price,
+          value: "15",
+          filterType: filters,
+          ref: ref);
     });
 
     controller.addListener(() {
@@ -48,9 +53,11 @@ class _ProductPriceFilterPageState
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        if (ref.read(filteredProductProvider("")).isLoading) return;
+        if (ref.read(filteredProductProvider((_filter, ""))).isLoading) return;
         // if (searchQuery.isNotEmpty) return;
-        ref.read(filteredProductProvider("").notifier).fetchMoreData(context);
+        ref
+            .read(filteredProductProvider((_filter, "")).notifier)
+            .fetchMoreData(context);
       }
     });
   }
@@ -66,9 +73,16 @@ class _ProductPriceFilterPageState
 
   @override
   Widget build(BuildContext context) {
-    final filteredProducts = ref.watch(filteredProductProvider("")).valueOrNull;
+    final filters = ref.watch(productFilterProvider);
+    final filter = getFilters(
+        excludedFilter: FilterTypes.price,
+        value: "15",
+        ref: ref,
+        filterType: filters);
+    final filteredProducts =
+        ref.watch(filteredProductProvider((filter, ""))).valueOrNull;
     final totalLength =
-        ref.watch(filteredProductProvider("").notifier).totalLength;
+        ref.watch(filteredProductProvider((filter, "")).notifier).totalLength;
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -101,7 +115,7 @@ class _ProductPriceFilterPageState
         ),
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          sliver: ref.watch(filteredProductProvider("")).maybeWhen(
+          sliver: ref.watch(filteredProductProvider((filter, ""))).maybeWhen(
                 data: (products) => SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -130,9 +144,12 @@ class _ProductPriceFilterPageState
                       if ((filteredProducts?.isNotEmpty ?? false) ||
                           totalLength! > (filteredProducts?.length ?? 0))
                         if (ref
-                            .watch(filteredProductProvider("").notifier)
+                            .watch(
+                                filteredProductProvider((filter, "")).notifier)
                             .canLoadMore())
-                          if (!ref.watch(filteredProductProvider("")).isLoading)
+                          if (!ref
+                              .watch(filteredProductProvider((filter, "")))
+                              .isLoading)
                             PaginationLoadingIndicator()
                     ],
                   ),
@@ -141,7 +158,7 @@ class _ProductPriceFilterPageState
                     child: ErrorPlaceholder(
                   error: "Error fetching items",
                   onTap: () {
-                    ref.invalidate(filteredProductProvider(""));
+                    ref.invalidate(filteredProductProvider((filter, "")));
                   },
                 )),
                 loading: () => SliverToBoxAdapter(child: GridShimmer()),

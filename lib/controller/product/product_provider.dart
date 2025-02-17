@@ -797,10 +797,10 @@ final filteredProductSearchQueryProvider = StateProvider<String>((ref) => "");
 final filteredProductProvider = AsyncNotifierProvider.family<
     FilteredProductController,
     List<ProductModel>,
-    String?>(FilteredProductController.new);
+    (Input$ProductFiltersInput, String)>(FilteredProductController.new);
 
-class FilteredProductController
-    extends FamilyAsyncNotifier<List<ProductModel>, String?> {
+class FilteredProductController extends FamilyAsyncNotifier<List<ProductModel>,
+    (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
   final int _pageCount = 20;
@@ -814,46 +814,28 @@ class FilteredProductController
   int? get totalLength => _brandTotalItems;
 
   @override
-  Future<List<ProductModel>> build(String? query) async {
+  Future<List<ProductModel>> build(
+      (Input$ProductFiltersInput, String) args) async {
     state = const AsyncLoading();
+
     _currentPage = 1;
-    _filter = ref.read(selectedFilteredProductProvider);
-    _query = ref.read(filteredProductSearchQueryProvider);
+    _filter = args.$1;
+    _query = args.$2;
     log(_filter!.toJson().toString(),
         name: ' filteredProducts filter in build');
-
-    log(query!, name: ' query filter in build');
+    log(_query.toString(), name: ' query filter in build');
 
     // updateFilter(filter);
 
     try {
       return await _getProducts(
-        filter: ref.read(selectedFilteredProductProvider),
-        pageNumber: _currentPage,
-        query: _query,
-      );
-    } catch (e, stack) {
-      state = AsyncError(e, stack);
-      return state.value!;
-    }
-  }
-
-  void updateFilter(Input$ProductFiltersInput updatedFilter) async {
-    _filter = updatedFilter;
-    _currentPage = 1;
-    _query = ref.read(filteredProductSearchQueryProvider);
-    ref.read(selectedFilteredProductProvider.notifier).state = updatedFilter;
-    log(_filter!.toJson().toString(),
-        name: ' filteredProducts filter in update ');
-    log(_query.toString(), name: ' filteredProducts query in filter');
-    try {
-      await _getProducts(
         filter: _filter,
         pageNumber: _currentPage,
         query: _query,
       );
     } catch (e, stack) {
       state = AsyncError(e, stack);
+      return state.value!;
     }
   }
 
@@ -897,6 +879,7 @@ class FilteredProductController
   }
 
   Future<void> fetchMoreData(BuildContext context) async {
+    log("current state length : ${state.valueOrNull?.length}");
     log(":::The brand total ::: $_brandTotalItems");
     if ((state.valueOrNull?.length ?? 0) == _brandTotalItems) {
       index == 0 ? context.alert("No more products") : 1;
@@ -907,7 +890,7 @@ class FilteredProductController
     }
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
     if (!canLoadMore) return;
-
+    log("page number : $_currentPage");
     try {
       await _getProducts(
         filter: _filter,

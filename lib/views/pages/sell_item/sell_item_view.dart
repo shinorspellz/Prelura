@@ -617,22 +617,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     ),
                     MenuCard(
                       title: 'Price',
-                      subtitle: "${state.price != null && state.price!.isNotEmpty ? "£ ${formatDynamicString(state.price) ?? 0}" :"" }",
+                      subtitle:
+                          "${state.price != null && state.price!.isNotEmpty ? "£ ${formatDynamicString(state.price) ?? 0}" : ""}",
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () async {
                         dismissKeyboard();
-                        if (state.category != null) {
-                          ref
-                              .read(selectedFilteredProductProvider.notifier)
-                              .state = Input$ProductFiltersInput(
-                            category: int.parse(state.category!.id.toString()),
-                            brand: state.brand != null
-                                ? int.parse(state.brand!.id.toString())
-                                : null,
-                          );
 
-                          await ref.refresh(filteredProductProvider("").future);
-                        }
                         context.router.push(const PriceRoute());
                       },
                     ),

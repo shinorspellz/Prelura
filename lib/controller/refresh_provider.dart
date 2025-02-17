@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 
 import 'notification_provider.dart';
 
@@ -12,7 +13,7 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
 
   _HomeRefreshNotfier(this.ref) : super(false);
 
-  void refreshHome(String name, String searchQuery) async {
+  void refreshHome(Enum$ParentCategoryEnum name, String searchQuery) async {
     state = true;
     ref.refresh(allProductProvider(null).future).then((_) => state = false);
     ref.refresh(filterProductByPriceProvider(15).future);
@@ -21,7 +22,6 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     ref.refresh(recommendedSellersProvider.future);
     ref.refresh(favoriteBrandProductsProvider.future);
     ref.refresh(favoriteBrandProductsProvider.future);
-
-    ref.read(filteredProductProvider(searchQuery));
+    ref.refresh(filteredProductProvider((Input$ProductFiltersInput(parentCategory: name),searchQuery)).future);
   }
 }

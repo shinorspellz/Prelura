@@ -134,7 +134,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                             if (HomeScreen.homeScrollController.offset == 0.0) {
                               ref
                                   .read(homeRefreshProvider.notifier)
-                                  .refreshHome("", "");
+                                  .refreshHome(ref.read(selectedCategoryProvider), "");
                             }
                           }
 

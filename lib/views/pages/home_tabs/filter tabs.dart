@@ -27,18 +27,19 @@ class FilterTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final filter = Input$ProductFiltersInput(parentCategory: category);
     ref.listen<Enum$ParentCategoryEnum?>(
       selectedCategoryProvider,
       (previous, next) {
         if (previous != next) {
-          ref.invalidate(filteredProductProvider(searchQuery));
+          ref.invalidate(filteredProductProvider((filter, searchQuery)));
         }
       },
     );
 
     return Column(children: [
       if (searchQuery.isNotEmpty) ...[
-        ref.watch(filteredProductProvider(searchQuery)).when(
+        ref.watch(filteredProductProvider((filter, searchQuery))).when(
             data: (products) {
               log("total product is ${products.length}");
               return Padding(
@@ -82,7 +83,7 @@ class FilterTab extends ConsumerWidget {
             },
             loading: () => GridShimmer()),
       ] else ...[
-        ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
+        ref.watch(filteredProductProvider((filter, searchQuery))).maybeWhen(
               // skipLoadingOnRefresh: !ref.watch(refreshingHome),
               data: (products) => Padding(
                 padding: EdgeInsets.symmetric(
@@ -113,7 +114,7 @@ class FilterTab extends ConsumerWidget {
         ShopBargains(context, ref),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-          child: ref.watch(filteredProductProvider(searchQuery)).when(
+          child: ref.watch(filteredProductProvider((filter, searchQuery))).when(
               skipLoadingOnRefresh: !ref.watch(homeRefreshProvider),
               data: (products) {
                 if (products.length < 6) return Container();

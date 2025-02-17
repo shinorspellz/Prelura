@@ -12,7 +12,9 @@ import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../../../widgets/filters_options.dart';
 import '../../profile_details/widgets/no_product_widget.dart';
+import '../../search_result/provider/search_provider.dart';
 import '../../sell_item/brand_view.dart';
+import '../filters.dart';
 
 @RoutePage()
 class ChristmasFilteredProductScreen extends ConsumerStatefulWidget {
@@ -28,17 +30,13 @@ class ChristmasFilteredProductScreen extends ConsumerStatefulWidget {
 class _ProductFilterPageState
     extends ConsumerState<ChristmasFilteredProductScreen> {
   final controller = ChristmasFilteredProductScreen.scrollController;
+  final _filter = Input$ProductFiltersInput();
 
   @override
   void initState() {
     super.initState();
     Future.microtask(
-      () async {
-        ref.read(filteredProductSearchQueryProvider.notifier).state = "";
-        ref.read(selectedFilteredProductProvider.notifier).state =
-            Input$ProductFiltersInput(style: widget.style);
-        await ref.refresh(filteredProductProvider((searchQuery)).future);
-      },
+      () async {},
     );
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
@@ -47,8 +45,14 @@ class _ProductFilterPageState
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
+        final filters = ref.read(productFilterProvider);
+        final filter = getFilters(
+            excludedFilter: FilterTypes.style,
+            value: widget.style,
+            ref: ref,
+            filterType: filters);
         ref
-            .read(filteredProductProvider((searchQuery)).notifier)
+            .read(filteredProductProvider((filter, searchQuery)).notifier)
             .fetchMoreData(context);
       }
     });
@@ -68,7 +72,12 @@ class _ProductFilterPageState
 
   @override
   Widget build(BuildContext context) {
-    searchQuery = ref.watch(filteredProductSearchQueryProvider);
+    final filters = ref.watch(productFilterProvider);
+    final filter = getFilters(
+        excludedFilter: FilterTypes.style,
+        value: widget.style,
+        ref: ref,
+        filterType: filters);
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -87,7 +96,8 @@ class _ProductFilterPageState
               .join(' ')),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider(searchQuery).future);
+          await ref
+              .refresh(filteredProductProvider((filter, searchQuery)).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -125,6 +135,10 @@ class _ProductFilterPageState
                                   .state = val;
                               setState(() {});
                             },
+                            onCancel: () {
+                              searchQuery = "";
+                              setState(() {});
+                            },
                           ),
                         ),
                         FiltersOptions(
@@ -143,72 +157,77 @@ class _ProductFilterPageState
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref.watch(filteredProductProvider(searchQuery)).when(
-                      data: (products) {
-                        if (products.isEmpty) {
-                          return SliverToBoxAdapter(
-                            child: NoProductWidget(
-                              height: MediaQuery.of(context).size.height * 0.65,
-                            ),
-
-                            // SizedBox(
-                            //   height: MediaQuery.of(context).size.height * 0.7,
-                            //   child: Center(
-                            //     child: Text(
-                            //       "No products found",
-                            //       style: Theme.of(context).textTheme.bodyLarge,
-                            //     ),
-                            //   ),
-                            // ),
-                          );
-                        }
-                        return SliverGrid.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.50,
-                          ),
-                          itemCount: products.length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(product: products[index]);
-                          },
-                        );
-                      },
-                      error: (e, _) {
-                        return SliverToBoxAdapter(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text("An error occurred"),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(filteredProductProvider);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
+                  sliver: ref
+                      .watch(filteredProductProvider((filter, searchQuery)))
+                      .when(
+                          data: (products) {
+                            if (products.isEmpty) {
+                              return SliverToBoxAdapter(
+                                child: NoProductWidget(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.65,
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
+
+                                // SizedBox(
+                                //   height: MediaQuery.of(context).size.height * 0.7,
+                                //   child: Center(
+                                //     child: Text(
+                                //       "No products found",
+                                //       style: Theme.of(context).textTheme.bodyLarge,
+                                //     ),
+                                //   ),
+                                // ),
+                              );
+                            }
+                            return SliverGrid.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                childAspectRatio: 0.50,
+                              ),
+                              itemCount: products.length,
+                              itemBuilder: (context, index) {
+                                return ProductCard(product: products[index]);
+                              },
+                            );
+                          },
+                          error: (e, _) {
+                            return SliverToBoxAdapter(
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("An error occurred"),
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        // log(e.toString(), stackTrace: _);
+                                        ref.invalidate(filteredProductProvider);
+                                      },
+                                      label: const Text('Retry'),
+                                      icon: const Icon(Icons.refresh_rounded),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          loading: () =>
+                              SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if (ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .valueOrNull
                         ?.isNotEmpty ==
                     true)
                   if (ref
-                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .watch(filteredProductProvider((filter, searchQuery))
+                          .notifier)
                       .canLoadMore())
                     if (!ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .isLoading)
                       const SliverToBoxAdapter(
                         child: PaginationLoadingIndicator(),

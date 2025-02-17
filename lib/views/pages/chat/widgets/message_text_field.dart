@@ -29,10 +29,12 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
   FocusNode? chatFocusNode;
   double bottomSpacing = 20;
   bool showSend = false;
+  late TextEditingController _textController;
 
   @override
   void initState() {
     super.initState();
+    _textController = widget.textController;
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       chatFocusNode = FocusNode();
       chatFocusNode?.addListener(
@@ -187,72 +189,79 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                         // ),
                         // addHorizontalSpacing(8),
                         Expanded(
-                          child: TextFormField(
-                            autocorrect: true,
-                            enableSuggestions: true,
-                            controller: widget.textController,
-                            textCapitalization: TextCapitalization.sentences,
-                            focusNode: chatFocusNode,
-                            onChanged: (val) {
-                              if (val.isNotEmpty) {
-                                showSend = true;
-                              } else {
-                                showSend = false;
-                                ref
-                                    .read(showSendButtonProvider.notifier)
-                                    .state = false;
-                              }
-                              setState(() {});
-                            },
-                            cursorColor: Theme.of(context).primaryColor,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayMedium!
-                                .copyWith(
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(1),
-                                  fontSize: 19,
-                                ),
-                            decoration: InputDecoration(
-                                prefixIcon: GestureDetector(
-                                  onTap: () {
-                                    ref
-                                        .read(
-                                          showEmojiProvider.notifier,
-                                        )
-                                        .state = !showEmoji;
-                                    if (!showEmoji) {
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus();
-                                    } else {
-                                      chatFocusNode?.requestFocus();
-                                    }
-                                  },
-                                  child: Icon(
-                                    showEmoji
-                                        ? Icons.keyboard_alt_outlined
-                                        : Icons.emoji_emotions,
-                                    color: !showEmoji
-                                        ? PreluraColors.greyColor
-                                            .withOpacity(0.7)
-                                        : Theme.of(context).primaryColor,
-                                    size: 26,
+                          child: SingleChildScrollView(
+                            reverse: true,
+                            child: TextFormField(
+                              autocorrect: true,
+                              enableSuggestions: true,
+                              controller: _textController,
+                              textCapitalization: TextCapitalization.sentences,
+                              textInputAction: TextInputAction.newline,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 1,
+                              maxLines: null,
+                              focusNode: chatFocusNode,
+                              onChanged: (val) {
+                                if (val.isNotEmpty) {
+                                  showSend = true;
+                                } else {
+                                  showSend = false;
+                                  ref
+                                      .read(showSendButtonProvider.notifier)
+                                      .state = false;
+                                }
+                                setState(() {});
+                              },
+                              cursorColor: Theme.of(context).primaryColor,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .copyWith(
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(1),
+                                    fontSize: 19,
                                   ),
-                                ),
-                                fillColor:
-                                    context.theme.scaffoldBackgroundColor,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color:
-                                        ((chatFocusNode?.hasFocus ?? false) ||
-                                                showEmoji)
-                                            ? PreluraColors.primaryColor
-                                            : PreluraColors.greyColor
-                                                .withOpacity(.5),
+                              decoration: InputDecoration(
+                                  prefixIcon: GestureDetector(
+                                    onTap: () {
+                                      ref
+                                          .read(
+                                            showEmojiProvider.notifier,
+                                          )
+                                          .state = !showEmoji;
+                                      if (!showEmoji) {
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      } else {
+                                        chatFocusNode?.requestFocus();
+                                      }
+                                    },
+                                    child: Icon(
+                                      showEmoji
+                                          ? Icons.keyboard_alt_outlined
+                                          : Icons.emoji_emotions,
+                                      color: !showEmoji
+                                          ? PreluraColors.greyColor
+                                              .withOpacity(0.7)
+                                          : Theme.of(context).primaryColor,
+                                      size: 26,
+                                    ),
                                   ),
-                                )),
+                                  fillColor:
+                                      context.theme.scaffoldBackgroundColor,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color:
+                                          ((chatFocusNode?.hasFocus ?? false) ||
+                                                  showEmoji)
+                                              ? PreluraColors.primaryColor
+                                              : PreluraColors.greyColor
+                                                  .withOpacity(.5),
+                                    ),
+                                  )),
+                            ),
                           ),
                         ),
                         if (showSend || ref.watch(showSendButtonProvider))
