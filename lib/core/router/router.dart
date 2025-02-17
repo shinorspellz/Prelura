@@ -78,6 +78,7 @@ class AppRouter extends RootStackRouter {
           page: StyleRoute.page,
           guards: [AuthGuard(_ref)],
         ),
+        AutoRoute(page: PaymentSuccessfulRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(
             page: NotificationSettingRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(

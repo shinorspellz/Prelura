@@ -24,18 +24,12 @@ final routePathProvider = StateProvider<int>(
 );
 
 final unreadStatusProvider = Provider<bool>((ref) {
-  final notifications = ref.watch(notificationProvider).valueOrNull ?? [];
   final conversations = ref.watch(conversationProvider).valueOrNull ?? [];
   final user = ref.watch(userProvider).valueOrNull;
 
-  final hasUnreadNotifications =
-      notifications.any((notification) => notification.isRead == false);
-
-  final hasUnreadMessages = conversations.any((conversation) =>
+   final hasUnreadMessages = conversations.any((conversation) =>
       conversation.lastMessage?.read == false &&
       conversation.lastMessage?.sender.username != user?.username);
-
-  log("hasUnreadNotifications: $hasUnreadNotifications", name: "Auth page");
   log("hasUnreadMessages: $hasUnreadMessages", name: "Auth page ");
   log("username: ${user?.username}", name: "Auth page");
   final unreadConversations = conversations
@@ -53,7 +47,7 @@ final unreadStatusProvider = Provider<bool>((ref) {
           }).toList()}",
       name: "Auth Page");
 
-  return hasUnreadNotifications || hasUnreadMessages;
+  return hasUnreadMessages;
 });
 
 @RoutePage()
@@ -134,7 +128,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                             if (HomeScreen.homeScrollController.offset == 0.0) {
                               ref
                                   .read(homeRefreshProvider.notifier)
-                                  .refreshHome(ref.read(selectedCategoryProvider), "");
+                                  .refreshHome(
+                                      ref.read(selectedCategoryProvider), "");
                             }
                           }
 

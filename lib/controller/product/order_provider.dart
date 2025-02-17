@@ -7,6 +7,7 @@ import 'package:prelura_app/controller/product/payment_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/order/order_model.dart';
 import 'package:prelura_app/model/product/order/user_order.dart';
@@ -103,7 +104,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
                 log(_.toString(), name: "create Order ");
                 context.alert('An error occured while creating order');
               },
-              data: (_) => context.router.popForced(),
+              data: (_) => context.router.replace(PaymentSuccessfulRoute()),
             );
       }
     } on OfferException catch (e) {

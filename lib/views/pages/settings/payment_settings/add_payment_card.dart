@@ -135,7 +135,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 ),
                 10.toHeight,
                 PreluraAuthTextField(
-                  hintText: "",
+                  hintText: "John Doe",
                   controller: fullNameEC,
                   focusNode: fullNameFN,
                   keyboardType: TextInputType.name,
@@ -429,7 +429,7 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                 10.toHeight,
                 PreluraAuthTextField(
                   controller: postalCodeEC,
-                  // enabled: false,
+                  enabled: false,
                   focusNode: postalCodeFN,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -443,19 +443,19 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                   formatter: [
                     FilteringTextInputFormatter.allow(RegExp(r"[A-Za-z0-9 ]")),
                   ],
-                  validator: (p0) {
-                    if (p0!.isEmpty) {
-                      WidgetsFlutterBinding.ensureInitialized()
-                          .addPostFrameCallback((_) {
-                        setState(() {
-                          postCodeError = "Postal code is required";
-                        });
-                      });
-                      return "Postal Code is required";
-                    }
+                  // validator: (p0) {
+                  //   if (p0!.isEmpty) {
+                  //     WidgetsFlutterBinding.ensureInitialized()
+                  //         .addPostFrameCallback((_) {
+                  //       setState(() {
+                  //         postCodeError = "Postal code is required";
+                  //       });
+                  //     });
+                  //     return "Postal Code is required";
+                  //   }
 
-                    return null;
-                  },
+                  //   return null;
+                  // },
                 ),
                 40.toHeight,
                 PreluraButtonWithLoader(
@@ -475,11 +475,16 @@ class _AddPaymentCardState extends ConsumerState<AddPaymentCard> {
                     log(dateError.toString());
                     log(cvcError.toString());
                     log(postCodeError.toString());
+                    if (billingAddress.postalCode!.isEmpty) {
+                      context.alert(
+                          "No Postal code found,change the billing address");
+                      return;
+                    }
                     if (cardError == null &&
                         nameError == null &&
                         dateError == null &&
                         cvcError == null &&
-                        postCodeError == null &&
+                        // postCodeError == null &&
                         billingAddress.postalCode!.isNotEmpty &&
                         billingAddress.line1!.isNotEmpty) {
                       log("form is $isValid");
