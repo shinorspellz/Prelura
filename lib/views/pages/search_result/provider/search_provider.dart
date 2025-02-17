@@ -154,220 +154,138 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     final query = ref.read(filteredProductSearchQueryProvider);
     // Update the local filter state
     state = state..[filterType] = value;
+    log("state : ${state.toString()}");
+    ref.invalidate(filteredProductProvider);
 
-    log(filterType.toString());
-    log(value);
-    final providerFilter = ref.read(filteredProductProvider(query).notifier);
-    log(providerFilter.currentFilter!.toJson().toString(),
-        name: ' filteredProducts filter in search provider ');
+    // log(filterType.toString());
+    // log(value);
+    // final providerFilter = ref.read(
+    //     filteredProductProvider((Input$ProductFiltersInput(), query)).notifier);
+    // log(providerFilter.currentFilter!.toJson().toString(),
+    //     name: ' filteredProducts filter in search provider ');
 
-    if (filterType == FilterTypes.brand) {
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-        brand: filterType == FilterTypes.brand
-            ? int.parse(ref
-                .read(brandsProvider)
-                .valueOrNull!
-                .firstWhere((e) => e.name == value)
-                .id
-                .toString()) // Convert int? to String
-            : providerFilter.currentFilter?.brand,
-      );
-
-      providerFilter.updateFilter(updatedFilter!);
-      log(updatedFilter.toJson().toString(), name: ' filteredProducts filter');
-      return;
-    }
-
-    // if (filterType == FilterTypes.size) {
+    // if (filterType == FilterTypes.brand) {
     //   final updatedFilter = providerFilter.currentFilter?.copyWith(
-    //     size: filterType == FilterTypes.size
-    //         ? Enum$SizeEnum.values.firstWhere((e) => e.name == value)
-    //         : providerFilter.currentFilter?.size,
+    //     brand: filterType == FilterTypes.brand
+    //         ? int.parse(ref
+    //             .read(brandsProvider)
+    //             .valueOrNull!
+    //             .firstWhere((e) => e.name == value)
+    //             .id
+    //             .toString()) // Convert int? to String
+    //         : providerFilter.currentFilter?.brand,
     //   );
-    //
+
     //   providerFilter.updateFilter(updatedFilter!);
+    //   log(updatedFilter.toJson().toString(), name: ' filteredProducts filter');
+    //   return;
     // }
 
-    if (filterType == FilterTypes.style) {
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-        style: filterType == FilterTypes.style
-            ? Enum$StyleEnum.values.where((e) => e.name == value).firstOrNull
-            : providerFilter.currentFilter?.style,
-      );
-      providerFilter.updateFilter(updatedFilter!);
-      return;
-    }
+    // // if (filterType == FilterTypes.size) {
+    // //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    // //     size: filterType == FilterTypes.size
+    // //         ? Enum$SizeEnum.values.firstWhere((e) => e.name == value)
+    // //         : providerFilter.currentFilter?.size,
+    // //   );
+    // //
+    // //   providerFilter.updateFilter(updatedFilter!);
+    // // }
 
-    if (FilterTypes.condition == filterType) {
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-        condition: filterType == FilterTypes.condition
-            ? ConditionsEnum.values
-                .where((e) => e.simpleName == value)
-                .firstOrNull
-            : providerFilter.currentFilter?.condition,
-      );
+    // if (filterType == FilterTypes.style) {
+    //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //     style: filterType == FilterTypes.style
+    //         ? Enum$StyleEnum.values.where((e) => e.name == value).firstOrNull
+    //         : providerFilter.currentFilter?.style,
+    //   );
+    //   providerFilter.updateFilter(updatedFilter!);
+    //   return;
+    // }
 
-      providerFilter.updateFilter(updatedFilter!);
+    // if (FilterTypes.condition == filterType) {
+    //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //     condition: filterType == FilterTypes.condition
+    //         ? ConditionsEnum.values
+    //             .where((e) => e.simpleName == value)
+    //             .firstOrNull
+    //         : providerFilter.currentFilter?.condition,
+    //   );
 
-      return;
-    }
+    //   providerFilter.updateFilter(updatedFilter!);
 
-    if (FilterTypes.price == filterType) {
-      final maxPrice = value?.split(' ').last;
-      final minPrice = value?.split(' ').first;
-      if (minPrice == null || minPrice.isEmpty) {
-        final updatedFilter = providerFilter.currentFilter?.copyWith(
-          maxPrice: maxPrice != null && maxPrice.isNotEmpty
-              ? double.parse(maxPrice ?? "0")
-              : providerFilter.currentFilter?.maxPrice ?? 0,
-          minPrice: 0,
-        );
-        providerFilter.updateFilter(updatedFilter!);
-        return;
-      }
-      if (maxPrice == null || maxPrice.isEmpty) {
-        final updatedFilter = providerFilter.currentFilter?.copyWith(
-          minPrice: minPrice != null && minPrice.isNotEmpty
-              ? double.parse(minPrice)
-              : providerFilter.currentFilter?.minPrice ?? 0,
-        );
-        providerFilter.updateFilter(updatedFilter!);
-        return;
-      }
+    //   return;
+    // }
 
-      log(value, name: 'price in search provider');
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-        maxPrice: maxPrice != null && maxPrice.isNotEmpty
-            ? double.parse(maxPrice ?? "0")
-            : providerFilter.currentFilter?.maxPrice ?? null,
-        minPrice: minPrice != null && minPrice.isNotEmpty
-            ? double.parse(minPrice ?? "0")
-            : providerFilter.currentFilter?.minPrice ?? 0,
-      );
-      providerFilter.updateFilter(updatedFilter!);
-      return;
-    }
+    // if (FilterTypes.price == filterType) {
+    //   final maxPrice = value?.split(' ').last;
+    //   final minPrice = value?.split(' ').first;
+    //   if (minPrice == null || minPrice.isEmpty) {
+    //     final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //       maxPrice: maxPrice != null && maxPrice.isNotEmpty
+    //           ? double.parse(maxPrice ?? "0")
+    //           : providerFilter.currentFilter?.maxPrice ?? 0,
+    //       minPrice: 0,
+    //     );
+    //     providerFilter.updateFilter(updatedFilter!);
+    //     return;
+    //   }
+    //   if (maxPrice == null || maxPrice.isEmpty) {
+    //     final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //       minPrice: minPrice != null && minPrice.isNotEmpty
+    //           ? double.parse(minPrice)
+    //           : providerFilter.currentFilter?.minPrice ?? 0,
+    //     );
+    //     providerFilter.updateFilter(updatedFilter!);
+    //     return;
+    //   }
 
-    if (FilterTypes.category == filterType) {
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-          parentCategory: filterType == FilterTypes.category
-              ? Enum$ParentCategoryEnum.values
-                  .where((e) => e.name.toLowerCase() == value.toLowerCase())
-                  .firstOrNull
-              : providerFilter.currentFilter?.parentCategory);
+    //   log(value, name: 'price in search provider');
+    //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //     maxPrice: maxPrice != null && maxPrice.isNotEmpty
+    //         ? double.parse(maxPrice ?? "0")
+    //         : providerFilter.currentFilter?.maxPrice ?? null,
+    //     minPrice: minPrice != null && minPrice.isNotEmpty
+    //         ? double.parse(minPrice ?? "0")
+    //         : providerFilter.currentFilter?.minPrice ?? 0,
+    //   );
+    //   providerFilter.updateFilter(updatedFilter!);
+    //   return;
+    // }
 
-      providerFilter.updateFilter(updatedFilter!);
-      return;
-    }
+    // if (FilterTypes.category == filterType) {
+    //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //       parentCategory: filterType == FilterTypes.category
+    //           ? Enum$ParentCategoryEnum.values
+    //               .where((e) => e.name.toLowerCase() == value.toLowerCase())
+    //               .firstOrNull
+    //           : providerFilter.currentFilter?.parentCategory);
 
-    if (FilterTypes.color == filterType) {
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-          colors: filterType == FilterTypes.color
-              ? [
-                  ref
-                      .read(colorsProvider)
-                      .entries
-                      ?.where((e) => e.key == value)
-                      .firstOrNull
-                      ?.key
-                ]
-              : providerFilter.currentFilter?.colors);
+    //   providerFilter.updateFilter(updatedFilter!);
+    //   return;
+    // }
 
-      providerFilter.updateFilter(updatedFilter!);
+    // if (FilterTypes.color == filterType) {
+    //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //       colors: filterType == FilterTypes.color
+    //           ? [
+    //               ref
+    //                   .read(colorsProvider)
+    //                   .entries
+    //                   ?.where((e) => e.key == value)
+    //                   .firstOrNull
+    //                   ?.key
+    //             ]
+    //           : providerFilter.currentFilter?.colors);
 
-      return;
-    }
+    //   providerFilter.updateFilter(updatedFilter!);
+
+    //   return;
+    // }
   }
 
   void removeFilter(FilterTypes filterType, BuildContext context) {
     state.remove(filterType);
-    final query = ref.read(filteredProductSearchQueryProvider);
-    final providerFilter = ref.read(filteredProductProvider(query).notifier);
-    final selectedProvider = ref.read(selectedFilteredProductProvider);
-    final currentProvider = providerFilter.currentFilter;
-    final routeName = context.router.current.name;
 
-    final brandFilter = state.entries
-        .where((e) => e.key == FilterTypes.brand)
-        .firstOrNull
-        ?.value;
-    final conditionFilter = state.entries
-        .where((e) => e.key == FilterTypes.condition)
-        .firstOrNull
-        ?.value;
-    final styleFilter = state.entries
-        .where((e) => e.key == FilterTypes.style)
-        .firstOrNull
-        ?.value;
-    final parentCategoryFilter = state.entries
-        .where((e) => e.key == FilterTypes.gender)
-        .firstOrNull
-        ?.value;
-    final colorFilter = state.entries
-        .where((e) => e.key == FilterTypes.color)
-        .firstOrNull
-        ?.value;
-    final minPriceFilter = state.entries
-        .where((e) => e.key == FilterTypes.price)
-        .firstOrNull
-        ?.value
-        .split(" ")
-        .first;
-    final maxPriceFilter = state.entries
-        .where((e) => e.key == FilterTypes.price)
-        .firstOrNull
-        ?.value
-        .split(" ")
-        .last;
-
-    final brand = ref
-        .watch(brandsProvider)
-        .valueOrNull
-        ?.where((e) => e.name == brandFilter)
-        .firstOrNull;
-
-    final category = Enum$ParentCategoryEnum.values
-        .where((e) => e.name == parentCategoryFilter)
-        .firstOrNull;
-    final condition = ConditionsEnum.values
-        .where((e) => e.name == conditionFilter)
-        .firstOrNull;
-    final style =
-        Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
-
-    final color = ref
-        .watch(colorsProvider)
-        .entries
-        .where((e) => e.key == colorFilter)
-        .firstOrNull
-        ?.key;
-
-    log(selectedProvider.toJson().toString(),
-        name: 'selectedProvider in search provider');
-    log(context.router.current.name, name: 'current route in search provider');
-
-    final filter = Input$ProductFiltersInput(
-        parentCategory: routeName == "FilterProductRoute"
-            ? currentProvider?.parentCategory
-            : category,
-        maxPrice: routeName == "ProductPriceFilterRoute"
-            ? currentProvider?.maxPrice
-            : maxPriceFilter != null && maxPriceFilter.isNotEmpty
-                ? double.parse(maxPriceFilter ?? "0")
-                : null,
-        minPrice: minPriceFilter != null && minPriceFilter.isNotEmpty
-            ? double.parse(minPriceFilter ?? "0")
-            : 0,
-        brand: currentProvider?.brand,
-        condition: condition,
-        style: routeName == "ChristmasFilteredProductRoute"
-            ? currentProvider?.style
-            : style,
-        discountPrice: currentProvider?.discountPrice,
-        hashtags: currentProvider?.hashtags,
-        colors: color != null ? [color] : []);
-
-    providerFilter.updateFilter(filter);
+    ref.invalidate(filteredProductProvider);
   }
 
   void clearFilter() {

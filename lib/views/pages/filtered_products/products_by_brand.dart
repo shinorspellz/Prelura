@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/views/pages/filtered_products/filters.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
@@ -13,6 +14,7 @@ import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../profile_details/widgets/no_product_widget.dart';
+import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 
 @RoutePage()
@@ -36,16 +38,11 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   @override
   void initState() {
     super.initState();
-    ref.read(filteredProductProvider('').notifier).resetIndex();
+    ref
+        .read(filteredProductProvider((_filter, searchQuery)).notifier)
+        .resetIndex();
     Future.microtask(() async {
       if (!mounted) return;
-
-      previousState = ref.read(selectedFilteredProductProvider);
-      ref.read(filteredProductSearchQueryProvider.notifier).state = "";
-      ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(
-              brand: (widget.id)?.toInt(), customBrand: widget.customBrand);
-      await ref.refresh(filteredProductProvider((searchQuery)).future);
     });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
@@ -54,8 +51,20 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
+        final filters = ref.read(productFilterProvider);
+        _filter = widget.customBrand != null
+            ? getFilters(
+                value: widget.customBrand,
+                customBrand: widget.customBrand,
+                ref: ref,
+                filterType: filters)
+            : getFilters(
+                excludedFilter: FilterTypes.brand,
+                value: widget.id,
+                ref: ref,
+                filterType: filters);
         ref
-            .read(filteredProductProvider(searchQuery).notifier)
+            .read(filteredProductProvider((_filter, searchQuery)).notifier)
             .fetchMoreData(context);
       }
     });
@@ -76,13 +85,31 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   }
 
   String searchQuery = '';
+  Input$ProductFiltersInput _filter = Input$ProductFiltersInput();
 
   @override
   Widget build(BuildContext context) {
+    log("${widget.customBrand}", name: "products by brand");
+    final filters = ref.watch(productFilterProvider);
+    final filter = widget.customBrand != null
+        ? getFilters(
+            customBrand: widget.customBrand,
+            value: "",
+            ref: ref,
+            filterType: filters)
+        : getFilters(
+            excludedFilter: FilterTypes.brand,
+            value: widget.id,
+            ref: ref,
+            filterType: filters);
+    log("${filters.toString()}", name: "products by brand");
+    log("${filter.toJson().toString()}", name: "products by brand");
     final filteredProducts =
-        ref.watch(filteredProductProvider(searchQuery)).valueOrNull;
-    final totalLength =
-        ref.watch(filteredProductProvider(searchQuery).notifier).totalLength;
+        ref.watch(filteredProductProvider((filter, searchQuery))).valueOrNull;
+    final totalLength = ref
+        .watch(filteredProductProvider((filter, searchQuery)).notifier)
+        .totalLength;
+
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -96,7 +123,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
       body: Builder(builder: (context) {
         return RefreshIndicator(
           onRefresh: () async {
-            await ref.refresh(filteredProductProvider(searchQuery).future);
+            await ref
+                .refresh(filteredProductProvider((filter, searchQuery)).future);
             if (!mounted) return; // Prevent state updates after unmounting
             setState(() {});
           },
@@ -130,7 +158,9 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                       ),
                     )),
                   ),
-                  ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
+                  ref
+                      .watch(filteredProductProvider((filter, searchQuery)))
+                      .maybeWhen(
                         // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                         data: (products) {
                           return products.isEmpty
@@ -195,10 +225,11 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                   if ((filteredProducts?.isNotEmpty ?? false) ||
                       totalLength! > (filteredProducts?.length ?? 0))
                     if (ref
-                        .watch(filteredProductProvider(searchQuery).notifier)
+                        .watch(filteredProductProvider((filter, searchQuery))
+                            .notifier)
                         .canLoadMore())
                       if (!ref
-                          .watch(filteredProductProvider(searchQuery))
+                          .watch(filteredProductProvider((filter, searchQuery)))
                           .isLoading)
                         const SliverToBoxAdapter(
                           child: PaginationLoadingIndicator(),

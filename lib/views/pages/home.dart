@@ -54,7 +54,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         if (ref.read(selectedTabProvider) != 0 &&
             ref.read(selectedTabProvider) != 1) {
           ref
-              .read(filteredProductProvider(searchQuery).notifier)
+              .read(filteredProductProvider((
+                Input$ProductFiltersInput(parentCategory: selectedCategory),
+                searchQuery
+              )).notifier)
               .fetchMoreData(context);
         }
       }
@@ -73,6 +76,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final selectedTab = ref.watch(selectedTabProvider);
+    final filter = Input$ProductFiltersInput();
 
     SliverToBoxAdapter buildPaginationIndicator({
       required bool canLoadMore,
@@ -92,9 +96,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       final selectedCategory = ref.watch(selectedCategoryProvider);
       paginationIndicator = buildPaginationIndicator(
           canLoadMore: ref
-              .read(filteredProductProvider(searchQuery).notifier)
+              .read(filteredProductProvider((filter, searchQuery)).notifier)
               .canLoadMore(),
-          isLoading: ref.watch(filteredProductProvider(searchQuery)).isLoading);
+          isLoading: ref
+              .watch(filteredProductProvider((filter, searchQuery)))
+              .isLoading);
     } else {
       log("i am here");
       paginationIndicator = buildPaginationIndicator(
@@ -111,7 +117,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             onRefresh: () async {
               ref
                   .read(homeRefreshProvider.notifier)
-                  .refreshHome(ref.read(selectedNameProvider), searchQuery);
+                  .refreshHome(ref.read(selectedCategoryProvider), searchQuery);
             },
             child: CustomScrollView(
               controller: controller,
@@ -129,7 +135,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             onTap: () {
                               ref
                                   .read(homeRefreshProvider.notifier)
-                                  .refreshHome('', '');
+                                  .refreshHome(
+                                      ref.read(selectedCategoryProvider), '');
                             },
                             child: Image.asset(
                               PreluraIcons.splash,

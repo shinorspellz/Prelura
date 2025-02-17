@@ -12,7 +12,9 @@ import '../../core/graphql/__generated/schema.graphql.dart';
 import '../../res/helper_function.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
+import 'filtered_products/filters.dart';
 import 'profile_details/widgets/no_product_widget.dart';
+import 'search_result/provider/search_provider.dart';
 import 'sell_item/brand_view.dart';
 
 @RoutePage()
@@ -31,6 +33,7 @@ class DiscountedProductsView extends ConsumerStatefulWidget {
 
 class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
   final controller = DiscountedProductsView.scrollController;
+  final _filter = Input$ProductFiltersInput();
 
   @override
   void initState() {
@@ -41,7 +44,6 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
       ref.read(filteredProductSearchQueryProvider.notifier).state = "";
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(discountPrice: true);
-      await ref.refresh(filteredProductProvider((searchQuery)).future);
     });
 
     controller.addListener(() {
@@ -51,8 +53,11 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
+        final filters = ref.watch(productFilterProvider);
+        final filter = getFilters(
+            discountedPrice: true, value: "", ref: ref, filterType: filters);
         ref
-            .read(filteredProductProvider(searchQuery).notifier)
+            .read(filteredProductProvider((filter, searchQuery)).notifier)
             .fetchMoreData(context);
       }
     });
@@ -72,6 +77,9 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
 
   @override
   Widget build(BuildContext context) {
+    final filters = ref.watch(productFilterProvider);
+    final filter = getFilters(
+        discountedPrice: true, value: "", ref: ref, filterType: filters);
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -84,7 +92,8 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider(searchQuery).future);
+          await ref
+              .refresh(filteredProductProvider((filter, searchQuery)).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -122,6 +131,10 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                                   .state = val;
                               setState(() {});
                             },
+                            onCancel: () {
+                              searchQuery = "";
+                              setState(() {});
+                            },
                           ),
                         ),
                         FiltersOptions(onTap: () {
@@ -134,7 +147,9 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                     ),
                   )),
                 ),
-                ref.watch(filteredProductProvider((searchQuery))).maybeWhen(
+                ref
+                    .watch(filteredProductProvider((filter, searchQuery)))
+                    .maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
                         if (products.isEmpty) {
@@ -181,15 +196,16 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
                 if (ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .valueOrNull
                         ?.isNotEmpty ==
                     true)
                   if (ref
-                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .watch(filteredProductProvider((filter, searchQuery))
+                          .notifier)
                       .canLoadMore())
                     if (!ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .isLoading)
                       const SliverToBoxAdapter(
                         child: PaginationLoadingIndicator(),

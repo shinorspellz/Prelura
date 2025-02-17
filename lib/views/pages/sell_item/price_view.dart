@@ -41,8 +41,6 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
               ? int.parse(state.brand!.id.toString())
               : null,
         );
-
-        await ref.refresh(filteredProductProvider("").future);
       }
     });
     super.initState();
@@ -118,66 +116,77 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
 
               // Similar Sold Items Section
               if (state.category != null || state.brand != null)
-                ref.watch(filteredProductProvider("")).when(
-                    data: (products) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (products.isNotEmpty)
-                            Text(
-                              "Similar sold items",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                            ),
-                          const SizedBox(height: 16),
-                          Stack(
+                ref
+                    .watch(filteredProductProvider((
+                      Input$ProductFiltersInput(
+                          category: state.category != null
+                              ? int.parse(state.category!.id.toString())
+                              : null,
+                          brand: state.brand != null
+                              ? int.parse(state.brand!.id.toString())
+                              : null),
+                      ""
+                    )))
+                    .when(
+                        data: (products) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              DisplaySection(
-                                products: products.take(10).toList(),
-                                isSelectable: false,
+                              if (products.isNotEmpty)
+                                Text(
+                                  "Similar sold items",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                ),
+                              const SizedBox(height: 16),
+                              Stack(
+                                children: [
+                                  DisplaySection(
+                                    products: products.take(10).toList(),
+                                    isSelectable: false,
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      child: GestureDetector(
+                                        onTap: () {},
+                                        child: Container(
+                                          width: double.infinity,
+                                        ),
+                                      ))
+                                ],
                               ),
-                              Positioned(
-                                  top: 0,
-                                  left: 0,
-                                  right: 0,
-                                  bottom: 0,
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: double.infinity,
-                                    ),
-                                  ))
                             ],
-                          ),
-                        ],
-                      );
-                    },
-                    error: (error, _) {
-                      return Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Error getting product "),
-                            16.verticalSpacing,
-                            TextButton.icon(
-                              onPressed: () {
-                                // log(e.toString(), stackTrace: _);
-                                ref.invalidate(filteredProductProvider);
-                              },
-                              label: const Text('Retry'),
-                              icon: const Icon(Icons.refresh_rounded),
+                          );
+                        },
+                        error: (error, _) {
+                          return Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Error getting product "),
+                                16.verticalSpacing,
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(filteredProductProvider);
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                    loading: () => DisplaySection()),
+                          );
+                        },
+                        loading: () => DisplaySection()),
 
               // Done Button
               const SizedBox(height: 110),

@@ -15,7 +15,9 @@ import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
 import '../../widgets/filters_options.dart';
 import '../profile_details/widgets/no_product_widget.dart';
+import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
+import 'filters.dart';
 
 @RoutePage()
 class FilterProductPage extends StatefulHookConsumerWidget {
@@ -37,6 +39,7 @@ class FilterProductPage extends StatefulHookConsumerWidget {
 class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     with AutoRouteAware {
   final controller = FilterProductPage.scrollController;
+  final _filter = Input$ProductFiltersInput();
 
   @override
   void dispose() {
@@ -52,12 +55,6 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     Future.microtask(() {
       log("here in the microstask");
       ref.read(filteredProductSearchQueryProvider.notifier).state = "";
-
-      // Ensure the widget is still mounted
-      ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(parentCategory: widget.parentCategory);
-
-      ref.refresh(filteredProductProvider(searchQuery));
     });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
@@ -65,9 +62,14 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        if (ref.read(paginatingHome)) return;
+        final filters = ref.read(productFilterProvider);
+        final filter = getFilters(
+            excludedFilter: FilterTypes.category,
+            value: widget.parentCategory,
+            ref: ref,
+            filterType: filters);
         ref
-            .read(filteredProductProvider(searchQuery).notifier)
+            .read(filteredProductProvider((filter, searchQuery)).notifier)
             .fetchMoreData(context);
       }
     });
@@ -77,7 +79,13 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
 
   @override
   Widget build(BuildContext context) {
-    searchQuery = ref.watch(filteredProductSearchQueryProvider);
+    final filters = ref.watch(productFilterProvider);
+    final filter = getFilters(
+        excludedFilter: FilterTypes.category,
+        value: widget.parentCategory,
+        ref: ref,
+        filterType: filters);
+
     // useEffect(
     //   () {
     //     log("::::: You called me ::::");
@@ -101,7 +109,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
           appbarTitle: widget.title),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider(searchQuery).future);
+          await ref
+              .refresh(filteredProductProvider((filter, searchQuery)).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -133,12 +142,11 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                             cancelButton: true,
                             onChanged: (val) {
                               searchQuery = val;
-                              ref
-                                  .read(filteredProductSearchQueryProvider
-                                      .notifier)
-                                  .state = val;
-                              ref.refresh(filteredProductProvider(ref
-                                  .read(filteredProductSearchQueryProvider)));
+
+                              setState(() {});
+                            },
+                            onCancel: () {
+                              searchQuery = "";
                               setState(() {});
                             },
                           ),
@@ -159,15 +167,18 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                     ),
                   )),
                 ),
-                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
-                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                ref
+                    .watch(filteredProductProvider((filter, searchQuery)))
+                    .maybeWhen(
+                      skipLoadingOnReload: true,
                       error: (e, _) {
                         return SliverToBoxAdapter(
                           child: ErrorPlaceholder(
                             error: "An error occurred",
                             onTap: () {
                               // log(e.toString(), stackTrace: _);
-                              ref.refresh(filteredProductProvider(searchQuery));
+                              ref.refresh(filteredProductProvider(
+                                  (filter, searchQuery)));
                             },
                           ),
                         );
@@ -219,15 +230,16 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
                 if (ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .valueOrNull
                         ?.isNotEmpty ==
                     true)
                   if (ref
-                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .watch(filteredProductProvider((filter, searchQuery))
+                          .notifier)
                       .canLoadMore())
                     if (!ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .isLoading)
                       const SliverToBoxAdapter(
                         child: PaginationLoadingIndicator(),

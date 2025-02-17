@@ -13,7 +13,10 @@ import '../../../res/helper_function.dart';
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../profile_details/widgets/no_product_widget.dart';
+import '../search_result/provider/search_provider.dart';
+import '../search_result/view/search_result.dart';
 import '../sell_item/brand_view.dart' as brands_view;
+import 'filters.dart';
 
 @RoutePage()
 class ProductByHashtagPage extends ConsumerStatefulWidget {
@@ -28,15 +31,15 @@ class ProductByHashtagPage extends ConsumerStatefulWidget {
 class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
   final controller = ScrollController();
   Input$ProductFiltersInput previousState = Input$ProductFiltersInput();
+  Input$ProductFiltersInput _filter = Input$ProductFiltersInput();
 
   @override
   void initState() {
     super.initState();
     Future.microtask(() async {
       ref.read(filteredProductSearchQueryProvider.notifier).state = "";
-      ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(hashtags: [widget.hashtag]);
-      await ref.refresh(filteredProductProvider((searchQuery)).future);
+      await ref
+          .refresh(filteredProductProvider(((_filter, searchQuery))).future);
     });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
@@ -44,9 +47,11 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        // if (ref.read(paginatingHome)) return;
+        final filters = ref.read(productFilterProvider);
+        final filter = getFilters(
+            value: "", hashtags: widget.hashtag, ref: ref, filterType: filters);
         ref
-            .read(filteredProductProvider(searchQuery).notifier)
+            .read(filteredProductProvider((filter, searchQuery)).notifier)
             .fetchMoreData(context);
       }
     });
@@ -65,10 +70,14 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
 
   @override
   Widget build(BuildContext context) {
+    final filters = ref.watch(productFilterProvider);
+    final filter = getFilters(
+        value: "", hashtags: widget.hashtag, ref: ref, filterType: filters);
     final filteredProducts =
-        ref.watch(filteredProductProvider(searchQuery)).valueOrNull;
-    final totalLength =
-        ref.watch(filteredProductProvider(searchQuery).notifier).totalLength;
+        ref.watch(filteredProductProvider((filter, searchQuery))).valueOrNull;
+    final totalLength = ref
+        .watch(filteredProductProvider((filter, searchQuery)).notifier)
+        .totalLength;
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -79,7 +88,8 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider(searchQuery).future);
+          await ref
+              .refresh(filteredProductProvider((filter, searchQuery)).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -111,12 +121,11 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             cancelButton: true,
                             onChanged: (val) {
                               searchQuery = val;
-                              ref
-                                  .read(filteredProductSearchQueryProvider
-                                      .notifier)
-                                  .state = val;
-                              ref.refresh(filteredProductProvider((searchQuery))
-                                  .future);
+
+                              setState(() {});
+                            },
+                            onCancel: () {
+                              searchQuery = "";
                               setState(() {});
                             },
                           ),
@@ -134,63 +143,69 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref.watch(filteredProductProvider(searchQuery)).when(
-                      data: (products) {
-                        return products.isEmpty
-                            ? SliverPadding(
-                                padding: EdgeInsets.symmetric(horizontal: 15),
-                                sliver: SliverToBoxAdapter(
-                                  child: NoProductWidget(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.65,
-                                  ),
+                  sliver: ref
+                      .watch(filteredProductProvider((filter, searchQuery)))
+                      .when(
+                          data: (products) {
+                            return products.isEmpty
+                                ? SliverPadding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15),
+                                    sliver: SliverToBoxAdapter(
+                                      child: NoProductWidget(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.65,
+                                      ),
 
-                                  // Container(
-                                  //   height: MediaQuery.of(context).size.height *
-                                  //       0.7,
-                                  //   child: Center(
-                                  //     child: Text(
-                                  //       "No products found",
-                                  //       style: Theme.of(context)
-                                  //           .textTheme
-                                  //           .bodyLarge,
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                ))
-                            : SliverGrid.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 0.50,
-                                ),
-                                itemCount: products.length,
-                                itemBuilder: (context, index) {
-                                  return ProductCard(product: products[index]);
-                                },
-                              );
-                      },
-                      error: (e, _) {
-                        return SliverToBoxAdapter(
-                            child: ErrorPlaceholder(
-                                error: "Error fetching items",
-                                onTap: () {
-                                  ref.refresh(
-                                      filteredProductProvider(searchQuery)
-                                          .future);
-                                }));
-                      },
-                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                                      // Container(
+                                      //   height: MediaQuery.of(context).size.height *
+                                      //       0.7,
+                                      //   child: Center(
+                                      //     child: Text(
+                                      //       "No products found",
+                                      //       style: Theme.of(context)
+                                      //           .textTheme
+                                      //           .bodyLarge,
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                    ))
+                                : SliverGrid.builder(
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                      childAspectRatio: 0.50,
+                                    ),
+                                    itemCount: products.length,
+                                    itemBuilder: (context, index) {
+                                      return ProductCard(
+                                          product: products[index]);
+                                    },
+                                  );
+                          },
+                          error: (e, _) {
+                            return SliverToBoxAdapter(
+                                child: ErrorPlaceholder(
+                                    error: "Error fetching items",
+                                    onTap: () {
+                                      ref.refresh(filteredProductProvider(
+                                          (filter, searchQuery)).future);
+                                    }));
+                          },
+                          loading: () =>
+                              SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if ((filteredProducts?.isNotEmpty ?? false) ||
                     totalLength! > (filteredProducts?.length ?? 0))
                   if (ref
-                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .watch(filteredProductProvider((filter, searchQuery))
+                          .notifier)
                       .canLoadMore())
                     if (!ref
-                        .watch(filteredProductProvider(searchQuery))
+                        .watch(filteredProductProvider((filter, searchQuery)))
                         .isLoading)
                       const SliverToBoxAdapter(
                         child: brands_view.PaginationLoadingIndicator(),

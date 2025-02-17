@@ -378,53 +378,53 @@ class AppRouterObserver extends AutoRouterObserver {
           'Navigated to ${previousRoute?.settings.name} with argument: $args');
     }
 
-    if (previousRoute?.settings.name == ProductByHashtagRoute.name) {
-      if (args is ProductByHashtagRouteArgs) {
-        Future.microtask(() async {
-          ref.read(selectedFilteredProductProvider.notifier).state =
-              Input$ProductFiltersInput(
-            hashtags: [args.hashtag],
-          );
-          await ref.refresh(filteredProductProvider("").future);
-        });
-      }
-    }
+    // if (previousRoute?.settings.name == ProductByHashtagRoute.name) {
+    //   if (args is ProductByHashtagRouteArgs) {
+    //     Future.microtask(() async {
+    //       ref.read(selectedFilteredProductProvider.notifier).state =
+    //           Input$ProductFiltersInput(
+    //         hashtags: [args.hashtag],
+    //       );
+    //       await ref.refresh(filteredProductProvider("").future);
+    //     });
+    //   }
+    // }
 
-    if (previousRoute?.settings.name == FilterProductRoute.name) {
-      if (args is FilterProductRouteArgs) {
-        // Example with a specific argument class
-        log('parentCategory: ${args.parentCategory}');
-        log('customBrand: ${args.customBrand}');
-        Future.microtask(() async {
-          ref.read(selectedFilteredProductProvider.notifier).state =
-              Input$ProductFiltersInput(
-            parentCategory: args.parentCategory,
-          );
-          await ref.refresh(filteredProductProvider("").future);
-        });
-      }
-    }
+    // if (previousRoute?.settings.name == FilterProductRoute.name) {
+    //   if (args is FilterProductRouteArgs) {
+    //     // Example with a specific argument class
+    //     log('parentCategory: ${args.parentCategory}');
+    //     log('customBrand: ${args.customBrand}');
+    //     Future.microtask(() async {
+    //       ref.read(selectedFilteredProductProvider.notifier).state =
+    //           Input$ProductFiltersInput(
+    //         parentCategory: args.parentCategory,
+    //       );
+    //       await ref.refresh(filteredProductProvider("").future);
+    //     });
+    //   }
+    // }
 
-    if (previousRoute?.settings.name == ProductsByBrandRoute.name) {
-      if (args is ProductsByBrandRouteArgs) {
-        Future.microtask(() async {
-          ref.read(selectedFilteredProductProvider.notifier).state =
-              Input$ProductFiltersInput(
-                  brand: args.id, customBrand: args.customBrand);
-          await ref.refresh(filteredProductProvider("").future);
-        });
-      }
-    }
+    // if (previousRoute?.settings.name == ProductsByBrandRoute.name) {
+    //   if (args is ProductsByBrandRouteArgs) {
+    //     Future.microtask(() async {
+    //       ref.read(selectedFilteredProductProvider.notifier).state =
+    //           Input$ProductFiltersInput(
+    //               brand: args.id, customBrand: args.customBrand);
+    //       await ref.refresh(filteredProductProvider("").future);
+    //     });
+    //   }
+    // }
 
-    if (previousRoute?.settings.name == ChristmasFilteredProductRoute.name) {
-      if (args is ChristmasFilteredProductRouteArgs) {
-        Future.microtask(() async {
-          ref.read(selectedFilteredProductProvider.notifier).state =
-              Input$ProductFiltersInput(style: args.style);
-          await ref.refresh(filteredProductProvider("").future);
-        });
-      }
-    }
+    // if (previousRoute?.settings.name == ChristmasFilteredProductRoute.name) {
+    //   if (args is ChristmasFilteredProductRouteArgs) {
+    //     Future.microtask(() async {
+    //       ref.read(selectedFilteredProductProvider.notifier).state =
+    //           Input$ProductFiltersInput(style: args.style);
+    //       await ref.refresh(filteredProductProvider("").future);
+    //     });
+    //   }
+    // }
   }
 
   @override
