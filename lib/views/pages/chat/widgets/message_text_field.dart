@@ -148,7 +148,7 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                   : MainAxisAlignment.start,
               children: [
                 Container(
-                  height: 50,
+                  height: 60,
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(
                     horizontal: 12,
@@ -166,31 +166,36 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // GestureDetector(
-                        //   onTap: () {
-                        //     ref
-                        //         .read(
-                        //           showEmojiProvider.notifier,
-                        //         )
-                        //         .state = !showEmoji;
-                        //     if (!showEmoji) {
-                        //       FocusManager.instance.primaryFocus?.unfocus();
-                        //     } else {
-                        //       chatFocusNode?.requestFocus();
-                        //     }
-                        //   },
-                        //   child: Icon(
-                        //     showEmoji
-                        //         ? Icons.keyboard_alt_outlined
-                        //         : Icons.emoji_emotions,
-                        //     color: Theme.of(context).primaryColor,
-                        //     size: 26,
-                        //   ),
-                        // ),
-                        // addHorizontalSpacing(8),
+                        GestureDetector(
+                          onTap: () {
+                            ref
+                                .read(
+                                  showEmojiProvider.notifier,
+                                )
+                                .state = !showEmoji;
+                            if (!showEmoji) {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            } else {
+                              chatFocusNode?.requestFocus();
+                            }
+                          },
+                          child: Icon(
+                            showEmoji
+                                ? Icons.keyboard_alt_outlined
+                                : Icons.emoji_emotions,
+                            color: !showEmoji
+                                ? PreluraColors.greyColor.withOpacity(0.7)
+                                : Theme.of(context).primaryColor,
+                            size: 26,
+                          ),
+                        ),
+                        addHorizontalSpacing(8),
                         Expanded(
-                          child: SingleChildScrollView(
-                            reverse: true,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: 50, // Minimum height for text field
+                              maxHeight: 150, // Max height before scrolling
+                            ),
                             child: TextFormField(
                               autocorrect: true,
                               enableSuggestions: true,
@@ -210,6 +215,7 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                       .read(showSendButtonProvider.notifier)
                                       .state = false;
                                 }
+
                                 setState(() {});
                               },
                               cursorColor: Theme.of(context).primaryColor,
@@ -223,31 +229,8 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                     fontSize: 19,
                                   ),
                               decoration: InputDecoration(
-                                  prefixIcon: GestureDetector(
-                                    onTap: () {
-                                      ref
-                                          .read(
-                                            showEmojiProvider.notifier,
-                                          )
-                                          .state = !showEmoji;
-                                      if (!showEmoji) {
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                      } else {
-                                        chatFocusNode?.requestFocus();
-                                      }
-                                    },
-                                    child: Icon(
-                                      showEmoji
-                                          ? Icons.keyboard_alt_outlined
-                                          : Icons.emoji_emotions,
-                                      color: !showEmoji
-                                          ? PreluraColors.greyColor
-                                              .withOpacity(0.7)
-                                          : Theme.of(context).primaryColor,
-                                      size: 26,
-                                    ),
-                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
                                   fillColor:
                                       context.theme.scaffoldBackgroundColor,
                                   enabledBorder: OutlineInputBorder(
@@ -267,14 +250,13 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                         if (showSend || ref.watch(showSendButtonProvider))
                           GestureDetector(
                             onTap: () async {
-                              if (widget.textController.text.trim().isEmpty) {
+                              if (_textController.text.trim().isEmpty) {
                                 return;
                               }
                               ref
                                   .read(messagesProvider(widget.id).notifier)
-                                  .sendMessage(
-                                      widget.textController.text.trim());
-                              widget.textController.clear();
+                                  .sendMessage(_textController.text.trim());
+                              _textController.clear();
                             },
                             child: CircleAvatar(
                                 radius: 20,
