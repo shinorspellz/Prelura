@@ -207,7 +207,7 @@ mutation CreateChat($recipient: String!) {
     chat {
       id
       name
-      disableResponse
+      isSystemConversation
       createdAt
       lastModified
       participant1Deleted

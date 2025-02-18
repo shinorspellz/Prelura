@@ -4,7 +4,12 @@
 
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+
+import '../../../core/graphql/__generated/schema.graphql.dart';
+import '../../chat/conversation_model.dart';
+import '../../user/user_model.dart';
 
 CreateOrderInfo orderFromJson(String str) =>
     CreateOrderInfo.fromJson(json.decode(str));
@@ -47,38 +52,55 @@ class CreateOrderInfo {
       };
 }
 
+ShippingAddress? _shippingAddressFromJson(dynamic jsonString) {
+  if (jsonString is String) {
+    final decodedJson = jsonDecode(jsonString);
+    return ShippingAddress.fromJson(decodedJson);
+  } else if (jsonString is Map<String, dynamic>) {
+    return ShippingAddress.fromJson(jsonString);
+  }
+  return null;
+}
+
+String? _shippingAddressToJson(ShippingAddress? address) {
+  return address != null ? jsonEncode(address.toJson()) : null;
+}
+
 class OrderInfo {
   DateTime? createdAt;
   String? discountPrice;
   String? id;
   dynamic priceTotal;
+  @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   ShippingAddress? shippingAddress;
   dynamic shippingFee;
-  String? status;
   DateTime? updatedAt;
   List<OrderProductInfo>? products;
   User? user;
   String? typename;
+  String? status;
+  List<ConversationModel>? conversation;
 
-  OrderInfo({
-    this.createdAt,
-    this.discountPrice,
-    this.id,
-    this.priceTotal,
-    this.shippingAddress,
-    this.shippingFee,
-    this.status,
-    this.updatedAt,
-    this.products,
-    this.user,
-    this.typename,
-  });
+  OrderInfo(
+      {this.createdAt,
+      this.discountPrice,
+      this.id,
+      this.priceTotal,
+      this.shippingAddress,
+      this.shippingFee,
+      this.status,
+      this.updatedAt,
+      this.products,
+      this.user,
+      this.typename,
+      this.conversation});
 
   OrderInfo copyWith({
     DateTime? createdAt,
     String? discountPrice,
     String? id,
     String? priceTotal,
+    @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
     ShippingAddress? shippingAddress,
     String? shippingFee,
     String? status,
@@ -86,20 +108,21 @@ class OrderInfo {
     List<OrderProductInfo>? products,
     User? user,
     String? typename,
+    List<ConversationModel>? conversation,
   }) =>
       OrderInfo(
-        createdAt: createdAt ?? this.createdAt,
-        discountPrice: discountPrice ?? this.discountPrice,
-        id: id ?? this.id,
-        priceTotal: priceTotal ?? this.priceTotal,
-        shippingAddress: shippingAddress ?? this.shippingAddress,
-        shippingFee: shippingFee ?? this.shippingFee,
-        status: status ?? this.status,
-        updatedAt: updatedAt ?? this.updatedAt,
-        products: products ?? this.products,
-        user: user ?? this.user,
-        typename: typename ?? this.typename,
-      );
+          createdAt: createdAt ?? this.createdAt,
+          discountPrice: discountPrice ?? this.discountPrice,
+          id: id ?? this.id,
+          priceTotal: priceTotal ?? this.priceTotal,
+          shippingAddress: shippingAddress ?? this.shippingAddress,
+          shippingFee: shippingFee ?? this.shippingFee,
+          status: status ?? this.status,
+          updatedAt: updatedAt ?? this.updatedAt,
+          products: products ?? this.products,
+          user: user ?? this.user,
+          typename: typename ?? this.typename,
+          conversation: conversation ?? this.conversation);
 
   factory OrderInfo.fromJson(Map<String, dynamic> json) => OrderInfo(
         createdAt: json["createdAt"] == null
@@ -110,7 +133,9 @@ class OrderInfo {
         priceTotal: json["priceTotal"],
         shippingAddress: json["shippingAddress"] == null
             ? null
-            : ShippingAddress.fromJson(jsonDecode(json["shippingAddress"])),
+            : (json["shippingAddress"] is String
+                ? ShippingAddress.fromJson(jsonDecode(json["shippingAddress"]))
+                : ShippingAddress.fromJson(json["shippingAddress"])),
         shippingFee: json["shippingFee"],
         status: json["status"],
         updatedAt: json["updatedAt"] == null
@@ -122,6 +147,10 @@ class OrderInfo {
                 json["products"]!.map((x) => OrderProductInfo.fromJson(x))),
         user: json["user"] == null ? null : User.fromJson(json["user"]),
         typename: json["__typename"],
+        conversation: json["conversation"] == null
+            ? []
+            : List<ConversationModel>.from(json["conversation"]!
+                .map((x) => ConversationModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -138,6 +167,9 @@ class OrderInfo {
             : List<dynamic>.from(products!.map((x) => x.toJson())),
         "user": user?.toJson(),
         "__typename": typename,
+        "conversation": conversation == null
+            ? []
+            : List<dynamic>.from(conversation!.map((x) => x.toJson())),
       };
 }
 
@@ -343,47 +375,47 @@ class ImagesUrl {
       };
 }
 
-class ShippingAddress {
-  String? city;
-  String? address;
-  String? country;
-  String? postcode;
+// class ShippingAddress {
+//   String? city;
+//   String? address;
+//   String? country;
+//   String? postcode;
 
-  ShippingAddress({
-    this.city,
-    this.address,
-    this.country,
-    this.postcode,
-  });
+//   ShippingAddress({
+//     this.city,
+//     this.address,
+//     this.country,
+//     this.postcode,
+//   });
 
-  ShippingAddress copyWith({
-    String? city,
-    String? address,
-    String? country,
-    String? postcode,
-  }) =>
-      ShippingAddress(
-        city: city ?? this.city,
-        address: address ?? this.address,
-        country: country ?? this.country,
-        postcode: postcode ?? this.postcode,
-      );
+//   ShippingAddress copyWith({
+//     String? city,
+//     String? address,
+//     String? country,
+//     String? postcode,
+//   }) =>
+//       ShippingAddress(
+//         city: city ?? this.city,
+//         address: address ?? this.address,
+//         country: country ?? this.country,
+//         postcode: postcode ?? this.postcode,
+//       );
 
-  factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
-      ShippingAddress(
-        city: json["city"],
-        address: json["address"],
-        country: json["country"],
-        postcode: json["postcode"],
-      );
+//   factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
+//       ShippingAddress(
+//         city: json["city"],
+//         address: json["address"],
+//         country: json["country"],
+//         postcode: json["postcode"],
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "city": city,
-        "address": address,
-        "country": country,
-        "postcode": postcode,
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "city": city,
+//         "address": address,
+//         "country": country,
+//         "postcode": postcode,
+//       };
+// }
 
 class User {
   String? lastName;

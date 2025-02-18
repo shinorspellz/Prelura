@@ -689,11 +689,24 @@ query Conversations {
   conversations {
     id
     name
-    disableResponse
+    isSystemConversation
     createdAt
     lastModified
     participant1Deleted
     participant2Deleted
+    isOffer
+    order{
+      user{
+        username
+        profilePictureUrl
+        id
+      }
+      shippingFee
+      shippingAddress
+      createdAt
+      priceTotal
+      
+    }
     unreadMessagesCount
     recipient {
       id
@@ -785,7 +798,7 @@ query ArchivedConversations {
   archivedConversations {
     id
     name
-    disableResponse
+    isSystemConversation
     createdAt
     lastModified
     participant1Deleted

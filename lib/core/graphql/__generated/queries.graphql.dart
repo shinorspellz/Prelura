@@ -31324,7 +31324,7 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'disableResponse'),
+            name: NameNode(value: 'isSystemConversation'),
             alias: null,
             arguments: [],
             directives: [],
@@ -31357,6 +31357,92 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
             arguments: [],
             directives: [],
             selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'isOffer'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'order'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'user'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'profilePictureUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'shippingFee'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'shippingAddress'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'priceTotal'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
           ),
           FieldNode(
             name: NameNode(value: 'unreadMessagesCount'),
@@ -32100,11 +32186,13 @@ class Query$Conversations$conversations {
   Query$Conversations$conversations({
     required this.id,
     required this.name,
-    required this.disableResponse,
+    required this.isSystemConversation,
     required this.createdAt,
     required this.lastModified,
     required this.participant1Deleted,
     required this.participant2Deleted,
+    required this.isOffer,
+    this.order,
     this.unreadMessagesCount,
     this.recipient,
     this.offer,
@@ -32116,11 +32204,13 @@ class Query$Conversations$conversations {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
-    final l$disableResponse = json['disableResponse'];
+    final l$isSystemConversation = json['isSystemConversation'];
     final l$createdAt = json['createdAt'];
     final l$lastModified = json['lastModified'];
     final l$participant1Deleted = json['participant1Deleted'];
     final l$participant2Deleted = json['participant2Deleted'];
+    final l$isOffer = json['isOffer'];
+    final l$order = json['order'];
     final l$unreadMessagesCount = json['unreadMessagesCount'];
     final l$recipient = json['recipient'];
     final l$offer = json['offer'];
@@ -32129,11 +32219,16 @@ class Query$Conversations$conversations {
     return Query$Conversations$conversations(
       id: (l$id as String),
       name: (l$name as String),
-      disableResponse: (l$disableResponse as bool),
+      isSystemConversation: (l$isSystemConversation as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       lastModified: DateTime.parse((l$lastModified as String)),
       participant1Deleted: (l$participant1Deleted as bool),
       participant2Deleted: (l$participant2Deleted as bool),
+      isOffer: (l$isOffer as bool),
+      order: l$order == null
+          ? null
+          : Query$Conversations$conversations$order.fromJson(
+              (l$order as Map<String, dynamic>)),
       unreadMessagesCount: (l$unreadMessagesCount as int?),
       recipient: l$recipient == null
           ? null
@@ -32155,7 +32250,7 @@ class Query$Conversations$conversations {
 
   final String name;
 
-  final bool disableResponse;
+  final bool isSystemConversation;
 
   final DateTime createdAt;
 
@@ -32164,6 +32259,10 @@ class Query$Conversations$conversations {
   final bool participant1Deleted;
 
   final bool participant2Deleted;
+
+  final bool isOffer;
+
+  final Query$Conversations$conversations$order? order;
 
   final int? unreadMessagesCount;
 
@@ -32181,8 +32280,8 @@ class Query$Conversations$conversations {
     _resultData['id'] = l$id;
     final l$name = name;
     _resultData['name'] = l$name;
-    final l$disableResponse = disableResponse;
-    _resultData['disableResponse'] = l$disableResponse;
+    final l$isSystemConversation = isSystemConversation;
+    _resultData['isSystemConversation'] = l$isSystemConversation;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$lastModified = lastModified;
@@ -32191,6 +32290,10 @@ class Query$Conversations$conversations {
     _resultData['participant1Deleted'] = l$participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
     _resultData['participant2Deleted'] = l$participant2Deleted;
+    final l$isOffer = isOffer;
+    _resultData['isOffer'] = l$isOffer;
+    final l$order = order;
+    _resultData['order'] = l$order?.toJson();
     final l$unreadMessagesCount = unreadMessagesCount;
     _resultData['unreadMessagesCount'] = l$unreadMessagesCount;
     final l$recipient = recipient;
@@ -32208,11 +32311,13 @@ class Query$Conversations$conversations {
   int get hashCode {
     final l$id = id;
     final l$name = name;
-    final l$disableResponse = disableResponse;
+    final l$isSystemConversation = isSystemConversation;
     final l$createdAt = createdAt;
     final l$lastModified = lastModified;
     final l$participant1Deleted = participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
+    final l$isOffer = isOffer;
+    final l$order = order;
     final l$unreadMessagesCount = unreadMessagesCount;
     final l$recipient = recipient;
     final l$offer = offer;
@@ -32221,11 +32326,13 @@ class Query$Conversations$conversations {
     return Object.hashAll([
       l$id,
       l$name,
-      l$disableResponse,
+      l$isSystemConversation,
       l$createdAt,
       l$lastModified,
       l$participant1Deleted,
       l$participant2Deleted,
+      l$isOffer,
+      l$order,
       l$unreadMessagesCount,
       l$recipient,
       l$offer,
@@ -32253,9 +32360,9 @@ class Query$Conversations$conversations {
     if (l$name != lOther$name) {
       return false;
     }
-    final l$disableResponse = disableResponse;
-    final lOther$disableResponse = other.disableResponse;
-    if (l$disableResponse != lOther$disableResponse) {
+    final l$isSystemConversation = isSystemConversation;
+    final lOther$isSystemConversation = other.isSystemConversation;
+    if (l$isSystemConversation != lOther$isSystemConversation) {
       return false;
     }
     final l$createdAt = createdAt;
@@ -32276,6 +32383,16 @@ class Query$Conversations$conversations {
     final l$participant2Deleted = participant2Deleted;
     final lOther$participant2Deleted = other.participant2Deleted;
     if (l$participant2Deleted != lOther$participant2Deleted) {
+      return false;
+    }
+    final l$isOffer = isOffer;
+    final lOther$isOffer = other.isOffer;
+    if (l$isOffer != lOther$isOffer) {
+      return false;
+    }
+    final l$order = order;
+    final lOther$order = other.order;
+    if (l$order != lOther$order) {
       return false;
     }
     final l$unreadMessagesCount = unreadMessagesCount;
@@ -32328,17 +32445,20 @@ abstract class CopyWith$Query$Conversations$conversations<TRes> {
   TRes call({
     String? id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     bool? participant1Deleted,
     bool? participant2Deleted,
+    bool? isOffer,
+    Query$Conversations$conversations$order? order,
     int? unreadMessagesCount,
     Query$Conversations$conversations$recipient? recipient,
     Query$Conversations$conversations$offer? offer,
     Query$Conversations$conversations$lastMessage? lastMessage,
     String? $__typename,
   });
+  CopyWith$Query$Conversations$conversations$order<TRes> get order;
   CopyWith$Query$Conversations$conversations$recipient<TRes> get recipient;
   CopyWith$Query$Conversations$conversations$offer<TRes> get offer;
   CopyWith$Query$Conversations$conversations$lastMessage<TRes> get lastMessage;
@@ -32360,11 +32480,13 @@ class _CopyWithImpl$Query$Conversations$conversations<TRes>
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
-    Object? disableResponse = _undefined,
+    Object? isSystemConversation = _undefined,
     Object? createdAt = _undefined,
     Object? lastModified = _undefined,
     Object? participant1Deleted = _undefined,
     Object? participant2Deleted = _undefined,
+    Object? isOffer = _undefined,
+    Object? order = _undefined,
     Object? unreadMessagesCount = _undefined,
     Object? recipient = _undefined,
     Object? offer = _undefined,
@@ -32376,10 +32498,10 @@ class _CopyWithImpl$Query$Conversations$conversations<TRes>
         name: name == _undefined || name == null
             ? _instance.name
             : (name as String),
-        disableResponse:
-            disableResponse == _undefined || disableResponse == null
-                ? _instance.disableResponse
-                : (disableResponse as bool),
+        isSystemConversation:
+            isSystemConversation == _undefined || isSystemConversation == null
+                ? _instance.isSystemConversation
+                : (isSystemConversation as bool),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -32394,6 +32516,12 @@ class _CopyWithImpl$Query$Conversations$conversations<TRes>
             participant2Deleted == _undefined || participant2Deleted == null
                 ? _instance.participant2Deleted
                 : (participant2Deleted as bool),
+        isOffer: isOffer == _undefined || isOffer == null
+            ? _instance.isOffer
+            : (isOffer as bool),
+        order: order == _undefined
+            ? _instance.order
+            : (order as Query$Conversations$conversations$order?),
         unreadMessagesCount: unreadMessagesCount == _undefined
             ? _instance.unreadMessagesCount
             : (unreadMessagesCount as int?),
@@ -32410,6 +32538,15 @@ class _CopyWithImpl$Query$Conversations$conversations<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$Conversations$conversations$order<TRes> get order {
+    final local$order = _instance.order;
+    return local$order == null
+        ? CopyWith$Query$Conversations$conversations$order.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$order(
+            local$order, (e) => call(order: e));
+  }
 
   CopyWith$Query$Conversations$conversations$recipient<TRes> get recipient {
     final local$recipient = _instance.recipient;
@@ -32448,11 +32585,13 @@ class _CopyWithStubImpl$Query$Conversations$conversations<TRes>
   call({
     String? id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     bool? participant1Deleted,
     bool? participant2Deleted,
+    bool? isOffer,
+    Query$Conversations$conversations$order? order,
     int? unreadMessagesCount,
     Query$Conversations$conversations$recipient? recipient,
     Query$Conversations$conversations$offer? offer,
@@ -32460,6 +32599,9 @@ class _CopyWithStubImpl$Query$Conversations$conversations<TRes>
     String? $__typename,
   }) =>
       _res;
+
+  CopyWith$Query$Conversations$conversations$order<TRes> get order =>
+      CopyWith$Query$Conversations$conversations$order.stub(_res);
 
   CopyWith$Query$Conversations$conversations$recipient<TRes> get recipient =>
       CopyWith$Query$Conversations$conversations$recipient.stub(_res);
@@ -32470,6 +32612,394 @@ class _CopyWithStubImpl$Query$Conversations$conversations<TRes>
   CopyWith$Query$Conversations$conversations$lastMessage<TRes>
       get lastMessage =>
           CopyWith$Query$Conversations$conversations$lastMessage.stub(_res);
+}
+
+class Query$Conversations$conversations$order {
+  Query$Conversations$conversations$order({
+    this.user,
+    required this.shippingFee,
+    required this.shippingAddress,
+    required this.createdAt,
+    required this.priceTotal,
+    this.$__typename = 'OrderType',
+  });
+
+  factory Query$Conversations$conversations$order.fromJson(
+      Map<String, dynamic> json) {
+    final l$user = json['user'];
+    final l$shippingFee = json['shippingFee'];
+    final l$shippingAddress = json['shippingAddress'];
+    final l$createdAt = json['createdAt'];
+    final l$priceTotal = json['priceTotal'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$order(
+      user: l$user == null
+          ? null
+          : Query$Conversations$conversations$order$user.fromJson(
+              (l$user as Map<String, dynamic>)),
+      shippingFee: (l$shippingFee as String),
+      shippingAddress: (l$shippingAddress as String),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      priceTotal: (l$priceTotal as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$Conversations$conversations$order$user? user;
+
+  final String shippingFee;
+
+  final String shippingAddress;
+
+  final DateTime createdAt;
+
+  final String priceTotal;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
+    final l$shippingFee = shippingFee;
+    _resultData['shippingFee'] = l$shippingFee;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$priceTotal = priceTotal;
+    _resultData['priceTotal'] = l$priceTotal;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$user = user;
+    final l$shippingFee = shippingFee;
+    final l$shippingAddress = shippingAddress;
+    final l$createdAt = createdAt;
+    final l$priceTotal = priceTotal;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$user,
+      l$shippingFee,
+      l$shippingAddress,
+      l$createdAt,
+      l$priceTotal,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$order ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
+      return false;
+    }
+    final l$shippingFee = shippingFee;
+    final lOther$shippingFee = other.shippingFee;
+    if (l$shippingFee != lOther$shippingFee) {
+      return false;
+    }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$priceTotal = priceTotal;
+    final lOther$priceTotal = other.priceTotal;
+    if (l$priceTotal != lOther$priceTotal) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$order
+    on Query$Conversations$conversations$order {
+  CopyWith$Query$Conversations$conversations$order<
+          Query$Conversations$conversations$order>
+      get copyWith => CopyWith$Query$Conversations$conversations$order(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$order<TRes> {
+  factory CopyWith$Query$Conversations$conversations$order(
+    Query$Conversations$conversations$order instance,
+    TRes Function(Query$Conversations$conversations$order) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$order;
+
+  factory CopyWith$Query$Conversations$conversations$order.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$order;
+
+  TRes call({
+    Query$Conversations$conversations$order$user? user,
+    String? shippingFee,
+    String? shippingAddress,
+    DateTime? createdAt,
+    String? priceTotal,
+    String? $__typename,
+  });
+  CopyWith$Query$Conversations$conversations$order$user<TRes> get user;
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$order<TRes>
+    implements CopyWith$Query$Conversations$conversations$order<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$order(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$order _instance;
+
+  final TRes Function(Query$Conversations$conversations$order) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? user = _undefined,
+    Object? shippingFee = _undefined,
+    Object? shippingAddress = _undefined,
+    Object? createdAt = _undefined,
+    Object? priceTotal = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$order(
+        user: user == _undefined
+            ? _instance.user
+            : (user as Query$Conversations$conversations$order$user?),
+        shippingFee: shippingFee == _undefined || shippingFee == null
+            ? _instance.shippingFee
+            : (shippingFee as String),
+        shippingAddress:
+            shippingAddress == _undefined || shippingAddress == null
+                ? _instance.shippingAddress
+                : (shippingAddress as String),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        priceTotal: priceTotal == _undefined || priceTotal == null
+            ? _instance.priceTotal
+            : (priceTotal as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Conversations$conversations$order$user<TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Query$Conversations$conversations$order$user.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$order$user(
+            local$user, (e) => call(user: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$order<TRes>
+    implements CopyWith$Query$Conversations$conversations$order<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$order(this._res);
+
+  TRes _res;
+
+  call({
+    Query$Conversations$conversations$order$user? user,
+    String? shippingFee,
+    String? shippingAddress,
+    DateTime? createdAt,
+    String? priceTotal,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Conversations$conversations$order$user<TRes> get user =>
+      CopyWith$Query$Conversations$conversations$order$user.stub(_res);
+}
+
+class Query$Conversations$conversations$order$user {
+  Query$Conversations$conversations$order$user({
+    this.username,
+    this.profilePictureUrl,
+    this.id,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$Conversations$conversations$order$user.fromJson(
+      Map<String, dynamic> json) {
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$order$user(
+      username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      id: (l$id as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? username;
+
+  final String? profilePictureUrl;
+
+  final int? id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$username,
+      l$profilePictureUrl,
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$order$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$order$user
+    on Query$Conversations$conversations$order$user {
+  CopyWith$Query$Conversations$conversations$order$user<
+          Query$Conversations$conversations$order$user>
+      get copyWith => CopyWith$Query$Conversations$conversations$order$user(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$order$user<TRes> {
+  factory CopyWith$Query$Conversations$conversations$order$user(
+    Query$Conversations$conversations$order$user instance,
+    TRes Function(Query$Conversations$conversations$order$user) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$order$user;
+
+  factory CopyWith$Query$Conversations$conversations$order$user.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$order$user;
+
+  TRes call({
+    String? username,
+    String? profilePictureUrl,
+    int? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$order$user<TRes>
+    implements CopyWith$Query$Conversations$conversations$order$user<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$order$user(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$order$user _instance;
+
+  final TRes Function(Query$Conversations$conversations$order$user) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$order$user(
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        id: id == _undefined ? _instance.id : (id as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$order$user<TRes>
+    implements CopyWith$Query$Conversations$conversations$order$user<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$order$user(this._res);
+
+  TRes _res;
+
+  call({
+    String? username,
+    String? profilePictureUrl,
+    int? id,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Query$Conversations$conversations$recipient {
@@ -35559,7 +36089,7 @@ const documentNodeQueryArchivedConversations = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'disableResponse'),
+            name: NameNode(value: 'isSystemConversation'),
             alias: null,
             arguments: [],
             directives: [],
@@ -35892,7 +36422,7 @@ class Query$ArchivedConversations$archivedConversations {
   Query$ArchivedConversations$archivedConversations({
     required this.id,
     required this.name,
-    required this.disableResponse,
+    required this.isSystemConversation,
     required this.createdAt,
     required this.lastModified,
     required this.participant1Deleted,
@@ -35907,7 +36437,7 @@ class Query$ArchivedConversations$archivedConversations {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
-    final l$disableResponse = json['disableResponse'];
+    final l$isSystemConversation = json['isSystemConversation'];
     final l$createdAt = json['createdAt'];
     final l$lastModified = json['lastModified'];
     final l$participant1Deleted = json['participant1Deleted'];
@@ -35919,7 +36449,7 @@ class Query$ArchivedConversations$archivedConversations {
     return Query$ArchivedConversations$archivedConversations(
       id: (l$id as String),
       name: (l$name as String),
-      disableResponse: (l$disableResponse as bool),
+      isSystemConversation: (l$isSystemConversation as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       lastModified: DateTime.parse((l$lastModified as String)),
       participant1Deleted: (l$participant1Deleted as bool),
@@ -35941,7 +36471,7 @@ class Query$ArchivedConversations$archivedConversations {
 
   final String name;
 
-  final bool disableResponse;
+  final bool isSystemConversation;
 
   final DateTime createdAt;
 
@@ -35966,8 +36496,8 @@ class Query$ArchivedConversations$archivedConversations {
     _resultData['id'] = l$id;
     final l$name = name;
     _resultData['name'] = l$name;
-    final l$disableResponse = disableResponse;
-    _resultData['disableResponse'] = l$disableResponse;
+    final l$isSystemConversation = isSystemConversation;
+    _resultData['isSystemConversation'] = l$isSystemConversation;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$lastModified = lastModified;
@@ -35991,7 +36521,7 @@ class Query$ArchivedConversations$archivedConversations {
   int get hashCode {
     final l$id = id;
     final l$name = name;
-    final l$disableResponse = disableResponse;
+    final l$isSystemConversation = isSystemConversation;
     final l$createdAt = createdAt;
     final l$lastModified = lastModified;
     final l$participant1Deleted = participant1Deleted;
@@ -36003,7 +36533,7 @@ class Query$ArchivedConversations$archivedConversations {
     return Object.hashAll([
       l$id,
       l$name,
-      l$disableResponse,
+      l$isSystemConversation,
       l$createdAt,
       l$lastModified,
       l$participant1Deleted,
@@ -36034,9 +36564,9 @@ class Query$ArchivedConversations$archivedConversations {
     if (l$name != lOther$name) {
       return false;
     }
-    final l$disableResponse = disableResponse;
-    final lOther$disableResponse = other.disableResponse;
-    if (l$disableResponse != lOther$disableResponse) {
+    final l$isSystemConversation = isSystemConversation;
+    final lOther$isSystemConversation = other.isSystemConversation;
+    if (l$isSystemConversation != lOther$isSystemConversation) {
       return false;
     }
     final l$createdAt = createdAt;
@@ -36108,7 +36638,7 @@ abstract class CopyWith$Query$ArchivedConversations$archivedConversations<
   TRes call({
     String? id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     bool? participant1Deleted,
@@ -36141,7 +36671,7 @@ class _CopyWithImpl$Query$ArchivedConversations$archivedConversations<TRes>
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
-    Object? disableResponse = _undefined,
+    Object? isSystemConversation = _undefined,
     Object? createdAt = _undefined,
     Object? lastModified = _undefined,
     Object? participant1Deleted = _undefined,
@@ -36156,10 +36686,10 @@ class _CopyWithImpl$Query$ArchivedConversations$archivedConversations<TRes>
         name: name == _undefined || name == null
             ? _instance.name
             : (name as String),
-        disableResponse:
-            disableResponse == _undefined || disableResponse == null
-                ? _instance.disableResponse
-                : (disableResponse as bool),
+        isSystemConversation:
+            isSystemConversation == _undefined || isSystemConversation == null
+                ? _instance.isSystemConversation
+                : (isSystemConversation as bool),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -36222,7 +36752,7 @@ class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations<TRes>
   call({
     String? id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     bool? participant1Deleted,

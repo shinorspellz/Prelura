@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import '../../user/user_model.dart';
 import 'order_model.dart';
 
 UserOrderResponse userOrderFromJson(String str) =>

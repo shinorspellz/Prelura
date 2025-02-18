@@ -160,9 +160,8 @@ final graphqUploadlClient = Provider((ref) {
   // dio setup
   final dio = Dio()..interceptors.add(prettyLogger);
 
-  final token = cachedBox.get('AUTH_TOKEN');
-
   AuthLink authLink = AuthLink(getToken: () {
+    final token = cachedBox.get('AUTH_TOKEN');
     if (token == null) return null;
     return 'Bearer $token';
   });
@@ -243,7 +242,7 @@ final fileUploadRepo = Provider(
 );
 
 final categoriesRepo = Provider(
-  (ref) => CategoriesRepo(ref.watch(graphqUploadlClient)),
+  (ref) => CategoriesRepo(ref.watch(graphqlClient)),
 );
 
 /// File Media upload repository for any dependency
