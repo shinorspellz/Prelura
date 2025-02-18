@@ -202,13 +202,15 @@ type ConfirmPayment {
 type ConversationType {
   id: ID!
   name: String!
-  disableResponse: Boolean!
-  createdAt: DateTime!
-  lastModified: DateTime!
+  isSystemConversation: Boolean!
   participant1Deleted: Boolean!
   participant2Deleted: Boolean!
-  isOfferConversation: Boolean!
+  isOffer: Boolean!
+  isOrder: Boolean!
   offer: OfferType
+  order: OrderType
+  createdAt: DateTime!
+  lastModified: DateTime!
   recipient: UserType
   lastMessage: MessageType
   unreadMessagesCount: Int
@@ -872,6 +874,7 @@ type OrderType {
   status: OrderStatusEnum
   createdAt: DateTime!
   updatedAt: DateTime!
+  conversation: [ConversationType!]!
   products: [ProductType]
 }
 

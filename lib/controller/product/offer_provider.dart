@@ -77,7 +77,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
         ConversationModel conversationModel = ConversationModel(
           id: res.data!.conversationId.toString(),
           name: "",
-          disableResponse: false,
+          isSystemConversation: false,
           lastModified: DateTime.now(),
           createdAt: DateTime.now(),
           unreadMessagesCount: 0,

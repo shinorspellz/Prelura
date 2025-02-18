@@ -30,6 +30,8 @@ import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 
+import '../product/order/order_model.dart';
+
 Conversation conversationFromJson(String str) =>
     Conversation.fromJson(json.decode(str));
 
@@ -72,7 +74,7 @@ class Conversation {
 class ConversationModel {
   dynamic id;
   String? name;
-  bool? disableResponse;
+  bool? isSystemConversation;
   List<String>? members;
   DateTime? createdAt;
   DateTime? lastModified;
@@ -82,12 +84,15 @@ class ConversationModel {
   int? unreadMessagesCount;
   UserModel? recipient;
   OfferInfo? offer;
+  OrderInfo? order;
+  bool? isOrder;
+  bool? isOffer;
   MessageModel? lastMessage;
 
   ConversationModel({
     this.id,
     this.name,
-    this.disableResponse,
+    this.isSystemConversation,
     this.createdAt,
     this.lastModified,
     this.members,
@@ -98,12 +103,15 @@ class ConversationModel {
     this.isTyping,
     this.offer,
     this.lastMessage,
+    this.isOrder,
+    this.isOffer,
+    this.order,
   });
 
   ConversationModel copyWith({
     dynamic id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     List<String>? members,
@@ -114,11 +122,14 @@ class ConversationModel {
     UserModel? recipient,
     OfferInfo? offer,
     MessageModel? lastMessage,
+    OrderInfo? order,
+    bool? isOrder,
+    bool? isOffer,
   }) =>
       ConversationModel(
         id: id ?? this.id,
         name: name ?? this.name,
-        disableResponse: disableResponse ?? this.disableResponse,
+        isSystemConversation: isSystemConversation ?? this.isSystemConversation,
         createdAt: createdAt ?? this.createdAt,
         members: members ?? this.members,
         lastModified: lastModified ?? this.lastModified,
@@ -129,6 +140,9 @@ class ConversationModel {
         isTyping: isTyping ?? this.isTyping,
         offer: offer ?? this.offer,
         lastMessage: lastMessage ?? this.lastMessage,
+        isOrder: isOrder ?? this.isOrder,
+        isOffer: isOffer ?? this.isOffer,
+        order: order ?? this.order,
       );
 
   factory ConversationModel.fromJson(Map<String, dynamic> json) =>
@@ -139,7 +153,7 @@ class ConversationModel {
         members: json["members"] == null
             ? []
             : List<String>.from(json["members"]!.map((x) => x)),
-        disableResponse: json["disableResponse"],
+        isSystemConversation: json["isSystemConversation"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -156,12 +170,15 @@ class ConversationModel {
         lastMessage: json["lastMessage"] == null
             ? null
             : MessageModel.fromJson(json["lastMessage"]),
+        isOrder: json["isOrder"],
+        isOffer: json["isOffer"],
+        order: json["order"] == null ? null : OrderInfo.fromJson(json["order"]),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "disableResponse": disableResponse,
+        "isSystemConversation": isSystemConversation,
         "members":
             members == null ? [] : List<dynamic>.from(members!.map((x) => x)),
         "createdAt": createdAt?.toIso8601String(),
@@ -172,6 +189,9 @@ class ConversationModel {
         "recipient": recipient?.toJson(),
         "offer": offer?.toJson(),
         "lastMessage": lastMessage?.toJson(),
+        "isOrder": isOrder,
+        "isOffer": isOffer,
+        "order": order?.toJson(),
       };
 }
 

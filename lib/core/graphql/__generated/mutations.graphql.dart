@@ -9181,7 +9181,7 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'disableResponse'),
+                name: NameNode(value: 'isSystemConversation'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -9631,7 +9631,7 @@ class Mutation$CreateChat$createChat$chat {
   Mutation$CreateChat$createChat$chat({
     required this.id,
     required this.name,
-    required this.disableResponse,
+    required this.isSystemConversation,
     required this.createdAt,
     required this.lastModified,
     required this.participant1Deleted,
@@ -9646,7 +9646,7 @@ class Mutation$CreateChat$createChat$chat {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
-    final l$disableResponse = json['disableResponse'];
+    final l$isSystemConversation = json['isSystemConversation'];
     final l$createdAt = json['createdAt'];
     final l$lastModified = json['lastModified'];
     final l$participant1Deleted = json['participant1Deleted'];
@@ -9658,7 +9658,7 @@ class Mutation$CreateChat$createChat$chat {
     return Mutation$CreateChat$createChat$chat(
       id: (l$id as String),
       name: (l$name as String),
-      disableResponse: (l$disableResponse as bool),
+      isSystemConversation: (l$isSystemConversation as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       lastModified: DateTime.parse((l$lastModified as String)),
       participant1Deleted: (l$participant1Deleted as bool),
@@ -9680,7 +9680,7 @@ class Mutation$CreateChat$createChat$chat {
 
   final String name;
 
-  final bool disableResponse;
+  final bool isSystemConversation;
 
   final DateTime createdAt;
 
@@ -9704,8 +9704,8 @@ class Mutation$CreateChat$createChat$chat {
     _resultData['id'] = l$id;
     final l$name = name;
     _resultData['name'] = l$name;
-    final l$disableResponse = disableResponse;
-    _resultData['disableResponse'] = l$disableResponse;
+    final l$isSystemConversation = isSystemConversation;
+    _resultData['isSystemConversation'] = l$isSystemConversation;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$lastModified = lastModified;
@@ -9729,7 +9729,7 @@ class Mutation$CreateChat$createChat$chat {
   int get hashCode {
     final l$id = id;
     final l$name = name;
-    final l$disableResponse = disableResponse;
+    final l$isSystemConversation = isSystemConversation;
     final l$createdAt = createdAt;
     final l$lastModified = lastModified;
     final l$participant1Deleted = participant1Deleted;
@@ -9741,7 +9741,7 @@ class Mutation$CreateChat$createChat$chat {
     return Object.hashAll([
       l$id,
       l$name,
-      l$disableResponse,
+      l$isSystemConversation,
       l$createdAt,
       l$lastModified,
       l$participant1Deleted,
@@ -9772,9 +9772,9 @@ class Mutation$CreateChat$createChat$chat {
     if (l$name != lOther$name) {
       return false;
     }
-    final l$disableResponse = disableResponse;
-    final lOther$disableResponse = other.disableResponse;
-    if (l$disableResponse != lOther$disableResponse) {
+    final l$isSystemConversation = isSystemConversation;
+    final lOther$isSystemConversation = other.isSystemConversation;
+    if (l$isSystemConversation != lOther$isSystemConversation) {
       return false;
     }
     final l$createdAt = createdAt;
@@ -9843,7 +9843,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
   TRes call({
     String? id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     bool? participant1Deleted,
@@ -9874,7 +9874,7 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
-    Object? disableResponse = _undefined,
+    Object? isSystemConversation = _undefined,
     Object? createdAt = _undefined,
     Object? lastModified = _undefined,
     Object? participant1Deleted = _undefined,
@@ -9889,10 +9889,10 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
         name: name == _undefined || name == null
             ? _instance.name
             : (name as String),
-        disableResponse:
-            disableResponse == _undefined || disableResponse == null
-                ? _instance.disableResponse
-                : (disableResponse as bool),
+        isSystemConversation:
+            isSystemConversation == _undefined || isSystemConversation == null
+                ? _instance.isSystemConversation
+                : (isSystemConversation as bool),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -9950,7 +9950,7 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
   call({
     String? id,
     String? name,
-    bool? disableResponse,
+    bool? isSystemConversation,
     DateTime? createdAt,
     DateTime? lastModified,
     bool? participant1Deleted,
