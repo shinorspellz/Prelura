@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/notification_card.dart';
@@ -40,6 +41,12 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
 
   @override
   void dispose() {
+    Future.microtask(() {
+      final notifications = ref.read(notificationProvider).valueOrNull;
+      HelperFunction.genRef!
+          .read(readNotificationProvider.notifier)
+          .markAsRead(notifications ?? []);
+    });
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }

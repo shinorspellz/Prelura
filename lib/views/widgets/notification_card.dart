@@ -24,13 +24,14 @@ class NotificationCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // log(":::The notification info::: $notification");
+    final bool isRead = true;
     return GestureDetector(
       onTap: () async {
         if (!notification.isRead!) {
-          ref
-              .read(readNotificationProvider.notifier)
-              .readNotification(int.parse(notification.id));
-          ref.invalidate(notificationProvider);
+          // ref
+          //     .read(readNotificationProvider.notifier)
+          //     .readNotification(int.parse(notification.id));
+          // ref.invalidate(notificationProvider);
         }
         if (notification.modelGroup == "Chat") {
           context.router.push(ChatRoute(
@@ -110,7 +111,7 @@ class NotificationCard extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: HighlightUserName(
-                            isRead: notification.isRead ?? false,
+                            isRead: true,
                             username: notification.sender?.username ?? "",
                             message: notification.message),
                       ),

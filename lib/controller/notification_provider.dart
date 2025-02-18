@@ -176,6 +176,20 @@ class ReadNotificationNotifier extends AsyncNotifier<bool> {
     state = AsyncValue.data(result); // Update the state
     return result;
   }
+
+  Future<void> markAsRead(List<NotificationModel> notifications) async {
+    try {
+      for (final notification in notifications) {
+        // Perform the mutation for each notification
+        repo.readNotification(int.parse(notification.id));
+
+        // Update the state after the mutation
+      }
+      ref.invalidate(notificationProvider);
+    } catch (e) {
+      log("Error updating notifications: $e");
+    }
+  }
 }
 
 final deleteNotificationProvider =
